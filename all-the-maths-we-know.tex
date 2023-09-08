@@ -1,0 +1,82 @@
+\documentclass[10pt, a4paper, twocolumn]{article}
+%\usepackage{graphicx}
+%\usepackage{textcomp}
+%\usepackage{amssymb}
+%\usepackage{fontspec}
+%\usepackage{minted}
+\usepackage[T1]{fontenc}
+\usepackage{concrete}
+\usepackage{eulervm}
+\usepackage{amsmath}
+%\usepackage[amssymb,sansbold]{concmath}
+\usepackage[margin=0.51in]{geometry}
+%\setlength{\parskip}{\smallskipamount}
+\usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{booktabs}
+%\usepackage{fancyhdr}
+%%
+\usepackage[style=authoryear]{biblatex}
+\addbibresource{notes.bib}
+%%
+%%
+\newcommand{\defn}[1]{\textbf{\textsf{#1}}}
+\newcommand{\set}[1]{\mathbold{#1}}
+\newcommand{\minus}[1]{\underline{#1}}
+%%
+\title{All the maths we know}
+\date{}
+\author{}
+%%
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{3pt}
+%%
+\begin{document}%\maketitle
+\maketitle
+\section{Numbers}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}X@{}}
+  \toprule
+  $\set{N}$ & The \emph{natural numbers}: $0, 1, 2, \dotsc$. \\
+  $\set{Z}$ & The \emph{integers}: $-2, -1, 0, 1, 2, \dotsc$. \\
+  $\set{Q}$ & The \emph{rationals}: All numbers that can be written
+  as $m/n$ where $m$ and $n$ are integers. \\
+  $\set{R}$ & The \emph{reals}: The rationals and ``all the numbers in
+  between.'' \\
+  $\set{R}^+$ & The non-negative reals. \\
+\end{tabularx}
+
+\section{Set theory}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}X@{}}
+  \toprule
+  \defn{Set} & A collection of things, called its \emph{elements} (or \emph{members}). \\
+
+  $x \in X$    & ``$x$ is an element of set $X$.'' \\
+
+  $X\cup Y$     & The \defn{union} of $X$ and $Y$; its elements are all
+  elements of $X$, together with all elements of $Y$. \\
+
+  $X\cap Y$     & The \defn{intersection} of $X$ and $Y$; its elements are
+  those elements of \emph{both} $X$ and $Y$. \\
+
+  $\{x\in X\mid P(X)\}$ & The set of those elements of $X$ satisfying the
+  predicate $P$ (\textit{i.e.}, for which $P(X)$ is true). \\
+
+  $\emptyset$        & The \defn{empty set}---the set with no members. \\
+  \defn{Map} & A rule which assigns, to every element of a set, an element of
+  another set. \\
+
+  $f:X\to Y$   & ``$f$ is a map from $X$ (the \emph{domain}) to $Y$ (the
+  \emph{codomain} or \emph{range}).'' \\
+
+  $f:x \mapsto y$  & ``Specifically, $f$ maps the element $x \in X$ to the
+  element $y \in Y$.'' \\
+  $f \circ g$    & The map that is $g$ followed by $f$. \\
+
+  \defn{Pair} & Two elements: like a set but the order matters. \\
+  
+  $X\times Y$      & The \defn{Cartesian product} of $X$ and $Y$. The set
+  of all pairs $(x,y)$ where $x\in X$ and $y \in Y$. \\
+\end{tabularx}
+
+
+\end{document}
