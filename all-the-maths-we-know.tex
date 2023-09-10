@@ -1,3 +1,4 @@
+%% -*- fill-column: 72; eval: (auto-fill-mode -1); eval: (visual-fill-column-mode 1); eval: (visual-line-mode 1); eval: (adaptive-wrap-prefix-mode 1) -*-
 \documentclass[10pt, a4paper, twocolumn]{article}
 %\usepackage{graphicx}
 %\usepackage{textcomp}
@@ -13,6 +14,7 @@
 %\setlength{\parskip}{\smallskipamount}
 \usepackage{parskip}
 \usepackage{tabularx}
+\usepackage{array}
 \usepackage{booktabs}
 %\usepackage{fancyhdr}
 %%
@@ -34,19 +36,19 @@
 \begin{document}%\maketitle
 \maketitle
 \section{Numbers}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}X@{}}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
-  $\set{N}$ & The \emph{natural numbers}: $0, 1, 2, \dotsc$. \\
-  $\set{Z}$ & The \emph{integers}: $-2, -1, 0, 1, 2, \dotsc$. \\
-  $\set{Q}$ & The \emph{rationals}: All numbers that can be written
+  $\set{N}$ & The \emph{natural numbers:} $0, 1, 2, \dotsc$. \\
+  $\set{Z}$ & The \emph{integers:} $-2, -1, 0, 1, 2, \dotsc$. \\
+  $\set{Q}$ & The \emph{rationals:} All numbers that can be written
   as $m/n$ where $m$ and $n$ are integers. \\
-  $\set{R}$ & The \emph{reals}: The rationals and ``all the numbers in
+  $\set{R}$ & The \emph{reals:} The rationals and ``all the numbers in
   between.'' \\
   $\set{R}^+$ & The non-negative reals. \\
 \end{tabularx}
 
 \section{Set theory}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}X@{}}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
   \defn{Set} & A collection of things, called its \emph{elements} (or \emph{members}). \\
 
@@ -57,6 +59,8 @@
 
   $X\cap Y$     & The \defn{intersection} of $X$ and $Y$; its elements are
   those elements of \emph{both} $X$ and $Y$. \\
+
+  $X \subset Y$    & ``Every element of $X$ is an element of $Y$.''\\
 
   $\{x\in X\mid P(X)\}$ & The set of those elements of $X$ satisfying the
   predicate $P$ (\textit{i.e.}, for which $P(X)$ is true). \\
@@ -70,8 +74,14 @@
 
   $f:x \mapsto y$  & ``Specifically, $f$ maps the element $x \in X$ to the
   element $y \in Y$.'' \\
-  $f \circ g$    & The map that is $g$ followed by $f$. \\
+  $f \circ g$    & The map $g$ followed by the map $f$. \\
 
+  \defn{Injection} & A map, $f:X \to Y$, is an \emph{injection} (also \emph{one-to-one}) if every element in $X$ is mapped to a unique element of $Y$. \\
+
+  \defn{Surjection} & A map, $f:X \to Y$, is a \emph{surjection} (also \emph{onto}) if every element of $Y$ is mapped to by some element of $X$. \\
+
+  \defn{Bijection} & A map, $f:X \to Y$, is a \emph{bijection} (also an \emph{isomorphism}) if it is one-to-one and onto. \\ 
+  
   \defn{Pair} & Two elements: like a set but the order matters. \\
   
   $X\times Y$      & The \defn{Cartesian product} of $X$ and $Y$. The set
