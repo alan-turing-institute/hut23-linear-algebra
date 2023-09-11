@@ -35,7 +35,7 @@
 %%
 \begin{document}%\maketitle
 \maketitle
-\section{Numbers}
+\section*{Numbers}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
   $\set{N}$ & The \emph{natural numbers:} $0, 1, 2, \dotsc$. \\
@@ -47,7 +47,8 @@
   $\set{R}^+$ & The non-negative reals. \\
 \end{tabularx}
 
-\section{Set theory}
+\section*{Set theory}
+\subsection*{Sets}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
   \defn{Set} & A collection of things, called its \emph{elements} (or \emph{members}). \\
@@ -58,19 +59,31 @@
   elements of $X$, together with all elements of $Y$. \\
 
   $X\cap Y$     & The \defn{intersection} of $X$ and $Y$; its elements are
-  those elements of \emph{both} $X$ and $Y$. \\
+  those that are elements of both $X$ and $Y$. \\
 
-  $X \subset Y$    & ``Every element of $X$ is an element of $Y$.''\\
+  $X \subset Y$    & ``Every element of $X$ is an element of $Y$.'' $X$ is a \emph{subset} of~$Y$. \\
 
-  $\{x\in X\mid P(X)\}$ & The set of those elements of $X$ satisfying the
-  predicate $P$ (\textit{i.e.}, for which $P(X)$ is true). \\
+  $\{x\in X\mid P(x)\}$ & The set of those elements of $X$ satisfying the
+  predicate $P$ (\textit{i.e.}, for which $P(x)$ is true). \\
 
   $\emptyset$        & The \defn{empty set}---the set with no members. \\
-  \defn{Map} & A rule which assigns, to every element of a set, an element of
-  another set. \\
 
-  $f:X\to Y$   & ``$f$ is a map from $X$ (the \emph{domain}) to $Y$ (the
-  \emph{codomain} or \emph{range}).'' \\
+  \defn{Pair} & Two elements: like a set but the order matters and they can be the same thing. For example: $(1, 2)$. \\
+  
+  \defn{$n$-tuple} & An ordered list of $n$ things. For example: $(x_1, x_2,\dotsc, x_n)$. \\
+
+  $X\times Y$      & The \defn{Cartesian product} of $X$ and $Y$. The set
+  of all pairs $(x,y)$ where $x\in X$ and $y \in Y$. \\
+
+\end{tabularx}
+
+\newpage
+\subsection*{Maps}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Map} & A rule which assigns, to every element of a set (called the \emph{domain}), an element of another set (called the \emph{codomain} or \emph{range}). Sometimes called a \emph{function}, especially when the codomain is numbers. \\
+
+  $f:X\to Y$   & ``$f$ is a map from $X$ to $Y$.'' \\
 
   $f:x \mapsto y$  & ``Specifically, $f$ maps the element $x \in X$ to the
   element $y \in Y$.'' \\
@@ -82,10 +95,6 @@
 
   \defn{Bijection} & A map, $f:X \to Y$, is a \emph{bijection} (also an \emph{isomorphism}) if it is one-to-one and onto. \\ 
   
-  \defn{Pair} & Two elements: like a set but the order matters. \\
-  
-  $X\times Y$      & The \defn{Cartesian product} of $X$ and $Y$. The set
-  of all pairs $(x,y)$ where $x\in X$ and $y \in Y$. \\
 \end{tabularx}
 
 
