@@ -11,3 +11,12 @@ Ideas:
 2. PCA
 3. SVMs
 4. Feed-forward network?
+5. Linear programming
+
+
+## Specific datasets
+
+- The "Olivetti" dataset
+  https://www.kaggle.com/datasets/imrandude/olivetti (also available
+  from scikit-learn): 400 greyscale (8 bit) 64x64 images of faces.
+
