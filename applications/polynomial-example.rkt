@@ -1,4 +1,6 @@
 #lang racket/base
+(require math/distributions
+         racket/flonum)
 
 (provide example-poly
          example-xs
@@ -13,11 +15,18 @@
 
 ;; Some example data
 (define example-xs
-  (for/list ([i 10])
-    (random)))
+  (sort
+   (for/list ([_ 20])
+     (random))
+   <))
+
+(define (norm-sample s)
+  (flvector-ref (flnormal-sample 0.0 s 1) 0))
 
 (define example-ys
-  (map example-poly example-xs))
+  (map (λ (x) (+ (example-poly x)
+                 (norm-sample 0.01)))
+       example-xs))
 
 
 
