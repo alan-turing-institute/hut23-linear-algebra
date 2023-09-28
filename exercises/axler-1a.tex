@@ -11,6 +11,7 @@
 \usepackage{booktabs}
 \newcommand{\defn}[1]{\textbf{\textsf{#1}}}
 \newcommand{\set}[1]{\mathbold{#1}}
+\newcommand{\ii}{\mathrm{i}}
 %%
 \title{Axler 1.A: Selected Exercises}
 \date{}
@@ -18,6 +19,65 @@
 %%
 \begin{document}\maketitle
 \section*{Ex.~1}
+\begin{quote}
+Suppose $a$ and $b$ are real numbers, not both~0. Find real numbers $c$ and $d$ such that
+$1 / (a + b\ii) = c + d\ii$.
+\end{quote}
+A complex number consists of a “real part” and an ``imaginary part.'' The condition says that $a + b\ii$ is a complex number whose real part is $a$ and whose imaginary part is $b$ (and that this number is not zero).
+
+What the question is really asking is,``how do you compute the multiplicative inverse of a complex number?''
+
+If we knew $c$ and $d$ we would know the complex number that is the multiplicative inverse of $a + b\ii$. It \emph{looks} like we’ve got two unknowns ($c$ and $d$) and only one equation. That’s not good! In general, one needs two equations to find two unknowns: one equation is under-determined.
+
+But in fact, every equation involving complex numbers is really two equations in disguise: One obtained by equating the real parts, and one obtained by equating the imaginary parts. So the trick here is to get this into a form where we can equate the real and imaginary parts of both sides.
+
+Multiplying both sides by $a + b\ii$ gives:
+\begin{equation*}
+  1 = (a + b\ii) (c + d\ii)
+\end{equation*}
+
+Expanding out the right hand side and collecting terms gives:
+\begin{equation*}
+  1 = (ac - bd) + (bc + ad) \ii
+\end{equation*}
+(The minus sign is there because $\ii^2 = -1$.) 
+
+Now it’s in the right form: we can “read off” the real parts and the imaginary parts of both sides of this equation. Since the real parts have to be equal:
+\begin{equation*}
+  1 = (ac - bd);
+\end{equation*}
+and since the imaginary parts have to be equal:
+\begin{equation*}
+0 = (bc + ad).
+\end{equation*}
+
+That’s two equations and there are two unknowns ($c$ and $d$) so now we’re in with a fighting chance. One way to proceed is to use the second equation to get $d$ in terms of $c$:
+\begin{equation*}
+  d = -bc / a.
+\end{equation*}
+Then substitute for $d$ in the first equation leaving something that can be solved for $c$.
+
+The results are:
+\begin{equation*}
+  c = \frac{a}{a^2 + b^2}
+  \quad\text{and}\quad 
+    d = \frac{-b}{a^2 + b^2}.
+\end{equation*}
+
+\section*{Ex.~4}
+\begin{quote}
+Show that $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta \in \set{C}$.
+\end{quote}
+One's first thought is likely to be something like, ``isn't that just
+true?'' However, the thing to note is that since $\alpha$ and $\beta$ are complex
+numbers, the `$+$' operation is not to be interpreted as ``ordinary''
+addition of real numbers but instead as addition in the space of complex
+numbers. That operation is defined on page~2 of Axler and is roughly, ``add together separately the real parts and the imaginary parts.'' More, carefully:
+\begin{equation*}
+  (a + b\ii) + (c + d\ii) = (a+c) + (b+d)\\i.
+\end{equation*}
+
+
 
 
 \end{document}
