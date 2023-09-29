@@ -3,6 +3,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{concrete}
 \usepackage{eulervm}
+\usepackage{amssymb}
 \usepackage{amsmath}
 \usepackage[margin=0.51in]{geometry}
 \usepackage{parskip}
@@ -68,11 +69,42 @@ The results are:
 \begin{quote}
 Show that $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta \in \set{C}$.
 \end{quote}
-One's first thought is likely to be something like, ``isn't that just
-true?'' However, the thing to note is that since $\alpha$ and $\beta$ are complex
-numbers, the `$+$' operation is not to be interpreted as ``ordinary''
-addition of real numbers but instead as addition in the space of complex
-numbers. That operation is defined on page~2 of Axler and is roughly, ``add together separately the real parts and the imaginary parts.'' More, carefully:
+The technical term for an operation where the order doesn't matter is a \emph{commutative} operation.
+
+One's first thought on reading this question is likely to be something like, ``isn't that just true?'' However, the thing to note is that, since $\alpha$ and $\beta$ are complex numbers, the `$+$' operation is ``complex addition,'' not ordinary addition of real numbers. It \emph{is} obvious that ordinary addition is commutative (or, at least, we all believe that fact) whereas the claim that complex addition is commutative is something that requires a demonstration.
+
+The definition of addition of complex numbers is given on page~2 of
+Axler; it is: ``add together separately the real parts and the imaginary
+parts.'' Put like that, the result follows immediately: adding together
+the real parts is commutative (because it is ordinary addition) and the
+same is true of adding together the imaginary parts. And so the addition
+of complex numbers does not depend on the order either.
+
+\subsection*{A wrinkle}
+
+Well, perhaps the result follows immediately but it's worth giving the
+argument again in symbols because it is surprising how easy it is to switch unknowingly from one meaning to another.
+
+Here's Axler's definition of complex addition. The sum of $a+b\ii$ and $c+d\ii$ is given by:
+\begin{equation*}
+  (a+b\ii) + (c +d\ii) = (a+c) + (b+d)\ii.
+\end{equation*}
+That looks a lot like the thing it is supposed to represent
+
+
+
+In fact, let's put a dot over the `$+$' to indicate that this is complex addition (this notation is not standard!).
+
+So what we're being asked to show is that:
+\begin{equation*}
+  \alpha \dotplus \beta = \beta \dotplus \alpha \quad\text{(where $\dotplus$ is complex addition)}.
+\end{equation*}
+That makes it look more like there's a thing to show because it's not obvious how $\dotplus$ behaves.
+
+
+
+
+That operation is defined on page~2 of Axler and is roughly, ``add together separately the real parts and the imaginary parts.'' More carefully:
 \begin{equation*}
   (a + b\ii) + (c + d\ii) = (a+c) + (b+d)\\i.
 \end{equation*}
