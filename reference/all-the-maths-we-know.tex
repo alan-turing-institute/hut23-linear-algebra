@@ -45,7 +45,7 @@
   $\set{R}$ & The \emph{reals:} The rationals and ``all the numbers in
   between.'' \\
   $\set{R}^+$ & The non-negative reals. \\
-  $\set{C}$ & The \emph{complex numbers:} Numbers of the form $a + b\imag$, where $a$ and $b$ are real numbers and $\imag^2=-1$. \\
+  $\set{C}$ & The \emph{complex numbers:} Numbers of the form $a + b\imag$, where $a$ and $b$ are real numbers and $\imag^2=-1$. 
 \end{tabularx}
 
 \section*{Set theory}
@@ -56,8 +56,7 @@
 
   $x \in X$    & ``$x$ is an element of set $X$.'' \\
 
-  $X\cup Y$     & The \defn{union} of $X$ and $Y$; its elements are all
-  elements of $X$, together with all elements of $Y$. \\
+  $X\cup Y$     & The \defn{union} of $X$ and $Y$: all elements of $X$ together with all elements of $Y$. \\
 
   $X\cap Y$     & The \defn{intersection} of $X$ and $Y$; its elements are
   those that are elements of both $X$ and $Y$. \\
@@ -71,12 +70,19 @@
 
   $\emptyset$        & The \defn{empty set}---the set with no members. \\
 
+\end{tabularx}
+
+\subsection*{Pairs and tuples}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+  \toprule
   \defn{Pair} & An ordered list of two things: like a set but the order matters and they can be the same thing. For example: $(1, 2)$. \\
   
   \defn{$n$-tuple} & An ordered list of $n$ things. For example: $(x_1, x_2,\dotsc, x_n)$. \\
 
   $X\times Y$      & The \defn{Cartesian product} of $X$ and $Y$ is the set
   of all pairs $(x,y)$ where $x \in X$ and $y \in Y$. \\
+
+  $X^n$ & The set of all $n$-tuples of elements of~$X$. The Cartesian product of $X$ with itself $n$ times. \\
 
 \end{tabularx}
 
@@ -96,7 +102,21 @@
 
   \defn{Surjection} & A map, $f:X \to Y$, is a \emph{surjection} (also \emph{onto}) if every element of $Y$ is mapped to by some element of $X$. \\
 
-  \defn{Bijection} & A map, $f:X \to Y$, is a \emph{bijection} (also an \emph{isomorphism of sets}) if it is one-to-one and onto. \\ 
-  
+  \defn{Bijection} & A map, $f:X \to Y$, is a \emph{bijection} (also an \emph{isomorphism of sets}) if it is one-to-one and onto.   
 \end{tabularx}
+
+\section*{Particular spaces}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  $\set{R}^n$ (or $\set{C}^n$) & The set of $n$-tuples of $\set{R}$ (or $\set{C}$) with the operation of “element-wise” addition and multiplication by $\set{R}$ (or $\set{C}$):
+  \begin{multline*}
+      (x_1, \dotsc, x_n) + (y_1, \dotsc, y_n) := \\ (x_1+y_1, \dotsc, x_n+y_n) 
+  \end{multline*}
+  and
+  \begin{equation*}
+    \lambda (x_1, \dotsc, x_n) := (\lambda x_1, \dotsc, \lambda x_n) 
+  \end{equation*}
+\end{tabularx}
+
+
 \end{document}
