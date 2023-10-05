@@ -1,0 +1,173 @@
+%% -*- fill-column: 72; eval: (auto-fill-mode -1); eval: (visual-fill-column-mode 1); eval: (visual-line-mode 1); eval: (adaptive-wrap-prefix-mode 1) -*-
+\documentclass[10pt, a4paper, twocolumn]{article}
+\usepackage[T1]{fontenc}
+\usepackage{concrete}
+\usepackage{eulervm}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage[margin=0.51in]{geometry}
+\usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{booktabs}
+\newcommand{\defn}[1]{\textbf{\textsf{#1}}}
+\newcommand{\set}[1]{\mathbold{#1}}
+\newcommand{\ii}{\mathrm{i}}
+%%
+\title{Axler 1.A: Selected Exercises}
+\date{}
+\author{}
+%%
+\begin{document}\maketitle
+\section*{Ex.~1}
+\begin{quote}
+Suppose $a$ and $b$ are real numbers, not both~0. Find real numbers $c$ and $d$ such that
+$1 / (a + b\ii) = c + d\ii$.
+\end{quote}
+A complex number consists of a “real part” and an ``imaginary part.'' The condition says that $a + b\ii$ is a complex number whose real part is $a$ and whose imaginary part is $b$ (and that this number is not zero).
+
+What the question is really asking is,``how do you compute the multiplicative inverse of a complex number?''
+
+If we knew $c$ and $d$ we would know the complex number that is the multiplicative inverse of $a + b\ii$. It \emph{looks} like we’ve got two unknowns ($c$ and $d$) and only one equation. That’s not good! In general, one needs two equations to find two unknowns: one equation is under-determined.
+
+But in fact, every equation involving complex numbers is really two equations in disguise: One obtained by equating the real parts, and one obtained by equating the imaginary parts. So the trick here is to get this into a form where we can equate the real and imaginary parts of both sides.
+
+Multiplying both sides by $a + b\ii$ gives:
+\begin{equation*}
+  1 = (a + b\ii) (c + d\ii)
+\end{equation*}
+
+Expanding out the right hand side and collecting terms gives:
+\begin{equation*}
+  1 = (ac - bd) + (bc + ad) \ii
+\end{equation*}
+(The minus sign is there because $\ii^2 = -1$.) 
+
+Now it’s in the right form: we can “read off” the real parts and the imaginary parts of both sides of this equation. Since the real parts have to be equal:
+\begin{equation*}
+  1 = (ac - bd);
+\end{equation*}
+and since the imaginary parts have to be equal:
+\begin{equation*}
+0 = (bc + ad).
+\end{equation*}
+
+That’s two equations and there are two unknowns ($c$ and $d$) so now we’re in with a fighting chance. One way to proceed is to use the second equation to get $d$ in terms of $c$:
+\begin{equation*}
+  d = -bc / a.
+\end{equation*}
+Then substitute for $d$ in the first equation leaving something that can be solved for $c$.
+
+The results are:
+\begin{equation*}
+  c = \frac{a}{a^2 + b^2}
+  \quad\text{and}\quad 
+    d = \frac{-b}{a^2 + b^2}.
+\end{equation*}
+
+\section*{Ex.~4}
+\begin{quote}
+Show that $\alpha + \beta = \beta + \alpha$ for all $\alpha, \beta \in \set{C}$.
+\end{quote}
+The technical term for an operation where the order doesn't matter is a \emph{commutative} operation.
+
+One's first thought on reading this question is likely to be something like, ``isn't that just true?'' However, the thing to note is that, since $\alpha$ and $\beta$ are complex numbers, the `$+$' operation is ``complex addition,'' not ordinary addition of real numbers. It \emph{is} obvious that ordinary addition is commutative (or, at least, we all believe that fact) whereas the claim that complex addition is commutative is something that requires a demonstration.
+
+The definition of addition of complex numbers is given on page~2 of
+Axler; it is: ``add together separately the real parts and the imaginary
+parts.'' Put like that, the result follows immediately: adding together
+the real parts is commutative (because it is ordinary addition) and the
+same is true of adding together the imaginary parts. And so the addition
+of complex numbers does not depend on the order either.
+
+\subsection*{A wrinkle}
+
+Well, perhaps the result follows immediately but it's worth giving the
+argument again in symbols because it is surprising how easy it is to switch unknowingly from one meaning to another.
+
+In fact, let's put a dot over the `$+$' to indicate that this is complex
+addition (this notation is not standard!). What we're being asked to show is:
+\begin{equation*}
+  \alpha \dotplus \beta = \beta \dotplus \alpha \quad\text{(where $\dotplus$ is complex addition)}.
+\end{equation*}
+\emph{That} makes it look more like there's a thing to show because there's this odd `$\dotplus$' and it's not obvious how $\dotplus$ behaves.
+
+In Axler, there's a formula that is supposed to define complex addition. Axler says that the sum of the complex numbers $a+b\ii$ and $c+d\ii$ is given by:
+\begin{equation*}
+  (a + b\ii) + (c + d\ii) = (a+c) + (b+d)\ii \quad\text{(from Axler)}.
+\end{equation*}
+But wait! There are six plus signs in this equation! Which one is supposed to be the complex addition being defined? Presumably, it's the middle one on the left, like this:
+\begin{equation*}
+  (a + b\ii) \dotplus (c + d\ii) := (a+c) + (b+d)\ii.
+\end{equation*}
+(There's a dot on the plus that this equation is supposed to define.)
+
+What about the other plus signs? The ones in $a+c$ and $b+d$ on the right are just ordinary addition because $a$, $b$, $c$, and $d$ are all real numbers. 
+
+But what about the additions in $a+b\ii$ and $c+d\ii$ on the left? What kind of additions are \emph{they}? They can't be ordinary addition because, for example, $a$ is real but $b\ii$ is imaginary and ordinary addition is only defined for real numbers. On the other hand, it would be very weird indeed if they were complex addition because then the whole equation looks like it's assuming the very thing it's supposed to be defining. What is going on?
+
+What's going on is an abuse of notation. Whaat Axler says to begin with,
+is that a complex number is a \emph{pair} of real numbers, like this:
+$(a, b)$. Then the actual definition of complex addition is this:
+\begin{equation*}
+  (a, b) \dotplus (c, d) := (a+c, b+d) \quad\text{(what Axler should have said)}.
+\end{equation*}
+
+The expression ``$a+b\ii$'' is a sort of notational convenience for
+$(a,b)$. Once complex addition is defined, one can of course choose to write $a\dotplus b\ii$---or, indeed $a+b\ii$, just using ‘$+$’ for complex addition as well as ordinary addition. 
+
+\section*{Ex.~7}
+\begin{quote}
+  Show that for every $\alpha\in \set{C}$, there exists a unique $\beta\in \set{C}$
+  such that $\alpha+\beta = 0$.
+\end{quote}
+This question is asking us to show that “additive inverses exist and are unique.” There are two parts: (1) showing they exist and (2) showing they are unique. 
+
+The best way to show existence, if you can do it, is actually to construct an example. Here, a complex number $\alpha$ is a pair of real numbers, $(\alpha_r, \alpha_i)$ (that's the real part and the imaginary part). We need a complex number $\beta$, say $(\beta_r, \beta_i)$, such that:
+\begin{equation*}
+(\alpha_r, \alpha_i) + (\beta_r, \beta_i) = (0, 0).
+\end{equation*}
+The definition of complex addition (as we talked about above) is that $(\alpha_r, \alpha_i) + (\beta_r, \beta_i) = (\alpha_r + \beta_r, \alpha_i + \beta_i)$. So we're looking for $\beta_r$ and $\beta_i$ such that
+\begin{equation*}
+ (\alpha_r + \beta_r, \alpha_i + \beta_i)= (0, 0).
+\end{equation*}
+from which it's clear that $(\beta_r, \beta_i) = (-\alpha_r, -\alpha_i)$ will satisfy the
+requirements.
+
+Could there be some \emph{other} $\beta$? Consider the real part of the above: $\alpha_r + \beta_r = 0$. Since additive inverses are unique in the reals, there's only one $\beta_r$ satisfying this expression; and likewise for the $\beta_i$. So there is in fact only one $(\beta_i, \beta_r)$ with this property.
+
+Why are additive inverses unique in the reals? Well, suppose there were some \emph{other} $\beta'_r$ which also had the property, $\alpha_r + \beta'_r =0$. Then:
+\begin{equation*}
+  \begin{aligned}
+    \alpha_r + \beta_r &= 0 \\
+    \alpha_r + \beta_r + \beta'_r &= \beta'_r &&\text{(adding $\beta'_r$ to both sides)} \\
+    \alpha_r + \beta'_r + \beta_r &= \beta'_r &&\text{(because addition is commutative)} \\
+      0 + \beta_r &= \beta'_r &&\text{(by assumption of $\beta'_r$)} \\
+      \beta_r &= \beta'_r &&\text{(by definition of 0)}. \\
+  \end{aligned}
+\end{equation*}
+So, if there were a $\beta'_r$ that is an additive inverse of $\alpha_r$ it would be the same as~$\beta_r$.
+
+\section*{Ex.~8}
+\begin{quote}
+  Show that for every $\alpha\in \set{C}$ with $\alpha \neq 0$, there exists a unique $\beta\in \set{C}$ such that $\alpha\beta = 1$.
+\end{quote}
+
+In question 1 we actually constructed the multiplicative inverse of $\alpha$
+explicitly, so we have already shown existence of $\beta$.
+
+To show uniqueness we can use the same trick as in question~7, replacing addition with multiplication. We do need to assume that complex multiplcation is associative (which is shown in question~6) and commutative (which is apparent from the definition of complex multiplication). Assume, then, that there is some $\beta'$ such that $\alpha\beta'=1$. Then,  
+\begin{equation*}
+  \begin{aligned}
+    \alpha \beta &= 1 \\
+    (\alpha \beta) \beta' &= \beta' &&\text{(multiplying by $\beta'$ on the right)} \\
+    \alpha (\beta \beta') &= \beta' &&\text{(by associativity)} \\
+    \alpha (\beta' \beta) &= \beta' &&\text{(by commutativity)} \\
+    (\alpha \beta') \beta &= \beta' &&\text{(associativity again)} \\
+    1 \beta &= \beta' &&\text{(by assumption that $\alpha\beta'=1$)} \\
+    \beta &= \beta' &&\text{(multiplication by 1)}. 
+  \end{aligned}
+\end{equation*}
+Thus, if there is some inverse of $alpha$ it is the same as $\beta$.
+
+\end{document}
