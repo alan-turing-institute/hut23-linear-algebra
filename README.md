@@ -4,10 +4,11 @@ Repository for the Linear Algebra reading group
 
 ### Schedule
 
-| Date  | Topic         | Reading                          |
-|-------|---------------|----------------------------------|
-| 6 Oct | First meeting | Axler Chapter 1.A (part A only). |
-
+|  Date  | Topic         | Reading                          |
+|--------|---------------|----------------------------------|
+|  6 Oct | First meeting | Axler Chapter 1.A (part A only). |
+| 13 Oct |               | Exercises 1.A		    |
+	
 
 Overall plan:
 - Follow Axler (by subchapter) until we feel comfortable moving to
