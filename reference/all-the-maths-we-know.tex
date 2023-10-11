@@ -105,7 +105,7 @@
   \defn{Bijection} & A map, $f\colon X \to Y$, is a \emph{bijection} (also an \emph{isomorphism of sets}) if it is one-to-one and onto.   
 \end{tabularx}
 
-\section*{Particular spaces}
+\section*{Useful spaces}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
   $\set{R}^n$ (or $\set{C}^n$) & The set of $n$-tuples of $\set{R}$ (or $\set{C}$), together with the operation of “element-wise” addition:
@@ -118,13 +118,23 @@
   \end{equation*}
 \end{tabularx}
 
-\section*{Operators}
+\newpage
+\section*{Useful maps}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
-  \defn{Operator} & A \emph{binary operator} on a set $\set{X}$ is a map $\star \colon \set{X}\times\set{X} \to \set{X}$. That is, it is a rule which takes two elements of $\set{X}$ and returns an element of~$\set{X}$. Operators are typically written in “infix” notation, $x\star y$, rather than in a function notation, $\star(x,y)$. \\
+  \defn{Operator} & A \emph{binary operator} on a set $\set{X}$ is a map $\star \colon \set{X}\times\set{X} \to \set{X}$. That is, a binary operator takes two elements of $\set{X}$ and returns an element of~$\set{X}$. Operators are typically written in “infix” notation, $x\star y$, rather than in a function notation, $\star(x,y)$. \\
 
-
+  \defn{Associative} & A binary operator, $\star$, is associative if
+  \begin{equation*}
+    (a \star b) \star c = a \star (b \star c).
+  \end{equation*}
+  Most operators you will meet are associative. Since the order in which the operations are carried out doesn't affect the result, the parentheses are often omitted, as in $a\star b\star c$.\\
   
+  \defn{Commutative} & A binary operator, $\star$, is commutative if
+  \begin{equation*}
+    a \star b = b \star a.
+  \end{equation*}
+
 \end{tabularx}
 
 
