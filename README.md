@@ -1,6 +1,7 @@
 # hut23-linear-algebra
 
-Repository for the Linear Algebra reading group
+Repository for the Linear Algebra reading group. Some material in this
+repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 
 ### Schedule
 
