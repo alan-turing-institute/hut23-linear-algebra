@@ -5,10 +5,10 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 
 ### Schedule
 
-|  Date  | Topic         | Reading                          |
-|--------|---------------|----------------------------------|
-|  6 Oct | First meeting | Axler Chapter 1.A (part A only). |
-| 13 Oct |               | Exercises 1.A		    |
+| Date   | Topic                           | Reading                          |
+|--------|---------------------------------|----------------------------------|
+| 6 Oct  | First meeting                   | Axler Chapter 1.A (part A only). |
+| 13 Oct | Complex numbers; $\mathbf{R}^n$ | Exercises 1.A                    |
 	
 
 Overall plan:
