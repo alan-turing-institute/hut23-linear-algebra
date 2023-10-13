@@ -53,8 +53,8 @@ The results are: $$c = \frac{a}{a^2 + b^2}
 ## Q.4
 
 ### Question
-> Show that $\alpha + \beta = \beta + \alpha$ for all
-> $\alpha, \beta \in \mathbold{C}$.
+Show that $\alpha + \beta = \beta + \alpha$ for all
+$\alpha, \beta \in \mathbold{C}$.
 
 ### Solution
 The technical term for an operation where the order doesn’t matter is a
@@ -122,8 +122,8 @@ $+$ for complex addition as well as ordinary addition.
 
 ## Q.7
 ### Question
-Show that for every $\alpha\in \mathbold{C}$, there exists a unique
-$\beta\in \mathbold{C}$ such that $\alpha+\beta = 0$.
+Show that for every $\alpha\in \mathbf{C}$, there exists a unique
+$\beta\in \mathbf{C}$ such that $\alpha+\beta = 0$.
 
 ### Answer
 This question is asking us to show that “additive inverses exist and are
@@ -166,8 +166,8 @@ inverse of $\alpha_r$ it would be the same as $\beta_r$.
 
 ## Q.8
 ### Question
-Show that for every $\alpha\in \mathbold{C}$ with $\alpha \neq 0$,
-there exists a unique $\beta\in \mathbold{C}$ such that
+Show that for every $\alpha\in \mathbf{C}$ with $\alpha \neq 0$,
+there exists a unique $\beta\in \mathbf{C}$ such that
 $\alpha\beta = 1$.
 
 ### Answer
