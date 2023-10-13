@@ -2,10 +2,11 @@
 
 ## Q.1
 ### Question
-> Suppose $a$ and $b$ are real numbers, not both~0. Find real numbers
-> $c$ and $d$ such that $1 / (a + bi) = c + di$.
 
-### Answer
+Suppose $a$ and $b$ are real numbers, not both 0. Find real numbers
+$c$ and $d$ such that $1 / (a + b\mathrm{i}) = c + d\mathrm{i}$.
+
+### Solution
 
 A complex number consists of a “real part” and an “imaginary part.” The
 condition says that $a + b\mathrm{i}$ is a complex number whose real
@@ -51,15 +52,17 @@ The results are: $$c = \frac{a}{a^2 + b^2}
 
 ## Q.4
 
+### Question
 > Show that $\alpha + \beta = \beta + \alpha$ for all
 > $\alpha, \beta \in \mathbold{C}$.
 
+### Solution
 The technical term for an operation where the order doesn’t matter is a
 *commutative* operation.
 
 One’s first thought on reading this question is likely to be something
 like, “isn’t that just true?” However, the thing to note is that, since
-$\alpha$ and $\beta$ are complex numbers, the ‘$+$’ operation is
+$\alpha$ and $\beta$ are complex numbers, the $+$ operation is
 “complex addition,” not ordinary addition of real numbers. It *is*
 obvious that ordinary addition is commutative (or, at least, we all
 believe that fact) whereas the claim that complex addition is
@@ -72,18 +75,18 @@ the real parts is commutative (because it is ordinary addition) and the
 same is true of adding together the imaginary parts. And so the addition
 of complex numbers does not depend on the order either.
 
-### A wrinkle
+#### A wrinkle
 
 Well, perhaps the result follows immediately but it’s worth giving the
 argument again in symbols because it is surprising how easy it is to
 switch unknowingly from one meaning to another.
 
-In fact, let’s put a dot over the ‘$+$’ to indicate that this is complex
+In fact, let’s put a dot over the $+$ to indicate that this is complex
 addition (this notation is not standard!). What we’re being asked to
 show is:
-$$\alpha \dotplus \beta = \beta \dotplus \alpha \quad\text{(where $\dotplus$ is complex addition)}.$$
+$$\alpha \dotplus \beta = \beta \dotplus \alpha.$$
 *That* makes it look more like there’s a thing to show because there’s
-this odd ‘$\dotplus$’ and it’s not obvious how $\dotplus$ behaves.
+this odd $\dotplus$ and it’s not obvious how $\dotplus$ behaves.
 
 In Axler, there’s a formula that is supposed to define complex addition.
 Axler says that the sum of the complex numbers $a+b\mathrm{i}$ and
@@ -107,20 +110,20 @@ other hand, it would be very weird indeed if they were complex addition
 because then the whole equation looks like it’s assuming the very thing
 it’s supposed to be defining. What is going on?
 
-What’s going on is an abuse of notation. Whaat Axler says to begin with,
+What’s going on is an abuse of notation. What Axler says to begin with,
 is that a complex number is a *pair* of real numbers, like this:
 $(a, b)$. Then the actual definition of complex addition is this:
 $$(a, b) \dotplus (c, d) := (a+c, b+d) \quad\text{(what Axler should have said)}.$$
 
-The expression “$a+b\mathrm{i}$” is a sort of notational convenience for
+The expression $a+b\mathrm{i}$ is a sort of notational convenience for
 $(a,b)$. Once complex addition is defined, one can of course choose to
 write $a\dotplus b\mathrm{i}$—or, indeed $a+b\mathrm{i}$, just using
-‘$+$’ for complex addition as well as ordinary addition.
+$+$ for complex addition as well as ordinary addition.
 
 ## Q.7
 ### Question
-> Show that for every $\alpha\in \mathbold{C}$, there exists a unique
-> $\beta\in \mathbold{C}$ such that $\alpha+\beta = 0$.
+Show that for every $\alpha\in \mathbold{C}$, there exists a unique
+$\beta\in \mathbold{C}$ such that $\alpha+\beta = 0$.
 
 ### Answer
 This question is asking us to show that “additive inverses exist and are
@@ -147,21 +150,25 @@ $(\beta_i, \beta_r)$ with this property.
 
 Why are additive inverses unique in the reals? Well, suppose there were
 some *other* $\beta'_r$ which also had the property,
-$\alpha_r + \beta'_r =0$. Then: $$\begin{aligned}
+$\alpha_r + \beta'_r =0$. Then: 
+```math
+\begin{align}
     \alpha_r + \beta_r &= 0 \\
     \alpha_r + \beta_r + \beta'_r &= \beta'_r &&\text{(adding $\beta'_r$ to both sides)} \\
     \alpha_r + \beta'_r + \beta_r &= \beta'_r &&\text{(because addition is commutative)} \\
       0 + \beta_r &= \beta'_r &&\text{(by assumption of $\beta'_r$)} \\
       \beta_r &= \beta'_r &&\text{(by definition of 0)}. \\
-  \end{aligned}$$ So, if there were a $\beta'_r$ that is an additive
-inverse of $\alpha_r$ it would be the same as $\beta_r$.
+  \end{align}
+```
+So, if there were a $\beta'_r$ that is an additive
+inverse of $\alpha_r$ it would be the same as $\beta_r$.
 
 
 ## Q.8
 ### Question
-> Show that for every $\alpha\in \mathbold{C}$ with $\alpha \neq 0$,
-> there exists a unique $\beta\in \mathbold{C}$ such that
-> $\alpha\beta = 1$.
+Show that for every $\alpha\in \mathbold{C}$ with $\alpha \neq 0$,
+there exists a unique $\beta\in \mathbold{C}$ such that
+$\alpha\beta = 1$.
 
 ### Answer
 In question 1 we actually constructed the multiplicative inverse of
@@ -172,7 +179,9 @@ addition with multiplication. We do need to assume that complex
 multiplcation is associative (which is shown in question 6) and
 commutative (which is apparent from the definition of complex
 multiplication). Assume, then, that there is some $\beta'$ such that
-$\alpha\beta'=1$. Then, $$\begin{aligned}
+$\alpha\beta'=1$. Then, 
+```math
+\begin{align}
     \alpha \beta &= 1 \\
     (\alpha \beta) \beta' &= \beta' &&\text{(multiplying by $\beta'$ on the right)} \\
     \alpha (\beta \beta') &= \beta' &&\text{(by associativity)} \\
@@ -180,7 +189,9 @@ $\alpha\beta'=1$. Then, $$\begin{aligned}
     (\alpha \beta') \beta &= \beta' &&\text{(associativity again)} \\
     1 \beta &= \beta' &&\text{(by assumption that $\alpha\beta'=1$)} \\
     \beta &= \beta' &&\text{(multiplication by 1)}. 
-  \end{aligned}$$ Thus, if there is some inverse of $alpha$ it is the
+  \end{align}
+```
+Thus, if there is some inverse of $\alpha$ it is the
 same as $\beta$.
 
 
@@ -195,8 +206,9 @@ Find $x \in \mathbf{R}^4$ such that $$(4, -3, 1, 7) + 2x = (5, 9, -6, 8).$$
 Write $x = (x_1, x_2, x_3, x_4)$. Finding $x$ means finding $x_1,
 \dotsc, x_4$.
 
-From the definition of addition in $\mathbf{R}^n$, $(4, -3, 1, 7) + 2x = 
-(4+2x_1, -3+2x_2, 1+2x_3, 7+2x_4)$. Therefore,
+From the definition of addition in $\mathbf{R}^n$, $$(4, -3, 1, 7) + 2x = 
+(4+2x_1, -3+2x_2, 1+2x_3, 7+2x_4).$$ 
+Therefore,
 $$(4+2x_1, -3+2x_2, 1+2x_3, 7+2x_4) = (5, 9, -6, 8).$$
 
 Equating the first component of the tuples gives $4+2x_1 = 5$, and
