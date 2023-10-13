@@ -1,4 +1,4 @@
-pdfs = all-the-maths-we-know.pdf
+pdfs = all-the-maths-we-know.pdf all-the-rules-we-know.pdf
 
 all: $(pdfs)
 
