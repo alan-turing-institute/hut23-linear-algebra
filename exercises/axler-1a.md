@@ -54,7 +54,7 @@ The results are: $$c = \frac{a}{a^2 + b^2}
 
 ### Question
 Show that $\alpha + \beta = \beta + \alpha$ for all
-$\alpha, \beta \in \mathbold{C}$.
+$\alpha, \beta \in \mathbf{C}$.
 
 ### Solution
 The technical term for an operation where the order doesn’t matter is a
