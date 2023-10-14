@@ -105,6 +105,43 @@
   \defn{Bijection} & A map, $f\colon X \to Y$, is a \emph{bijection} (also an \emph{isomorphism of sets}) if it is one-to-one and onto.   
 \end{tabularx}
 
+\section*{Useful maps}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Operator} & A \emph{binary operator} on a set $\set{X}$ is a map $\star \colon \set{X}\times\set{X} \to \set{X}$. That is, a binary operator takes two elements of $\set{X}$ and returns an element of~$\set{X}$. Operators are typically written in “infix” notation, $x\star y$, rather than in a function notation, $\star(x,y)$. \\
+
+  \defn{Associative} & A binary operator, $\star$, is \emph{associative} if
+  \begin{equation*}
+    (a \star b) \star c = a \star (b \star c).
+  \end{equation*}
+  Almost all operators you will meet are associative. Since the order in which the operations are carried out doesn't affect the result, the parentheses are often omitted, as in $a\star b\star c$.\\
+  
+  \defn{Commutative} & A binary operator, $\star$, is \emph{commutative} if
+  \begin{equation*}
+    a \star b = b \star a.
+  \end{equation*}
+\end{tabularx}
+
+\newpage
+\section*{Vector spaces}
+\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+  \toprule \defn{Vector space} & A \emph{real vector space} is a set,
+  $V$, together with: (i) a commutative, associative, binary operator,
+  $+$, on $V$; (ii) a map, $\cdot\colon \set{R}\times V\to V$; and (iii) a
+  distinguished element $\mathbold{0}\in V$, such that:
+  \begin{enumerate}
+  \item $v + \mathbold{0} = v$ for all $v\in V$;
+  \item For any $v\in V$ there exists an element $-v \in V$ such that $v+(-v)=\mathbold{0}$;
+  \item $1 \cdot v = v$ for all $v\in V$;
+  \item $\alpha\cdot(v+w) = \alpha\cdot v+ \alpha\cdot w$ and $(\alpha+\beta)\cdot v = \alpha\cdot v + \beta \cdot v$ for all $\alpha, \beta\in \set{R}$ and $v,w \in V$.
+  \end{enumerate}
+
+  Replacing $\set{R}$ with $\set{C}$ in the above we obtain a
+  \emph{complex vector space}. \\
+
+  \defn{Vector} & A vector is an element of a vector space.
+\end{tabularx}
+
 \section*{Useful spaces}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
@@ -115,28 +152,19 @@
   and multiplication by $\set{R}$ (or $\set{C}$):
   \begin{equation*}
     \lambda \cdot (x_1, \dotsc, x_n) := (\lambda x_1, \dotsc, \lambda x_n) 
-  \end{equation*}
-\end{tabularx}
+  \end{equation*} \\
 
-\newpage
-\section*{Useful maps}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
-  \toprule
-  \defn{Operator} & A \emph{binary operator} on a set $\set{X}$ is a map $\star \colon \set{X}\times\set{X} \to \set{X}$. That is, a binary operator takes two elements of $\set{X}$ and returns an element of~$\set{X}$. Operators are typically written in “infix” notation, $x\star y$, rather than in a function notation, $\star(x,y)$. \\
-
-  \defn{Associative} & A binary operator, $\star$, is associative if
+  $\set{R}^X$ (or $\set{C}^X$) & For $X$ a set, $\set{R}^X$ denotes the set of all functions $X\to\mathbold{R}$, together with the operation of “pointwise addition”:
   \begin{equation*}
-    (a \star b) \star c = a \star (b \star c).
+    (f+g)(x) := f(x) + g(x)
   \end{equation*}
-  Most operators you will meet are associative. Since the order in which the operations are carried out doesn't affect the result, the parentheses are often omitted, as in $a\star b\star c$.\\
-  
-  \defn{Commutative} & A binary operator, $\star$, is commutative if
+  and “pointwise multiplication by $\mathbold{R}$”:
   \begin{equation*}
-    a \star b = b \star a.
+    (\alpha f)(x) := \alpha f(x).
   \end{equation*}
-
+  (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”)
+    
 \end{tabularx}
-
 
 
 \end{document}
