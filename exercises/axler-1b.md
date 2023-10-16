@@ -59,15 +59,15 @@ usual, and for $t\in\mathbf{R}$ define
 $$t\infty = 
 \begin{cases}
 	-\infty & \text{if $t<0}, \\
-	0     % \text{if $t=0$}, \\
+	0       & \text{if $t=0$}, \\
 	\infty  & \text{if $t>0$},
 \end{cases}$$
-
+and
 $$t(-\infty) = 
 \begin{cases}
-	\infty & \text{if $t<0}, \\
-	0     % \text{if $t=0$}, \\
-	0\infty  & \text{if $t>0$},$$ 
+	\infty  & \text{if $t<0}, \\
+	0       & \text{if $t=0$}, \\
+	0\infty & \text{if $t>0$},$$ 
 	
 along with $t+\infty = \infty+t = \infty$, $t+(-\infty) = (-\infty)+t = -\infty$,
 $\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, and $\infty+(-\infty)=0$.
