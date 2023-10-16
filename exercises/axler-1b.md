@@ -56,27 +56,23 @@ $\mathbf{R} \cup \{\infty\} \cup \{-\infty\}$ as you could guess from the
 notation. Specifically, the sum and product of two real numbers is as
 usual, and for $t\in\mathbf{R}$ define 
 
-```math
-t\infty = 
+$$t\infty = 
 \begin{cases}
 	-\infty & \text{if $t<0}, \\
 	0     % \text{if $t=0$}, \\
 	\infty  & \text{if $t>0$},
-\end{cases}
-```
+\end{cases}$$
 
-```math
-t(-\infty) = 
+$$t(-\infty) = 
 \begin{cases}
 	\infty & \text{if $t<0}, \\
 	0     % \text{if $t=0$}, \\
-	0\infty  & \text{if $t>0$},
-\end{cases}
-```
+	0\infty  & \text{if $t>0$},$$ 
+	
 along with $t+\infty = \infty+t = \infty$, $t+(-\infty) = (-\infty)+t = -\infty$,
-$\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, $\infty+(-\infty)=0$.
+$\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, and $\infty+(-\infty)=0$.
 
-Is $\mathbf{R}\cup\{\infty\}\cup\{-\infty\} a vector space over $\mathbf{R}$?
+Is $\mathbf{R}\cup\{\infty\}\cup\{-\infty\}$ a vector space over $\mathbf{R}$?
 
 ### Solution
 
