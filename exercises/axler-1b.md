@@ -42,8 +42,8 @@ multiply both sides by $1/a$ (which exists, since $a\neq 0$)
 $$\frac{1}{a} (a\mathbf{v}) = \frac{1}{a}\mathbf{0}.$$ 
 
 The right-hand side is $\mathbf{0}$ (by Axler 1.30). The left hand
-side clearly ought to be $\mathbf{v}$---and it is, because
-$(1/a)(a\mathbf{v}) = (a/a)\mathbf{v}$ by distributivity.
+side clearly ought to be $\mathbf{v}$—and it is, because
+$(1/a)(a\mathbf{v}) = (a/a)\mathbf{v} = 1\mathbf{v} = \mathbf{v}$ by distributivity.
 
 So we have shown that if $a\neq 0$ then $\mathbf{v}=0$. 
 
