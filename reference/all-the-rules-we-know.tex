@@ -36,6 +36,9 @@
 \theoremstyle{break}
 \newtheorem{innernotation}{Notation}
 
+\theoremstyle{break}
+\newtheorem{innerresult}{Result}
+
 \newenvironment{definition}[1]
   {\renewcommand\theinnerdefinition{#1}\innerdefinition}
   {\endinnerdefinition}
@@ -47,6 +50,10 @@
 \newenvironment{notation}[1]
   {\renewcommand\theinnernotation{#1}\innernotation}
   {\endinnernotation}
+
+\newenvironment{result}[1]
+  {\renewcommand\theinnerresult{#1}\innerresult}
+  {\endinnerresult}
 
 \title{All the rules we know}
 \date{13 October 2023}
@@ -191,5 +198,112 @@ $$
 $$
 Here $\lambda \in \F$ and $(x_1, \ldots, x_n) \in \F^n$.
 \end{definition}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 1.B}
+
+\begin{definition}{1.18}[addition, scalar multiplication]
+An \defn{addition} on a set $V$ is a function that assigns an element $u + v \in V$ to each pair of elements $u, v \in V$.
+
+A \defn{scalar multiplication} on a set $V$ is a function that assigns an element $\lambda v \in V$ to each $\lambda \in \F$ and each $v \in V$.
+\end{definition}
+
+\begin{definition}{1.19}[vector space]
+A \defn{vector space over $\F$} is a set $V$ along with an addition on $V$ and a scalar multiplication on $V$ such that the following properties hold:
+
+\defn{commutativity}
+\begin{forceindent}
+$u + v = v + u$ for all $u, v \in V$;
+\end{forceindent}
+
+\defn{associativity}
+\begin{forceindent}
+$(u + v) + w = u + (v + w)$ and $(ab)v = a(bv)$ for all $u, v, w \in V$ and all $a, b \in \F$;
+\end{forceindent}
+
+\defn{additive identity}
+\begin{forceindent}
+there exists an element $0 \in V$ such that $v + 0 = v$ for all $v \in V$;
+\end{forceindent}
+
+\defn{additive inverse}
+\begin{forceindent}
+for every $v \in V$, there exists $w \in V$ such that $v + w = 0$;
+\end{forceindent}
+
+\defn{multiplicative identity}
+\begin{forceindent}
+$1v = v$ for all $v \in V$;
+\end{forceindent}
+
+\defn{distributive property}
+\begin{forceindent}
+$a (u + v) = au + av$ and $(a + b)v = av + bv$ for all $a, b \in \F$ and all $u, v \in V$.
+\end{forceindent}
+\end{definition}
+
+\begin{definition}{1.20}[vector, point]
+Elements of a vector space are called \defn{vectors} or \defn{points}.
+\end{definition}
+
+\begin{definition}{1.21}[real vector space, complex vector space]
+A vector space over $\R$ is called a \defn{real vector space}.
+
+A vector space over $\C$ is called a \defn{complex vector space}.
+\end{definition}
+
+\begin{notation}{1.23}[$\F^S$]
+If $S$ is a set, $\F^S$ denotes the set of functions from $S$ to $\F$.
+
+For $f, g \in \F^S$ the \defn{sum} $f + g \in \F^S$ is the function defined by
+$$
+(f + g)(x) = f(x) + g(x)
+$$
+for all $x \in S$.
+
+For $\lambda \in \F$ and $f \in \F^S$, the \defn{product} $\lambda f \in \F^S$ is the function defined by
+$$
+(\lambda f)(x) = \lambda f(x)
+$$
+for all $x \in S$.
+\end{notation}
+
+\begin{notation}{1.27}[$-v, w - v$]
+Let $v, w \in V$. Then
+\begin{enumerate}
+\item $-v$ denotes the additive inverse of $v$;
+\item $w - v$ is defined to be $w + (-v)$.
+\end{enumerate}
+\end{notation}
+
+\begin{notation}{1.28}[$V$]
+$V$ denotes a vector space over $\F$.
+\end{notation}
+
+The following rules can all derived from the definition of a vector space.
+
+\begin{result}{1.25}[Unique additive identity]
+A vector space has a unique additive identity.
+\end{result}
+
+\begin{result}{1.26}[Unique additive inverse]
+Every element in a vector space has a unique additive inverse.
+\end{result}
+
+\begin{result}{1.29}[The number $0$ times a vector]
+$0v = 0$ for every $v \in V$.
+\end{result}
+
+\begin{result}{1.30}[A number times the vector $0$]
+$a0 = 0$ for every $a \in \F$.
+\end{result}
+
+\begin{result}{1.31}[The number $-1$ times a vector]
+$(-1)v = -v$ for every $v \in V$.
+\end{result}
+
+\newpage
 
 \end{document}
