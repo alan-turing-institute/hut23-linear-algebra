@@ -1,11 +1,12 @@
 %% -*- fill-column: 72; eval: (auto-fill-mode -1); eval: (visual-fill-column-mode 1); eval: (visual-line-mode 1); eval: (adaptive-wrap-prefix-mode 1) -*-
-\documentclass[10pt, a4paper, twocolumn]{article}
+\documentclass[10pt, a4paper, landscape]{article}
 %\usepackage{graphicx}
 %\usepackage{textcomp}
 %\usepackage{amssymb}
 %\usepackage{fontspec}
 %\usepackage{minted}
 \usepackage[T1]{fontenc}
+\usepackage{multicol}
 \usepackage{concrete}
 \usepackage{eulervm}
 \usepackage{amsmath}
@@ -34,6 +35,9 @@
 \setlength{\tabcolsep}{3pt}
 %%
 \begin{document}%\maketitle
+%%
+\begin{multicols}{3}\raggedcolumns
+%%
 \maketitle
 \section*{Numbers}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
@@ -86,7 +90,8 @@
 
 \end{tabularx}
 
-\newpage
+%% ============================================================
+
 \subsection*{Maps}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
@@ -118,7 +123,8 @@
   \end{equation*}
 \end{tabularx}
 
-\newpage
+%% ============================================================
+
 \section*{Useful maps}
 \begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
   \toprule
@@ -138,5 +144,5 @@
 \end{tabularx}
 
 
-
+\end{multicols}
 \end{document}
