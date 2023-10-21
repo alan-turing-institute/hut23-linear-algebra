@@ -1,34 +1,32 @@
 %% -*- fill-column: 72; eval: (auto-fill-mode -1); eval: (visual-fill-column-mode 1); eval: (visual-line-mode 1); eval: (adaptive-wrap-prefix-mode 1) -*-
 \documentclass[10pt, a4paper, landscape]{article}
-%\usepackage{graphicx}
-%\usepackage{textcomp}
-%\usepackage{amssymb}
-%\usepackage{fontspec}
-%\usepackage{minted}
 \usepackage[T1]{fontenc}
 \usepackage{multicol}
-\usepackage{concrete}
+\setlength{\columnsep}{5mm}
+\usepackage[medium, compact]{titlesec}
+\titleformat{\section}[block]{\Large\bfseries\filcenter}{\thesection}{1em}{}
+\usepackage{beton}
+\DeclareFontSeriesDefault[rm]{bf}{sbc}
 \usepackage{eulervm}
 \usepackage{amsmath}
-%\usepackage[amssymb,sansbold]{concmath}
 \usepackage[margin=0.51in]{geometry}
-%\setlength{\parskip}{\smallskipamount}
 \usepackage{parskip}
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{booktabs}
+\usepackage{microtype}
 %\usepackage{fancyhdr}
 %%
 %%\usepackage[style=authoryear]{biblatex}
 %%\addbibresource{notes.bib}
 %%
 %%
-\newcommand{\defn}[1]{\textbf{\textsf{#1}}}
+\newcommand{\defn}[1]{\textbf{#1}}
 \newcommand{\set}[1]{\mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
 %%
 \title{All the maths we know}
-\date{4 October 2023}
+\date{21 October 2023}
 \author{}
 %%
 \renewcommand{\arraystretch}{1.2}
@@ -36,25 +34,13 @@
 %%
 \begin{document}%\maketitle
 %%
-\begin{multicols}{3}\raggedcolumns
+\begin{multicols*}{3}\raggedcolumns%
 %%
 \maketitle
-\section*{Numbers}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
-  \toprule
-  $\set{N}$ & The \emph{natural numbers:} $0, 1, 2, \dotsc$. \\
-  $\set{Z}$ & The \emph{integers:} $\dotsc, -2, -1, 0, 1, 2, \dotsc$. \\
-  $\set{Q}$ & The \emph{rationals:} All numbers that can be written
-  as $m/n$ where $m$ and $n$ are integers. \\
-  $\set{R}$ & The \emph{reals:} The rationals and ``all the numbers in
-  between.'' \\
-  $\set{R}^+$ & The non-negative reals. \\
-  $\set{C}$ & The \emph{complex numbers:} Numbers of the form $a + b\imag$, where $a$ and $b$ are real numbers and $\imag^2=-1$. 
-\end{tabularx}
 
 \section*{Set theory}
 \subsection*{Sets}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
   \defn{Set} & A collection of things, called its \emph{elements} (or \emph{members}). \\
 
@@ -76,8 +62,10 @@
 
 \end{tabularx}
 
+%% ------------------------------------------------------------
+
 \subsection*{Pairs and tuples}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
   \defn{Pair} & An ordered list of two things: like a set but the order matters and they can be the same thing. For example: $(1, 2)$. \\
   
@@ -90,10 +78,10 @@
 
 \end{tabularx}
 
-%% ============================================================
+%% ------------------------------------------------------------
 
 \subsection*{Maps}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
   \defn{Map} & A rule which assigns, to every element of a set (called the \emph{domain}), an element of another set (called the \emph{codomain} or \emph{range}). Sometimes called a \emph{function}, especially when the codomain is numbers. \\
 
@@ -110,8 +98,63 @@
   \defn{Bijection} & A map, $f\colon X \to Y$, is a \emph{bijection} (also an \emph{isomorphism of sets}) if it is one-to-one and onto.   
 \end{tabularx}
 
-\section*{Useful spaces}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
+%% ============================================================
+
+\section*{Useful maps}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Operator} & A \emph{binary operator} on a set $\set{X}$ is a map $\star \colon \set{X}\times\set{X} \to \set{X}$. That is, a binary operator takes two elements of $\set{X}$ and returns an element of~$\set{X}$. Operators are typically written in “infix” notation, $x\star y$, rather than in a function notation, $\star(x,y)$. \\
+
+  \defn{Associative} & A binary operator, $\star$, is \emph{associative} if
+  \begin{equation*}
+    (a \star b) \star c = a \star (b \star c).
+  \end{equation*}
+  Almost all operators you will meet are associative. Since the order in which the operations are carried out doesn't affect the result, the parentheses are often omitted, as in $a\star b\star c$.\\
+  
+  \defn{Commutative} & A binary operator, $\star$, is \emph{commutative} if
+  \begin{equation*}
+    a \star b = b \star a.
+  \end{equation*}
+\end{tabularx}
+
+%% ============================================================
+
+\section*{Numbers}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  $\set{N}$ & The \emph{natural numbers:} $0, 1, 2, \dotsc$. \\
+  $\set{Z}$ & The \emph{integers:} $\dotsc, -2, -1, 0, 1, 2, \dotsc$. \\
+  $\set{Q}$ & The \emph{rationals:} All numbers that can be written
+  as $m/n$ where $m$ and $n$ are integers. \\
+  $\set{R}$ & The \emph{reals:} The rationals and ``all the numbers in
+  between.'' \\
+  $\set{R}^+$ & The non-negative reals. \\
+  $\set{C}$ & The \emph{complex numbers:} Numbers of the form $a + b\imag$, where $a$ and $b$ are real numbers and $\imag^2=-1$. 
+\end{tabularx}
+
+%% ============================================================
+
+\section*{Vector spaces}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule \defn{Vector space} & A \emph{real vector space} is a set,
+  $V$, together with: (i) a commutative, associative, binary operator,
+  $+$, on $V$; (ii) a map, $\cdot\colon \set{R}\times V\to V$; and (iii) a
+  distinguished element $\mathbold{0}\in V$, such that:
+  \begin{enumerate}
+  \item $v + \mathbold{0} = v$ for all $v\in V$;
+  \item For any $v\in V$ there exists an element $-v \in V$ such that $v+(-v)=\mathbold{0}$;
+  \item $1 \cdot v = v$ for all $v\in V$;
+  \item $\alpha\cdot(v+w) = \alpha\cdot v+ \alpha\cdot w$ and $(\alpha+\beta)\cdot v = \alpha\cdot v + \beta \cdot v$ for all $\alpha, \beta\in \set{R}$ and $v,w \in V$.
+  \end{enumerate}
+
+  Replacing $\set{R}$ with $\set{C}$ in the above we obtain a
+  \emph{complex vector space}. \\
+
+  \defn{Vector} & A vector is an element of a vector space.
+\end{tabularx}
+
+\section*{Examples of vector spaces}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
   $\set{R}^n$ (or $\set{C}^n$) & The set of $n$-tuples of $\set{R}$ (or $\set{C}$), together with the operation of “element-wise” addition:
   \begin{multline*}
@@ -120,29 +163,19 @@
   and multiplication by $\set{R}$ (or $\set{C}$):
   \begin{equation*}
     \lambda \cdot (x_1, \dotsc, x_n) := (\lambda x_1, \dotsc, \lambda x_n) 
+  \end{equation*} \\
+
+  $\set{R}^X$ (or $\set{C}^X$) & For $X$ a set, $\set{R}^X$ denotes the set of all functions $X\to\mathbold{R}$, together with the operation of “pointwise addition”:
+  \begin{equation*}
+    (f+g)(x) := f(x) + g(x)
   \end{equation*}
+  and “pointwise multiplication by $\mathbold{R}$”:
+  \begin{equation*}
+    (\alpha f)(x) := \alpha f(x).
+  \end{equation*}
+  (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”)
+    
 \end{tabularx}
 
-%% ============================================================
-
-\section*{Useful maps}
-\begin{tabularx}{\columnwidth}{@{}p{0.23\columnwidth}>{\raggedright\arraybackslash}X@{}}
-  \toprule
-  \defn{Operator} & A \emph{binary operator} on a set $\set{X}$ is a map $\star \colon \set{X}\times\set{X} \to \set{X}$. That is, a binary operator takes two elements of $\set{X}$ and returns an element of~$\set{X}$. Operators are typically written in “infix” notation, $x\star y$, rather than in a function notation, $\star(x,y)$. \\
-
-  \defn{Associative} & A binary operator, $\star$, is associative if
-  \begin{equation*}
-    (a \star b) \star c = a \star (b \star c).
-  \end{equation*}
-  Most operators you will meet are associative. Since the order in which the operations are carried out doesn't affect the result, the parentheses are often omitted, as in $a\star b\star c$.\\
-  
-  \defn{Commutative} & A binary operator, $\star$, is commutative if
-  \begin{equation*}
-    a \star b = b \star a.
-  \end{equation*}
-
-\end{tabularx}
-
-
-\end{multicols}
+\end{multicols*}
 \end{document}
