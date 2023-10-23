@@ -136,8 +136,20 @@ t(-\infty) =
 along with $t+\infty = \infty+t = \infty$, $t+(-\infty) = (-\infty)+t = -\infty$,
 $\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, and $\infty+(-\infty)=0$.
 
-Is $`\mathbf{R}\cup\{ \infty \}\cup \{ -\infty \}`$ a vector space over $\mathbf{R}$?
+Is $`\mathbf{R} \cup \{\infty\}\cup \{-\infty\}`$ a vector space over $\mathbf{R}$?
 
 ### Solution
 
+Sometimes people don't like the fact that division is not defined
+everywhere—you “can't divide by zero”—and try to fix the problem by
+including infinity as a sort of number. This is one such attempt.
 
+The usual place to look from problems is in terms that would normally
+count as undefined: things like “infinity minus infinity.”
+
+What, for example, would be the result of $\infty+\infty+(-\infty)$?
+We might read this as $(\infty+\infty)+(-\infty) = \infty +(-\infty) =
+0$. Or we might read it as $\infty+(\infty+(-\infty)) = \infty+0 =
+\infty$. Addition in a vector space is supposed to be associative; but
+in this space the operation of $+$ is not associative. So we do not
+have a vector space.
