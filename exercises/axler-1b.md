@@ -112,7 +112,7 @@ v + (-1)v
 ### Question
 Let $\infty$ and $-\infty$ denote two distinct objects, neither of which
 is in $\mathbf{R}$. Define an addition and scalar multiplication on
-$\mathbf{R} \cup \{ \infty \} \cup \{ -\infty \}$ as you could guess from the
+$`\mathbf{R} \cup \{\infty\} \cup \{-\infty\}`$ as you could guess from the
 notation. Specifically, the sum and product of two real numbers is as
 usual, and for $t\in\mathbf{R}$ define 
 ```math
