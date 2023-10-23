@@ -6,7 +6,7 @@ Prove that $-(-v) = v$ for every $v\in V$.
 
 ### Solution
 
-It’s worth stating what we are being asked to prove! “$-v$” denotes
+It’s worth stating what we are being asked to prove! $-v$ denotes
 “the additive inverse of $v$” (that's notation 1.27 in Axler). That
 is, given some vector $v$, the vector $-v$ is that vector such that
 $v + (-v) = \mathbf{0}$. (1.26 shows that there is only one such
@@ -79,8 +79,8 @@ only one of the requirements listed in Axler 1.19. Which one?
 ### Solution
 
 The requirement that there exist an additive identity is not
-satisifed. There are no elements, and _a fortiori_ no element
-$\mathbf{0}$ with the required properties. 
+satisifed. There are no elements at all; _a fortiori_ there is no
+element $\mathbf{0}$ with the required properties.
 
 ## Q.5
 ### Question
@@ -92,10 +92,10 @@ additive inverse condition can be replaced with the condition that
 
 ### Solution
 
-That this follows from 1.19 is theorem 1.29. It remains to show that,
-from the above condition, and all conditions in the definition of a
-vector space _except_ that of the additive inverse, the existence of
-additive inverses follows.
+That this follows from 1.19 is theorem 1.29. It remains to be shown
+that, from the above condition, and all conditions in the definition
+of a vector space _except_ that of the additive inverse, the existence
+of additive inverses follows.
 
 Indeed, for any $v\in V$, consider the expression $v + (-1)v$. 
 ```math
@@ -107,6 +107,8 @@ v + (-1)v
  &=0 &&\text{(by supposition)}.
 \end{align}
 ```
+
+Therefore, $(-1)v$ is an additive inverse of $v$. 
 
 ## Q.6
 ### Question
