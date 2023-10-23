@@ -56,25 +56,25 @@ $v+3x＝w$.
 ### Solution
 
 Suppose $\alpha$ is a non-zero number. I claim that the map $V\to V$
-given by multiplication by $alpha$, that is $\v\mapsto \alpha v$, is a
+given by multiplication by $\alpha$, that is $v\mapsto \alpha v$, is a
 bijection. Proof: It is surjective, since, for any $v'\in V$, the
 vector $(1/\alpha)v'$ is mapped to $v'$. It is injective since, if
 there were $v'$ with $\alpha v = \alpha v'$, we would have
 $\alpha(v-v')=0$ (this requires some use of the properties of vectors,
 together with 1.31), and thus, by Q.2, $v-v'=0$, hence $v=v'$.
 
-Likewise, for $w\in V$$ a vector, the map $V\to V$ given by addition
+Likewise, for $w\in V$ any vector, the map $V\to V$ given by addition
 of $w$, that is $v\mapsto w+v$, is also a bijection. (Proof is
 similar, noting that additive inverses exist and are unique.)
 
 Thus the combination, “multiply by a number and add a vector“ is a
-bjection. Thus, there _is_ an $x$ satisfying the given equation, and
+bijection. Thus, there _is_ an $x$ satisfying the given equation, and
 it is unique. 
 
 (By the way, the result is not entirely unsurprising! Consider
-$\mathbf{Z}_p$, the integers modulo $p$, where $p$ is prime. That is,
-the integers $\{0,1,2,\dotsc, p-1\}$ where addition and multiplication
-are “modulo $p$.” This is a vector space over itself. Hence for fixed
+$\mathbf{Z}_p$, the integers modulo $p$, where $p$ is prime: the
+integers $\{0,1,2,\dotsc, p-1\}$ where addition and multiplication are
+“modulo $p$.” This is a vector space over itself. Hence for fixed
 $\alpha, \beta\in \mathbf{Z}_p$, $$n\mapsto (\alpha+\beta n) \mod p$$
 is bijective. That was suprising to me, and also the basis of early
 random number generators.)
@@ -106,14 +106,15 @@ vector space _except_ that of the additive inverse, the existence of
 additive inverses follows.
 
 Indeed, for any $v\in V$, consider the expression $v + (-1)v$. 
-$$\begin{align}
+```math
+\begin{align}
 v + (-1)v 
  &= 1v+(-1)v &&\text{(condition of “multiplicative  identity”)} \\ 
  &= (1-1)v &&\text{(by distributivity)} \\
  &= 0v \\
  &=0 &&\text{(by supposition)}.
-\end{align}$$
-
+\end{align}
+```
 
 ## Q.6
 ### Question
@@ -123,19 +124,22 @@ $\mathbf{R} \cup \{\infty\} \cup \{-\infty\}$ as you could guess from the
 notation. Specifically, the sum and product of two real numbers is as
 usual, and for $t\in\mathbf{R}$ define 
 
-$$t\infty = 
+```math
+t\infty = 
 \begin{cases}
 	-\infty & \text{if $t<0}, \\
 	0       & \text{if $t=0$}, \\
 	\infty  & \text{if $t>0$},
-\end{cases}$$
+\end{cases}
+```
 and
-$$t(-\infty) = 
+```math
+t(-\infty) = 
 \begin{cases}
 	\infty  & \text{if $t<0}, \\
 	0       & \text{if $t=0$}, \\
-	0\infty & \text{if $t>0$},$$ 
-	
+	0\infty & \text{if $t>0$},
+```
 along with $t+\infty = \infty+t = \infty$, $t+(-\infty) = (-\infty)+t = -\infty$,
 $\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, and $\infty+(-\infty)=0$.
 
