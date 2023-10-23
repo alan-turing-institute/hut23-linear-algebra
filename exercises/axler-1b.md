@@ -136,7 +136,7 @@ t(-\infty) =
 along with $t+\infty = \infty+t = \infty$, $t+(-\infty) = (-\infty)+t = -\infty$,
 $\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, and $\infty+(-\infty)=0$.
 
-Is $\mathbf{R}\cup\{ \infty \}\cup \{ -\infty \}$ a vector space over $\mathbf{R}$?
+Is $`\mathbf{R}\cup\{ \infty \}\cup \{ -\infty \}`$ a vector space over $\mathbf{R}$?
 
 ### Solution
 
