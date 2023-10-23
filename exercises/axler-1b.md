@@ -123,7 +123,6 @@ is in $\mathbf{R}$. Define an addition and scalar multiplication on
 $\mathbf{R} \cup \{\infty\} \cup \{-\infty\}$ as you could guess from the
 notation. Specifically, the sum and product of two real numbers is as
 usual, and for $t\in\mathbf{R}$ define 
-
 ```math
 t\infty = 
 \begin{cases}
@@ -132,6 +131,7 @@ t\infty =
 	\infty  & \text{if $t>0$},
 \end{cases}
 ```
+
 and
 ```math
 t(-\infty) = 
@@ -139,6 +139,7 @@ t(-\infty) =
 	\infty  & \text{if $t<0}, \\
 	0       & \text{if $t=0$}, \\
 	0\infty & \text{if $t>0$},
+\end{cases}
 ```
 along with $t+\infty = \infty+t = \infty$, $t+(-\infty) = (-\infty)+t = -\infty$,
 $\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, and $\infty+(-\infty)=0$.
