@@ -71,14 +71,6 @@ Thus the combination, “multiply by a number and add a vector“ is a
 bijection. Thus, there _is_ an $x$ satisfying the given equation, and
 it is unique. 
 
-(By the way, the result is not entirely unsurprising! Consider
-$\mathbf{Z}_p$, the integers modulo $p$, where $p$ is prime: the
-integers $\{0,1,2,\dotsc, p-1\}$ where addition and multiplication are
-“modulo $p$.” This is a vector space over itself. Hence for fixed
-$\alpha, \beta\in \mathbf{Z}_p$, $$n\mapsto (\alpha+\beta n) \mod p$$
-is bijective. That was suprising to me, and also the basis of early
-random number generators.)
-
 ## Q.4
 ### Question
 The empty set is not a vector space. The empty set fails to satisfy
@@ -120,7 +112,7 @@ v + (-1)v
 ### Question
 Let $\infty$ and $-\infty$ denote two distinct objects, neither of which
 is in $\mathbf{R}$. Define an addition and scalar multiplication on
-$\mathbf{R} \cup \{\infty\} \cup \{-\infty\}$ as you could guess from the
+$\mathbf{R} \cup \{ \infty \} \cup \{ -\infty \}$ as you could guess from the
 notation. Specifically, the sum and product of two real numbers is as
 usual, and for $t\in\mathbf{R}$ define 
 ```math
@@ -138,13 +130,13 @@ t(-\infty) =
 \begin{cases}
 	\infty  & \text{if $t<0$}, \\
 	0       & \text{if $t=0$}, \\
-	0\infty & \text{if $t>0$},
+	-\infty & \text{if $t>0$},
 \end{cases}
 ```
 along with $t+\infty = \infty+t = \infty$, $t+(-\infty) = (-\infty)+t = -\infty$,
 $\infty+\infty=\infty$, $(-\infty)+(-\infty)=-\infty$, and $\infty+(-\infty)=0$.
 
-Is $\mathbf{R}\cup\{\infty\}\cup\{-\infty\}$ a vector space over $\mathbf{R}$?
+Is $\mathbf{R}\cup\{ \infty \}\cup \{ -\infty \}$ a vector space over $\mathbf{R}$?
 
 ### Solution
 
