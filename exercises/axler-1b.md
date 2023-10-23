@@ -55,12 +55,40 @@ $v+3x＝w$.
 
 ### Solution
 
+Suppose $\alpha$ is a non-zero number. I claim that the map $V\to V$
+given by multiplication by $alpha$, that is $\v\mapsto \alpha v$, is a
+bijection. Proof: It is surjective, since, for any $v'\in V$, the
+vector $(1/\alpha)v'$ is mapped to $v'$. It is injective since, if
+there were $v'$ with $\alpha v = \alpha v'$, we would have
+$\alpha(v-v')=0$ (this requires some use of the properties of vectors,
+together with 1.31), and thus, by Q.2, $v-v'=0$, hence $v=v'$.
+
+Likewise, for $w\in V$$ a vector, the map $V\to V$ given by addition
+of $w$, that is $v\mapsto w+v$, is also a bijection. (Proof is
+similar, noting that additive inverses exist and are unique.)
+
+Thus the combination, “multiply by a number and add a vector“ is a
+bjection. Thus, there _is_ an $x$ satisfying the given equation, and
+it is unique. 
+
+(By the way, the result is not entirely unsurprising! Consider
+$\mathbf{Z}_p$, the integers modulo $p$, where $p$ is prime. That is,
+the integers $\{0,1,2,\dotsc, p-1\}$ where addition and multiplication
+are “modulo $p$.” This is a vector space over itself. Hence for fixed
+$\alpha, \beta\in \mathbf{Z}_p$, $$n\mapsto (\alpha+\beta n) \mod p$$
+is bijective. That was suprising to me, and also the basis of early
+random number generators.)
+
 ## Q.4
 ### Question
 The empty set is not a vector space. The empty set fails to satisfy
 only one of the requirements listed in Axler 1.19. Which one?
 
 ### Solution
+
+The requirement that there exist an additive identity is not
+satisifed. There are no elements, and _a fortiori_ no element
+$\mathbf{0}$ with the required properties. 
 
 ## Q.5
 ### Question
@@ -71,6 +99,21 @@ additive inverse condition can be replaced with the condition that
 ```
 
 ### Solution
+
+That this follows from 1.19 is theorem 1.29. It remains to show that,
+from the above condition, and all conditions in the definition of a
+vector space _except_ that of the additive inverse, the existence of
+additive inverses follows.
+
+Indeed, for any $v\in V$, consider the expression $v + (-1)v$. 
+$$\begin{align}
+v + (-1)v 
+ &= 1v+(-1)v &&\text{(condition of “multiplicative  identity”)} \\ 
+ &= (1-1)v &&\text{(by distributivity)} \\
+ &= 0v \\
+ &=0 &&\text{(by supposition)}.
+\end{align}$$
+
 
 ## Q.6
 ### Question
