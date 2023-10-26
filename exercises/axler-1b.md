@@ -58,10 +58,14 @@ $v+3x＝w$.
 Suppose $\alpha$ is a non-zero number. I claim that the map $V\to V$
 given by multiplication by $\alpha$, that is $v\mapsto \alpha v$, is a
 bijection. Proof: It is surjective, since, for any $v'\in V$, the
-vector $(1/\alpha)v'$ is mapped to $v'$. It is injective since, if
-there were $v'$ with $\alpha v = \alpha v'$, we would have
-$\alpha(v-v')=0$ (this requires some use of the properties of vectors,
-together with 1.31), and thus, by Q.2, $v-v'=0$, hence $v=v'$.
+vector $(1/\alpha)v'$ is mapped to $v'$. To see that it is injective
+note that if there were $v'$ with $\alpha v = \alpha v'$, we would
+have $\alpha v+(-(\alpha v'))=0$, where the vector $\alpha v'$ is
+unique (because additive inverses are unique). But $-(\alpha v') =
+\alpha (-v')$ (by a consequence of Axler 1.31) and thus, by
+distributivity, $\alpha (v + (-v')) = 0$. Since $\alpha\neq 0$,
+question 2 tells us that $v+(-v') = 0$, and thus $(-v')$ is the unique
+additive inverse of $v$; and thus, by question 1, $v = v'$. 
 
 Likewise, for $w\in V$ any vector, the map $V\to V$ given by addition
 of $w$, that is $v\mapsto w+v$, is also a bijection. (Proof is
