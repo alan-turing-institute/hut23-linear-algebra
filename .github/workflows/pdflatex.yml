@@ -1,0 +1,32 @@
+name: Build PDFs of the LaTeX
+on:
+  push:
+    branches-ignore:
+      - 'gh-action-result/pdf-files'
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX documents
+        uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          run: |
+            pushd reference
+            make
+            popd
+      - name: Commit to orphan branch
+        run: |
+          git checkout --orphan gh-action-result/pdf-files
+          git rm -rf .
+          git add reference/all-the-maths-we-know.pdf
+          git add reference/all-the-rules-we-know.pdf
+          git -c user.name='GitHub Action' -c user.email='action@github.com' commit -m "Built PDF documents"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-action-result/pdf-files
+          force: true
