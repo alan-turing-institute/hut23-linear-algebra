@@ -1,4 +1,4 @@
-name: Build PDFs of the LaTeX
+name: LaTeX build
 on:
   push:
     branches-ignore:
