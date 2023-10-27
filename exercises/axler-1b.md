@@ -108,7 +108,7 @@ v + (-1)v
  &= 1v+(-1)v &&\text{(condition of “multiplicative  identity”)} \\ 
  &= (1-1)v &&\text{(by distributivity)} \\
  &= 0v \\
- &=0 &&\text{(by supposition)}.
+ &= \mathbf{0} &&\text{(by supposition)}.
 \end{align}
 ```
 
