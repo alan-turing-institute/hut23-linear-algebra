@@ -22,6 +22,7 @@
 %%
 %%
 \newcommand{\defn}[1]{\textbf{#1}}
+\newcommand{\isdef}{\stackrel{\text{def}}{=}}
 \newcommand{\set}[1]{\mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
 %%
@@ -91,12 +92,18 @@
   element $y \in Y$.'' \\
   $f \circ g$    & The map $g$ followed by the map $f$. \\
 
-  \defn{Injection} & A map, $f\colon X \to Y$, is an \emph{injection} (also \emph{one-to-one}) if every element in $X$ is mapped to a unique element of $Y$. \\
+  \defn{Injection} & A map, $f\colon X \to Y$, is \emph{injective} (also
+  \emph{one-to-one}) if no more than one element of $X$ maps to a
+  particular element of $Y$. \\
 
-  \defn{Surjection} & A map, $f\colon X \to Y$, is a \emph{surjection} (also \emph{onto}) if every element of $Y$ is mapped to by some element of $X$. \\
+  \defn{Surjection} & A map, $f\colon X \to Y$, is \emph{surjective} (also \emph{onto}) if every element of $Y$ is mapped to by some element of $X$. \\
 
-  \defn{Bijection} & A map, $f\colon X \to Y$, is a \emph{bijection} (also an \emph{isomorphism of sets}) if it is one-to-one and onto.   
+  \defn{Bijection} & A map, $f\colon X \to Y$, is \emph{bijective} if it
+  is both injective and surjective (also “one-to-one and onto”). \\
+
+  $X\cong Y$ & There exists a bijection between sets $X$ and~$Y$. Equivantly: $X$ and $Y$ are \emph{isomorphic as sets}. 
 \end{tabularx}
+
 
 %% ============================================================
 
@@ -144,6 +151,7 @@
   \item $v + \mathbold{0} = v$ for all $v\in V$;
   \item For any $v\in V$ there exists an element $-v \in V$ such that $v+(-v)=\mathbold{0}$;
   \item $1 \cdot v = v$ for all $v\in V$;
+  \item $\alpha\cdot(\beta\cdot v) = (\alpha\beta)\cdot v$ for all $\alpha,\beta\in \set{R}$ and all $v\in V$.
   \item $\alpha\cdot(v+w) = \alpha\cdot v+ \alpha\cdot w$ and $(\alpha+\beta)\cdot v = \alpha\cdot v + \beta \cdot v$ for all $\alpha, \beta\in \set{R}$ and $v,w \in V$.
   \end{enumerate}
 
@@ -158,20 +166,20 @@
   \toprule
   $\set{R}^n$ (or $\set{C}^n$) & The set of $n$-tuples of $\set{R}$ (or $\set{C}$), together with the operation of “element-wise” addition:
   \begin{multline*}
-      (x_1, \dotsc, x_n) + (y_1, \dotsc, y_n) := \\ (x_1+y_1, \dotsc, x_n+y_n) 
+    (x_1, \dotsc, x_n) + (y_1, \dotsc, y_n) \isdef \\ (x_1+y_1, \dotsc, x_n+y_n) 
   \end{multline*}
   and multiplication by $\set{R}$ (or $\set{C}$):
   \begin{equation*}
-    \lambda \cdot (x_1, \dotsc, x_n) := (\lambda x_1, \dotsc, \lambda x_n) 
+    \lambda \cdot (x_1, \dotsc, x_n) \isdef (\lambda x_1, \dotsc, \lambda x_n) 
   \end{equation*} \\
 
   $\set{R}^X$ (or $\set{C}^X$) & For $X$ a set, $\set{R}^X$ denotes the set of all functions $X\to\mathbold{R}$, together with the operation of “pointwise addition”:
   \begin{equation*}
-    (f+g)(x) := f(x) + g(x)
+    (f+g)(x) \isdef f(x) + g(x)
   \end{equation*}
   and “pointwise multiplication by $\mathbold{R}$”:
   \begin{equation*}
-    (\alpha f)(x) := \alpha f(x).
+    (\alpha f)(x) \isdef \alpha f(x).
   \end{equation*}
   (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”)
     

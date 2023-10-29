@@ -1,5 +1,9 @@
 # hut23-linear-algebra
 
+[![LaTeX build](../../actions/workflows/pdflatex.yml/badge.svg)](../../actions/workflows/pdflatex.yml)
+[![All the maths](https://img.shields.io/badge/PDF-All_the_maths-orange.svg?style=flat)](../gh-action-result/pdf-files/reference/all-the-maths-we-know.pdf)
+[![All the rules](https://img.shields.io/badge/PDF-All_the_rules-orange.svg?style=flat)](../gh-action-result/pdf-files/reference/all-the-rules-we-know.pdf)
+
 Repository for the Linear Algebra reading group. Some material in this
 repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 
