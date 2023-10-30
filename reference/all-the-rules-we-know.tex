@@ -173,8 +173,8 @@ $$
 For $(x_1, \ldots, x_n ) \in \F^n$ and $j \in \{ 1, \ldots, n \}$, we say that $x_j$ is the $j^{\text{th}}$ \defn{coordinate} of $(x_1, \ldots, x_n )$.
 \end{definition}
 
-\begin{definition}{1.13}[addition in $F^n$]
-\defn{Addition} in $F^n$ is defined by adding corresponding coordinates:
+\begin{definition}{1.13}[addition in $\F^n$]
+\defn{Addition} in $\F^n$ is defined by adding corresponding coordinates:
 $$
 (x_1, \ldots, x_n ) + (y_1, \ldots, y_n ) = (x_1 + y_1, \ldots, x_n + y_n ).
 $$
@@ -187,7 +187,7 @@ $$
 $$
 \end{definition}
 
-\begin{definition}{1.17}[additive inverse in $F^n$]
+\begin{definition}{1.17}[additive inverse in $\F^n$]
 For $x \in \F^n$, the \defn{additive inverse} of $x$, denoted $-x$, is the vector $-x \in \F^n$ such that
 $$
 x + (-x) = 0.
@@ -195,7 +195,7 @@ $$
 In other words, if $x = (x_1, \ldots, x_n)$, then $-x = (-x_1, \ldots, -x_n)$.
 \end{definition}
 
-\begin{definition}{1.18}[scalar multiplication in $F^n$]
+\begin{definition}{1.18}[scalar multiplication in $\F^n$]
 The \defn{product} of a number $\lambda$ and a vector in $\F^n$ is computed by multiplying each coordinate of the vector by $\lambda$:
 $$
 \lambda (x_1, \ldots, x_n) = (\lambda x_1, \ldots, \lambda x_n);
@@ -311,5 +311,68 @@ $(-1)v = -v$ for every $v \in V$.
 \end{result}
 
 \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 1.C}
+
+\begin{definition}{1.33}[subspace]
+A subset $U$ of $V$ is called a \defn{subspace} of $V$ if $U$ is also a vector space with the same additive identity, addition, and scalar multiplication as on $V$.
+\end{definition}
+
+\begin{definition}{1.36}[sum of subspaces]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$. The \defn{sum} of $V_1, \ldots, V_m$, denoted by $V_1 + \cdots + V_m$, is the set of all possible sums of elements of $V_1, \ldots, V_m$. More precisely:
+$$
+V_1 + \cdots + V_m = \{v_1 + \cdots + v_m \setsep v_1 \in V_1, \ldots, v_m \in V_m \}.
+$$
+\end{definition}
+
+\begin{definition}{1.41}[direct sum, $\oplus$]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$.
+
+\begin{enumerate}
+\item The sum $V_1 + \cdots + V_m$ is called a \defn{direct sum} if each element of $V_1 + \cdots + V_m$ can be written in only one way as a sum $v_1 + \cdots + v_m$, where each $v_k \in V_k$.
+\item If $V_1 + \cdots + V_m$ is a direct sum, then $V_1 \oplus \cdots \oplus V_m$ denotes $V_1 + \cdots + V_m$, with the $\oplus$ notation serving as an indication that this is a direct sum.
+\end{enumerate}
+\end{definition}
+
+\newpage
+
+The following rules can all be derived from the definitions.
+
+\begin{result}{1.34}[conditions for a subspace]
+A subset $U$ of $V$ is a subspace of $V$ if and only if $U$ satifies the following three conditions.
+
+\defn{additive identity}
+\begin{forceindent}
+$0 \in U$.
+\end{forceindent}
+
+\defn{closed under addition}
+\begin{forceindent}
+$u, w \in U$ implies $u + w \in U$.
+\end{forceindent}
+
+\defn{closed under scalar multiplication}
+\begin{forceindent}
+$a \in \F$ and $u \in U$ implies $au \in U$.
+\end{forceindent}
+\end{result}
+
+\begin{result}{1.40}[sum of subspaces is the smallest containing subspace]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$. Then $V_1 + \cdots + V_m$ is the smallest subspace of $V$ containing $V_1, \ldots, V_m$.
+\end{result}
+
+\begin{result}{1.45}[condition for a direct sum]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$. Then $V_1 + \cdots + V_m$ is a direct sum if and only if the only way to write $0$ as a sum $v_1 + \cdots + v_m$, where each $v_k \in V_k$, is by taking each $v_k$ equal to $0$.
+\end{result}
+
+\begin{result}{1.46}[direct sum of two subspaces]
+Suppose $U$ and $W$ are subspaces of $V$. Then
+$$
+U + W \text{ is a direct sum} \Longleftrightarrow U \cap W = \{ 0 \}.
+$$
+\end{result}
+
+
 
 \end{document}
