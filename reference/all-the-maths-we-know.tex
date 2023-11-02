@@ -63,7 +63,7 @@
 
 \end{tabularx}
 
-%% ------------------------------------------------------------
+%% ============================================================
 
 \subsection*{Pairs and tuples}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
@@ -79,7 +79,7 @@
 
 \end{tabularx}
 
-%% ------------------------------------------------------------
+%% ============================================================
 
 \subsection*{Maps}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
@@ -160,11 +160,11 @@
 
   \defn{Vector} & An element of a vector space. \\
 
-  \defn{Subspace} & A subspace, $U\subset V$, is a subset of a vector space,
-  $V$, that is itself a vector space with respect to the addition and
-  scalar multiplication inherited from~$V$.
+  \defn{Subspace} & A subset of a vector space that is itself a vector
+  space with respect to the addition and scalar multiplication inherited
+  from the larger space.
 
-
+  Equivalently: A subset, $U \subset V$ of a vector space, $V$, is a \emph{subspace} if, for all $u, v\in U$ and number $\alpha$, the combination $u+\alpha \cdot v$ is also in~$U$.
 \end{tabularx}
 
 \section*{Examples of vector spaces}
@@ -188,8 +188,34 @@
     (\alpha f)(x) \isdef \alpha f(x).
   \end{equation*}
   (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”)
-    
+    \end{tabularx}
+
+%% ============================================================
+
+\section*{Combining vector spaces}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  
+  \defn{Sum} & (This definition is not commonplace.) For $U_1, U_2,
+  \dotsc, U_n$ subspaces of $V$, their sum is the set of all sums of vectors from the $U_i$:
+  \begin{equation*}
+    U_1+\dots +U_n \isdef \bigl\{ v_1 + \dots + v_n \bigm\vert v_i \in U_i \bigr\}.
+  \end{equation*}
+  Equivalently, it is the set of all sums from $\cup_i U_i$ (since sums
+  from within the same $U_i$ are already elements of that
+  $U_i$). Equivalently, it is the span of $\cup_i U_i$. \\
+  
+  \defn{Direct sum} & (Version 1: This definition is from Axler.) The
+  sum of subspaces, $U_1+\dots + U_n$, is called a \emph{direct sum} if
+  the $U_i$ satisfy the following property: if $v_1+\dots +v_n =
+  \mathbold{0}$, where $v_i\in U_i$, then each of the $v_i$
+  is~$\mathbold{0}$.
+
+  If the sum of the $U_i$ is a direct sum, it is written $U_1\oplus \dots\oplus U_n$. \\
+  
+  
 \end{tabularx}
+
 
 \end{multicols*}
 \end{document}
