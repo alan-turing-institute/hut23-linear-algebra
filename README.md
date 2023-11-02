@@ -15,7 +15,7 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 | 13 Oct | Complex numbers; $\mathbf{R}^n$ | Exercises 1.A                    |
 | 20 Oct | Definition of vector space      | Axler, 1.B                       |
 | 27 Oct | Vector spaces                   | Exercises, Axler 1.B             |
-
+| 3 Nov  | Subspaces   			   | Axler, 1.C			      |
 	
 
 Overall plan:
