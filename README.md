@@ -9,14 +9,13 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 
 ### Schedule
 
-| Date   | Topic                           | Reading                          |
-|--------|---------------------------------|----------------------------------|
-| 6 Oct  | First meeting                   | Axler Chapter 1.A (part A only). |
-| 13 Oct | Complex numbers; $\mathbf{R}^n$ | Exercises 1.A                    |
-| 20 Oct | Definition of vector space      | Axler, 1.B                       |
-| 27 Oct | Vector spaces                   | Exercises, Axler 1.B             |
-
-	
+| Date   | Topic                           | Reading                           |
+|--------|---------------------------------|-----------------------------------|
+| 6 Oct  | First meeting                   | Axler Chapter 1.A (part A only).  |
+| 13 Oct | Complex numbers; $\mathbf{R}^n$ | Exercises 1.A                     |
+| 20 Oct | Definition of vector space      | Axler, 1.B                        |
+| 27 Oct | Vector spaces                   | Exercises, Axler 1.B              |
+| 3 Nov  | Subspaces                       | Axler, 1.C (discussion w/o James) |
 
 Overall plan:
 - Follow Axler (by subchapter) until we feel comfortable moving to
