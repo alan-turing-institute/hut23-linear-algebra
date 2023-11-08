@@ -115,4 +115,4 @@ subspace of the space of all sequences.
 To see that this is true of the complex numbers,  note that every
 assertion remains true of the “absolute value,” $\lvert x \rvert$, is
 replaced with the definition appropriate for complex numbers: $\lvert
-z \rvert = ((\im z)^2 + (\re z)^2)^{1/2}$.
+z \rvert = \sqrt{(\Re z)^2 + (\Im z)^2}$.
