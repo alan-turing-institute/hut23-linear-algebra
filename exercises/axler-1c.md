@@ -105,7 +105,7 @@ $\mathbf{R}^\infty$? We must check the same three conditions.
    \epsilon/2$ and $\lvert y_n \rvert < \epsilon/2$ for $n>N$. (Such
    an $N$ will exist for each sequence separately; choose the larger.)
    Then $$\lvert x_n + y_n \rvert \leq \lvert x_n \rvert + \lvert y_n
-   \rvert \leq \epsilon/2 + \epsilon /2  = \epsilon$. (You should
+   \rvert \leq \epsilon/2 + \epsilon /2  = \epsilon$$. (You should
    convince yourself that $\lvert a + b\rvert \leq \lvert a\rvert +
    \lvert b\rvert$ for any $a,b\in\mathbf{R}$.
 
