@@ -14,7 +14,7 @@ $\alpha\in\mathbf{F}$, and $v,w\in V$:
 2. $\alpha v \in V$; and
 3. $v+w \in V$.
 
-#### (a) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 +2 x_2 +3 x_3 =0\}$
+#### (a) $`\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 +2 x_2 +3 x_3 =0\}`$
 
 This set is a subspace.
 
@@ -28,14 +28,14 @@ This set is a subspace.
    w_3)$ so that $v+w= (v_1+w_1, v_2+w_2, v_3+w_3)$. Thus $(v_1+w_1) +
    2(v_2+w_2) + 3(v_3+w_3) = (v_1+2v_2+3v_3)+(w_1+2w_2+3w_3) = 0$.
 
-#### (b) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 +2 x_2 +3 x_3 =4\}$
+#### (b) $`\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 +2 x_2 +3 x_3 =4\}`$
 
 This set is not a subspace.
 
 In particular, the zero vector is not an element since $x_1+2x_2+3x_3
 \neq 4$ when $(x_1, x_2, x_3) = (0,0,0)$
 
-#### (c) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 x_2 x_3 = 0\}$
+#### (c) $`\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 x_2 x_3 = 0\}`$
 
 This set is not a subspace.
 
@@ -43,7 +43,7 @@ For example, both $(1,1,0)$ and $(1,0,1)$ are elements (since the
 product of their components is zero) but their sum, $(2,1,1)$ is not
 an element (since the product of its components is not zero).
 
-#### (d) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1  = 5 x_3\}$
+#### (d) $`\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1  = 5 x_3\}`$
 
 This set is a subspace.
 
@@ -98,8 +98,8 @@ $\mathbf{R}^\infty$? We must check the same three conditions.
    zero). Then $\lvert \alpha x_n \rvert = \lvert \alpha \rvert \lvert
    x_n\rvert < \epsilon$ for all $n>N$.
 3. Sums are in the set. Suppose $$\lim_{n\to\infty} \lvert x_n \rvert = 0$$ and
-   $$\lim_{n\to\infty} \vert y_n \rvert =0 $$, then it follows that
-   $$\lim_{n\to\infty} (x_n+y_n) = 0$$. Proof: for $\epsilon>0$ choose
+   $$\lim_{n\to\infty} \vert y_n \rvert =0,$$ then it follows that
+   $$\lim_{n\to\infty} (x_n+y_n) = 0.$$ Proof: for $\epsilon>0$ choose
    $n$ such that $x_n < \epsilon/2$ and $y_n < \epsilon/2$ for $n>N$.
 
 Thus the set of all sequences with limit zero is a subspace of the
