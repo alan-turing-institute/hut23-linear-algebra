@@ -1,40 +1,25 @@
 # Exercises from Axler 1.C
 
-## Q.1
-### Question
+## Question 1
+
 For each of the following subsets of $\mathbf{F}^3$, determine whether
-it is a subspace of $\mathbf{F}^3$.  
+it is a subspace of $\mathbf{F}^3$.
 
-#### a.
-
-$$\{(𝑥_1, 𝑥_2, 𝑥_3)\in $\mathbf{F}^3 \mid 𝑥_1 +2 𝑥_2 +3 𝑥_3 =0\}$$ 
-
-
-
-#### b.
-
-{(𝑥1,𝑥2,𝑥3)∈𝐅3 ∶𝑥1 +2𝑥2 +3𝑥3 =4} 
-
-#### c.
-
-{(𝑥1,𝑥2,𝑥3)∈𝐅3 ∶𝑥1𝑥2𝑥3 =0} 
-
-#### d. 
-
-{(𝑥1,𝑥2,𝑥3) ∈ 𝐅3 ∶ 𝑥1 = 5𝑥3}
-
-* Temp
+### Answer
 
 For each given subset, $V$, we must check that, for all
 $\alpha\in\mathbf{F}$, and $v,w\in V$:
+
 1. $\mathbf{0}\in V$;
 2. $\alpha v \in V$; and
 3. $v+w \in V$.
 
-(a) This set is a subspace.
+#### (a) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 +2 x_2 +3 x_3 =0\}$
+
+This set is a subspace.
 
 1. $\mathbf{0}$ is in $V$ since $\mathbf{0}=(0,0,0)$ and $0+2\times
-   0+3\times =0$, as required;
+   0+3\times 0 =0$, as required;
 2. $\alpha v$ is in $V$ since for $v=(v_1, v_2, v_3)$, we have $\alpha
    v = (\alpha v_1, \alpha v_2, \alpha v_3)$ and so $(\alpha v_1) +
    2(\alpha v_3) + 3(\alpha v_3) = \alpha (v_1 + 2v_2 + 3v+3)$. The
@@ -43,24 +28,39 @@ $\alpha\in\mathbf{F}$, and $v,w\in V$:
    w_3)$ so that $v+w= (v_1+w_1, v_2+w_2, v_3+w_3)$. Thus $(v_1+w_1) +
    2(v_2+w_2) + 3(v_3+w_3) = (v_1+2v_2+3v_3)+(w_1+2w_2+3w_3) = 0$.
 
-(b) This set is not a subspace. In particular, the zero vector is not
-an element since $x_1+2x_2+3x_3 \neq 4$ when $(x_1, x_2, x_3) =
-(0,0,0)$
+#### (b) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 +2 x_2 +3 x_3 =4\}$
 
-(c) This set is not a subspace. For example, both $(1,1,0)$ and
-$(1,0,1)$ are elements (since the product of their components is zero)
-but their sum, $(2,1,1)$ is not an element (since the product of its
-components is not zero).
+This set is not a subspace.
 
-(d) This set is a subspace.
+In particular, the zero vector is not an element since $x_1+2x_2+3x_3
+\neq 4$ when $(x_1, x_2, x_3) = (0,0,0)$
+
+#### (c) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1 x_2 x_3 = 0\}$
+
+This set is not a subspace.
+
+For example, both $(1,1,0)$ and $(1,0,1)$ are elements (since the
+product of their components is zero) but their sum, $(2,1,1)$ is not
+an element (since the product of its components is not zero).
+
+#### (d) $\{(x_1, x_2, x_3)\in \mathbf{F}^3 \mid x_1  = 5 x_3\}$
+
+This set is a subspace.
 
 1. The zero vector is an element, since $0=5\times 0$.
 2. Scalar multiples of elements are elements, since $x_1=5x_3$ implies
    that $(\alpha x_1) = 5 (\alpha x_3)$.
 3. Sums of elements are elements, since $v_1=5v_3$ and $w_1=5w_3$
    implies that $(v_1+w_1) = 5(v_3+w_3)$.
-   
-2. (e)
+
+## Question 2
+
+Verify all assertions about subspaces in Example 1.35.
+
+(e) The set of all sequences of complex numbers with limit 0 is a
+subspace of $\mathbf{C}^\infty$.
+
+### Answer
 
 Let's do this problem for the reals first, then see whether the
 corresponding claim for the complex numbers follows.
@@ -85,8 +85,22 @@ chose some $N > 1/\epsilon$. Then for any $n>N$, we have $\frac{1}{n}
 If $x_1, x_2, \dots$ is sequence with limit 0, we write
 $$\lim_{n\to\infty} x_n = 0.$$
 
-Are the set of these sequences a vector subspace of
-$\mathbf{R}^\infty$?
+Is the set of these sequences a vector subspace of
+$\mathbf{R}^\infty$? We must check the same three conditions.
 
-1. The zero vector is! The sequence $(0,0,0,\dotsc)$ has a limit of 0.
-2. Suppose
+1. The zero vector is certainly in this set. The sequence
+   $(0,0,0,\dotsc)$ has a limit of 0.
+2. Scalar products are in the set. Suppose $$\lim_{n\to\infty} x_n =
+   0.$$ It follows that $\lim_{n\to\infty} (\alpha x_n) = 0.$$ Proof:
+   Give $\epsilon>0$, choose $N$ such that $\lvert x_n \rvert <
+   \epsilon/\lvert \alpha \rvert$ for
+   all $n>N$ (such an $N$ must exist since since the $x_n$ converge to
+   zero). Then $\lvert \alpha x_n \rvert = \lvert \alpha \rvert \lvert
+   x_n\rvert < \epsilon$ for all $n>N$.
+3. Sums are in the set. Suppose $$\lim_{n\to\infty} \lvert x_n \rvert = 0$$ and
+   $$\lim_{n\to\infty} \vert y_n \rvert =0 $$, then it follows that
+   $$\lim_{n\to\infty} (x_n+y_n) = 0$$. Proof: for $\epsilon>0$ choose
+   $n$ such that $x_n < \epsilon/2$ and $y_n < \epsilon/2$ for $n>N$.
+
+Thus the set of all sequences with limit zero is a subspace of the
+space of all sequences.
