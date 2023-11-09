@@ -8,6 +8,7 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{changepage}
+\usepackage[mathscr]{euscript}
 
 \newcommand{\defn}[1]{\textbf{\textsf{#1}}}
 \newcommand{\set}[1]{\mathbold{#1}}
@@ -16,6 +17,9 @@
 \def\C{\mathbb{C}}
 \def\F{\mathbb{F}}
 \def\setsep{\mid}
+\def\vspan{\text{span}}
+\def\enumfix{\mbox{ } \vspace*{-1.2\baselineskip}}
+\def\deg{\text{deg}}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -39,6 +43,9 @@
 \theoremstyle{break}
 \newtheorem{innerresult}{Result}
 
+\theoremstyle{break}
+\newtheorem{innerlemma}{Lemma}
+
 \newenvironment{definition}[1]
   {\renewcommand\theinnerdefinition{#1}\innerdefinition}
   {\endinnerdefinition}
@@ -54,6 +61,10 @@
 \newenvironment{result}[1]
   {\renewcommand\theinnerresult{#1}\innerresult}
   {\endinnerresult}
+
+\newenvironment{lemma}[1]
+  {\renewcommand\theinnerlemma{#1}\innerlemma}
+  {\endinnerlemma}
 
 \title{All the rules we know}
 \date{13 October 2023}
@@ -373,6 +384,113 @@ U + W \text{ is a direct sum} \Longleftrightarrow U \cap W = \{ 0 \}.
 $$
 \end{result}
 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 2.A}
+
+\begin{notation}{2.1}[list of vectors]
+We write lists of vectors without surrounding parantheses.
+\end{notation}
+
+\begin{definition}{2.2}[linear combination]
+A \defn{linear combination} of a list $v_1, \ldots, v_m$ of vectors in $V$ is a vector of the form
+$$
+a_1 v_1 + \cdots + a_m v_m,
+$$
+where $a_1, \ldots, a_m \in \F$.
+\end{definition}
+
+\begin{definition}{2.4}[span]
+The set of all linear combinations of a list of vectors $v_1, \ldots, v_m$ in $V$ is called the \defn{span} of $v_1, \ldots, v_m$, denoted by $\vspan(v_1, \ldots, v_m)$. In other words
+$$
+\vspan(v_1, \ldots, v_m) = \{ a_1 v_1 + \cdots + a_m v_m \setsep a_1, \ldots, a_m \in \F \}.
+$$
+
+The span of the empty list $(\ )$ is defined to be $\{ 0 \}$.
+\end{definition}
+
+\begin{definition}{2.7}[spans]
+If $\vspan(v_1, \ldots, v_m)$ equals $V$, we say that the list $v_1, \ldots, v_m$ \defn{spans} $V$.
+\end{definition}
+
+\begin{definition}{2.9}[finite-dimensional vector space]
+A vector space is called \defn{finite-dimensional} if some list of vectors in it spans the space.
+\end{definition}
+
+\begin{definition}{2.10}[polynomial, $\mathscr{P}(\F)$] \enumfix
+\begin{enumerate}
+\item A function $p : \F \to \F$ is called a \defn{polynomial} with coefficients in $\F$ if there exist $a_0, \ldots, a_m \in \F$ such that
+$$
+p(z) = a_0 + a_1 z + a_2 z^2 + \cdots + a_m z^m
+$$
+for all $z \in \F$.
+\item $\mathscr{P}(\F)$ is the set of all polynomials with coefficients in $\F$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{2.11}[degree of a polynomial, $\deg\ p$] \enumfix
+\begin{enumerate}
+\item A polynomial $p \in \mathscr{P}(\F)$ is said to have \defn{degree $m$} if there exist scalars $a_0, a_1, \ldots, a_m \in \F$ with $a_m \not= 0$ such that for every $z \in \F$, we have
+$$
+p(z) = a_0 + a_1 z + \cdots + a_m z^m.
+$$
+\item The polynomial that is identically $0$ is said to have degree $-\infty$.
+\item The degree of polynomial $p$ is denoted by $\deg\ p$.
+\end{enumerate}
+\end{definition}
+
+\begin{notation}{2.12}[$\mathscr{P}_m (\F)$]
+For $m$ a nonnegative integer, $\mathscr{P}_m (\F)$ denotes the set of all polynomials with coefficients in $\F$ and degree at most $m$.
+\end{notation}
+
+\begin{definition}{2.13}[infinite-dimensional vector space]
+A vector space is called \defn{infinite-dimensional} if it is not finite-dimensional.
+\end{definition}
+
+\newpage
+
+\begin{definition}{2.15}[linearly independent] \enumfix
+\begin{enumerate}
+\item A list $v_1, \ldots, v_m$ of vectors in $V$ is called \defn{linearly independent} if the only choice of $a_1, \ldots, a_m \in \F$ that makes
+$$
+a_v v_1 + \cdots + a_m v_m = 0
+$$
+is $a_1 = \cdots = a_m = 0$.
+\item The empty list $(\ )$ is also declared to be linearly independent.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{2.17}[linearly dependent] \enumfix
+\begin{enumerate}
+\item A list of vectors $V$ is called \defn{linearly dependent} if it is not linearly independent.
+\item In other words, a list $v_1, \ldots, v_m$ of vectors in $V$ is linearly dependent if there exist $a_1, \ldots, a_m \in \F$, not all $0$, such that $a_1 v_1 + \cdots + a_m v_m = 0$.
+\end{enumerate}
+\end{definition}
+
+\vspace{17\baselineskip}
+
+The following can be derived from the definitions.
+
+\begin{result}{2.6}[span is the smallest containing subspace]
+The span of a list of vectors in $V$ is the smallest subspace of $V$ containing all vectors in the list.
+\end{result}
+
+\begin{lemma}{2.19}[linear dependence lemma]
+Suppose $v_1, \ldots, v_m$ is a linearly dependent list in $V$. Then there exists $k \in \{ 1, 2, \ldots, m \}$ such that
+$$
+v_k \in \vspan(v_1, \ldots, v_{k - 1}).
+$$
+Furthermore, if $k$ satisfies the condition above and the $k$\textsuperscript{th} term is removed from $v_1, \ldots, v_m$, then the span of the remaining list equals $\vspan(v_1, \ldots, v_m)$.
+\end{lemma}
+
+\begin{result}{2.22}[length of linearly independent list $\le$ length of spanning list]
+In a finite-dimensional vector space, the length of every linearly independent list of vectors is less than or equal to the length of every spanning list of vectors.
+\end{result}
+
+\begin{result}{2.25}[finite-dimensional subspaces]
+Every subspace of a finite-dimensional vector space is finite-dimensional.
+\end{result}
 
 
 \end{document}
