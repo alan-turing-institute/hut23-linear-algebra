@@ -139,8 +139,9 @@ $\mathbf{R}^2$.
 
 ### Answer
 
-The set $$\{(x,0)\in\mathbf{R}^2\mid x\in\mathbf{R}\} \cup
-\{(0,x)\in\mathbf{R}^2\mid x\in\mathbf{R}\}$$ is an example. (It is
+The set
+$$\{(x,0)\in\mathbf{R}^2\mid x\in\mathbf{R}\} \cup \{(0,x)\in\mathbf{R}^2\mid x\in\mathbf{R}\}$$
+is an example. (It is
 “points lying on the axes, but not otherwise.”)
 
 ## Question 10
