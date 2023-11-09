@@ -113,6 +113,50 @@ Thus the set of all real-valued sequences with limit zero is a
 subspace of the space of all sequences.
 
 To see that this is true of the complex numbers,  note that every
-assertion remains true of the “absolute value,” $\lvert x \rvert$, is
+assertion remains true if the “absolute value,” $\lvert x \rvert$, is
 replaced with the definition appropriate for complex numbers: $\lvert
 z \rvert = \sqrt{(\Re z)^2 + (\Im z)^2}$.
+
+## Question 7
+
+Prove or give a counter-example: If $U$ is a non-empty subset of
+$\mathbf{R}^2$ such that $U$ is closed under addition and taking
+additive inverses, then $U$ is a subspace of $\mathbf{R}^2$.
+
+### Answer
+
+This statement is false. Consider the set $U$ consisting of all pairs
+$(m,n)\in \mathbf{R}^2$ where both $m$ and $n$ are integers. Since the
+integers are closed under addition and taking additive inverses, the
+conditions are satisfied; but this is not a subspace since, for
+example, multiplication by $0.5$ gives elements not in $U$.
+
+## Question 8
+
+Give an example of a non-empty subset $U\subset \mathbf{R}^2$ which is
+closed under scalar multiplication but not a subspace of
+$\mathbf{R}^2$.
+
+### Answer
+
+The set $$\{(x,0)\in\mathbf{R}^2\mid x\in\mathbf{R}\} \cup
+\{(0,x)\in\mathbf{R}^2\mid x\in\mathbf{R}\}$$ is an example. (It is
+“points lying on the axes, but not otherwise.”)
+
+## Question 10
+
+Suppose $V_1$ and $V_2$ are subspaces of $V$. Prove that $V_1\cap V_2$
+is also a subspace.
+
+## Answer
+
+We must check the usual three conditions.
+
+1. Zero is in both $V_1$ and $V_2$ so is certainly in their
+   intersection.
+2. For $\alpha\in\mathbf{R}$ (or $\mathbf{C}$) and $v\in V_1\cap V_2$
+   note that $\alpha v\in V_1$ and $\alpha v\in V_2$ and so $\alpha v$
+   is in their intersection.
+3. For $u, v$ in both $V_1$ and $V_2$, note that $u+v$ is in both
+   $V_1$ and $V_2$ (since they are both subspaces) and hence in their
+   intersection.
