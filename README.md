@@ -17,9 +17,10 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 | 27 Oct | Vector spaces                   | Exercises, Axler 1.B              |
 | 3 Nov  | Subspaces                       | Axler, 1.C (discussion w/o James) |
 | 10 Nov | Subspaces (and direct sums)     | Exercises, Axler 1.C              |
-
+| 17 Nov | Linear independence             | Axler 2.A (discussion)            |
 
 Overall plan:
+
 - Follow Axler (by subchapter) until we feel comfortable moving to
   applications, then move between books.
 - Use Slack channel for collaborative working between meetings.
@@ -28,14 +29,13 @@ Overall plan:
 
 ### Expectations
 
-   - Very different backgrounds and interests in this group
-   - Want everyone to be comfortable: rather be too slow than too
-     fast.
-   - We should only use the maths and terminology we know so far.
-   - We don't expect to learn new maths in the session -- it's a
-     chance to try out what we've read.
-   - Meta-goal is to learn how to “speak maths,” and to explain maths
-     to others, without feeling overwhelmed.
+- Very different backgrounds and interests in this group
+- Want everyone to be comfortable: rather be too slow than too fast.
+- We should only use the maths and terminology we know so far.
+- We don't expect to learn new maths in the session -- it's a chance
+  to try out what we've read.
+- Meta-goal is to learn how to “speak maths,” and to explain maths
+  to others, without feeling overwhelmed.
 
 ### Reading material
 
@@ -47,6 +47,3 @@ Overall plan:
 - Overleaf, for writing in the sessions: See the [Slack
   channel](https://alan-turing-institute.slack.com/archives/C05QNLDKHEG)
   bookmarks.
-
-	 
-	 
