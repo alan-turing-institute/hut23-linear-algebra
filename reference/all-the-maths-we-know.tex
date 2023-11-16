@@ -178,7 +178,7 @@
   \begin{equation*}
     \lambda \cdot (x_1, \dotsc, x_n) \isdef (\lambda x_1, \dotsc, \lambda x_n) 
   \end{equation*} \\
-
+  
   $\set{R}^X$ (or $\set{C}^X$) & For $X$ a set, $\set{R}^X$ denotes the set of all functions $X\to\mathbold{R}$, together with the operation of “pointwise addition”:
   \begin{equation*}
     (f+g)(x) \isdef f(x) + g(x)
@@ -187,8 +187,13 @@
   \begin{equation*}
     (\alpha f)(x) \isdef \alpha f(x).
   \end{equation*}
-  (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”)
-    \end{tabularx}
+  (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”) \\
+
+  $\mathcal{P}_m(\set{R})$ & The set of polynomials of degree at most $m$. Thus, $f\in\mathcal{P}_m(\set{R})$ implies $f(x) = a_0 + a_1x + \dots + a_m x^m$ for some~$m$. \\
+
+  $\mathcal{P}(\set{R})$ & The set of all polynomials of finite degree.
+
+\end{tabularx}
 
 %% ============================================================
 
@@ -212,10 +217,24 @@
   is~$\mathbold{0}$.
 
   If the sum of the $U_i$ is a direct sum, it is written $U_1\oplus \dots\oplus U_n$. \\
-  
-  
 \end{tabularx}
 
+\section*{Linear dependence}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+
+  \defn{Span} & Let $v_1, \dots, v_n$ be vectors in a real vector space,
+  $V$. The \emph{span} of this set is the subspace given by
+  \begin{equation*}
+    \{ \alpha_1 v_1 +\dots + \alpha_n v_n \mid \alpha_1, \dots \alpha_n\in\set{R} \}
+  \end{equation*}
+  (and likewise for a complex vector space).
+
+  A vector space is \emph{finite dimensional} if there exists a finite set whose span is the entire space. \\
+
+  \parbox[t]{0.8in}{\defn{Linear\\ independence}} & Vectors $v_1, \dots, v_n \in \set{R}$ are \emph{linearly independent} if $\alpha_1 v_1 + \dots + \alpha_n v_m = \set{0}$ implies $\alpha_1 = \dots = \alpha_n=0$. \\
+  
+\end{tabularx}
 
 \end{multicols*}
 \end{document}
