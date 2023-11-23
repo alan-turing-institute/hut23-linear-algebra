@@ -19,7 +19,8 @@
 \def\setsep{\mid}
 \def\vspan{\text{span}}
 \def\enumfix{\mbox{ } \vspace*{-1.2\baselineskip}}
-\def\deg{\text{deg}}
+\def\deg{\mathop{\text{deg}}}
+\def\dim{\mathop{\text{dim}}}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -46,6 +47,9 @@
 \theoremstyle{break}
 \newtheorem{innerlemma}{Lemma}
 
+\theoremstyle{break}
+\newtheorem{innercorollary}{Corollary}
+
 \newenvironment{definition}[1]
   {\renewcommand\theinnerdefinition{#1}\innerdefinition}
   {\endinnerdefinition}
@@ -65,6 +69,10 @@
 \newenvironment{lemma}[1]
   {\renewcommand\theinnerlemma{#1}\innerlemma}
   {\endinnerlemma}
+
+\newenvironment{corollary}[1]
+  {\renewcommand\theinnercorollary{#1}\innercorollary}
+  {\endinnercorollary}
 
 \title{All the rules we know}
 \date{13 October 2023}
@@ -492,5 +500,79 @@ In a finite-dimensional vector space, the length of every linearly independent l
 Every subspace of a finite-dimensional vector space is finite-dimensional.
 \end{result}
 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 2.B}
+
+\begin{definition}{2.26}[basis]
+A \defn{basis} of $V$ is a list of vectors in $V$ that is linearly dependent and spans $V$.
+\end{definition}
+
+\vspace{5\baselineskip}
+
+\begin{result}{2.28}[criterion for basis]
+A list $v_1, \ldots, v_n$ of vectors of $V$ is a basis of $V$ if and only if every $v \in V$ can be written uniquely in the form
+$$
+v = a_1 v_1 + \cdots + a_n v_n,
+$$
+where $a_1, \ldots, a_n \in \F$.
+\end{result}
+
+\begin{result}{2.30}[every spanning list contains a basis]
+Every spanning list in a vector space can be reduced to a basis of the vector space.
+\end{result}
+
+\begin{corollary}{2.31}[basis of finite-dimensional vector space]
+Every finite-dimensional vector space has a basis.
+\end{corollary}
+
+\begin{result}{2.32}[every linearly independent list extends to a basis]
+Every linearly independent list of vectors in a finite-dimensional vector space can be extended to a basis of the vector space.
+\end{result}
+
+\begin{corollary}{2.33}[every subspace of $V$ is part of a direct sum equal to $V$]
+Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$. Then there is a subspace $W$ of $V$ such that $V = U \oplus W$.
+\end{corollary}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 2.C}
+
+\begin{definition}{2.35}[dimension, $\dim V$]
+The \defn{dimension} of a finite-dimensional vector space is the length of any basis of the vector space.
+
+The dimension of a finite-dimensional vector space $V$ is denoted by $\dim V$.
+\end{definition}
+
+\vspace{2\baselineskip}
+
+\begin{result}{2.34}[basis length does not depend on basis]
+Any two bases of a finite-dimensional vector space have the same length.
+\end{result}
+
+\begin{result}{2.37}[dimension of a subspace]
+If $V$ is finite-dimensional and $U$ is a subspace of $V$, then $\dim U \le \dim V$.
+\end{result}
+
+\begin{result}{2.38}[linearly independent list of the right length is a basis]
+Suppose $V$ is finite-dimensional. Then every linearly independent list of vectors in $V$ of length $\dim V$ is a basis of $V$.
+\end{result}
+
+\begin{corollary}{2.39}[subspace of full dimension equals the whole space]
+Suppose that $V$ is finite-dimensional and $U$ is a subspace of $V$ such that $\dim U = \dim V$. Then $U = V$.
+\end{corollary}
+
+\begin{result}{2.42}[spanning list of the right length is a basis]
+Suppose $V$ is finite-dimensional. Then every spanning list of vectors in $V$ of length $\dim V$ is a basis of $V$.
+\end{result}
+
+\begin{result}{2.43}[dimension of sum]
+If $V_1$ and $V_2$ are subspaces of a finite-dimensional vector space, then
+$$
+\dim(V_1 + V_2) = \dim V_1 + \dim V_2 - \dim(V_1 \cap V_2).
+$$
+\end{result}
 
 \end{document}
