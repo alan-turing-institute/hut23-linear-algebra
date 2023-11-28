@@ -24,7 +24,7 @@ of the components:
 3\alpha + 2\beta &= 5 \\
 1\alpha+(-3)\beta &= 9 \\
 4\alpha+5\beta &= t.
-\end[align}
+\end{align}
 ```
 
 The first two are two equations in two unknowns. The solution is
@@ -51,7 +51,7 @@ is linearly independent.
 
 ### Answer
 
-The list would be not be linearly independent only if there exist
+The list would not be linearly independent only if there exist
 $\alpha_i$ not all zero such that
 
 ```math
@@ -104,32 +104,31 @@ some list of vectors in it spans the space" (this is 2.9).
 Remember that to Axler, "list" means "finite list".
 
 So to show that our vector space is infinite dimensional, we must show
-that there is _no_ list of vectors which spans the space.
+that there is _no_ finite list of vectors which spans the space.
 
 Suppose, for contradiction, that there were such a list, say $e_1$,
 $e_2$, ..., $e_N$. We don't know what $N$ is, but there must be an $N$
-by supposition that the list is finite. The intuition here is that if
-that list really did span the space, then you could make $N+1$ $v$'s
-($v_1$, $v_2$, ..., $v_{N+1}$) out of only $N$ $e$s; and so surely one
-of the $v$s would be a combination of the others. In fact, Axler's
-theorem 2.22 says precisely this: the length of any linearly
+by supposition that the list is finite. We're going to argue that that
+if that list really did span the space, then, since $N+1$ $v$'s
+($v_1$, $v_2$, ..., $v_{N+1}$) can be constructed from only $N$ $e$'s;
+surely one of the $v$s would be a combination of the others. In fact,
+Axler's theorem 2.22 says precisely this: the length of any linearly
 independent list in $V$ must be no greater than the length of a list
-that spans $V$. And so there must be no more $v$s than $e$s. But we
-can choose the list of $v$s to be as long as we like (by the
-antecedent of the theorem) and so the only conclusion is that there
-can't be any such list of $e$s. In other words, there is no finite
-list of vectors which spans $V$.
+that spans $V$. And so there must be no more linearly independent
+$v$'s than $e$'s. But we can choose the list of $v$'s to be as long as
+we like (by the antecedent of the claim) and so the only conclusion is
+that there can't be any such list of $e$'s. In other words, there is
+no finite list of vectors which spans $V$.
 
 It is left to show the "only if" part. That is, we must show that if
 $V$ is infinite dimensional, there exists an infinite set $v_1$,
 $v_2$, ... such that $`\{v_1, v_2, \dots, v_n\}`$ is linearly
 independent for any $n$.
 
-One way to prove that something exists is to construct it. The idea
-is to start with some $v_1$, add a new $v_2$ so that $`\{v_1,
-v_2`\}$ is linearly independent, then add a $v_3$ such that $`\{v_1,
-v_2, v_3`\}$ is linearly independent, and so on; noting that we never
-get stuck.
+One way to prove that something exists is to construct it. The idea is
+to start with some $v_1$, add a new $v_2$ so that $`\{v_1, v_2\}`$ is
+linearly independent, then add a $v_3$ such that $`\{v_1, v_2, v_3\}`$
+is linearly independent, and so on; noting that we never get stuck.
 
 We need to start by finding a $v_1$. Pick any vector that is not the
 zero vector. (There must be one, otherwise $V$ would be finite
@@ -140,7 +139,7 @@ $V$, and so $V$ would not be infinite dimensional.
 
 In general, if one has found $v_1$, $v_2$, ..., $v_{n-1}$, and these
 are linearly independent, then we choose $v_n$ to be a vector that is
-not a linear combination of the first $n-1$ $v$s. There must be one,
+not a linear combination of the first $n-1$ $v$'s. There must be one,
 else $v_1$, ..., $v_{n-1}$ would span $V$ and $V$ would therefore not
 be infinite-dimensional. Thus we can find a linearly independent list
 of any length.
