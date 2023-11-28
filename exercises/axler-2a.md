@@ -32,12 +32,11 @@ $\alpha = 3$ and $\beta = -2$. (I rearranged the second to get
 $\alpha$ in terms of $\beta$ and then substituted this into the
 first.)
 
-Finally, from the third equation, now we know $\alpha$ and $\beta$, $t
-= 2$.
+Finally, from the third equation (now we know $\alpha$ and $\beta$) it
+follows that $t = 2$.
 
-Just to summarise what we have shown, it is that $(5, 9, t)$ can be
-written as a linear combination of $(3,1,4)$ and $(2,-3,5)$ when
-$t=2$.
+Just to summarise what we have shown: $(5, 9, t)$ can be written as a
+linear combination of $(3,1,4)$ and $(2,-3,5)$ when $t=2$.
 
 ## Question 9
 
@@ -52,13 +51,34 @@ is linearly independent.
 
 ### Answer
 
+The list would be not be linearly independent only if there exist
+$\alpha_i$ not all zero such that
 
+```math
+\alpha_1 (5v_1 - 4v_2) + \alpha_2 v_2 + \dotsb + \alpha_n v_n = 0.
+```
+
+However, the sum above is equivalent to:
+
+```math
+(5\alpha_1) v_1 + (- 4\alpha_1 + \alpha_2) v_2 + \dotsb + \alpha_n v_n = 0.
+```
+
+Since the $v_i$ are linearly independent by supposition, the only way
+_that_ can be true is if all the coefficients are 0. That is:
+$5\alpha_1 = 0$, $-4\alpha_1+\alpha_2 = 0$, $\alpha_3 = 0$, ...,
+$\alpha_n = 0$. Thus in fact, $\alpha_i = 0$ for all $i$. In other
+words, the original list is linearly independent.
 
 ## Question 12
 
 Suppose $v_1$, ..., $v_m$ is linearly independent in $V$ and $w
-\subset V$. Prove that if $v_1 + w$, ..., $v_m + w$ is linearly
-dependent, then $w \not\in \text{span}(v_1, \dotsc, v_m)$.
+\in V$. Prove that if $v_1 + w$, ..., $v_m + w$ is linearly
+dependent, then $w \in \text{span}(v_1, \dotsc, v_m)$.
+
+### Answer
+
+
 
 ## Question 17
 
@@ -69,9 +89,9 @@ sequence $v_1$, $v_2$, ... of vectors in $V$ such that $v_1$, $v_2$,
 ### Answer
 
 Let's start with the "if" direction. We are given a sequence of
-vectors $v_1$, $v_2$, ... such that every initial subsequence, $v_1$,
-..., $v_m$ is linearly independent, and we're to show that the vector
-space must be infinite dimensional.
+vectors $v_1, v_2, \dotsc, \in V$ such that every initial subsequence,
+$v_1$, ..., $v_m$ is linearly independent; we're to show that the
+vector space $V$ must be infinite dimensional.
 
 To prove something, it is necessary to know what that thing is. So we
 should look back in Axler to see what "infinite dimensional"
@@ -88,9 +108,39 @@ that there is _no_ list of vectors which spans the space.
 
 Suppose, for contradiction, that there were such a list, say $e_1$,
 $e_2$, ..., $e_N$. We don't know what $N$ is, but there must be an $N$
-by supposition. The intuition here is that if that list really did
-span the space, then the list $v_1$, $v_2$, ..., $v_{N+1}$ would be
-linearly _dependent_
+by supposition that the list is finite. The intuition here is that if
+that list really did span the space, then you could make $N+1$ $v$'s
+($v_1$, $v_2$, ..., $v_{N+1}$) out of only $N$ $e$s; and so surely one
+of the $v$s would be a combination of the others. In fact, Axler's
+theorem 2.22 says precisely this: the length of any linearly
+independent list in $V$ must be no greater than the length of a list
+that spans $V$. And so there must be no more $v$s than $e$s. But we
+can choose the list of $v$s to be as long as we like (by the
+antecedent of the theorem) and so the only conclusion is that there
+can't be any such list of $e$s. In other words, there is no finite
+list of vectors which spans $V$.
 
+It is left to show the "only if" part. That is, we must show that if
+$V$ is infinite dimensional, there exists an infinite set $v_1$,
+$v_2$, ... such that $`\{v_1, v_2, \dots, v_n\}`$ is linearly
+independent for any $n$.
 
+One way to prove that something exists is to construct it. The idea
+is to start with some $v_1$, add a new $v_2$ so that $`\{v_1,
+v_2`\}$ is linearly independent, then add a $v_3$ such that $`\{v_1,
+v_2, v_3`\}$ is linearly independent, and so on; noting that we never
+get stuck.
 
+We need to start by finding a $v_1$. Pick any vector that is not the
+zero vector. (There must be one, otherwise $V$ would be finite
+dimensional.) Now we need to find $v_2$. Choose any vector that is not
+a multiple of $v_1$. There must be one for, if not, $v_1$ would span
+$V$ all by itself and thus would be a list of vectors which spanned
+$V$, and so $V$ would not be infinite dimensional.
+
+In general, if one has found $v_1$, $v_2$, ..., $v_{n-1}$, and these
+are linearly independent, then we choose $v_n$ to be a vector that is
+not a linear combination of the first $n-1$ $v$s. There must be one,
+else $v_1$, ..., $v_{n-1}$ would span $V$ and $V$ would therefore not
+be infinite-dimensional. Thus we can find a linearly independent list
+of any length.
