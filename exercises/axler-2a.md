@@ -102,8 +102,8 @@ and that would mean that the $v_i$ are not linearly independent. So we
 conclude that $\alpha$ is zero, and hence:
 
 ```math
-w = -\frac{\alpha_1}{\alpha} v_1 - \dotsb - \frac{\alpha_m}{\alpha} v_m.
-w = 0.
+w = -\frac{\alpha_1}{\alpha} v_1 - \dotsb - \frac{\alpha_m}{\alpha}
+v_m = 0.
 ```
 
 That is, we have written $w$ as a linear combination of the $v_i$,
