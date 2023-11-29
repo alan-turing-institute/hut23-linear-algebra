@@ -78,7 +78,33 @@ dependent, then $w \in \text{span}(v_1, \dotsc, v_m)$.
 
 ### Answer
 
+For $v_1 + w$, ..., $v_m + w$ to be linearly dependent means that
+there exist $\alpha_1$, ..., $\alpha_m$, not all zero, such that
 
+```math
+\alpha_1 (v_1 + w) + \dotsb + \alpha_m(v_m + w) = 0.
+```
+
+Some rearranging gives:
+
+```math
+\alpha_1 v_1 + \dotsb + \alpha_m v_m + (\alpha_1 + \dotsb + \alpha_m)
+w = 0.
+```
+
+(We've pulled out the terms in $w$.) 
+
+Since the $\alpha_i$ are not all zero, their sum,
+$\alpha=\sum_i\alpha_i$ is also not zero, and so we may write:
+
+```math
+w = -\frac{\alpha_1}{\alpha} v_1 - \dotsb - \frac{\alpha_m}{\alpha} v_m.
+w = 0.
+```
+
+That is, we have written $w$ as a linear combination of the $v_i$,
+which is precisely what it means for $w$ to be in the span of the
+$v_i$.
 
 ## Question 17
 
@@ -137,7 +163,7 @@ a multiple of $v_1$. There must be one for, if not, $v_1$ would span
 $V$ all by itself and thus would be a list of vectors which spanned
 $V$, and so $V$ would not be infinite dimensional.
 
-In general, if one has found $v_1$, $v_2$, ..., $v_{n-1}$, and these
+In general, if we have found $v_1$, $v_2$, ..., $v_{n-1}$, and these
 are linearly independent, then we choose $v_n$ to be a vector that is
 not a linear combination of the first $n-1$ $v$'s. There must be one,
 else $v_1$, ..., $v_{n-1}$ would span $V$ and $V$ would therefore not
