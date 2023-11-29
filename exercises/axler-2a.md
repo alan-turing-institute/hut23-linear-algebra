@@ -20,11 +20,11 @@ and then compute $t$. There are really three equations, one for each
 of the components:
 
 ```math
-\begin{align}
-3\alpha + 2\beta &= 5 \\
-1\alpha+(-3)\beta &= 9 \\
-4\alpha+5\beta &= t.
-\end{align}
+\begin{gathered}
+3\alpha + 2\beta = 5 \\
+1\alpha+(-3)\beta = 9 \\
+4\alpha+5\beta = t.
+\end{gathered}
 ```
 
 The first two are two equations in two unknowns. The solution is
@@ -94,8 +94,12 @@ w = 0.
 
 (We've pulled out the terms in $w$.) 
 
-Since the $\alpha_i$ are not all zero, their sum,
-$\alpha=\sum_i\alpha_i$ is also not zero, and so we may write:
+We'd like to rearrange this into an expression for $w$, but that will
+involving dividing by $\alpha=\sum_i\alpha_i$. If that expression were
+zero, we'd have a problem. But if the sum of the $\alpha_i$ were zero,
+then the sum on the left, $\sum_i \alpha_i z_i$ would also be zero,
+and that would mean that the $v_i$ are not linearly independent. So we
+conclude that $\alpha$ is zero, and hence:
 
 ```math
 w = -\frac{\alpha_1}{\alpha} v_1 - \dotsb - \frac{\alpha_m}{\alpha} v_m.
