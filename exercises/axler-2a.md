@@ -38,6 +38,39 @@ follows that $t = 2$.
 Just to summarise what we have shown: $(5, 9, t)$ can be written as a
 linear combination of $(3,1,4)$ and $(2,-3,5)$ when $t=2$.
 
+## Question 8
+
+Suppose $v_1$, $v_2$, $v_3$, $v_4$ is linearly independent in
+$V$. Prove that the list 
+
+```math
+v_1 - v_2, v_2 - v_3, v_3 - v_4, v_4
+```
+
+is also linearly independent.
+
+### Answer
+
+What would it mean for the list to be linearly independent? It would
+mean that, if there were $\alpha_i$ satisfying
+
+```math
+\alpha_1(v_1 - v_2) + \alpha_2(v_2 - v_3) + \alpha_3(v_3 - v_4) +
+\alpha_4 v_4 = 0,
+```
+
+then necessarily those $\alpha_i$ would all be zero. 
+
+Can we show that they are zero? Some rearranging of the term on the left
+gives:
+
+```math
+\alpha_1 v_1 +(-\alpha_1 + \alpha_2)v_2 +(-\alpha_2 + \alpha_3) v_3 +
+(- \alpha_3 + \alpha_4) v_4.
+```
+
+
+
 ## Question 9
 
 Prove or give a counterexample: If $v_1$, $v_2$, ..., $v_m$ is a
@@ -118,7 +151,7 @@ sequence $v_1$, $v_2$, ... of vectors in $V$ such that $v_1$, $v_2$,
 
 ### Answer
 
-Let's start with the "if" direction. We are given a sequence of
+Let's start with the "reverse" direction. We are given a sequence of
 vectors $v_1, v_2, \dotsc, \in V$ such that every initial subsequence,
 $v_1$, ..., $v_m$ is linearly independent; we're to show that the
 vector space $V$ must be infinite dimensional.
@@ -150,7 +183,7 @@ we like (by the antecedent of the claim) and so the only conclusion is
 that there can't be any such list of $e$'s. In other words, there is
 no finite list of vectors which spans $V$.
 
-It is left to show the "only if" part. That is, we must show that if
+It is left to show the "forward" part. That is, we must show that if
 $V$ is infinite dimensional, there exists an infinite set $v_1$,
 $v_2$, ... such that $`\{v_1, v_2, \dots, v_n\}`$ is linearly
 independent for any $n$.
