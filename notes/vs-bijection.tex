@@ -169,30 +169,32 @@ Since all of the properties are met it follows that $X$ is a vector space when $
 
 \section*{Unit Sphere as a Vector Space}
 
-The above tells us that if we can find a bijection from a vector space to any other set, then we can also represent the set as a vector space. As already noted during the session there is no bijection between $\R^2$ and a sphere. However we can find bijections between $\R^2$ and a sphere with a single point (usually one of the poles) removed.
-
-One example is the stereographic projection. Embed $\R^2$ into $\R^3$ as the plane
-$$
-\R^2 = \{ (x, y, z) \in \R^3 \setsep z = 0 \}.
-$$
-
-Consider the unit sphere with centre $(0, 0, 0)$ as
+The above tells us that if we can find a bijection from a vector space to any other set, then we can also represent the set as a vector space. Let's define $S^2$ to be the unit sphere with centre $(0, 0, 0)$ like this:
 $$
 S^2 = \{ (x, y, z) \in \R^3 \setsep x^2 + y^2 + z^2 = 1 \}.
 $$
 
+The sets $S^2$ and $\R^2$ have the same cardinality so we can find a bijection between them which we {\it could\/} use to impose a vector space structure on $S^2$.
+
+However, as already noted during the session there is no bijection between $\R^2$ and a sphere that preserves continuity. A bijection that is continuous and with a continuous inverse is called a \defn{homeomorphism}\footnote[1]{\url{https://en.wikipedia.org/w/index.php?title=Homeomorphism&oldid=1185280979}} and is what we'd ideally want for the vector space on the sphere to be useful.
+
+On the other hand we {\it can\/} find a homeomorphsim between $\R^2$ and a sphere with a single point (usually one of the poles) removed. One example is the stereographic projection. Embed $\R^2$ into $\R^3$ as the plane
+$$
+\R^2 = \{ (x, y, z) \in \R^3 \setsep z = 0 \}.
+$$
+
 Then $S^2 \setminus \{ (0, 0, 1) \}$ is the sphere with the north pole removed. Let $\mathscr{M} = S^2 \setminus \{ (0, 0, 1) \}$.
 
-We can find a bijection between $\R^2$ and $\mathscr{M}$ as follows. For any point $(x, y, 0) \in \R^2$ draw a line from the north pole of the sphere through the point $(x, y, 0)$ on the plane. The line will intersect the sphere at exactly one point (other than the north pole). The point at which it crosses is the point on the sphere that $(x, y, 0)$ maps to.
+We can find a homeomorphism between $\R^2$ and $\mathscr{M}$ as follows. For any point $(x, y, 0) \in \R^2$ draw a line from the north pole of the sphere through the point $(x, y, 0)$ on the plane. The line will intersect the sphere at exactly one point (other than the north pole). The point at which it crosses is the point on the sphere that $(x, y, 0)$ maps to.
 
 \begin{figure}[h!]
 \centering
 \includegraphics[width=0.5\linewidth]{./figures/stereoproj.pdf}
-\caption[Stereographic projection]{Stereographic projection between the plane $\R^2$ and the north-poleless-sphere $\mathscr{M}$. Image from Wikipedia, Mark Howison and CheChe, CC BY-SA 4.0 Deed\footnotemark[1].}
+\caption[Stereographic projection]{Stereographic projection between the plane $\R^2$ and the north-poleless-sphere $\mathscr{M}$. Image from Wikipedia, Mark Howison and CheChe, CC BY-SA 4.0 Deed\footnotemark[2].}
 \label{fig:stereoproj}
 \end{figure}
 
-\footnotetext[1]{\url{https://commons.wikimedia.org/wiki/File:Stereographic_projection_in_3D.svg}}
+\footnotetext[2]{\url{https://commons.wikimedia.org/wiki/File:Stereographic_projection_in_3D.svg}}
 
 Using this approach every point on the $\R^2$ plane maps uniquely to a point on $\mathscr{M}$ and any point on $\mathscr{M}$ maps uniquely to a point on $\R^2$.
 
@@ -202,7 +204,7 @@ We can define the mapping $\f : \R^2 \to \mathscr{M}$ and its inverse $\finv : \
 \finv (x, y, z) & \mapsto \left( \frac{x}{1 - z}, \frac{y}{1 - z} \right).
 \end{align*}
 
-For the derivation see Wikipedia\footnote[2]{\url{https://en.wikipedia.org/w/index.php?title=Stereographic_projection&oldid=1183460764}}.
+For the derivation see Wikipedia\footnote[3]{\url{https://en.wikipedia.org/w/index.php?title=Stereographic_projection&oldid=1183460764}}.
 
 Since $\f$ is a bijection we can consider $\mathscr{M}$, the unit sphere minus a pole, as being a vector space by defining vector addition and scalar multiplication as earlier. So let $(x_1, y_1, z_1), (x_2, y_2, z_2) \in \mathscr{M} \subset \R^3$ and $a \in \R$ then
 \begin{align*}
