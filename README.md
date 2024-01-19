@@ -18,6 +18,10 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 | 3 Nov  | Subspaces                       | Axler, 1.C (discussion w/o James) |
 | 10 Nov | Subspaces (and direct sums)     | Exercises, Axler 1.C              |
 | 17 Nov | Linear independence             | Axler 2.A (discussion)            |
+|        |                                 |                                   |
+| 2024   |                                 |                                   |
+| 19 Jan | Dimension                       | Exercises, Axler 2.C              |
+
 
 Overall plan:
 
