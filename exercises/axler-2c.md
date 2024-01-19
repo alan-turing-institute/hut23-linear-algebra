@@ -93,12 +93,12 @@ V = V_1\oplus \dotsb \oplus V_n.
 ```
 Since $V$ is finite-dimensional, it has a finite basis, say
 $`\{\mathbf{e}_1, \dotsc, \mathbf{e}_n\}`$. Set $V_i$ to be the
-subspace spanned by (the single vector) $`\{\mathbf{e}\}`$. These are
+subspace spanned by (the single vector) $\mathbf{e}$. The $V_i$ are
 the required subspaces.
 
 To see this, note first that since $`\{\mathbf{e}_1, \dotsc,
 \mathbf{e}_n\}`$ is a spanning set, we must have $V =
 V_1\cup\dotsb\cup V_n$. Then, by linear independence of the
 $\mathbf{e}_i$, we know that the subspaces spanned by any two of the
-$\mathbf{e}_i$ must intersect only in $\mathbf{0}$. Thus the sum is a
-direct sum.
+$\mathbf{e}_i$ must intersect only in $\mathbf{0}$. Thus the sum is in
+fact a direct sum.
