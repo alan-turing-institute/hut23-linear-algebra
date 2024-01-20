@@ -13,6 +13,7 @@
 \newcommand{\defn}[1]{\textbf{\textsf{#1}}}
 \newcommand{\set}[1]{\mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
+\newcommand{\card}[1]{\##1}
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 \def\F{\mathbb{F}}
@@ -573,6 +574,18 @@ If $V_1$ and $V_2$ are subspaces of a finite-dimensional vector space, then
 $$
 \dim(V_1 + V_2) = \dim V_1 + \dim V_2 - \dim(V_1 \cap V_2).
 $$
+\end{result}
+
+\begin{result}{Page 48}[Sets and vector spaces]
+\begin{tabular}{| *{2}{>{\raggedright}p{0.5\columnwidth} |}} \hline
+{\bf sets} & {\bf vector spaces} \tabularnewline \hline
+$S$ is a finite set & $V$ is a finite-dimensional vector space \tabularnewline \hline
+$\card{S}$ & $\dim V$ \tabularnewline \hline
+for subsets $S_1$, $S_2$ of $S$, the union $S_1 \cup S_2$ is the smallest subset of $S$ containing $S_1$ and $S_2$ & for subspaces $V_1$, $V_2$ of $V$, the sum $V_1 + V_2$ is the smallest subspace of $V$ containing $V_1$ and $V_2$ \tabularnewline \hline
+$\card{(S_1 \cup S_2)} = \card{S_1} + \card{S_2} - \card{(S_1 \cap S_2)}$ & $\dim{(V_1 + V_2)} = \dim{V_1} + \dim{V_2} - \dim{(V_1 \cap V_2)}$ \tabularnewline \hline
+$\card{(S_1 \cup S_2)} = \card{S_1} + \card{S_2} \Longleftrightarrow \card{(S_1 \cap S_2)} = \empty$ & $\dim{(V_1 + V_2)} = \dim{V_1} + \dim{V_2} \Longleftrightarrow \dim{(V_1 \cap V_2)} = \empty$ \tabularnewline \hline
+$S_1 \cup \cdots \cup S_m$ is a disjoint union $\Longleftrightarrow \card{(S_1 \cup \cdots \cup S_M)} = \card{S_1} + \cdots + \card{S_M}$ & $V_1 \cdots + V_m$ is a direct sum $\Longleftrightarrow \dim{(V_1 + \cdots + V_m)} = \dim{V_1} + \cdots + \dim{V_m}$ \tabularnewline \hline
+\end{tabular}
 \end{result}
 
 \end{document}
