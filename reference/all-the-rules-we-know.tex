@@ -22,6 +22,7 @@
 \def\enumfix{\mbox{ } \vspace*{-1.2\baselineskip}}
 \def\deg{\mathop{\text{deg}}}
 \def\dim{\mathop{\text{dim}}}
+\def\L{\mathscr{L}}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -586,6 +587,86 @@ $\card{(S_1 \cup S_2)} = \card{S_1} + \card{S_2} - \card{(S_1 \cap S_2)}$ & $\di
 $\card{(S_1 \cup S_2)} = \card{S_1} + \card{S_2} \Longleftrightarrow \card{(S_1 \cap S_2)} = \empty$ & $\dim{(V_1 + V_2)} = \dim{V_1} + \dim{V_2} \Longleftrightarrow \dim{(V_1 \cap V_2)} = \empty$ \tabularnewline \hline
 $S_1 \cup \cdots \cup S_m$ is a disjoint union $\Longleftrightarrow \card{(S_1 \cup \cdots \cup S_M)} = \card{S_1} + \cdots + \card{S_M}$ & $V_1 \cdots + V_m$ is a direct sum $\Longleftrightarrow \dim{(V_1 + \cdots + V_m)} = \dim{V_1} + \cdots + \dim{V_m}$ \tabularnewline \hline
 \end{tabular}
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.A}
+
+\begin{definition}{3.1}[linear map]
+A \defn{linear map} from $V$ to $W$ is a function $T : V \to W$ with the following properties.
+
+\defn{additivity}
+\begin{forceindent}
+$T(u + v) = Tu + Tv$ for all $u, v \in V$.
+\end{forceindent}
+
+\defn{homogeneity}
+\begin{forceindent}
+$T(\lambda v) = \lambda(Tv)$ for all $\lambda \in \F$ and all $v \in V$.
+\end{forceindent}
+
+\end{definition}
+
+\begin{notation}{3.2}[$\L(V, W), \L(V)$] \enumfix
+\begin{enumerate}
+\item The set of linear maps from $V$ to $W$ is denoted by $\L(V, W)$.
+\item The set of linear maps from $V$ to $V$ is denoted by $\L(V)$. In other words, $\L(V) = \L(V, V)$.
+\end{enumerate}
+\end{notation}
+
+\begin{definition}{3.5}[addition and scalar multiplication on $\L(V, W)$]
+\label{def:addmultL}
+Suppose $S, T \in \L(V, w)$ and $\lambda \in \F$. The \defn{sum} $S + T$ and the \defn{product} $\lambda T$ are the linear maps from $V$ to $W$ defined by
+$$
+(S + T)(v) = Sv + Tv \quad \text{ and } \quad (\lambda T)(v) = \lambda(Tv)
+$$
+for all $v \in V$.
+\end{definition}
+
+\begin{definition}{3.7}[product of linear maps]
+If $T \in \L(U, V)$ and $S \in \L(V, W)$, then the \defn{product} $ST \in \L(U, V)$ is defined by
+$$
+(S T)(u) = S(Tu)
+$$
+for all $u \in U$.
+\end{definition}
+
+\newpage
+
+\begin{lemma}{3.4}[linear map lemma]
+Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m \in W$. Then there exists a unique linear map $T : V \to W$ such that
+$$
+Tv_k = w_k
+$$
+for each $k = 1, \ldots, n$.
+\end{lemma}
+
+\begin{result}{3.6}[$\L(V, W)$ is a vector space]
+With the operations of addition and scalar multiplication as in Definition \ref{def:addmultL}, $\L(V, W)$ is a vector space.
+\end{result}
+
+\begin{result}{3.8}[algebraic properties of products of linear maps]
+
+\defn{associativity}
+\begin{forceindent}
+$(T_1 T_2) T_3 = T_1(T_2 T_3)$ whenever $T_1, T_2$ and $T_3$ are linear maps such that the products make sense (meaning $T_3$ maps into the domain of $T_2$ and $T_2$ maps into the domain of $T_1$).
+\end{forceindent}
+
+\defn{identity}
+\begin{forceindent}
+$T I = I T = T$ whenever $T \in \L(V, W)$; here the first $I$ is the identity operator on $V$ and the second $I$ is the identity operator on $W$.
+\end{forceindent}
+
+\defn{distributive properties}
+\begin{forceindent}
+$(S_1 + S_2)T = S_1 T + S_2 T$ and $S(T_1 + T_2) = S T_1 + S T_2$ whenever $T, T_1, T_2 \in \L(U, V)$ and $S, S_1, S_2 \in \L(V, W)$.
+\end{forceindent}
+\end{result}
+
+\begin{result}{3.10}[linear maps take 0 to 0]
+Suppose $T$ is a linear map from $V$ to $W$. Then $T(0) = 0$.
 \end{result}
 
 \end{document}
