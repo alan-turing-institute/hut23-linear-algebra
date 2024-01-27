@@ -21,7 +21,8 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 |        |                                 |                                   |
 | 2024   |                                 |                                   |
 | 19 Jan | Dimension                       | Exercises, Axler 2.C              |
-
+| 26 Jan | Linear maps!                    | Axler, 3.A (discussion)           |
+| 2 Feb  | Linear maps                     | Exercises, Axler 3.A              |
 
 Overall plan:
 
