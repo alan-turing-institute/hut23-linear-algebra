@@ -6,9 +6,9 @@
 ## Question 1
 
 For $b,c\in\mathbf{R}$ and $T:\mathbf{R}^3 \to \mathbf{R}^2$ given by
-$$
+```math
 T(x,y,z) = (2x-4y+3z+b, 6x + cxyz),
-$$
+```
 show that $T$ is linear iff $b = c = 0$.
 
 ### Answer
@@ -24,21 +24,21 @@ $6x$ are linear terms so $T$ is linear.
 
 Suppose $T\in\mathcal{L}(\mathbf{F}^n,\mathbf{F}^m)$. Show that there
 exist scalars $A_{j,k}$ such that
-$$
+```math
 T(x_1, \dotsc, x_n) = (\sum_k A_{1, k} x_k, \dotsc, \sum_k A_{m, k} x_k).
-$$
+```
 
 ### Answer
 
 Define $A_{j, 1}$ by
-$$
+```math
 (A_{1, 1}, A_{2, 1}, \dotsc, \A_{m, 1}) = T((1, 0,\dotsc,0))
-$$
+```
 and in general define $A_{j, k}$ by
-$$
+```math
 (A_{1, k}, A_{2, k}, \dotsc, \A_{m, k}) = T((0,\dotsc, 0,1,0, \dotsc,
 0))
-$$
+```
 (with the single 1 in the $k$th position).
 
 Now observe that any $(x_1, \dotsc, x_n)$ can be written as a linear
@@ -57,9 +57,9 @@ are linearly independent in $V$.
 
 Suppose $\alpha_1 v_1 + \alpha_2 v_2 \dotsb + alpha_n v_n = 0$ for
 some $\alpha_i$. Then by linearity of $T$,
-$$
+```math
 \alpha_1 Tv_1 +\dotsb + \alpha_n Tv_n = 0$
-$$
+```
 But the $Tv_i$ are linearly independent, and so we must have
 $\alpha_i=0$ for all $\alpha_i$. Hence the $v_i$ are linearly
 independent.
@@ -71,13 +71,13 @@ satisfies the property of homogeneity but is not linear.
 
 ### Answer
 
-$$
+```math
 \phi((x,y)) = 
 \begin{cases}
 (x,y) & \text{if } \left| x\right| > \left|y\right| \\
 0     & \text{otherwise}.
 \end{cases}
-$$
+```
 Note that multiplication by 2 preserves the truth of $|x|>|y|$. 
 
 
@@ -87,10 +87,10 @@ Give an example of a function $\phi:\mathbf{C}\to\mathbf{C}$ which
 satisfies the additive property but is not linear.
 
 Consider
-$$
+```math
 \newcommand{\ii}{\mathrm{i}}
 \phi(a+\ii b) = a.
-$$
+```
 Then $\phi((a+\ii b) + (c+\ii d)) = a+c = \phi(a+ib)+\phi(c+id)$ so $\phi$
 is additive.
 
