@@ -1,5 +1,8 @@
 # Exercises from Axler 3.A
 
+**Note:** My answers are a bit terse this week!
+
+
 ## Question 1
 
 For $b,c\in\mathbf{R}$ and $T:\mathbf{R}^3 \to \mathbf{R}^2$ given by
@@ -71,10 +74,11 @@ satisfies the property of homogeneity but is not linear.
 $$
 \phi((x,y)) = 
 \begin{cases}
-(x,y) & \text{if } x > y \\
-
+(x,y) & \text{if } \left| x\right| > \left|y\right| \\
+0     & \text{otherwise}.
 \end{cases}
 $$
+Note that multiplication by 2 preserves the truth of $|x|>|y|$. 
 
 
 ## Question 9
@@ -82,4 +86,14 @@ $$
 Give an example of a function $\phi:\mathbf{C}\to\mathbf{C}$ which
 satisfies the additive property but is not linear.
 
-	
+Consider
+$$
+\newcommand{\ii}{\mathrm{i}}
+\phi(a+\ii b) = a.
+$$
+Then $\phi((a+\ii b) + (c+\ii d)) = a+c = \phi(a+ib)+\phi(c+id)$ so $\phi$
+is additive.
+
+But $i\phi(a+ib) = ai \neq \phi(i(a+ib)) = -b$.
+
+
