@@ -74,11 +74,11 @@ satisfies the property of homogeneity but is not linear.
 ```math
 \phi((x,y)) = 
 \begin{cases}
-(x,y) & \text{if } \left| x\right| > \left|y\right| \\
+x & \text{if } x = y \\
 0     & \text{otherwise}.
 \end{cases}
 ```
-Note that multiplication by 2 preserves the truth of $|x|>|y|$. 
+Note that multiplication by 2 preserves the truth of $x = y$. 
 
 
 ## Question 9
