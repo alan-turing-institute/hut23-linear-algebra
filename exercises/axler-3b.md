@@ -19,6 +19,15 @@ M \colon (x_1, x_2, x_3, x_4, x_5) \mapsto (0, 0, 0, x_4, x_5).
 
 ## Question 2
 
-Suppose $S, T\in\mathcal{L}(v)$ are such that $S\subseteq \text{null
+Suppose $S, T\in\mathcal{L}(v)$ are such that $\text{range }S\subseteq \text{null
 }T$. Prove that $(ST)^2 = 0$.
 
+### Answer
+
+$(ST)^2$ means $STST$, where the rightmost map acts first. If we write
+the map $S$, say, acting on $V$ as $V\stackrel{S}{\to} V$, then $STST$
+can be written:
+
+```math
+
+```
