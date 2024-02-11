@@ -29,5 +29,5 @@ the map $S$, say, acting on $V$ as $V\stackrel{S}{\to} V$, then $STST$
 can be written:
 
 ```math
-
+V \xrightarrow{T} V \xrightarrow{S} V \xrightarrow{T} V \xrightarrow{S} V. 
 ```
