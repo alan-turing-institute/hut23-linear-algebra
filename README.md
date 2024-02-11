@@ -23,6 +23,8 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 | 19 Jan | Dimension                       | Exercises, Axler 2.C              |
 | 26 Jan | Linear maps!                    | Axler, 3.A (discussion)           |
 | 2 Feb  | Linear maps                     | Exercises, Axler 3.A              |
+| 9 Feb  | Kernels and ranges              | Axler, 3.B (discussion)           |
+| 16 Feb | Kernels and ranges              | Exercises, Axler 3.B              |
 
 Overall plan:
 
