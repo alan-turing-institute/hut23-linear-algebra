@@ -31,3 +31,20 @@ can be written:
 ```math
 V \xrightarrow{T} V \xrightarrow{S} V \xrightarrow{T} V \xrightarrow{S} V. 
 ```
+
+In the middle, there is an $S$ followed by a $T$. Everything in first
+$V$ ends up in the range of $S$, after the $S$. But this set is in the
+null space of $T$, so after the $T$, everything ends up as the zero
+vector.
+
+## Question 3
+
+Suppose $v_1, \dotsc, v_m \in V$. define $T$ by
+
+```math
+T \colon \mathbf{F}^m \to V
+```
+
+```math
+T \colon (z_1, \dotsc, z_m) \mapsto \sum_i z_i v_i.
+```
