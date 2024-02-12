@@ -48,3 +48,5 @@ T \colon \mathbf{F}^m \to V
 ```math
 T \colon (z_1, \dotsc, z_m) \mapsto \sum_i z_i v_i.
 ```
+
+### (a) What property of $T$ corresponds to $v_1,\dotsc, v_m$ 
