@@ -105,7 +105,7 @@ true are $\alpha_i = 0$.
 
 Suppose that $W$ is finite-dimensional and $S, T\in
 \mathcal{L}(V,W)$. Prove that $\text{null }S \subseteq \text{null }T$
-if and only if there exists $E\in\mathcal{L}(W)$ such that $T=ES$.
+if and only if there exists $E\in\mathcal{L}(W)$ such that $T=E\ocirc S$.
 
 ### Answer
 
@@ -114,12 +114,12 @@ after applying $S$ we need to “collapse some more directions with $E$
 in order to get to the effect of $T$”. What is perhaps surprising is
 that we are guaranteed such an $E$ exists.
 
-The easy direction of the “if and only if” is to show that if $T=ES$
+The easy direction of the “if and only if” is to show that if
+$T=E\ocirc S$
 (for some $E$) then $\text{null }S \subseteq \text{null }T$. Indeed,
-let $v\in\mathcal{V}$ be any vector in the null space of $S$, so that
-$S(v)=0$. Then for any $E$, we have $T(v) = E(S(v)) = E(\mathbf{0}) =
-\mathbf{0}$, and so $v$ is necessarily in the null space of $T$. Thus
-$v\in\text{null }S \implies v\in\text{null }T$.
+let $v\in V$ be any vector in the null space of $S$, so that
+$S(v)=\mathbf{0}$. Then we have $T(v) = E(S(v)) = E(\mathbf{0}) =
+\mathbf{0}$, and so $v$ is necessarily in the null space of $T$.
 
 For the other direction, suppose that for some $S, T$ we have
 $\text{null }S \subseteq \text{null }T$. How can we construct the
@@ -128,23 +128,25 @@ required $E$? One way is to give its action on a list of basis vectors
 basis springs to mind: Let $u_1, \dotsc, u_m$ be a basis for the null
 space of $S$ (noting that the null space is a vector space) and let
 $u_1, \dotsc, u_m, e_1, \dotsc, e_n$ be an extension to a basis of
-$\mathcal{V}$. (Such an extension exists by Axler 2.32.)
+$\mathcal{V}$. (Such an extension exists by Axler 2.32.) \
 
-We now want $E$ to “do the same thing as $T$ to elements of $\mathcal{V}$, but
-after they have been acted on by $S$.” That is, to define $E(w)$ we
-find $v\in\mathcal{V}$ such that $w=S(v)$ and set $E(w) = T(v)$.
+Well, this isn't obviously helpful, since this is a basis of $V$
+whereas $E$ acts on $W$. Nonetheless, we now want $E$ to “do the same
+thing as $T$ to elements of $V$, but after they have been acted on by
+$S$.” That is, to define $E(w)$, we find $v\in V$ such that $w=S(v)$
+and set $E(w) = T(v)$.
 
 Consider the set of vectors $S(e_i)$. This is a linearly independent
 set. (If it were not, there would be some $\alpha_i$ not all zero such
-that $\sum_i \alpha_i S(e_i) = \mathbf{0}$, and therefore that
-$S(\sum_i\alpha_i e_i) = \mathbf{0}$; in other words that $\sum_i
-\alpha_i e_i$ is in the null space of $S$. But the null space of $S$
-is spanned by the $u_i$, by construction, so can't include some of the
+that $\sum_i \alpha_i S(e_i) = \mathbf{0}$, and therefore
+$S(\sum_i\alpha_i e_i) = \mathbf{0}$: in other words, $\sum_i \alpha_i
+e_i$ would be in the null space of $S$. But the null space of $S$ is
+spanned by the $u_i$, by construction, so can't include any of the
 $e_i$.)
 
-Extend this set to basis for $\mathcal{W}$, say $S(e_1), \dotsc,
-S(e_n), f_1, \dotsc, f_o$.  Now define $E$ as follows. For any
-$w\in\mathcal{W}$, write $w$ as
+Extend this set to basis for $W$, say $S(e_1), \dotsc, S(e_n), f_1,
+\dotsc, f_o$.  Now define $E$ as follows. For any $w\in W$, write $w$
+as
 
 ```math
 w = \sum_i \beta_i S(e_i) + \text{terms involving }f_i,
@@ -159,15 +161,20 @@ E(w) \equiv \sum_i \beta_i T(e_i).
 (So $E$ “does the right thing on the range of $S$, and otherwise is
 zero”.)
 
-Claim: this defines the required $E$. Proof: Suppose
-$v\in\mathcal{V}$. Write $v=\sum_i \alpha_i u_i + \sum_j \beta_j
-e_j$. Noting that $T(u_i) = 0) (since the null space of $T$ is at
-least the null space of $S$) we have $T(v) = \sum_j \beta_j T(e_j)$
-and, by construction $E(S(v)) = \sum_j \beta_j E(S(e_j)) = E(\sum_j
-\beta_j S(e_j)) = \sum_j \beta_j T(e_j)$.
+Claim: this defines the required $E$. Proof: Suppose $v\in V$. Write
+$v=\sum_i \alpha_i u_i + \sum_j \beta_j e_j$. Noting that $T(u_i) =
+\mathbf{0}$ (since the null space of $T$ is at least the null space of
+$S$) we have $T(v) = \sum_j \beta_j T(e_j)$ and, by construction
+$E(S(v)) = \sum_j \beta_j E(S(e_j)) = E(\sum_j \beta_j S(e_j)) =
+\sum_j \beta_j T(e_j)= T(v)$.
 
 It's worthwhile noting that if the null space of $T$ were _smaller_
 than the null space of $E$, we would have $T(u_k) \neq \mathbf{0}$ for
 some $k$ and so we would have “had to make $E$ do something with
 $S(u_k)$,” but there is nothing $E$ could have done except return
 $\mathbf{0}$.
+
+## Question 27
+
+Suppose $P\in \mathcal{L}(V)$ and $P^2 = P$. Prove that $V =
+\text{null }P + \text{range }P$.
