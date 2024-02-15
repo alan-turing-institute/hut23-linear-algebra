@@ -105,7 +105,7 @@ true are $\alpha_i = 0$.
 
 Suppose that $W$ is finite-dimensional and $S, T\in
 \mathcal{L}(V,W)$. Prove that $\text{null }S \subseteq \text{null }T$
-if and only if there exists $E\in\mathcal{L}(W)$ such that $T=E\ocirc S$.
+if and only if there exists $E\in\mathcal{L}(W)$ such that $T=E\circ S$.
 
 ### Answer
 
@@ -115,10 +115,9 @@ in order to get to the effect of $T$”. What is perhaps surprising is
 that we are guaranteed such an $E$ exists.
 
 The easy direction of the “if and only if” is to show that if
-$T=E\ocirc S$
-(for some $E$) then $\text{null }S \subseteq \text{null }T$. Indeed,
-let $v\in V$ be any vector in the null space of $S$, so that
-$S(v)=\mathbf{0}$. Then we have $T(v) = E(S(v)) = E(\mathbf{0}) =
+$T=E\circ S$ (for some $E$) then $\text{null }S \subseteq \text{null
+}T$. Indeed, let $v\in V$ be any vector in the null space of $S$, so
+that $S(v)=\mathbf{0}$. Then we have $T(v) = E(S(v)) = E(\mathbf{0}) =
 \mathbf{0}$, and so $v$ is necessarily in the null space of $T$.
 
 For the other direction, suppose that for some $S, T$ we have
@@ -177,4 +176,4 @@ $\mathbf{0}$.
 ## Question 27
 
 Suppose $P\in \mathcal{L}(V)$ and $P^2 = P$. Prove that $V =
-\text{null }P + \text{range }P$.
+\text{null }P \oplus \text{range }P$.
