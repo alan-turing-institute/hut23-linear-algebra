@@ -24,9 +24,10 @@ Suppose $S, T\in\mathcal{L}(v)$ are such that $\text{range }S\subseteq \text{nul
 
 ### Answer
 
-$(ST)^2$ means $STST$, where the rightmost map acts first. If we write
-the map $S$, say, acting on $V$ as $V\stackrel{S}{\to} V$, then $STST$
-can be written:
+$(ST)^2$ means $(S\circ T)\circ (S\circ T)$, which is the same as
+$S\circ T\circ S\circ T$, where the rightmost map acts first. If we write
+the map $S$, say, acting on $V$ as $V\stackrel{S}{\to} V$, then you
+can think of $STST$ as this sequence of maps:
 
 ```math
 V \xrightarrow{T} V \xrightarrow{S} V \xrightarrow{T} V \xrightarrow{S} V. 
@@ -39,7 +40,7 @@ vector.
 
 ## Question 3
 
-Suppose $v_1, \dotsc, v_m \in V$. define $T$ by
+Suppose $v_1, \dotsc, v_m \in V$. Define $T$ by
 
 ```math
 T \colon \mathbf{F}^m \to V
@@ -125,17 +126,37 @@ that $S(v)=\mathbf{0}$. Then we have $T(v) = E(S(v)) = E(\mathbf{0}) =
 For the other direction, suppose that for some $S, T$ we have
 $\text{null }S \subseteq \text{null }T$. How can we construct the
 required $E$? One way is to give its action on a list of basis vectors
-(this is the “linear map lemma,” Axler 3.4). A particular choice of
-basis springs to mind: Let $u_1, \dotsc, u_m$ be a basis for the null
-space of $S$ (noting that the null space is a vector space) and let
-$u_1, \dotsc, u_m, e_1, \dotsc, e_n$ be an extension to a basis of
-$\mathcal{V}$. (Such an extension exists by Axler 2.32.) \
+(this is the “linear map lemma,” Axler 3.4). $E$ acts on $W$, so we
+need a basis for $W$, and luckily $W$ is supposed to be
+finite-dimensional.
 
-Well, this isn't obviously helpful, since this is a basis of $V$
-whereas $E$ acts on $W$. Nonetheless, we now want $E$ to “do the same
-thing as $T$ to elements of $V$, but after they have been acted on by
-$S$.” That is, to define $E(w)$, we find $v\in V$ such that $w=S(v)$
-and set $E(w) = T(v)$.
+So, let $(e_1, \dotsc, e_n)$ be a basis for $\text{range }S$, and
+extend to a basis of $W$ by adding $(f_1, \dotsc, f_m)$. (An
+extension always exists by Axler 2.32.)
+
+We now want $E$ to “do the same thing as $T$ to elements of $V$, but
+after they have been acted on by $S$.” That is, to define $E(w)$, we
+find $v\in V$ such that $w=S(v)$ and set $E(w) = T(v)$.
+
+So, for each $e_i$ choose some $u_i$ such that $S(u_i) = e_i$. (There
+must be one, since $e_i$ is in the range of $S$.) Now define $E$ as
+follows. For any $w\in W$, write $w$ as
+
+(TO BE FIXED! DIDN'T REALISE THAT V COULD BE INFINITE-DIMENSIONAL)
+
+```math
+w = \sum_i \beta_i S(e_i) + \text{terms involving }f_i,
+```
+
+and set
+
+```math
+E(w) \equiv \sum_i \beta_i T(e_i).
+```
+
+(So $E$ “does the right thing on the range of $S$, and otherwise is
+zero”.)
+
 
 Consider the set of vectors $S(e_i)$. This is a linearly independent
 set. (If it were not, there would be some $\alpha_i$ not all zero such
