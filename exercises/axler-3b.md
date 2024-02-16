@@ -157,20 +157,8 @@ zero”.)
 
 Claim: this defines the required $E$. Proof: 
 
+PROOF STILL MISSING!
 
-
-Suppose $v\in V$. Write
-$v=\sum_i \alpha_i u_i + \sum_j \beta_j e_j$. Noting that $T(u_i) =
-\mathbf{0}$ (since the null space of $T$ is at least the null space of
-$S$) we have $T(v) = \sum_j \beta_j T(e_j)$ and, by construction
-$E(S(v)) = \sum_j \beta_j E(S(e_j)) = E(\sum_j \beta_j S(e_j)) =
-\sum_j \beta_j T(e_j)= T(v)$.
-
-It's worthwhile noting that if the null space of $T$ were _smaller_
-than the null space of $E$, we would have $T(u_k) \neq \mathbf{0}$ for
-some $k$ and so we would have “had to make $E$ do something with
-$S(u_k)$,” but there is nothing $E$ could have done except return
-$\mathbf{0}$.
 
 ## Question 27
 
@@ -203,10 +191,10 @@ Now, if $v\in\text{range }P$ there must be some $w\in V$ such that
 $P(w) = v$ (that's what being in the range means). Thus
 
 ```math
-\begin{aligned}
+\begin{align}
 P(P(w)) &= P(v) \\
         &= \mathbf{0}.
-\end{aligned}
+\end{align}
 ```
 
 All of this is true for any $P$. But this $P$ has the special property
@@ -227,12 +215,12 @@ space of $P$, from which the result will follow.
 
 Indeed 
 ```math
-\begin{aligned}
+\begin{align}
 P(v-u) &= P(v)-P(u) \\
        &= P(v)-P(P(v)) \;\text{by definition of }u \\
 	   &= P(v)-P(v)    \;\text{by property of }P \\
 	   &= \mathbf{0}.
-\end{aligned}
+\end{align}
 ```
 
 Thus $v-u$ is in the null space of $P$, and since $v = u + (v-u)$, we
@@ -248,9 +236,57 @@ polynomial $q\in \mathcal{P}(\mathbf{R})$ such that $5q'' + 3q' = p$.
 ### Answer
 
 Worth noting that we're being asked to prove the existence of a
-solution to a differential equation, which is reasonably cool!
+solution to a differential equation ... which is reasonably cool!
 
 The derivative of a polynomial is another polynomial; and in fact the
-map, $D$, that is “take the derivative” is a linear map.
+following map
+
+```math
+\begin{gather}
+\Delta \colon \mathcal{P}(\mathbf{R}) \to \mathcal{P}(\mathbf{R}) \\
+q \mapsto 5q'' + 3q',
+\end{gather}
+```
+
+is a linear map. To prove existence we need to show that this map is
+surjective. 
+
+In fact, we can say something more about this map. Any particular
+polynomial is an element of $\mathcal{P}_n(\mathbf{R})$ (a
+finite-dimensional space!) for some $n$. On that space, the map can be
+written,
+
+```math
+\begin{gather}
+\Delta \colon \mathcal{P}_n(\mathbf{R}) \to \mathcal{P}_{n-1}(\mathbf{R}) \\
+q \mapsto 5q'' + 3q',
+\end{gather}
+```
+
+(The term in $q''$ “goes down two degrees” and the term in $q'$ “goes
+down one degree.) 
+
+So by the fundamental theorem of linear maps (3.21) we have $\text{dim
+}\mathcal{P}_n(\mathbf{R}) = \text{dim null }\Delta + \text{dum range
+}\Delta$. 
+
+We know $\text{dim }\mathcal{P}_n(\mathbf{R})$: it is $n+1$. What
+about $\text{dim null }\Delta$? 
+
+The solutions to $\Delta f = 0$ must be of the form $f(x) = A$, where
+$A$ is a constant. There can't be a term $x$, $x^2$ or higher. If
+the highest-order term were $x^n$, say, for $n>1$, then there would be
+a term in $x^{n-1}$ is $\Delta f$, which means that the result could
+not be zero. 
+
+The dimension of this space is 1. So we have $\text{dim range }\Delta
+= (n+1) - 1 = n$.
+
+But that is the dimension of the codomain of $\Delta$! So the range of
+$\Delta$ must in fact span the codomain. Hence, $\Delta$ is
+surjective. 
+
+
+
 
 
