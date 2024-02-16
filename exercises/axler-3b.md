@@ -113,7 +113,8 @@ if and only if there exists $E\in\mathcal{L}(W)$ such that $T=E\circ S$.
 
 The intuition here is that $T$ has a larger null space than $S$ and so
 in order to get the same effect as $T$ after applying $S$ we need to
-“collapse some more directions with $E$. What is perhaps surprising is
+“collapse some more directions with $E$”. That's a perfectly
+reasonable thing for a linear map to do. What is perhaps surprising is
 that we are guaranteed the existence of an $E$ which “does the right
 thing to all the vectors not in the null space.”
 
@@ -262,10 +263,10 @@ The derivative of a polynomial is another polynomial; and in fact the
 following map
 
 ```math
-\begin{gather}
-\Delta \colon \mathcal{P}(\mathbf{R}) \to \mathcal{P}(\mathbf{R}) \\
-q \mapsto 5q'' + 3q',
-\end{gather}
+\begin{align}
+\Delta \colon \mathcal{P}(\mathbf{R}) &\to \mathcal{P}(\mathbf{R}) \\
+q &\mapsto 5q'' + 3q',
+\end{align}
 ```
 
 is a linear map. To prove existence we need to show that this map is
@@ -277,16 +278,16 @@ finite-dimensional space!) for some $n$. On that space, the map can be
 written,
 
 ```math
-\begin{gather}
-\Delta \colon \mathcal{P}_n(\mathbf{R}) \to \mathcal{P}_{n-1}(\mathbf{R}) \\
-q \mapsto 5q'' + 3q',
-\end{gather}
+\begin{align}
+\Delta \colon \mathcal{P}_n(\mathbf{R}) &\to \mathcal{P}_{n-1}(\mathbf{R}) \\
+q &\mapsto 5q'' + 3q',
+\end{align}
 ```
 
-(The term in $q''$ “goes down two degrees” and the term in $q'$ “goes
-down one degree.) 
+(The term in $q''$ “reduces the degree of the polynomial by 2” and the
+term in $q'$ “reduces the degree by one.”) 
 
-So by the fundamental theorem of linear maps (3.21) we have $\text{dim
+So by the fundamental theorem of linear maps (Axler 3.21) we have $\text{dim
 }\mathcal{P}_n(\mathbf{R}) = \text{dim null }\Delta + \text{dum range
 }\Delta$. 
 
@@ -294,10 +295,10 @@ We know $\text{dim }\mathcal{P}_n(\mathbf{R})$: it is $n+1$. What
 about $\text{dim null }\Delta$? 
 
 The solutions to $\Delta f = 0$ must be of the form $f(x) = A$, where
-$A$ is a constant. There can't be a term $x$, $x^2$ or higher. If
-the highest-order term were $x^n$, say, for $n>1$, then there would be
-a term in $x^{n-1}$ is $\Delta f$, which means that the result could
-not be zero. 
+$A$ is a constant. There can't be a term $x^n$ for any $n>1$. If the
+highest-order term were $x^n$, say, for $n>1$, then there would be a
+term in $x^{n-1}$ in $\Delta f$ (because of the $q'$), which means
+that the result could not be the zero polynomial.
 
 The dimension of this space is 1. So we have $\text{dim range }\Delta
 = (n+1) - 1 = n$.
