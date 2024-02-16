@@ -155,9 +155,29 @@ E(w) \equiv \sum_i \beta_i T(u_i).
 (So $E$ “does the right thing on the range of $S$, and otherwise is
 zero”.)
 
-Claim: this defines the required $E$. Proof: 
+Claim: this defines the required $E$. Proof: it clearly does the right
+things on any $u_i \in V$ (by construction!). So it does the right
+thing on a linear combination of the $u_i$. What about vectors in $V$
+that are not linear combinations of the $u_i$? It will turn out that
+those can be written as a linear combination of the $u_i$ plus
+something in the null space of S and, since that is a subset of the
+null space of T, that part will go to zero. 
 
-PROOF STILL MISSING!
+Indeed, let $v\in V$ be arbitrary and find (the unique) $\alpha_i$
+such that $S(v) = \sum_i \alpha_i e_i$. Write $w = \sum_i \alpha_i
+u_i$. Note that, by construction $E(S(w)) = T(w)$. 
+
+Now note that $v - w$ is in the null space of $S$. (To see this, note
+that $S(v-w) = \mathbf{0}$ by construction.) Set $n = v-w$ so that (1)
+$v = w + n$; (2) $w\in\text{span }(u_1, \dotsc, u_m)$; (3)
+$n\in\text{null }S$. These three conditions are true of any $v$. And
+since $\text{null }S\subset \text{null }T$, we have $T(n) =
+\mathbf{0}$ and so $T(v) = T(w)$. Thus $E(S(v)) = E(S(w) = T(w) =
+T(v)$.
+
+
+
+
 
 
 ## Question 27
