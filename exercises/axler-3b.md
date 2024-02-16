@@ -138,52 +138,28 @@ We now want $E$ to “do the same thing as $T$ to elements of $V$, but
 after they have been acted on by $S$.” That is, to define $E(w)$, we
 find $v\in V$ such that $w=S(v)$ and set $E(w) = T(v)$.
 
-So, for each $e_i$ choose some $u_i$ such that $S(u_i) = e_i$. (There
+So, for each $e_i$ choose some $u_i\in V$ such that $e_i = S(u_i)$. (There
 must be one, since $e_i$ is in the range of $S$.) Now define $E$ as
 follows. For any $w\in W$, write $w$ as
 
-(TO BE FIXED! DIDN'T REALISE THAT V COULD BE INFINITE-DIMENSIONAL)
-
 ```math
-w = \sum_i \beta_i S(e_i) + \text{terms involving }f_i,
+w = \sum_i \beta_i e_i + \text{terms involving }f_i,
 ```
 
 and set
 
 ```math
-E(w) \equiv \sum_i \beta_i T(e_i).
+E(w) \equiv \sum_i \beta_i T(u_i).
 ```
 
 (So $E$ “does the right thing on the range of $S$, and otherwise is
 zero”.)
 
+Claim: this defines the required $E$. Proof: 
 
-Consider the set of vectors $S(e_i)$. This is a linearly independent
-set. (If it were not, there would be some $\alpha_i$ not all zero such
-that $\sum_i \alpha_i S(e_i) = \mathbf{0}$, and therefore
-$S(\sum_i\alpha_i e_i) = \mathbf{0}$: in other words, $\sum_i \alpha_i
-e_i$ would be in the null space of $S$. But the null space of $S$ is
-spanned by the $u_i$, by construction, so can't include any of the
-$e_i$.)
 
-Extend this set to basis for $W$, say $S(e_1), \dotsc, S(e_n), f_1,
-\dotsc, f_o$.  Now define $E$ as follows. For any $w\in W$, write $w$
-as
 
-```math
-w = \sum_i \beta_i S(e_i) + \text{terms involving }f_i,
-```
-
-and set
-
-```math
-E(w) \equiv \sum_i \beta_i T(e_i).
-```
-
-(So $E$ “does the right thing on the range of $S$, and otherwise is
-zero”.)
-
-Claim: this defines the required $E$. Proof: Suppose $v\in V$. Write
+Suppose $v\in V$. Write
 $v=\sum_i \alpha_i u_i + \sum_j \beta_j e_j$. Noting that $T(u_i) =
 \mathbf{0}$ (since the null space of $T$ is at least the null space of
 $S$) we have $T(v) = \sum_j \beta_j T(e_j)$ and, by construction
@@ -199,7 +175,82 @@ $\mathbf{0}$.
 ## Question 27
 
 Suppose $P\in \mathcal{L}(V)$ and $P^2 = P$. Prove that $V =
-\text{null }P \oplus \text{range }P$. 
+\text{null }P \oplus \text{range }P$.
 
 ### Answer
+
+The main challenge here is that the question doesn't specify that $V$
+is finite-dimensional so we can't use the “choose a basis” trick. (As
+a matter of fact, it is true that every vector space has a basis but
+Axler hasn't shown that.)
+
+We need to show two things: first that the sum of $\text{null }P$ and
+$\text{range }P$ is a _direct_sum; and second, that this sum spans all
+of $V$.
+
+Recall that a sum is a direct sum if and only if the two summands have
+only the zero vector in common. (This is result 1.46 in Axler.)
+Suppose $v$ is some vector in both $\text{null }P$ and $\text{range
+}P$. What can we say about it?
+
+Since $v\in\text{null }P$, we have 
+
+```math
+P(v) = \mathbf{0}.
+```
+
+Now, if $v\in\text{range }P$ there must be some $w\in V$ such that
+$P(w) = v$ (that's what being in the range means). Thus
+
+```math
+\begin{aligned}
+P(P(w)) &= P(v) \\
+        &= \mathbf{0}.
+\end{aligned}
+```
+
+All of this is true for any $P$. But this $P$ has the special property
+that $P(P(w)) = P(w)$, so the last result tells us that $P(w) =
+\mathbf{0}$. But $P(w)=v$! So we have shown that $v=\mathbf{0}$. In
+other words, if $v$ is in both $\text{null }P$ and $\text{range }P$,
+then $v$ is the zero vector, which implies that the sum is a direct
+sum.
+
+Could there be a vector that is not the sum of a vector in $\text{null
+}P$ and one in $\text{range }P$? Let $v$ be any vector. We shall show
+that $v$ can be writen as the sum of a vector in the null space and a
+vector in the range by explicitly constructin the two parts.
+
+Write $u=P(v)$ (so that in particular, $u\in\text{range }P$. Now
+consider the vector $v-u$. We claim that this vector is in the null
+space of $P$, from which the result will follow.
+
+Indeed 
+```math
+\begin{aligned}
+P(v-u) &= P(v)-P(u) \\
+       &= P(v)-P(P(v)) \;\text{by definition of }u \\
+	   &= P(v)-P(v)    \;\text{by property of }P \\
+	   &= \mathbf{0}.
+\end{aligned}
+```
+
+Thus $v-u$ is in the null space of $P$, and since $v = u + (v-u)$, we
+have written $v$ as the sum of a vector in $\text{null }P$ and a
+vector in $\text{range }P$.
+
+
+## Question 29
+
+Suppose $p\in \mathcal{P}(\mathbf{R})$. Prove that there exists a
+polynomial $q\in \mathcal{P}(\mathbf{R})$ such that $5q'' + 3q' = p$.
+
+### Answer
+
+Worth noting that we're being asked to prove the existence of a
+solution to a differential equation, which is reasonably cool!
+
+The derivative of a polynomial is another polynomial; and in fact the
+map, $D$, that is “take the derivative” is a linear map.
+
 
