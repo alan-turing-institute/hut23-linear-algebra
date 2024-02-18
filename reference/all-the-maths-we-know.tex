@@ -262,8 +262,42 @@
 
   \defn{Range} & Of a linear map, that subspace of the codomain that is mapped to by \emph{some} element of the domain.
   
-  
 \end{tabularx}
+
+%% ============================================================
+
+\section*{Matrices}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Matrix} & An $m\times n$ matrix $A$ is $m\times n$ numbers, $A_{ij}$, indexed by $i\in\{1,\dotsc, m\}$ and $j\in\{1,\dotsc, n\}$. (Axler writes the elements as $A_{i,j}$.)
+
+  Conventionally, the matrix is written as a rectangular array of the
+  numbers, with $A_{ij}$ being written in the $i$th row (starting at the
+  top) and $j$th column (starting from the left).
+
+  (It is usual to index the elements from 1. The only exception I know of is when writing relativitistic tensors.) \\
+
+  $\set{R}^{m,n}$ & The set of all $m\times n$ matrices over $\mathbf{R}$.
+
+  (Everything below can be repeated, replacing “real number” with “complex number.”)
+
+  Addition of matrices and multiplication of matrices by numbers is
+  defined elementwise:
+  \begin{equation*}
+    \begin{gathered}
+      (A+B)_{ij} \isdef A_{ij} + B_{ij} \\
+      (\lambda A)_{ij} \isdef \lambda A_{ij}.
+    \end{gathered}
+  \end{equation*}
+
+  Under these definitions, $\set{R}^{m,n}$ is a vector space. (The zero element of this space is the matrix $\boldmath{0}_{ij} = 0$.)
+  
+  “Multiplication” of matrices is defined between an $l\times m$ and and $m \times n$ matrix, the result being an $l\times n$ matrix:
+  \begin{equation*}
+    (AB)_{ij} = \sum_{k=1}^m A_{ik}B_{kj}.
+  \end{equation*}
+  \\
+  \defn{Transpose} & Of a matrix \\
 
 
 \end{multicols*}
