@@ -24,6 +24,7 @@
 \newcommand{\defn}[1]{\textbf{#1}}
 \newcommand{\isdef}{\stackrel{\text{def}}{=}}
 \newcommand{\set}[1]{\mathbold{#1}}
+%\renewcommand{\vec}[1]{mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
 %%
 \title{All the maths we know}
@@ -232,9 +233,9 @@
 
   \parbox[t]{0.8in}{\defn{Linear\\ independence}} & Vectors $v_1, \dots, v_n \in \set{R}$ are \emph{linearly independent} if $\alpha_1 v_1 + \dots + \alpha_n v_m = \set{0}$ implies $\alpha_1 = \dots = \alpha_n=0$. \\
 
-  \defn{Basis} (of $V$) & A collection of vectors that (a) spans $V$; (b) is linearly independent. \\
+  \defn{Basis} & (Of a vector space, $V$.) A collection of vectors that (a) spans $V$; (b) is linearly independent. \\
 
-  \defn{Dimension} (of $V$) & The number of elements of any basis of $V$. (Noting that any two bases of $V$ have the same cardinality.) \\
+  \defn{Dimension} & (Of a vector-space, $V$.) The number of elements of any basis of $V$. (Noting that any two bases of $V$ have the same cardinality.) \\
   
 \end{tabularx}
 
@@ -274,12 +275,15 @@
   Conventionally, the matrix is written as a rectangular array of the
   numbers, with $A_{ij}$ being written in the $i$th row (starting at the
   top) and $j$th column (starting from the left).
-
-  (It is usual to index the elements from 1. The only exception I know of is when writing relativitistic tensors.) \\
-
-  $\set{R}^{m,n}$ & The set of all $m\times n$ matrices over $\mathbf{R}$.
-
-  (Everything below can be repeated, replacing “real number” with “complex number.”)
+  
+  If $T\colon V\to W$ is a linear map and $\vec{e}_i\in V$ a basis of $V$ and $\vec{f}_j\in W$ a basis of $W$, the \defn{matrix of $T$} is given by:
+  \begin{equation*}
+    T(\vec{e}_i) = \sum_j T_{ij} \vec{f}_j.
+  \end{equation*}
+  (That is, $T_{ij}$ is the component of $T(\vec{e}_i)$ with respect to the basis $\vec{f}_j$.)
+  \\
+  
+  $\set{R}^{m,n}$ & The set of all $m\times n$ matrices over $\set{R}$ (or $\set{C}$, \emph{mutatis mutandis}).
 
   Addition of matrices and multiplication of matrices by numbers is
   defined elementwise:
@@ -296,8 +300,9 @@
   \begin{equation*}
     (AB)_{ij} = \sum_{k=1}^m A_{ik}B_{kj}.
   \end{equation*}
-  \\
-  \defn{Transpose} & Of a matrix \\
+ \\
+  \defn{Transpose} & The transpose of $A_{ij}$ is the matrix $A_{ji}$.  \\
+ 
 \end{tabularx}
 
 \end{multicols*}
