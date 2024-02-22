@@ -23,6 +23,8 @@
 \def\deg{\mathop{\text{deg}}}
 \def\dim{\mathop{\text{dim}}}
 \def\L{\mathscr{L}}
+\def\kernel{\mathop{\text{null}}}
+\def\range{\mathop{\text{range}}}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -52,6 +54,9 @@
 \theoremstyle{break}
 \newtheorem{innercorollary}{Corollary}
 
+\theoremstyle{break}
+\newtheorem{innertheorem}{Theorem}
+
 \newenvironment{definition}[1]
   {\renewcommand\theinnerdefinition{#1}\innerdefinition}
   {\endinnerdefinition}
@@ -75,6 +80,10 @@
 \newenvironment{corollary}[1]
   {\renewcommand\theinnercorollary{#1}\innercorollary}
   {\endinnercorollary}
+
+\newenvironment{theorem}[1]
+  {\renewcommand\theinnertheorem{#1}\innertheorem}
+  {\endinnertheorem}
 
 \title{All the rules we know}
 \date{13 October 2023}
@@ -667,6 +676,74 @@ $(S_1 + S_2)T = S_1 T + S_2 T$ and $S(T_1 + T_2) = S T_1 + S T_2$ whenever $T, T
 
 \begin{result}{3.10}[linear maps take 0 to 0]
 Suppose $T$ is a linear map from $V$ to $W$. Then $T(0) = 0$.
+\end{result}
+
+\begin{result}{Ex. 3A, 13}[Linear maps on a subspace can be extended to a map on the whole vector space]
+Suppose $V$ is finite-dimentional. Prove that every linear map on a subspace of $V$ can be extended to a linear map on $V$. In other words, show that if $U$ is a subspace of $V$ and $S \in \L(U, V)$, then there exists $T \in \L(V, W)$ such that $Tu = Su$ for all $u \in E$.
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.B}
+
+\begin{definition}{3.11}[null space, $\kernel T$]
+For $T \in \L(V, W)$, the \defn{null space} of $T$, denoted by null $T$, is the subset of $V$ consisting of those vectors that $T$ maps to 0:
+$$
+\kernel T = \{ v \in V \setsep Tv = 0 \}.
+$$
+\end{definition}
+
+\begin{definition}{3.14}[injective]
+A function $T : V \to W$ is called \defn{injective} if $Tu = Tv$ implies $u = v$.
+\end{definition}
+
+\begin{definition}{3.16}[range]
+For $T \in \L(V, W)$, the \defn{range} of $T$ is the subset $W$ consisting of those vectors that are equal to $Tv$ for some $v \in V$:
+$$
+\range T = \{ Tv \setsep v \in V \}.
+$$
+\end{definition}
+
+\begin{definition}{3.19}[surjective]
+A function $T : V \to W$ is called \defn{surjective} if its range equals $W$.
+\end{definition}
+
+\newpage
+
+\begin{result}{3.13}[the null space is a subspace]
+Suppose $T \in \L(V, W)$. Then $\kernel T$ is a subspace of $V$.
+\end{result}
+
+\begin{result}{3.15}[$\text{injectivity } \Leftrightarrow \text{ null space equals } \{ 0 \}$]
+Let $T \in \L(V, W)$. Then $T$ is injective if and only if $\kernel T = \{ 0 \}$.
+\end{result}
+
+\begin{result}{3.18}[the range is a subspace]
+If $T \in \L(V, W)$, then the range $T$ is a subspace of $W$.
+\end{result}
+
+\begin{theorem}{3.21}[fundamental theorem of linear maps]
+Suppose $V$ is finite-dimensional and $T \in \L(V, W)$. Then $\range T$ is finite-dimensional and
+$$
+\dim V = \dim \kernel T + \dim \range T.
+$$
+\end{theorem}
+
+\begin{result}{3.22}[linear map to a lower-dimensional space is not injective]
+Suppose $V$ and $W$ are finite-dimensional vector spaces such that $\dim V > \dim W$. Then no linear map from $V$ to $W$ is injective.
+\end{result}
+
+\begin{result}{3.24}[linear map to a higher-dimensional space is not surjective]
+Suppose $V$ and $W$ are finite-dimensional vector spaces such that $\dim V < \dim W$. Then no linear map from $V$ to $W$ is surjective.
+\end{result}
+
+\begin{result}{3.26}[homogeneous system of linear equations]
+A homogeneous system of linear equations with more variables than equations has nonzero solutions.
+\end{result}
+
+\begin{result}{3.28}[inhomogeneous systems of linear equations]
+An inhomogeneous system of linear equations with more equations than variables has no solution for some choice of the constant terms.
 \end{result}
 
 \end{document}
