@@ -300,8 +300,20 @@
   \begin{equation*}
     (AB)_{ij} = \sum_{k=1}^m A_{ik}B_{kj}.
   \end{equation*}
- \\
-  \defn{Transpose} & The transpose of $A_{ij}$ is the matrix $A_{ji}$.  \\
+  \\
+\end{tabularx}
+
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+
+  \defn{Transpose} & The transpose of $A_{ij}$ is the matrix $A_{ji}$.
+  \\
+
+  \defn{Rank} & The rank of a matrix $A_{ij}\in\set{R}^{m,n}$ is the
+  dimension of the span of the $n$ vectors $\vec{c}_j\in \set{R}^m$ where
+  $\vec{c}_j = A_{ij}$ (that is, the $\vec{c}_j$ are the ``columns'' of
+  $A_{ij}$).
+
+ The dimension of the span of the ``rows'' of $A_{ij}$ is also the rank.
  
 \end{tabularx}
 
