@@ -276,11 +276,11 @@
   numbers, with $A_{ij}$ being written in the $i$th row (starting at the
   top) and $j$th column (starting from the left).
   
-  If $T\colon V\to W$ is a linear map and $\vec{e}_i\in V$ a basis of $V$ and $\vec{f}_j\in W$ a basis of $W$, the \defn{matrix of $T$} is given by:
+  If $T\colon V\to W$ is a linear map and $\vec{e}_j\in V$ a basis of $V$ and $\vec{f}_i\in W$ a basis of $W$, the \defn{matrix of $T$} is given by:
   \begin{equation*}
-    T(\vec{e}_i) = \sum_j T_{ij} \vec{f}_j.
+    T(\vec{e}_j) = \sum_i T_{ij} \vec{f}_i.
   \end{equation*}
-  (That is, $T_{ij}$ is the component of $T(\vec{e}_i)$ with respect to the basis $\vec{f}_j$.)
+  (That is, $T_{ij}$ is the $i$th component of $T(\vec{e}_j)$ with respect to the basis $\vec{f}_i$.)
   \\
   
   $\set{R}^{m,n}$ & The set of all $m\times n$ matrices over $\set{R}$ (or $\set{C}$, \emph{mutatis mutandis}).
@@ -308,10 +308,7 @@
   \defn{Transpose} & The transpose of $A_{ij}$ is the matrix $A_{ji}$.
   \\
 
-  \defn{Rank} & The rank of a matrix $A_{ij}\in\set{R}^{m,n}$ is the
-  dimension of the span of the $n$ vectors $\vec{c}_j\in \set{R}^m$ where
-  $\vec{c}_j = A_{ij}$ (that is, the $\vec{c}_j$ are the ``columns'' of
-  $A_{ij}$).
+  \defn{Rank} & The rank of a matrix $A_{ij}\in\set{R}^{m,n}$ is the dimension of the span of the $n$ vectors $\vec{c}_j\in \set{R}^m$ where $\vec{c}_j = A_{ij}$ (that is, the $\vec{c}_j$ are the ``columns'' of $A_{ij}$).
 
  The dimension of the span of the ``rows'' of $A_{ij}$ is also the rank.
  
