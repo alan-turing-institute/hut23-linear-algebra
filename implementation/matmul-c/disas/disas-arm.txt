@@ -1,0 +1,56 @@
+Dump of assembler code for function multiply:
+=> 0x00000000004019c0 <+0>:     cmp     x2, #0x0
+   0x00000000004019c4 <+4>:     ccmp    x0, #0x0, #0x4, ne  // ne = any
+   0x00000000004019c8 <+8>:     cset    w13, ne  // ne = any
+   0x00000000004019cc <+12>:    cmp     x1, #0x0
+   0x00000000004019d0 <+16>:    csel    w13, w13, wzr, ne  // ne = any
+   0x00000000004019d4 <+20>:    cbnz    w13, 0x4019e0 (A) <multiply+32>
+   0x00000000004019d8 <+24>:    mov     w0, w13
+   0x00000000004019dc <+28>:    ret
+.A 0x00000000004019e0 <+32>:    ldr     w10, [x1, #4]
+   0x00000000004019e4 <+36>:    ldr     w3, [x2]
+   0x00000000004019e8 <+40>:    cmp     w10, w3
+   0x00000000004019ec <+44>:    b.eq    0x4019fc (C) <multiply+60>  // b.none
+.B 0x00000000004019f0 <+48>:    mov     w13, #0x0                       // #0
+   0x00000000004019f4 <+52>:    mov     w0, w13
+   0x00000000004019f8 <+56>:    ret
+.C 0x00000000004019fc <+60>:    ldr     w11, [x0, #4]
+   0x0000000000401a00 <+64>:    ldr     w8, [x2, #4]
+   0x0000000000401a04 <+68>:    cmp     w11, w8
+   0x0000000000401a08 <+72>:    b.ne    0x4019f0 (B) <multiply+48>  // b.any
+   0x0000000000401a0c <+76>:    ldr     w12, [x0]
+   0x0000000000401a10 <+80>:    ldr     w3, [x1]
+   0x0000000000401a14 <+84>:    cmp     w12, w3
+   0x0000000000401a18 <+88>:    b.ne    0x4019f0 (B) <multiply+48>  // b.any
+   0x0000000000401a1c <+92>:    mul     w12, w11, w12
+   0x0000000000401a20 <+96>:    cbz     w12, 0x4019d8 <multiply+24>
+   0x0000000000401a24 <+100>:   ldr     x0, [x0, #8]
+   0x0000000000401a28 <+104>:   mov     x9, #0x0                        // #0
+   0x0000000000401a2c <+108>:   nop
+                                                                                // for (uint32_t cpos = 0; cpos < size; ++cpos)
+.D 0x0000000000401a30 <+112>:   udiv    w4, w9, w11                             // (cpos / result->width)
+   0x0000000000401a34 <+116>:   movi    d0, #0x0                                // double element = 0.0f
+   0x0000000000401a38 <+120>:   mul     w3, w4, w10                             // (cpos / result->width) * A->width
+   0x0000000000401a3c <+124>:   msub    w4, w4, w11, w9 // cpos % result->width
+   0x0000000000401a40 <+128>:   cbz     w10, 0x401a6c (F) <multiply+172>
+   0x0000000000401a44 <+132>:   ldr     x6, [x1, #8]                            
+   0x0000000000401a48 <+136>:   add     w7, w10, w3                             
+   0x0000000000401a4c <+140>:   ldr     x5, [x2, #8]                            
+                                                                                // for (uint32_t pos = 0; pos < A->width; ++pos)
+.E 0x0000000000401a50 <+144>:   ldr     d2, [x6, w3, uxtw #3]                   // A->elements[apos]
+   0x0000000000401a54 <+148>:   add     w3, w3, #0x1                            // apos += 1
+   0x0000000000401a58 <+152>:   ldr     d1, [x5, w4, uxtw #3]                   // B->elements[bpos]
+   0x0000000000401a5c <+156>:   cmp     w3, w7                                  // pos < A->width
+   0x0000000000401a60 <+160>:   add     w4, w4, w8                              // bpos += B->width
+   0x0000000000401a64 <+164>:   fmadd   d0, d2, d1, d0                          // element += A->elements[apos] * B->elements[bpos]
+   0x0000000000401a68 <+168>:   b.ne    0x401a50 (E) <multiply+144>  // b.any   // endfor
+
+.F 0x0000000000401a6c <+172>:   str     d0, [x0, x9, lsl #3]                    // result->elements[cpos] = element
+   0x0000000000401a70 <+176>:   add     x9, x9, #0x1
+   0x0000000000401a74 <+180>:   cmp     w12, w9                                 // cpos < size
+   0x0000000000401a78 <+184>:   b.hi    0x401a30 (D) <multiply+112>  // b.pmore
+                                                                                // endfor
+   0x0000000000401a7c <+188>:   mov     w0, w13
+   0x0000000000401a80 <+192>:   ret
+End of assembler dump.
+
