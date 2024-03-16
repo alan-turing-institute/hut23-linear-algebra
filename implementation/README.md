@@ -64,6 +64,13 @@ Equivalent to 11666383.42 operations per second
 
 As with the Python implementation the benchmarks use 64-bit floating-point arithmetic (doubles). 
 
+## Racket implementation
+
+Unzip `matrices.npz` to a directory called `matrices` in the same
+directory. (I can't get Racket's `unzip` library to work.) Eg, on
+MacOS:
+`unzip matrices.npz -d matrices`
+
 ## Benchmarking Results
 
 The following benchmarking results were obtained using the following devices:
@@ -75,6 +82,8 @@ The following benchmarking results were obtained using the following devices:
 The times taken are to perform 16,777,216 matrix multiply operations.
 
 ### Python
+
+Using Numpy.
 
 | Device       | Python (s) | Python (ops/s) |
 |:-------------|-----------:|---------------:|
@@ -94,9 +103,8 @@ The times taken are to perform 16,777,216 matrix multiply operations.
 
 Naive implementation, boxed floats.
 
-| Device   |     s |   ops/s |
-|:---------|------:|--------:|
-|          |       |         |
-|          |       |         |
-| Apple M2 | 39.36 | 426,272 |
-
+| Device       |     s |   ops/s |
+|:-------------|------:|--------:|
+| Intel i7     |       |         |
+| Apple M1 Pro |       |         |
+| Apple M2     | 39.36 | 426,272 |
