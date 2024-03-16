@@ -70,13 +70,33 @@ The following benchmarking results were obtained using the following devices:
 
 1. 12th Gen Intel Core i7-1260P running Ubuntu 22.04.4, Python 3.10.12 and NumPy 1.25.5.
 2. Apple M1 Pro running macOS 13.6.3, Python 3.12.2 and NumPy 1.24.2.
+3. Apple M2 (powered), macOS 14.4, Python 3.12.2, numpy 1.26.4
 
-The times taken are to perform 16777216 matrix multiply operations.
+The times taken are to perform 16,777,216 matrix multiply operations.
 
-| Device   | Python (s) | C (s) | Python (ops/s) | C (ops/s)   |
-|:---------|-----------:|------:|---------------:|------------:|
-| Intel i7 | 39.92      | 1.44  | 420289.64      | 11666383.42 |
-| Apple M1 | 28.70      | 1.54  | 584562.19      | 10873615.05 |
+### Python
 
-This makes the simple C implementation 27.72 times faster on the Intel processor and 18.64 times faster on the M1 processor, compared to the equivalent NumPy implementation running on the same machine.
+| Device       | Python (s) | Python (ops/s) |
+|:-------------|-----------:|---------------:|
+| Intel i7     |      39.92 |     420,289.64 |
+| Apple M1 Pro |      28.70 |     584,562.19 |
+| Apple M2     |      29.37 |        571,142 |
+
+### C
+
+| Device       | C (s) |     C (ops/s) |
+|:-------------|------:|--------------:|
+| Intel i7     |  1.44 | 11,666,383.42 |
+| Apple M1 Pro |  1.54 | 10,873,615.05 |
+| Apple M2     |  1.02 |    16,525,369 |
+
+### Racket
+
+Naive implementation, boxed floats.
+
+| Device   |     s |   ops/s |
+|:---------|------:|--------:|
+|          |       |         |
+|          |       |         |
+| Apple M2 | 39.36 | 426,272 |
 
