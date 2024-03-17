@@ -15,7 +15,8 @@
    format)
   #:transparent)
 
-(define (load-float64-arrays-from-dir dir)
+;; convert takes the number of columns and a vector and produces the appropriate datatype 
+(define (load-float64-arrays-from-dir dir matrix-of-vector)
   (define filenames (directory-list dir))
   ;; each filename is X_999.npy, where X is a, b, or c and 999 is a number->string
 
@@ -38,12 +39,12 @@
              (for/list ([x '("a" "b" "c")])
                (call-with-input-file
                  (build-path dir (string-append x "_" (number->string i) ".npy"))
-                 load-float64-array-from-npy)))))
+                 (load-float64-array-from-npy matrix-of-vector))))))
 
   (list as bs cs))
 
 
-(define (load-float64-array-from-npy in)
+(define ((load-float64-array-from-npy matrix-of-vector) in)
   ;; Read header
   (define the-header 
     (let* ([mgc (read-bytes 6 in)]
@@ -61,9 +62,9 @@
             (string->number (caddr shape)))))
 
   ;; Read array and return it and the length of a row
-  (cons (cadr the-shape)
-        (for/vector ([_ (in-range (* (car the-shape) (cadr the-shape)))])
-          (read-float 8 in #f))))
+  (matrix-of-vector (cadr the-shape)
+                    (for/vector ([_ (in-range (* (car the-shape) (cadr the-shape)))])
+                      (read-float 8 in #f))))
 
 
 

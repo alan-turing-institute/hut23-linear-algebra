@@ -1,7 +1,7 @@
 #lang racket
 
 (require "load.rkt"
-         "matrix-naive.rkt")
+         "matrix-unsafe.rkt")
 
 ;; ------------------------------------------------------------
 ;; main
@@ -10,13 +10,7 @@
 (display "Loading test data ")
 
 (match-define (list as bs cs)
-  (map
-   (λ (x)
-     (map
-      (λ (m)
-        (numpy->matrix m))
-      x))
-   (load-float64-arrays-from-dir "../testdata/matrices")))
+  (load-float64-arrays-from-dir "../testdata/matrices" matrix-of-vector))
 
 (displayln " done.")
 

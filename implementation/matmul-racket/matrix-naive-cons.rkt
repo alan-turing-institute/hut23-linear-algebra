@@ -1,9 +1,10 @@
 #lang racket/base
 
 (provide
- (struct-out matrix)
+ matrix
  make-matrix
  matrix-nrows
+ matrix-ncols
  matrix-ref
  matrix-set!
  matrix-equal-within?
@@ -12,9 +13,12 @@
  )
 
 ;; ------------------------------------------------------------
-;; Represent a matrix as a struct
+;; 
 
-(struct matrix (ncols vec) #:transparent)
+;; A matrix is a pair, (ncols vec)
+
+(define (matrix ncols vec)
+  (cons ncols vec))
 
 (define (make-matrix nrows ncols [v 0])
   (matrix ncols (make-vector (* nrows ncols) v)))
@@ -23,15 +27,18 @@
   (matrix ncols vs))
 
 (define (matrix-nrows m)
-  (quotient (vector-length (matrix-vec m)) (matrix-ncols m)))
+  (quotient (vector-length (cdr m)) (car m)))
+
+(define (matrix-ncols m)
+  (car m))
 
 ;; Return element in the ith row and jth column
 ;; Index from 0
 (define (matrix-ref m i j)
-  (vector-ref (matrix-vec m) (+ j (* i (matrix-ncols m)))))
+  (vector-ref (cdr m) (+ j (* i (car m)))))
 
 (define (matrix-set! m i j v)
-  (vector-set! (matrix-vec m) (+ j (* i (matrix-ncols m))) v))
+  (vector-set! (cdr m) (+ j (* i (car m))) v))
 
 (define (matrix-equal-within? delta m1 m2)
   (and
@@ -40,8 +47,8 @@
    (andmap
     (λ (v1 v2)
       (<= (abs (- v1 v2)) delta))
-    (vector->list (matrix-vec m1))
-    (vector->list (matrix-vec m2)))))
+    (vector->list (cdr m1))
+    (vector->list (cdr m2)))))
 
 ;; ------------------------------------------------------------
 ;; Mathematics
