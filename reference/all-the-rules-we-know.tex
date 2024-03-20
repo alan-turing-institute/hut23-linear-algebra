@@ -20,11 +20,10 @@
 \def\setsep{\mid}
 \def\vspan{\text{span}}
 \def\enumfix{\mbox{ } \vspace*{-1.2\baselineskip}}
-\def\deg{\mathop{\text{deg}}}
-\def\dim{\mathop{\text{dim}}}
 \def\L{\mathscr{L}}
-\def\kernel{\mathop{\text{null}}}
-\def\range{\mathop{\text{range}}}
+\def\M{\mathscr{M}}
+\DeclareMathOperator{\kernel}{null}
+\DeclareMathOperator{\range}{range}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -744,6 +743,222 @@ A homogeneous system of linear equations with more variables than equations has 
 
 \begin{result}{3.28}[inhomogeneous systems of linear equations]
 An inhomogeneous system of linear equations with more equations than variables has no solution for some choice of the constant terms.
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.C}
+
+\begin{definition}{3.29}[matrix, $A_{j, k}$]
+Suppose $m$ and $n$ are nonnegative integers. An $m$-by-$n$ \defn{matrix} $A$ is a rectangular array of elements of $\F$ with $m$ rows and $n$ columns:
+$$
+A =
+\begin{pmatrix}
+A_{1, 1} & \cdots & A_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} & \cdots & A_{m, n} \\
+\end{pmatrix}
+.
+$$
+The notation $A_{j, k}$ denotes the entry in row $j$, column $k$ of $A$.
+\end{definition}
+
+\begin{definition}{3.31}[matrix of a linear map, $\M(T)$]
+Suppose $T \in \L(V, W)$ and $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m$ is a basis of $W$. The \defn{matrix of $T$} with respect to these bases is the $m$-by-$n$ matrix $\M(T)$ whose entries $A_{j, k}$ are defined by
+$$
+T v_k = A_{1, k} w_1 + \cdots + A_{m, k} w_m .
+$$
+If the basis $v_1, \ldots, v_n$ and $w_1, \ldots, w_m$ are not clear from the context, then the notation $\M(T, (v_1, \ldots, v_n), (w_1, \ldots, w_m))$ is used.
+\end{definition}
+
+\begin{definition}{3.34}[matrix addition]
+The \defn{sum of two matrices of the same size} is the matrix obtained by adding corresponding entries in the matrices:
+\begin{align*}
+& \begin{pmatrix}
+A_{1, 1} & \cdots & A_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} & \cdots & A_{m, n} \\
+\end{pmatrix}
++
+\begin{pmatrix}
+C_{1, 1} & \cdots & C_{1, n} \\
+\vdots & & \vdots \\
+C_{m, 1} & \cdots & C_{m, n} \\
+\end{pmatrix} \\
+& \qquad \qquad \qquad \qquad =
+\begin{pmatrix}
+A_{1, 1} + C_{1, 1} & \cdots & A_{1, n} + C_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} + C_{m, 1} & \cdots & A_{m, n} + C_{m, n} \\
+\end{pmatrix}
+.
+\end{align*}
+\end{definition}
+
+\begin{definition}{3.36}[scalar multiplication of a matrix]
+The product of a scalar and a matrix is the matrix obtained by multiplying each entry in the matrix by the scalar:
+$$
+\lambda
+\begin{pmatrix}
+A_{1, 1} & \cdots & A_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} & \cdots & A_{m, n} \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+\lambda A_{1, 1} & \cdots & \lambda A_{1, n} \\
+\vdots & & \vdots \\
+\lambda A_{m, 1} & \cdots & \lambda A_{m, n} \\
+\end{pmatrix}
+.
+$$
+\end{definition}
+
+\begin{notation}{3.39}[$\F^{m, n}$]
+For $m$ and $n$ positive integers, the set of all $m$-by-$n$ matrices with entries in $\F$ is denoted by $\F^{m, n}$.
+\end{notation}
+
+\begin{definition}{3.41}[matrix multiplication]
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then $A B$ is defined to be the $m$-by-$p$ matrix whose entry in row $j$, column $k$, is given by the equation
+$$
+(A B)_{j, k} = \sum_{r = 1}^n A_{j, r} B_{r, k} .
+$$
+Thus the entry in row $j$, column $k$, of $A B$ is computed by taking row $i$ of $A$ and column $k$ of $B$, multiplying together corresponding entries, and then summing.
+\end{definition}
+
+\begin{notation}{3.44}[$A_{j, \cdot}, A_{\cdot, k}$]
+Suppose $A$ is an $m$-by-$n$ matrix.
+\begin{enumerate}
+\item If $1 \le j \le m$, then $A_{j, \cdot}$ denotes the 1-by-$n$ matrix consisting of row $j$ of $A$.
+\item If $1 \le k \le n$, then $A_{\cdot, k}$ denotes the $m$-by-1 matrix consisting of column $k$ of $A$.
+\end{enumerate}
+\end{notation}
+
+\begin{definition}{3.52}[column rank, row rank]
+Suppose $A$ is an $m$-by-$n$ matrix with entries in $\F$.
+\begin{enumerate}
+\item The \defn{column rank} of $A$ is the dimension of the span of the columns of $A$ in $\F^{m, 1}$.
+\item The \defn{row rank} of $A$ is the dimension of the span of the rows of $A$ in $\F^{1, n}$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{3.54}[transpose, $A^t$]
+The \defn{transpose} of a matrix $A$, denoted by $A^t$, is the matrix obtained from $A$ by interchanging rows and columns. Specifically, if $A$ is an $m$-by-$n$ matrix, then $A^t$ is an $n$-by-$m$ matrix whose entries are given by the equation
+$$
+(A^t)_{k, j} = A_{j, k} .
+$$
+\end{definition}
+
+\begin{definition}{3.58}[rank]
+The \defn{rank} of a matrix $A \in \F^{m, n}$ is the column rank of $A$.
+\end{definition}
+
+\newpage
+
+\begin{result}{3.35}[matrix of the sum of linear maps]
+Suppose $S, T \in \L(V, W)$. Then $\M(S + T) = \M(S) + \M(T)$.
+\end{result}
+
+\begin{result}{3.38}[the matrix of a scalar times a linear map]
+Suppose $\lambda \in \F$ and $T \in \L(V, W)$. Then $\M(\lambda T) = \lambda \M(T)$.
+\end{result}
+
+\begin{result}{3.40}[$\dim \F^{m, n} = m n$]
+Suppose $m$ and $n$ are positive integers. With addition and scalar multiplication defined as above, $\F^{m, n}$ is a vector space of dimension $m n$.
+\end{result}
+
+\begin{result}{3.43}[matrix of product of linear maps]
+If $T \in \L(U., V)$ and $S \in \L(V, W)$, then $\M(S T) = \M(S) \M(T)$.
+\end{result}
+
+\begin{result}{3.46}[entry of matrix product equals row times column]
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+(A B)_{j, k} = A_{j, \cdot} B_{\cdot, k}
+$$
+if $1 \le j \le m$ and $1 \le k \le p$. In other words, the entry in row $j$, column $k$, of $A B$ equals (row $j$ of $A$) times (column $k$ of $B$).
+\end{result}
+
+\begin{result}{3.48}[column of matrix product equals matrix times column]
+\label{result:column-product}
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+(A B)_{\cdot, k} = A B_{\cdot, k}
+$$
+if $1 \le k \le p$. In other words, column $k$ of $A B$ equals $A$ times column $k$ of $B$.
+\end{result}
+
+% Exercise 8 (row version of 3.48)
+\begin{result}{Ex. 3C, 8}[row of matrix product equals matrix times row]
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+(A B)_{j, \cdot} = A_{j, \cdot} B
+$$
+if $1 \le j \le m$. In other words, row $j$ of $A B$ equals row $j$ of $A$ times $B$.
+
+This is the row version of Result \ref{result:column-product}.
+\end{result}
+
+\begin{result}{3.50}[linear combination of columns]
+\label{result:linear-combination-cols}
+Suppose $A$ is an $m$-by-$n$ matrix and $b =
+\left(\begin{smallmatrix}
+b_1 \\
+\vdots \\
+b_n
+\end{smallmatrix}\right)$
+is an $n$-by-1 matrix. Then
+$$
+A b = b_1 A_{\cdot, 1} + \cdots + b_n A_{\cdot, n} .
+$$
+In other words, $A b$ is a linear combination of the columns of $A$, with the scalars that multiply the columns coming from $b$.
+\end{result}
+
+% Exercise 9 (row version of 3.50)
+\begin{result}{Ex. 3C, 9}[linear combination of rows]
+Suppose $a =
+\left(\begin{smallmatrix}
+a_1 & \ldots & a_n
+\end{smallmatrix}\right)$
+is a 1-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+a B = a_1 B_{1, \cdot} + \cdots + a_n B_{n, \cdot} .
+$$
+In other words, $a B$ is a linear combination of the rows of $B$, with the scalars that multiply the rows coming from $a$.
+
+This is the row version of Result \ref{result:linear-combination-cols}.
+\end{result}
+
+\begin{result}{3.51}[matrix multiplication as linear combinations of columns]
+Suppose $C$ is an $m$-by-$c$ matrix and $R$ is a $c$-by-$n$ matrix.
+\begin{enumerate}
+\item[(a)] If $k \in \{ 1, \ldots, n \}$, then column $k$ of $C R$ is a linear combination of the columns of $C$, with the coefficients of this linear combination coming from columns $k$ of $R$.
+\item[(b)] If $j \in \{ 1, \ldots, m \}$, then row $j$ of $C R$ is a linear combination of the rows of $R$, with the coefficients of this linear combination coming from row $j$ of $C$.
+\end{enumerate}
+\end{result}
+
+% Exercise 14
+\begin{result}{Ex. 3C, 14}[transpose is a linear map]
+Suppose $m$ and $n$ are positive integers. Then the function $A \mapsto A^t$ is a linear map from $\F^{m, n}$ to $\F^{n, m}$.
+
+In other words $(A + B)^t = A^t + B^t$, $(\lambda A)^t = \lambda A^t$ for all $m$-by-$n$ matrices $A$, $B$ and all $\lambda \in \F$.
+\end{result}
+
+% Exercise 15
+\begin{result}{Ex. 3C, 15}[The transpose of the product is the product of the transposes in the opposite order]
+If $A$ is an $m$-by-$n$ matrix and $C$ is an $n$-by-$p$ matrix, then
+$$
+(AC)^t = C^t A^t .
+$$
+\end{result}
+
+\begin{result}{3.56}[column-row factorization]
+Suppose $A$ is an $m$-by-$n$ matrix with entries in $\F$ and column rank $c \ge 1$. Then there exist an $m$-by-$c$ matrix $C$ and a $c$-by-$n$ matrix $R$, both with entries in $\F$, such that $A = C R$.
+\end{result}
+
+\begin{result}{3.57}[column rank equals row rank]
+Suppose $A \in \F^{m, n}$. Then the column rank of $A$ equals the row rank of $A$.
 \end{result}
 
 \end{document}
