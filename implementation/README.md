@@ -45,33 +45,46 @@ cd matmul-c
 make
 ```
 
-As with the Python implementation the benchmarks use 64-bit floating-point arithmetic (doubles). To run them on either platform use the following:
+As with the Python implementation the benchmarks use 64-bit floating-point arithmetic (doubles).
+To run them on either platform use the following:
 ```
 make test
 ```
 
 ## Racket implementation
 
+Install the dependencies. On macOS:
+```
+brew install racket
+raco pkg install binaryio
+```
+
+And on Ubuntu:
+```
+sudo apt install racket
+raco pkg install binaryio
+```
+
 Unzip `matrices.npz` to a directory called `matrices` in the same directory.
 (I can't get Racket's `unzip` library to work.)
-E.g. on MacOS or Ubuntu:
+On MacOS or Ubuntu:
 ```
 cd testdata
 unzip matrices.npz -d matrices
 cd ..
 ```
 
-On Ubuntu install the depencencies and run:
+And run:
 ```
-sudo apt install racket
-raco pkg install binaryio
 cd matmul-racket
-racket matrix-unsafe.rkt
+racket matmul.rkt
 ```
 
 ## Rust implementation
 
-This is Ed Chapman's [Rust implementation](https://github.com/edchapman88/matrix_library) included as a submodule. Ensure the submodule has been updated and that Rust is available. For benchmarking use the release build.
+This is Ed Chapman's [Rust implementation](https://github.com/edchapman88/matrix_library) included as a submodule.
+Ensure the submodule has been updated and that Rust is available.
+For benchmarking use the release build.
 
 ```
 git submodule update --init
@@ -83,9 +96,9 @@ cargo run --release
 
 The following benchmarking results were obtained using the following devices:
 
-1. 12th Gen Intel Core i7-1260P running Ubuntu 22.04.4, Python 3.10.12 and NumPy 1.25.5.
-2. Apple M1 Pro running macOS 13.6.3, Python 3.12.2 and NumPy 1.24.2.
-3. Apple M2 (powered), macOS 14.4, Python 3.12.2, numpy 1.26.4
+1. 12th Gen Intel Core i7-1260P (powered) running Ubuntu 22.04.4, Python 3.10.12 and NumPy 1.25.5.
+2. Apple M1 Pro (powered) running macOS 13.6.3, Python 3.12.2 and NumPy 1.24.2.
+3. Apple M2 (powered), macOS 14.4, Python 3.12.2, numpy 1.26.4.
 
 The times taken are to perform 16,777,216 matrix multiply operations.
 
@@ -95,34 +108,34 @@ Using Numpy.
 
 | Device       |     s |      ops/s |
 |:-------------|------:|-----------:|
-| Intel i7     | 39.92 | 420,289.64 |
-| Apple M1 Pro | 28.70 | 584,562.19 |
-| Apple M2     | 29.37 |    571,142 |
+| Intel i7     | 39.92 | 420 289.64 |
+| Apple M1 Pro | 28.70 | 584 562.19 |
+| Apple M2     | 29.37 | 571 142.?? |
 
 ### C
 
-| Device       | C (s) |     C (ops/s) |
+| Device       |     s |         ops/s |
 |:-------------|------:|--------------:|
 | Intel i7     |  1.44 | 11,666,383.42 |
-| Apple M1 Pro |  1.54 | 10,873,615.05 |
-| Apple M2     |  1.02 |    16,525,369 |
+| Apple M1 Pro |  1.54 | 10 873 615.05 |
+| Apple M2     |  1.02 | 16 525 369.?? |
 
 ### Racket
 
-Naive implementation, boxed floats.
+"Naive" implementation, boxed floats.
 
 | Device       |     s |      ops/s |
 |:-------------|------:|-----------:|
 | Intel i7     | 37.78 | 444 135.43 |
-| Apple M1 Pro |       |            |
-| Apple M2     | 39.36 |    426,272 |
+| Apple M1 Pro | 41.80 | 401 359.20 |
+| Apple M2     | 39.36 | 426 272.?? |
 
 "Unsafe" implementation.
 
 | Device       |     s |        ops/s |
 |:-------------|------:|-------------:|
 | Intel i7     |  5.18 | 3 239 470.17 |
-| Apple M1 Pro |       |              |
+| Apple M1 Pro |  5.37 | 3 127 160.48 |
 | Apple M2     |       |              |
 
 ### Rust
@@ -130,5 +143,5 @@ Naive implementation, boxed floats.
 | Device       |     s |      ops/s |
 |:-------------|------:|-----------:|
 | Intel i7     | 41.08 | 408 403.51 |
-| Apple M1 Pro |       |            |
+| Apple M1 Pro | 50.61 | 331 473.82 |
 | Apple M2     |       |            |
