@@ -961,4 +961,138 @@ Suppose $A$ is an $m$-by-$n$ matrix with entries in $\F$ and column rank $c \ge 
 Suppose $A \in \F^{m, n}$. Then the column rank of $A$ equals the row rank of $A$.
 \end{result}
 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.D}
+
+\begin{definition}{3.59}[invertible, inverse] \enumfix
+\begin{enumerate}
+\item A linear map $T \in \L(V, W)$ is called \defn{invertible} if there exists a linear map $S \in \L(W, V)$ such that $ST$ equals the identity operator on $V$ and $TS$ equals the identity operator on $W$.
+\item A linear map $S \in \L(W, V)$ satisfying $ST = I$ and $TS = I$ is called an \defn{inverse} of $T$ (note that the first $I$ is the identity operator on $V$ and the second $I$ is the identity operator on $W$.
+\end{enumerate}
+\end{definition}
+
+\begin{notation}{3.61}[$T^{-1}$]
+If $T$ is invertible, then its inverse is denoted by $T^{-1}$. In other words, if $T \in \L(V, W)$ is invertible, then $T^{-1}$ is the unique element of $\L(W, V)$ such that $T^{-1} T = I$ and $T T^{-1} = I$.
+\end{notation}
+
+\begin{definition}{3.69}[isomorphism, isomorphic] \enumfix
+\begin{enumerate}
+\item An \defn{isomorphism} is an invertible linear map.
+\item Two vector spaces are called \defn{isomorphic} if there is an isomorphism from one vector space onto the other one.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{3.73}[matrix of a vector, $\M(v)$]
+Suppose $v \in V$ and $v_1, \ldots, v_n$ is a basis of $V$. The \defn{matrix of $V$} with respect to this basis is the $n$-by-$1$ matrix
+$$
+\M(v) =
+\begin{pmatrix}
+b_1 \\
+\vdots \\
+b_n
+\end{pmatrix},
+$$
+where $b_1, \ldots, b_n$ are the scalars such that
+$$
+v = b_1 v_1 + \cdots + b_n v_n .
+$$
+\end{definition}
+
+\begin{definition}{3.79}[identity matrix, $I$]
+Suppose $n$ is a positive integer. The $n$-by-$n$ matrix
+$$
+\begin{pmatrix}
+1 & & 0 \\
+ & \ddots & \\
+0 & & 1
+\end{pmatrix}
+$$
+with 1's on the diagonal (the entries where the row number equals the column number) and 0's elsewhere is called the \defn{identity matrix} and is denoted by $I$.
+\end{definition}
+
+\begin{definition}{3.80}[invertible, inverse, $A^{-1}$]
+A square matrix $A$ is alled \defn{invertible} if there is a square matrix $B$ of the same size such that $AB = BA = I$; we call $B$ the \defn{inverse} of $A$ and denote it by $A^{-1}$.
+\end{definition}
+
+\newpage
+
+\begin{result}{3.60}[inverse is unique]
+An invertible linear map has a unique inverse.
+\end{result}
+
+\begin{result}{3.63}[invertibility $\Longleftrightarrow$ injectivity and surjectivity]
+A linear map is invertible if and only if it is injective and surjective.
+\end{result}
+
+\begin{result}{3.65}[injectivity is equivalent to surjectivity (if $\dim V = \dim W < \infty$)]
+Suppose that $V$ and $W$ are finite-dimensional vector spaces, $\dim V = \dim W$, and $T \in \L(V, W)$. Then
+$$
+T \text{ is invertible } \Longleftrightarrow T \text{ is injective } \Longleftrightarrow T \text{ is surjective}.
+$$
+\end{result}
+
+\begin{result}{3.68}[$ST = I \Longleftrightarrow TS = I$ (on vector spaces of the same dimension)]
+Suppose $V$ and $W$ are finite-dimensional vector spaces of the same dimension, $S \in \L(V, W)$, and $T \in \L(W, V)$. Then $S T = I$ if and only if $T S = I$.
+\end{result}
+
+\begin{result}{3.70}[dimension shows whether vector spaces are isomorphic]
+Two finite-dimensional vector spaces over $\F$ are isomorphic if and only if they have the same dimension.
+\end{result}
+
+\begin{result}{3.71}[$\L(V, W)$ and $\F^{m, n}$ are isomorphic]
+Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m$ is a basis of $W$. Then $M$ is an isomorphism between $\L(V, W)$ and $\F^{m, n}$.
+\end{result}
+
+\begin{result}{3.72}[$\dim \L(V, W) = (\dim V)(\dim W$]
+Suppose $V$ and $W$ are finite-dimensional. Then $\L(V, W)$ is finite-dimensional and
+$$
+\dim \L(V, W) = (\dim V)(\dim W).
+$$
+\end{result}
+
+\begin{result}{3.75}[$\M(T)_{\cdot, k} = \M(T v_k)$]
+Suppose $T \in \L(V, W)$ and $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m$ is a basis of $W$. Let $1 \le k \le n$. Then the $k^\text{th}$ column of $\M(T)$, which is denoted by $\M(T)_{\cdot, k}$, equals $\M(T v_k)$.
+\end{result}
+
+\begin{result}{3.76}[linear maps act like matrix multiplication]
+Suppose $T \in \L(V, W)$ and $v \in V$. Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $w_1 \ldots, w_m$ is a basis of $W$. Then
+$$
+\M(T v) = \M(T) \M(V) .
+$$
+\end{result}
+
+\begin{result}{3.78}[dimension of range $T$ equals column rank of $\M(T)$]
+Suppose $V$ and $W$ are finite-dimensional and $T \in \L(V, W)$. Then $\dim \range T$ equals the column rank of $\M(T)$.
+\end{result}
+
+\begin{result}{3.81}[matrix of product of linear maps]
+Suppose $T \in \L(U, V)$ and $S \in \L(V, W)$. If $u_1, \ldots, u_m$ is a basis of $U$, $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_p$ is a basis for $W$, then
+\begin{align*}
+\M(ST, (u_1, \ldots, u_m), & (w_1, \ldots, w_p)) = \\
+& \M(S, (v_1, \ldots, v_n), (w_1, \ldots, w_p)) \\
+& \M(U, (u_1, \ldots, u_m), (v_1, \ldots, v_n)).
+\end{align*}
+\end{result}
+
+\begin{result}{3.82}[matrix of identity operator with respect to two bases]
+Suppose that $u_1, \ldots, u_n$ and $v_1, \ldots, v_n$ are bases of $V$. Then the matrices
+$\M(I, (u_1, \ldots, u_n), (v_1, \ldots, v_n))$ and 
+$\M(I, (v_1, \ldots, v_n), (u_1, \ldots, u_n))$
+are invertible, and each is the inverse of the other.
+\end{result}
+
+\begin{result}{3.84}[change-of-basis formula]
+Suppose $T \in \L(V)$. Suppose $u_1, \ldots, u_n$ and $v_1, \ldots, v_n$ are bases of $V$. Let
+$A = \M(T, (u_1, \ldots, u_n))$ and $B = \M(T, (v_1, \ldots, v_n))$ and $C = \M(I, (u_1, \ldots, u_n), (v_1 \ldots, v_n))$. Then
+$$
+A = C^{-1} B C.
+$$
+\end{result}
+
+\begin{result}{3.86}[matrix of inverse equals inverse of matrix]
+Suppose that $v_1, \ldots, v_n$ is a basis of $V$ and $T \in \L(V)$ is invertible. Then $\M(T^{-1}) = (\M(T))^{-1}$, where both matrixes are with respect to the basis $v_1, \ldots, v_n$.
+\end{result}
+
 \end{document}
