@@ -1,0 +1,3 @@
+[submodule "implementation/matmul-rst"]
+	path = implementation/matmul-rst
+	url = git@github.com:llewelld/rust_matrix_library.git
