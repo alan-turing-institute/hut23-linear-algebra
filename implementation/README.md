@@ -92,6 +92,12 @@ cd matmul-rst
 cargo run --release
 ```
 
+## Asm implementation
+
+This is a variation on the C implementation so the same instructions apply.
+
+Only an ARM64/aarch64 version has been implemented.
+
 ## Benchmarking Results
 
 The following benchmarking results were obtained using the following devices:
@@ -145,3 +151,11 @@ Using Numpy.
 | Intel i7     | 41.08 | 408 403.51 |
 | Apple M1 Pro | 50.61 | 331 473.82 |
 | Apple M2     |       |            |
+
+### Asm
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |   N/A |           N/A |
+| Apple M1 Pro |  1.29 | 13 033 611.01 |
+| Apple M2     |       |               |
