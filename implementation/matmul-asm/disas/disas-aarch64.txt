@@ -1,0 +1,51 @@
+00000000004019c8 <multiply>:
+  4019c8:       7100001f        cmp     w0, #0x0
+  4019cc:       7a401824        ccmp    w1, #0x0, #0x4, ne  // ne = any
+  4019d0:       7a401844        ccmp    w2, #0x0, #0x4, ne  // ne = any
+  4019d4:       54000580        b.eq    401a84 <multiply+0xbc>  // b.none
+  4019d8:       b9400425        ldr     w5, [x1, #4]
+  4019dc:       b9400444        ldr     w4, [x2, #4]
+  4019e0:       b9400409        ldr     w9, [x0, #4]
+  4019e4:       b9400023        ldr     w3, [x1]
+  4019e8:       b9400048        ldr     w8, [x2]
+  4019ec:       b940000a        ldr     w10, [x0]
+  4019f0:       f9400426        ldr     x6, [x1, #8]
+  4019f4:       f9400447        ldr     x7, [x2, #8]
+  4019f8:       f940040c        ldr     x12, [x0, #8]
+  4019fc:       1b037c8d        mul     w13, w4, w3
+  401a00:       710000bf        cmp     w5, #0x0
+  401a04:       7a401884        ccmp    w4, #0x0, #0x4, ne  // ne = any
+  401a08:       7a401864        ccmp    w3, #0x0, #0x4, ne  // ne = any
+  401a0c:       540003c0        b.eq    401a84 <multiply+0xbc>  // b.none
+  401a10:       6b0800bf        cmp     w5, w8
+  401a14:       7a440120        ccmp    w9, w4, #0x0, eq  // eq = none
+  401a18:       7a430140        ccmp    w10, w3, #0x0, eq  // eq = none
+  401a1c:       54000341        b.ne    401a84 <multiply+0xbc>  // b.any
+  401a20:       52800008        mov     w8, #0x0                        // #0
+  401a24:       52800003        mov     w3, #0x0                        // #0
+  401a28:       52800009        mov     w9, #0x0                        // #0
+  401a2c:       5280000a        mov     w10, #0x0                       // #0
+  401a30:       1ac40928        udiv    w8, w9, w4
+  401a34:       1b057d08        mul     w8, w8, w5
+  401a38:       2a0a03e3        mov     w3, w10
+  401a3c:       0f008400        movi    v0.4h, #0x0
+  401a40:       2a0503eb        mov     w11, w5
+  401a44:       fc6858c1        ldr     d1, [x6, w8, uxtw #3]
+  401a48:       fc6358e2        ldr     d2, [x7, w3, uxtw #3]
+  401a4c:       1f420020        fmadd   d0, d1, d2, d0
+  401a50:       11000508        add     w8, w8, #0x1
+  401a54:       0b040063        add     w3, w3, w4
+  401a58:       7100056b        subs    w11, w11, #0x1
+  401a5c:       54ffff4c        b.gt    401a44 <multiply+0x7c>
+  401a60:       fc295980        str     d0, [x12, w9, uxtw #3]
+  401a64:       1100054a        add     w10, w10, #0x1
+  401a68:       6b04015f        cmp     w10, w4
+  401a6c:       1a8aa16a        csel    w10, w11, w10, ge  // ge = tcont
+  401a70:       11000529        add     w9, w9, #0x1
+  401a74:       6b0d013f        cmp     w9, w13
+  401a78:       54fffdcb        b.lt    401a30 <multiply+0x68>  // b.tstop
+  401a7c:       52800020        mov     w0, #0x1                        // #1
+  401a80:       d65f03c0        ret
+  401a84:       52800000        mov     w0, #0x0                        // #0
+  401a88:       d65f03c0        ret
+
