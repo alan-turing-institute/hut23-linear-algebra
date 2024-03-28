@@ -101,10 +101,17 @@ Using Numpy.
 
 ### Racket
 
-Naive implementation, boxed floats.
+1. `naive`: Boxed floats and generic numeric operations..
+2. `naive-cons`: Replacing `struct` with a pair.
+3. `flo`: Using floating-point * and + in the inner loop of matrix
+   multiply and flvectors. (But still safe.)
 
-| Device       |     s |   ops/s |
-|:-------------|------:|--------:|
-| Intel i7     |       |         |
-| Apple M1 Pro |       |         |
-| Apple M2     | 39.36 | 426,272 |
+All on Apple M2.
+
+| Device       |    s |     ops/s |
+|:-------------|-----:|----------:|
+| `naive`      | 39.4 |   426,272 |
+| `naive-cons` | 26.9 |   623,688 |
+| `flo`        | 11.4 | 1,472,000 |
+| `unsafe`     | 5.23 | 3,208,000 |
+
