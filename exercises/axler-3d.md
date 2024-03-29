@@ -156,9 +156,52 @@ another bit.” This question is sort of the complement: we're splitting
 $V$ into “the null space of $T$ plus another bit.”
 
 So, let $(\vec{e}_1, \dots, \vec{e}_m, \vec{f}_1, \dots, \vec{f}_n)$ be
-a basis of $V$ such that $(\vec{e}_1, \dots, \vec{e}_m$ is a basis for
+a basis of $V$ such that $(\vec{e}_1, \dots, \vec{e}_m)$ is a basis for
 $\text{null }T$ and the $`\vec{f}`$s extend that to a basis of the
 full space.
 
 I claim that a subspace satisfying the conditions of the question is
-$T|_U = \text{span }(\vec{f}_1, \dots, \vec{f}_n$. 
+$U = \text{span }(\vec{f}_1, \dots, \vec{f}_n)$. First of all, it _is_
+a subspace (since it’s the span of some vectors). The map $T|_U$ is
+also surjective. For, given some $\vec{w}\in W$, then, since the
+original $T$ was surjective, there must be $\vec{v}\in V$ with
+$T(\vec{v}) = \vec{w}$. Now write $\vec{v}=\vec{u}+\vec{u}'$ where the
+$\vec{u}$ is a combination of the $`\vec{e}`$s and the $\vec{u}'$ is a
+combination of the $`\vec{f}`$s. Since $T(\vec{u})=\mathbf{0}$ we must
+have $T(\vec{v}) = T(\vec{u}')$. And since $\vec{u}'\in U$, we have
+shown that $T|_U$ is surjective.
+
+Then, suppose $\vec{v}_1,\vec{v}_2\in U$ are distinct; it follows that
+$T|_U(\vec{v}_1) \neq T|_U(\vec{v}_2)$, otherwise their difference
+would be in $\text{null }T$, and hence that $T|_U$ is injective.
+
+since $T|_U$ is surjective and injective, it is an isomorphism.
+
+## Question 18
+
+Show that $V$ and $\mathcal{L}(\mathbf{F}, V)$ are isomorphic vector
+spaces.
+
+### Answer
+
+We must exhibit an invertible linear map between $V$ and
+$\mathcal{L}(\mathbf{F}, V)$. 
+
+What is $\mathcal{L}(\mathbf{F}, V)$? It is a rule which, given a
+number in $\mathbf{F}$, produces a vector in $V$. Suppose
+$\tilde{w}\in\mathcal{L}(\mathbf{F}, V)$ is one such rule. Then, for
+any $\alpha\in\mathbf{F}$, $\tilde{w}(\alpha) = \tilde{w}(\alpha\times
+1) = \alpha\tilde{w}(1)$. In other words, any
+$\tilde{w}\in\mathcal{L}(\mathbf{F}, V)$ is defined entirely by its
+action on $1$.
+
+Consider the map, $\Omega\colon V\mathcal{L}(\mathbf{F}, V)$ which
+acts in the following way: for any $\vec{v}\in V$ set
+$\Omega(\vec{v})$ to be the map
+
+```math
+\begin{aligned}
+\Omega(\vec{v}) \colon \mathbf{F} &\to  V \\
+\Omega(\vec{v}) \colon \alpha \mapsto \alpha \vec{v}.
+\end{algined}
+```
