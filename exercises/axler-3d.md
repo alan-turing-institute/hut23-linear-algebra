@@ -219,11 +219,11 @@ takes any $\alpha\in\mathbf{F}$ to the vector $\alpha\vec{v}$.
 I claim the map $\Omega$ is both injective and surjective. Suppose
 $\vec{v}, \vec{v}'\in V$ are distinct. Then clearly
 $\Omega(\vec{v}) \neq \Omega(\vec{v}')$, since they take $1$ to
-different vectors. That shows injectivity.
+different vectors. That shows injectivity of $\Omega$.
 
 Suppose $\tilde{w}\in \mathcal{L}(\mathbf{F}, V)$ is some map. Then
-$\tilde{w}(1)$ is some element of $V$, and indeed $\Omega(\tilde{1}) =
-\omega$. That shows surhectivity.
+$\tilde{w}(1)$ is some element of $V$, and indeed $\Omega(\tilde{w}(1)) =
+\tilde{w}$. That shows surjectivity of $\Omega$.
 
 ## Question 21
 
@@ -233,7 +233,7 @@ $j,k\in\{1,\dots,n\}$. Prove that the following are equivalent:
 (a) The only solution to the homogeneous system of equations
 
 ```math
-\sum_k A_{ik} = 0 \quad (i\in\{1,\dots, n\})
+\sum_k A_{ik} x_k = 0 \quad (i\in\{1,\dots, n\})
 ```
 
    is the trivial solution $x_1 = \dotsb = x_n = 0$.
@@ -242,7 +242,7 @@ $j,k\in\{1,\dots,n\}$. Prove that the following are equivalent:
 the system of equations
 
 ```math
-\sum_k A_{ik} = c_i \quad (i\in\{1,\dots, n\}).
+\sum_k A_{ik} x_k = c_i \quad (i\in\{1,\dots, n\}).
 ```
 
 
