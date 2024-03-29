@@ -165,17 +165,19 @@ $U = \text{span }(\vec{f}_1, \dots, \vec{f}_n)$. First of all, it _is_
 a subspace (since it’s the span of some vectors). The map $T|_U$ is
 also surjective. For, given some $\vec{w}\in W$, then, since the
 original $T$ was surjective, there must be $\vec{v}\in V$ with
-$T(\vec{v}) = \vec{w}$. Now write $\vec{v}=\vec{u}+\vec{u}'$ where the
-$\vec{u}$ is a combination of the $`\vec{e}`$s and the $\vec{u}'$ is a
-combination of the $`\vec{f}`$s. Since $T(\vec{u})=\mathbf{0}$ we must
-have $T(\vec{v}) = T(\vec{u}')$. And since $\vec{u}'\in U$, we have
-shown that $T|_U$ is surjective.
+$T(\vec{v}) = \vec{w}$. Now write $\vec{v}=\vec{u}+\vec{\nu}$ where
+the $\vec{u}$ is a combination of the $`\vec{f}`$s and the $\vec{\nu}$
+is a combination of the $`\vec{e}`$s (ie, in the null space). Since
+$T(\vec{\nu})=\mathbf{0}$ we must have $\vec{w] = T(\vec{v}) =
+T(\vec{u}) = T|_U(\vec{u}$. And since $\vec{u}\in U$, we have shown
+that $T|_U$ is surjective.
 
 Then, suppose $\vec{v}_1,\vec{v}_2\in U$ are distinct; it follows that
 $T|_U(\vec{v}_1) \neq T|_U(\vec{v}_2)$, otherwise their difference
 would be in $\text{null }T$, and hence that $T|_U$ is injective.
 
-since $T|_U$ is surjective and injective, it is an isomorphism.
+Finally, since $T|_U$ is surjective and injective, it is an
+isomorphism.
 
 ## Question 18
 
@@ -190,12 +192,12 @@ $\mathcal{L}(\mathbf{F}, V)$.
 What is $\mathcal{L}(\mathbf{F}, V)$? It is a rule which, given a
 number in $\mathbf{F}$, produces a vector in $V$. Suppose
 $\tilde{w}\in\mathcal{L}(\mathbf{F}, V)$ is one such rule. Then, for
-any $\alpha\in\mathbf{F}$, $\tilde{w}(\alpha) = \tilde{w}(\alpha\times
-1) = \alpha\tilde{w}(1)$. In other words, any
+any $\alpha\in\mathbf{F}$, $`\tilde{w}(\alpha) =
+\tilde{w}(\alpha\times 1) = \alpha\tilde{w}(1)`$. In other words, any
 $\tilde{w}\in\mathcal{L}(\mathbf{F}, V)$ is defined entirely by its
 action on $1$.
 
-Consider the map, $\Omega\colon V\mathcal{L}(\mathbf{F}, V)$ which
+Consider the map, $\Omega\colon V\to\mathcal{L}(\mathbf{F}, V)$ which
 acts in the following way: for any $\vec{v}\in V$ set
 $\Omega(\vec{v})$ to be the map
 
@@ -203,5 +205,5 @@ $\Omega(\vec{v})$ to be the map
 \begin{aligned}
 \Omega(\vec{v}) \colon \mathbf{F} &\to  V \\
 \Omega(\vec{v}) \colon \alpha \mapsto \alpha \vec{v}.
-\end{algined}
+\end{aligned}
 ```
