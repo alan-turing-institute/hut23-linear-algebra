@@ -203,7 +203,7 @@ specific vector in $V$. That's the informal story.
 
 More carefully, consider the map, $\Omega\colon
 V\to\mathcal{L}(\mathbf{F}, V)$ which acts in the following way: for
-any $\vec{v}\in V$ set $\Omega(\vec{v})$ to be the map
+any $\vec{v}\in V$, set $\Omega(\vec{v})$ to be the map
 
 ```math
 \begin{aligned}
@@ -213,7 +213,7 @@ any $\vec{v}\in V$ set $\Omega(\vec{v})$ to be the map
 ```
 
 That is to say, $\Omega(\vec{v})$ is an element of
-$\mathcal{L}(\mathbf{F}, V)$, hence a map, specifically the map which
+$\mathcal{L}(\mathbf{F}, V)$, hence a map; specifically the map which
 takes any $\alpha\in\mathbf{F}$ to the vector $\alpha\vec{v}$.
 
 I claim the map $\Omega$ is both injective and surjective. Suppose
@@ -252,7 +252,7 @@ in $\mathcal{L}(\mathbf{F}^n, \mathbf{F}^n)$ whose matrix
 representation in the canonical basis of $\mathbf{F}^n$ is
 $A_{jk}$.
 
-Then (a) is equivalent to the statement that $A$ is injective. And $b$
+Then (a) is equivalent to the statement that $A$ is injective; and $b$
 is equvalent to the statement that $A$ is surjective. But we know
 (Axler 3.65) that, for linear maps between finite-dimensional vector
 spaces of the same dimension, each of these properties implies the
