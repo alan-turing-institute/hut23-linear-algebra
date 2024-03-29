@@ -93,7 +93,7 @@ $`\vec{v}`$s with $\vec{u}=T(\vec{v})$ is if they differ by elements
 of the null space.
 
 That is, suppose $\vec{v}'$ is also such that $T(\vec{v}') =
-\vec{u}$. Then $T(\vec{v}'-\vec{v}$) = \mathbf{0}$; in other words,
+\vec{u}$. Then $T(\vec{v}'-\vec{v}) = \mathbf{0}$; in other words,
 $\vec{v}'-\vec{v}$ is in the null space of $T$. Therefore, by
 supposition, $\vec{v}'-\vec{v}$ is in the null space of $S$. Therefore
 $S(\vec{v}') = S(\vec{v})$ and so there is no ambiguity in setting
@@ -101,6 +101,44 @@ $E(\vec{u}) = S(\vec{v})$.
 
 We are nearly done with the definition of $E$. We want to define
 $E(\vec{w})$ for some arbitrary $\vec{w}$, where however we have
-written $\vec{w} = \vec{u]+\vec{u}'$, with $\vec{u}\in\text{range
+written $\vec{w} = \vec{u}+\vec{u}'$, with $\vec{u}\in\text{range
 T}$. We know what we want from $E(\vec{u})$ (it's wherever $S$ takes
-the vector that $T$ sent to $\vec{u}$) but what about $E(\vec{u}')$? 
+the vector that $T$ sent to $\vec{u}$) but what about $E(\vec{u}')$?
+We could just send that to zero but that would make $E$
+non-invertible. So instead let's leave it alone. In other words, $E$
+is defined by
+
+```math
+E(\vec{w}) = S(\vec{v}) + \vec{u}',
+```
+
+where $\vec{w} = \vec{u}+\vec{u}'$ and $T(\vec{v}) = \vec{u}$.
+
+We _still_ have to show that $E$ is a linear map and invertible. To
+show that it is linear is an annoying process of following through the
+definition above for some $\alpha \vec{w}_1 + \beta \vec{w}_2$ (though
+really it can't but be linear given that everything we have done is
+linear). Why is it invertible?
+
+$E$ is invertible if it is injective and surjective. It can't be
+non-injective on the bit of $W$ that is not the range of $T$, because
+we've defined it to be the identity there. Suppose there were distinct
+$\vec{u}, \vec{u}'$, both in the range of $T$ such that
+$E(\vec{u})=E(\vec{u}')$. That would mean that there must be
+$\vec{v},\vec{v}'\in V$, with $\vec{u}=T(\vec{v})$ and
+$\vec{u}'=T(vec{v}')$, such that $S(\vec{v}) = S(\vec{v}')$. But that
+means that $\vec{v}'-\vec{v}\in\text{null }S$, and hence
+$\vec{v}'-\vec{v}\in\text{null }T$ and hence in fact
+$T(\vec{v})=T(\vec{v}')$ or $\vec{u}=\vec{u}'$, in contradiction to
+the supposition. So $E$ is injective.
+
+Is $E$ surjective? In other words, does every $\vec{w}\in\text{range
+}S$ come from some $E(\vec{u})$? Yes: roughly, to find $\vec{u}$, go
+back to $V$ (using $S$) and then forward to $W$ (using $T$): existence
+and the required properties of $\vec{u}$ follow by running the same
+argument above with $T$ and $S$ switched.
+
+Well, that's the "only if" direction. The "if" direction is
+easy. Suppose $\vec{v}\in\text{null T}$, say. Then $S(\vec{v}) =
+E(T(\vec{v})) = \mathbf{0}$, so $\vec{v}$ is in the null space of
+$S$. The argument can be reversed, noting that $E$ is invertible.
