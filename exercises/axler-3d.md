@@ -189,17 +189,21 @@ spaces.
 We must exhibit an invertible linear map between $V$ and
 $\mathcal{L}(\mathbf{F}, V)$. 
 
-What is $\mathcal{L}(\mathbf{F}, V)$? It is a rule which, given a
-number in $\mathbf{F}$, produces a vector in $V$. Suppose
+What is $\mathcal{L}(\mathbf{F}, V)$? It is the space of linear maps
+from $\mathbf{F}$ to $V$. That is, an element of
+$\mathcal{L}(\mathbf{F}, V)$ is a rule which, given a number in
+$\mathbf{F}$, produces a vector in $V$. Suppose
 $\tilde{w}\in\mathcal{L}(\mathbf{F}, V)$ is one such rule. Then, for
 any $\alpha\in\mathbf{F}$, $`\tilde{w}(\alpha) =
 \tilde{w}(\alpha\times 1) = \alpha\tilde{w}(1)`$. In other words, any
 $\tilde{w}\in\mathcal{L}(\mathbf{F}, V)$ is defined entirely by its
-action on $1$.
+action on $1$. Indeed, $\tilde{w}(1)$ is an element of $V$, so we can
+say that any element of $\mathcal{L}(\mathbf{F}, V)$ is defined by a
+specific vector in $V$. That's the informal story.
 
-Consider the map, $\Omega\colon V\to\mathcal{L}(\mathbf{F}, V)$ which
-acts in the following way: for any $\vec{v}\in V$ set
-$\Omega(\vec{v})$ to be the map
+More carefully, consider the map, $\Omega\colon
+V\to\mathcal{L}(\mathbf{F}, V)$ which acts in the following way: for
+any $\vec{v}\in V$ set $\Omega(\vec{v})$ to be the map
 
 ```math
 \begin{aligned}
@@ -207,3 +211,39 @@ $\Omega(\vec{v})$ to be the map
 \alpha &\mapsto \alpha \vec{v}.
 \end{aligned}
 ```
+
+That is to say, $\Omega(\vec{v})$ is an element of
+$\mathcal{L}(\mathbf{F}, V)$, hence a map, specifically the map which
+takes any $\alpha\in\mathbf{F}$ to the vector $\alpha\vec{v}$.
+
+I claim the map $\Omega$ is both injective and surjective. Suppose
+$\vec{v}, \vec{v}'\in V$ are distinct. Then clearly
+$\Omega(\vec{v}) \neq \Omega(\vec{v}')$, since they take $1$ to
+different vectors. That shows injectivity.
+
+Suppose $\tilde{w}\in \mathcal{L}(\mathbf{F}, V)$ is some map. Then
+$\tilde{w}(1)$ is some element of $V$, and indeed $\Omega(\tilde{1}) =
+\omega$. That shows surhectivity.
+
+## Question 21
+
+Suppose $n$ is a positive integer and $A_{jk}\in\mathbf{F}$ for
+$j,k\in\{1,\dots,n\}$. Prove that the following are equivalent:
+
+(a) The only solution to the homogeneous system of equations
+
+```math
+\sum_k A_{ik} = 0 \quad (i\in\{1,\dots, n\})
+```
+
+   is the trivial solution $x_1 = \dotsb = x_n = 0$.
+
+(b) For every $c_1,\dots,c_n\in\mathbf{F}$, there exists a solution to
+the system of equations
+
+```math
+\sum_k A_{ik} = c_i \quad (i\in\{1,\dots, n\}).
+```
+
+
+### Answer
