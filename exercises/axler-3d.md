@@ -236,7 +236,7 @@ $j,k\in\{1,\dots,n\}$. Prove that the following are equivalent:
 \sum_k A_{ik} x_k = 0 \quad (i\in\{1,\dots, n\})
 ```
 
-   is the trivial solution $x_1 = \dotsb = x_n = 0$.
+is the trivial solution $x_1 = \dotsb = x_n = 0$.
 
 (b) For every $c_1,\dots,c_n\in\mathbf{F}$, there exists a solution to
 the system of equations
@@ -245,5 +245,15 @@ the system of equations
 \sum_k A_{ik} x_k = c_i \quad (i\in\{1,\dots, n\}).
 ```
 
-
 ### Answer
+
+Consider the vector space $\mathbf{F}^n$ and let $A$ be the linear map
+in $\mathcal{L}(\mathbf{F}^n, \mathbf{F}^n)$ whose matrix
+representation in the canonical basis of $\mathbf{F}^n$ is
+$A_{jk}$.
+
+Then (a) is equivalent to the statement that $A$ is injective. And $b$
+is equvalent to the statement that $A$ is surjective. But we know
+(Axler 3.65) that, for linear maps between finite-dimensional vector
+spaces of the same dimension, each of these properties implies the
+other.
