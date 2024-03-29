@@ -4,7 +4,7 @@
 # Copyright © 2024 David Llewellyn-Jones
 
 CC      = gcc
-CFLAGS  = -g -Wall -Werror -O3 -Iinclude
+CFLAGS  = -g -Wall -Werror -O3 -Iinclude -I../matmul-c/include
 RM      = rm -f
 CLIBS   = -larchive
 UNAME   = $(shell uname -s)
@@ -25,6 +25,7 @@ matmul-asm: \
 	../matmul-c/src/load.c \
 	../matmul-c/src/matrix.c \
 	src/operations.c \
+	src/operations.S \
 	../matmul-c/src/parse_header.c \
 	../matmul-c/src/tests.c
 	$(CC) $(CFLAGS) -o$@ $^ $(CLIBS)

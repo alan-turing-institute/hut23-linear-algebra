@@ -214,5 +214,5 @@ With garbage collection enabled.
 | Device       |     s |         ops/s |
 |:-------------|------:|--------------:|
 | Intel i7     |   N/A |           N/A |
-| Apple M1 Pro |  1.29 | 13 033 611.01 |
+| Apple M1 Pro |  1.28 | 13 115 540.66 |
 | Apple M2     |       |               |

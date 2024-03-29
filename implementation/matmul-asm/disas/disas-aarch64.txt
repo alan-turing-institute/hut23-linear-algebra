@@ -1,51 +1,55 @@
-00000000004019c8 <multiply>:
-  4019c8:       7100001f        cmp     w0, #0x0
-  4019cc:       7a401824        ccmp    w1, #0x0, #0x4, ne  // ne = any
-  4019d0:       7a401844        ccmp    w2, #0x0, #0x4, ne  // ne = any
-  4019d4:       54000580        b.eq    401a84 <multiply+0xbc>  // b.none
-  4019d8:       b9400425        ldr     w5, [x1, #4]
-  4019dc:       b9400444        ldr     w4, [x2, #4]
-  4019e0:       b9400409        ldr     w9, [x0, #4]
-  4019e4:       b9400023        ldr     w3, [x1]
-  4019e8:       b9400048        ldr     w8, [x2]
-  4019ec:       b940000a        ldr     w10, [x0]
-  4019f0:       f9400426        ldr     x6, [x1, #8]
-  4019f4:       f9400447        ldr     x7, [x2, #8]
-  4019f8:       f940040c        ldr     x12, [x0, #8]
-  4019fc:       1b037c8d        mul     w13, w4, w3
-  401a00:       710000bf        cmp     w5, #0x0
-  401a04:       7a401884        ccmp    w4, #0x0, #0x4, ne  // ne = any
-  401a08:       7a401864        ccmp    w3, #0x0, #0x4, ne  // ne = any
-  401a0c:       540003c0        b.eq    401a84 <multiply+0xbc>  // b.none
-  401a10:       6b0800bf        cmp     w5, w8
-  401a14:       7a440120        ccmp    w9, w4, #0x0, eq  // eq = none
-  401a18:       7a430140        ccmp    w10, w3, #0x0, eq  // eq = none
-  401a1c:       54000341        b.ne    401a84 <multiply+0xbc>  // b.any
-  401a20:       52800008        mov     w8, #0x0                        // #0
-  401a24:       52800003        mov     w3, #0x0                        // #0
-  401a28:       52800009        mov     w9, #0x0                        // #0
-  401a2c:       5280000a        mov     w10, #0x0                       // #0
-  401a30:       1ac40928        udiv    w8, w9, w4
-  401a34:       1b057d08        mul     w8, w8, w5
-  401a38:       2a0a03e3        mov     w3, w10
-  401a3c:       0f008400        movi    v0.4h, #0x0
-  401a40:       2a0503eb        mov     w11, w5
-  401a44:       fc6858c1        ldr     d1, [x6, w8, uxtw #3]
-  401a48:       fc6358e2        ldr     d2, [x7, w3, uxtw #3]
-  401a4c:       1f420020        fmadd   d0, d1, d2, d0
-  401a50:       11000508        add     w8, w8, #0x1
-  401a54:       0b040063        add     w3, w3, w4
-  401a58:       7100056b        subs    w11, w11, #0x1
-  401a5c:       54ffff4c        b.gt    401a44 <multiply+0x7c>
-  401a60:       fc295980        str     d0, [x12, w9, uxtw #3]
-  401a64:       1100054a        add     w10, w10, #0x1
-  401a68:       6b04015f        cmp     w10, w4
-  401a6c:       1a8aa16a        csel    w10, w11, w10, ge  // ge = tcont
-  401a70:       11000529        add     w9, w9, #0x1
-  401a74:       6b0d013f        cmp     w9, w13
-  401a78:       54fffdcb        b.lt    401a30 <multiply+0x68>  // b.tstop
-  401a7c:       52800020        mov     w0, #0x1                        // #1
-  401a80:       d65f03c0        ret
-  401a84:       52800000        mov     w0, #0x0                        // #0
-  401a88:       d65f03c0        ret
+0000000000401c28 <multiply>:
+  401c28:       f100001f        cmp     x0, #0x0
+  401c2c:       fa401824        ccmp    x1, #0x0, #0x4, ne  // ne = any
+  401c30:       fa401844        ccmp    x2, #0x0, #0x4, ne  // ne = any
+  401c34:       54000560        b.eq    401ce0 <failure>  // b.none
+  401c38:       29400c26        ldp     w6, w3, [x1]
+  401c3c:       29401047        ldp     w7, w4, [x2]
+  401c40:       29401408        ldp     w8, w5, [x0]
+  401c44:       f9400421        ldr     x1, [x1, #8]
+  401c48:       f9400442        ldr     x2, [x2, #8]
+  401c4c:       f9400400        ldr     x0, [x0, #8]
+  401c50:       f100003f        cmp     x1, #0x0
+  401c54:       fa401844        ccmp    x2, #0x0, #0x4, ne  // ne = any
+  401c58:       fa401804        ccmp    x0, #0x0, #0x4, ne  // ne = any
+  401c5c:       54000420        b.eq    401ce0 <failure>  // b.none
+  401c60:       7100007f        cmp     w3, #0x0
+  401c64:       7a401884        ccmp    w4, #0x0, #0x4, ne  // ne = any
+  401c68:       7a4018c4        ccmp    w6, #0x0, #0x4, ne  // ne = any
+  401c6c:       540003a0        b.eq    401ce0 <failure>  // b.none
+  401c70:       6b07007f        cmp     w3, w7
+  401c74:       7a4400a0        ccmp    w5, w4, #0x0, eq  // eq = none
+  401c78:       7a460100        ccmp    w8, w6, #0x0, eq  // eq = none
+  401c7c:       54000321        b.ne    401ce0 <failure>  // b.any
+  401c80:       1b067c89        mul     w9, w4, w6
+  401c84:       51000529        sub     w9, w9, #0x1
+  401c88:       1b067c65        mul     w5, w3, w6
+  401c8c:       2a0403e6        mov     w6, w4
 
+0000000000401c90 <start_outer>:
+  401c90:       4b0300a7        sub     w7, w5, w3
+  401c94:       510004c8        sub     w8, w6, #0x1
+  401c98:       0f008400        movi    v0.4h, #0x0
+  401c9c:       2a0303ea        mov     w10, w3
+
+0000000000401ca0 <start_inner>:
+  401ca0:       fc675821        ldr     d1, [x1, w7, uxtw #3]
+  401ca4:       fc685842        ldr     d2, [x2, w8, uxtw #3]
+  401ca8:       1f420020        fmadd   d0, d1, d2, d0
+  401cac:       110004e7        add     w7, w7, #0x1
+  401cb0:       0b040108        add     w8, w8, w4
+  401cb4:       7100054a        subs    w10, w10, #0x1
+  401cb8:       54ffff4c        b.gt    401ca0 <start_inner>
+  401cbc:       fc295800        str     d0, [x0, w9, uxtw #3]
+  401cc0:       710004c6        subs    w6, w6, #0x1
+  401cc4:       1a86d086        csel    w6, w4, w6, le
+  401cc8:       4b0300aa        sub     w10, w5, w3
+  401ccc:       1a85d145        csel    w5, w10, w5, le
+  401cd0:       71000529        subs    w9, w9, #0x1
+  401cd4:       54fffdea        b.ge    401c90 <start_outer>  // b.tcont
+  401cd8:       d2800020        mov     x0, #0x1                        // #1
+  401cdc:       d65f03c0        ret
+
+0000000000401ce0 <failure>:
+  401ce0:       d2800000        mov     x0, #0x0                        // #0
+  401ce4:       d65f03c0        ret

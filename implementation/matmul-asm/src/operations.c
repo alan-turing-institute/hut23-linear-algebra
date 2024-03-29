@@ -8,7 +8,7 @@
 #include <math.h>
 #include <stdbool.h>
 
-#include "../matmul-c/operations.h"
+#include "operations.h"
 
 #define COMPARISON_ACCURACY (0.0000001)
 
@@ -35,7 +35,7 @@ bool equals(Matrix *A, Matrix *B) {
  *
  * @return true if the matrices could be multiplied, false o/w
  */
-bool multiply(Matrix *result, Matrix *A, Matrix *B) {
+bool multiply_inline(Matrix *result, Matrix *A, Matrix *B) {
 #if defined(__aarch64__) || defined(_M_ARM64)
 	// All registers are temporary but we still need to keep track of them
 	uint32_t awidth, bwidth, rwidth, aheight, bheight, rheight;
