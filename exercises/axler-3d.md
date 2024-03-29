@@ -168,7 +168,7 @@ original $T$ was surjective, there must be $\vec{v}\in V$ with
 $T(\vec{v}) = \vec{w}$. Now write $\vec{v}=\vec{u}+\vec{\nu}$ where
 the $\vec{u}$ is a combination of the $`\vec{f}`$s and the $\vec{\nu}$
 is a combination of the $`\vec{e}`$s (ie, in the null space). Since
-$T(\vec{\nu})=\mathbf{0}$ we must have $\vec{w] = T(\vec{v}) =
+$T(\vec{\nu})=\mathbf{0}$ we must have $\vec{w} = T(\vec{v}) =
 T(\vec{u}) = T|_U(\vec{u}$. And since $\vec{u}\in U$, we have shown
 that $T|_U$ is surjective.
 
@@ -203,7 +203,7 @@ $\Omega(\vec{v})$ to be the map
 
 ```math
 \begin{aligned}
-\Omega(\vec{v}) \colon \mathbf{F} &\to  V \\
-\Omega(\vec{v}) \colon \alpha \mapsto \alpha \vec{v}.
+\Omega(\vec{v}) : \mathbf{F} &\to  V \\
+\alpha &\mapsto \alpha \vec{v}.
 \end{aligned}
 ```
