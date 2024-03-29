@@ -142,3 +142,23 @@ Well, that's the "only if" direction. The "if" direction is
 easy. Suppose $\vec{v}\in\text{null T}$, say. Then $S(\vec{v}) =
 E(T(\vec{v})) = \mathbf{0}$, so $\vec{v}$ is in the null space of
 $S$. The argument can be reversed, noting that $E$ is invertible.
+
+## Question 9
+
+Suppose $V$ is finite-dimensional and $T\colon V\to W$ is a surjective
+linear map of $V$ onto $W$. Prove that there is a subspace $U$ of $V$
+such that $T\rvert_U$ is an isomorphism of $U$ onto $W$.
+
+### Answer
+
+Question 6 was about splitting up $W$ into “the range of $T$ plus
+another bit.” This question is sort of the complement: we're splitting
+$V$ into “the null space of $T$ plus another bit.”
+
+So, let $(\vec{e}_1, \dots, \vec{e}_m, \vec{f}_1, \dots, \vec{f}_n)$ be
+a basis of $V$ such that $(\vec{e}_1, \dots, \vec{e}_m$ is a basis for
+$\text{null }T$ and the $`\vec{f}`$s extend that to a basis of the
+full space.
+
+I claim that a subspace satisfying the conditions of the question is
+$T|_U = \text{span }(\vec{f}_1, \dots, \vec{f}_n$. 
