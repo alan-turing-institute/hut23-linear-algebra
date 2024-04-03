@@ -104,9 +104,10 @@ Or on macOS:
 brew install R
 ```
 
-From hereon in it's the same for both Ubuntu and macOS. Start an interpreted R session.
-This arrangement ensures everything is installed in your working directory for easy clean up.
+From hereon in it's the same for both Ubuntu and macOS.
+The following arrangement ensures everything is installed in your working directory for easy clean up.
 
+Start an interpreted R session:
 ```
 cd matmul-r
 mkdir lib venv r-miniconda
@@ -128,7 +129,7 @@ source("matmul.R")
 q()
 ```
 
-Clean up afterwards by deleteing the `lib`, `venv` and `r-miniconda` folders from your working directory.
+Clean up afterwards by deleting the `lib`, `venv` and `r-miniconda` folders from your working directory.
 
 ## Benchmarking Results
 
@@ -186,8 +187,18 @@ Using Numpy.
 
 ### R
 
+With garbage collection disabled.
+
 | Device       |     s |        ops/s |
 |:-------------|------:|-------------:|
-| Intel i7     | 12.30 |   353 976.64 |
+| Intel i7     | 12.30 | 1 364 001.30 |
 | Apple M1 Pro |  9.26 | 1 797 712.32 |
+| Apple M2     |       |              |
+
+With garbage collection enabled.
+
+| Device       |     s |        ops/s |
+|:-------------|------:|-------------:|
+| Intel i7     | 13.50 | 1 244 058.62 |
+| Apple M1 Pro | 10.40 | 1 612 762.75 |
 | Apple M2     |       |              |
