@@ -92,7 +92,7 @@ cd matmul-rst
 cargo run --release
 ```
 
-### R implementation
+## R implementation
 
 Install R on Ubuntu:
 ```
