@@ -104,9 +104,10 @@ Or on macOS:
 brew install R
 ```
 
-From hereon in it's the same for both Ubuntu and macOS. Start an interpreted R session.
-This arrangement ensures everything is installed in your working directory for easy clean up.
+From hereon in it's the same for both Ubuntu and macOS.
+The following arrangement ensures everything is installed in your working directory for easy clean up.
 
+Start an interpreted R session:
 ```
 cd matmul-r
 mkdir lib venv r-miniconda
@@ -128,7 +129,7 @@ source("matmul.R")
 q()
 ```
 
-Clean up afterwards by deleteing the `lib`, `venv` and `r-miniconda` folders from your working directory.
+Clean up afterwards by deleting the `lib`, `venv` and `r-miniconda` folders from your working directory.
 
 ## Benchmarking Results
 
