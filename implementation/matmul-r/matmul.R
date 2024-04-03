@@ -46,7 +46,7 @@ multiply_matrices <- function(a_mats, b_mats) {
 }
 
 # If you want to include runs where garbage collection took place, pass the
-# argument `filter_gc = TRUE`)
+# argument `filter_gc = FALSE`)
 
 bench_results <- bench::mark(
   multiply_matrices(a_matrices,

@@ -187,8 +187,18 @@ Using Numpy.
 
 ### R
 
+With garbage collection disabled.
+
 | Device       |     s |        ops/s |
 |:-------------|------:|-------------:|
-| Intel i7     | 12.30 |   353 976.64 |
+| Intel i7     | 12.30 | 1 364 001.30 |
 | Apple M1 Pro |  9.26 | 1 797 712.32 |
+| Apple M2     |       |              |
+
+With garbage collection enabled.
+
+| Device       |     s |        ops/s |
+|:-------------|------:|-------------:|
+| Intel i7     | 13.50 | 1 244 058.62 |
+| Apple M1 Pro | 10.40 | 1 612 762.75 |
 | Apple M2     |       |              |
