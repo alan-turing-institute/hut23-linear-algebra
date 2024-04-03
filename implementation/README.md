@@ -92,6 +92,44 @@ cd matmul-rst
 cargo run --release
 ```
 
+### R implementation
+
+Install R on Ubuntu:
+```
+sudo apt install r-base-core
+```
+
+Or on macOS:
+```
+brew install R
+```
+
+From hereon in it's the same for both Ubuntu and macOS. Start an interpreted R session.
+This arrangement ensures everything is installed in your working directory for easy clean up.
+
+```
+cd matmul-r
+mkdir lib venv r-miniconda
+R_LIBS_USER="$PWD/lib" \
+  WORKON_HOME="$PWD/venv" \
+  RETICULATE_MINICONDA_PATH="$PWD/r-miniconda" \
+  R --interactive -q --vanilla
+```
+
+From inside the R session install dependencies and run the script.
+
+```
+install.packages(c("reticulate", "bench"))
+library(reticulate)
+virtualenv_create("matmul")
+virtualenv_install("matmul", "numpy")
+reticulate::install_miniconda()
+source("matmul.R")
+q()
+```
+
+Clean up afterwards by deleteing the `lib`, `venv` and `r-miniconda` folders from your working directory.
+
 ## Benchmarking Results
 
 The following benchmarking results were obtained using the following devices:
@@ -110,15 +148,15 @@ Using Numpy.
 |:-------------|------:|-----------:|
 | Intel i7     | 39.92 | 420 289.64 |
 | Apple M1 Pro | 28.70 | 584 562.19 |
-| Apple M2     | 29.37 | 571 142.?? |
+| Apple M2     | 29.37 | 571 142.__ |
 
 ### C
 
 | Device       |     s |         ops/s |
 |:-------------|------:|--------------:|
-| Intel i7     |  1.44 | 11,666,383.42 |
+| Intel i7     |  1.44 | 11 666 383.42 |
 | Apple M1 Pro |  1.54 | 10 873 615.05 |
-| Apple M2     |  1.02 | 16 525 369.?? |
+| Apple M2     |  1.02 | 16 525 369.__ |
 
 ### Racket
 
@@ -128,7 +166,7 @@ Using Numpy.
 |:-------------|------:|-----------:|
 | Intel i7     | 37.78 | 444 135.43 |
 | Apple M1 Pro | 41.80 | 401 359.20 |
-| Apple M2     | 39.36 | 426 272.?? |
+| Apple M2     | 39.36 | 426 272.__ |
 
 "Unsafe" implementation.
 
@@ -145,3 +183,11 @@ Using Numpy.
 | Intel i7     | 41.08 | 408 403.51 |
 | Apple M1 Pro | 50.61 | 331 473.82 |
 | Apple M2     |       |            |
+
+### R
+
+| Device       |     s |        ops/s |
+|:-------------|------:|-------------:|
+| Intel i7     | 12.30 |   353 976.64 |
+| Apple M1 Pro |  9.26 | 1 797 712.32 |
+| Apple M2     |       |              |

@@ -15,7 +15,7 @@
 library(reticulate)
 use_miniconda("r-reticulate")
 np <- import("numpy")
-all_mats <- np$load("matrices.npz")
+all_mats <- np$load("../testdata/matrices.npz")
 
 a_matrices <- lapply(
   paste0(grep("a_",
@@ -54,5 +54,5 @@ bench_results <- bench::mark(
   iterations = 32768
 )
 
-paste("Total time elapsed:", bench_results$total_time)
-paste("Operations per sec:", round(bench_results$`itr/sec` * 512, 2))
+print(paste("Total time elapsed:", bench_results$total_time))
+print(paste("Operations per sec:", round(bench_results$`itr/sec` * 512, 2)))
