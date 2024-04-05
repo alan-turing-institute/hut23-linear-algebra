@@ -1,0 +1,36 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{concrete}
+\usepackage{euler}
+\usepackage{amsmath}
+% \usepackage{amssymb}
+%% Turing grid is 21 columns (of 1cm if we are using A4)
+%% Usually 4 "big columns", each of 4 text cols plus 1 gutter col;
+%% plus an additional gutter on the left.
+\usepackage[verbose, left=5cm, textwidth=8cm]{geometry}
+\author{James Geddes}
+\date{\today}
+\title{Linear Regression Done Right}
+\begin{document}
+
+The problem as formulated by Deisenroth \emph{et al.} is roughly as
+follows. We are given \(n\) “data points,” that is
+\(\mathbf{x}_i\in\mathbf{R}^D\) and \(y_i\in\mathbf{R}\), for
+\(i\in\{1,\dotsc,n\}\), and we are to find a function \(f\colon
+\mathbf{R}^D \to \mathbf{R}\) such that the \(f(\mathbf{x}_i)\)
+approximate the \(y_i\).
+
+The authors describes this notion of approxiation in several
+ways. They say that \(f\) should “[model] the training data” and
+“generalise well to predicting [values] at input locations that are
+not part of the training data.”
+
+Already some things are curious. Why do the \(\mathbf{x}_i\) live in
+\(\mathbf{R}^D\), a vector space? It seems likely that we would want to
+approximate functions on other spaces. For example, suppose I am given
+a temperature, sampled at points on the surface of the earth, and I
+wish to find a function that describes the temperature at all
+points. Then the approximating function will be \(f\colon
+S^2\to\mathbf{R}\). And \(S^2\) is very much not a vector space.
+\end{document}
