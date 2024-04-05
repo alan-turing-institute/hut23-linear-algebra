@@ -28,7 +28,7 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 |          |                                 |                                   |
 | 22 March | Isomorphisms and inverses       | Axler, 3.D (discussion)           |
 | 29 March | --- Bank holiday ---            |                                   |
-| 5 April  | Isomorphisms and invderses      | Exercises, Axler 3.D              |
+| 5 April  | Isomorphisms and inverses       | Exercises, Axler 3.D              |
 
 Overall plan:
 

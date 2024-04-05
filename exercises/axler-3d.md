@@ -61,12 +61,78 @@ exists an invertible $E\in\mathcal{L}(W)$ such that $S=ET$.
 ### Answer
 
 Suppose $\text{null } S = \text{null } T$. We'll try to construct the
-required $E$. Roughly speaking, we know what $E$ has to do on vectors
-in the range of $T$ (it takes $T(\vec{v})$ to $`S(\vec{v})`$) so we need
-to ensure (a) the this action is linear and (b) that it does something
-sensible on other vectors to make it invertible. Our usual approach to
-saying what we mean by “other vectors” is to choose a basis for $W$
-that contains a basis for $\text{range }T$.
+required $E$. (That will show the “only if” part.)
+
+```mermaid
+stateDiagram-v2 
+  direction LR
+  V --> W : S
+  V --> W : T
+  W --> W : E
+```
+
+What _is_ $E$? Starting from $V$, one can get to $W$ by using either
+$S$ or $T$. Those two maps might give different answers: $E$ is the
+map which “makes them the same.” $E$ takes the element of $W$ you got
+by following $T$ and transforms it to the element of $W$ you got by
+following $S$.
+
+Roughly speaking, the $E$ that we are looking for is “$`E=S\circ
+T^{-1}`$”. That is, given some element of $W$, we “take it back to $V$
+with $T^{-1}$ and then forwards again to $W$ using $S$.” Well, anyway,
+that's the intuition -- but there are several questions to resolve.
+
+First, $T^{-1}$ might not exist if $T$ isn't surjective. That is, we
+can't “go back to $V$” from elements not in the range of $T$ because
+there's nowhere for them to have come from. We will need to fix that
+by making up somewhere for them to go when acted on by $E$.
+
+Second, $T^{-1}$ might not exist if $T$ isn't injective. That is,
+it might be that there are _many_ elements of $V$ which are mapped by
+$T$ to the same element of $W$. Then there is a choice of “where to go
+back to.” Fortunately, it will turn out that this choice will not
+matter.
+
+So let's start with what we can do. First of all, since we know what
+to do with vectors in the range of $T$, let's start by separating that
+out. Since $\text{range }T$ is a subspace of $W$, it is possible to
+write $W$ as a direct sum $W = (\text{range }T)\oplus Z$ where $Z$ is
+some other subspace of $W$. (This is Axler 2.33.) What this means is
+that there's a way to write any vector in $W$ uniquely as the sum of a
+vector in $\text{range }T$ and a vector in some other subspace $Z$
+which has no overlap with $\{range }T$ (except the zero vector). (The
+choice of $Z$ itself is not unique but we don't care about that.)
+
+To define $E$ we need to say what it does to any element $w\in
+W$. First, using the decomposition $W = \text{range }T\oplus Z$, write
+that element as $w=u+z$ where $u\in\text{range }T$ and $z\in Z$. To
+define the action of $E$ on $w$, we may separately define the action
+of $E$ on $u$ and on $z$.
+
+Let's start with $u$. Since $u\in \text{range }T$, there must be some
+$v\in V$ such that $T(v) = u$. Set
+
+```math
+E(u) = S(v).
+```
+
+We must be careful! There might be _another_ $v\in V$ such that $T(v')
+= u$. The rule above makes sense only if $S(v) = S(v')$ for any such
+$v'$. Fortunately, that is true. Indeed, if $T(v')=T(v)$ then
+$T(v'-v)=0$; in other words, $v'-v$ is in the null space of $T$. 
+
+
+
+
+
+
+
+we know what $E$ has to do on vectors in the range of $T$ (it takes
+$T(\vec{v})$ to $`S(\vec{v})`$) so we need to ensure (a) the this
+action is linear and (b) that it does something sensible on other
+vectors to make it invertible. Our usual approach to saying what we
+mean by “other vectors” is to choose a basis for $W$ that contains a
+basis for $\text{range }T$.
 
 That is: (1) choose a basis for the range of $T$, say $\vec{e}_1,
 \dots, \vec{e}_m$, and then (2) extend to a basis for $W$, say
