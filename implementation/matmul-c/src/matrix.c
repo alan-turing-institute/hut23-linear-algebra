@@ -48,7 +48,7 @@ void matrix_print(Matrix *A) {
 	if (A) {
 		for (uint32_t row = 0; row < A->height; ++row) {
 			for (uint32_t col = 0; col < A->width; ++col) {
-				printf("%8.0f ", A->elements[(row * A->width) + col]);
+				printf("%4.4f ", A->elements[(row * A->width) + col]);
 			}
 			printf("\n");
 		}
