@@ -26,6 +26,7 @@
 \newcommand{\set}[1]{\mathbold{#1}}
 %\renewcommand{\vec}[1]{mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
+\newcommand{\id}{\boldmath{1}}
 %%
 \title{All the maths we know}
 \author{}
@@ -252,7 +253,7 @@
 
   $\mathcal{L}(V, W)$ & The set of all linear maps $V\to W$ with the vector space structure given by $(S+\alpha T)(v) \equiv S(v)+\alpha T(v)$ for any $S,T\in V$. \\
 
-  $\mathbf{1}_V$ & The identity map $\mathbf{1}_V\colon V\to V$ where $\mathbf{1}_V\colon v\mapsto v$. \\
+  $\id_V$ & The identity map $\id_V\colon V\to V$ where $\id_V\colon v\mapsto v$. \\
 
   $\circ$ & Composition of linear maps. For linear maps $T\colon V\to W$ and $S\colon W\to X$, their composition $S\circ T$ is that linear map given by $(S\circ T)(v) \equiv S(T(v))$.
 
@@ -261,7 +262,12 @@
 
   \defn{Null space} & (Or “kernel”.) Of a linear map, that subspace of the domain that is mapped to the zero vector. \\
 
-  \defn{Image} & Of a linear map, that subspace of the codomain that is mapped to by \emph{some} element of the domain. Sometimes called the \emph{range}. However, range used to mean “codomain” so the term can be ambiguous. 
+  \defn{Image} & Of a linear map, that subspace of the codomain that is mapped to by \emph{some} element of the domain. Sometimes called the \emph{range}. However, range used to mean “codomain” so the term can be ambiguous. \\
+
+  \defn{Inverse} & For $T:V\to W$ a linear map, the \emph{inverse} (if it
+  exists) is the linear map $T^{-1}$ such that $TT^{-1}=\id_V$ and $T^{-1}T=\id_W$. \\
+
+  \defn{Isomorphism} & An isomorphism of vector spaces $V$ and $W$ is an invertible, linear map between the two. If an isophormism exists the vector spaces are said to be \emph{isomorphic}. 
   
 \end{tabularx}
 
@@ -310,7 +316,7 @@
 
   \defn{Rank} & The rank of a matrix $A_{ij}\in\set{R}^{m,n}$ is the dimension of the span of the $n$ vectors $\vec{c}_j\in \set{R}^m$ where $\vec{c}_j = A_{ij}$ (that is, the $\vec{c}_j$ are the ``columns'' of $A_{ij}$).
 
- The dimension of the span of the ``rows'' of $A_{ij}$ is also the rank.
+  The dimension of the span of the ``rows'' of $A_{ij}$ is also the rank.
  
 \end{tabularx}
 

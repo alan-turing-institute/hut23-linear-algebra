@@ -9,22 +9,26 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 
 ### Schedule
 
-| Date   | Topic                           | Reading                           |
-|--------|---------------------------------|-----------------------------------|
-| 6 Oct  | First meeting                   | Axler Chapter 1.A (part A only)§  |
-| 13 Oct | Complex numbers; $\mathbf{R}^n$ | Exercises 1.A                     |
-| 20 Oct | Definition of vector space      | Axler, 1.B                        |
-| 27 Oct | Vector spaces                   | Exercises, Axler 1.B              |
-| 3 Nov  | Subspaces                       | Axler, 1.C (discussion w/o James) |
-| 10 Nov | Subspaces (and direct sums)     | Exercises, Axler 1.C              |
-| 17 Nov | Linear independence             | Axler 2.A (discussion)            |
-|        |                                 |                                   |
-| 2024   |                                 |                                   |
-| 19 Jan | Dimension                       | Exercises, Axler 2.C              |
-| 26 Jan | Linear maps!                    | Axler, 3.A (discussion)           |
-| 2 Feb  | Linear maps                     | Exercises, Axler 3.A              |
-| 9 Feb  | Kernels and ranges              | Axler, 3.B (discussion)           |
-| 16 Feb | Kernels and ranges              | Exercises, Axler 3.B              |
+| Date     | Topic                           | Reading                           |
+|----------|---------------------------------|-----------------------------------|
+| 6 Oct    | First meeting                   | Axler Chapter 1.A (part A only)§  |
+| 13 Oct   | Complex numbers; $\mathbf{R}^n$ | Exercises 1.A                     |
+| 20 Oct   | Definition of vector space      | Axler, 1.B                        |
+| 27 Oct   | Vector spaces                   | Exercises, Axler 1.B              |
+| 3 Nov    | Subspaces                       | Axler, 1.C (discussion w/o James) |
+| 10 Nov   | Subspaces (and direct sums)     | Exercises, Axler 1.C              |
+| 17 Nov   | Linear independence             | Axler 2.A (discussion)            |
+|          |                                 |                                   |
+| 2024     |                                 |                                   |
+| 19 Jan   | Dimension                       | Exercises, Axler 2.C              |
+| 26 Jan   | Linear maps!                    | Axler, 3.A (discussion)           |
+| 2 Feb    | Linear maps                     | Exercises, Axler 3.A              |
+| 9 Feb    | Kernels and ranges              | Axler, 3.B (discussion)           |
+| 16 Feb   | Kernels and ranges              | Exercises, Axler 3.B              |
+|          |                                 |                                   |
+| 22 March | Isomorphisms and inverses       | Axler, 3.D (discussion)           |
+| 29 March | --- Bank holiday ---            |                                   |
+| 5 April  | Isomorphisms and invderses      | Exercises, Axler 3.D              |
 
 Overall plan:
 
