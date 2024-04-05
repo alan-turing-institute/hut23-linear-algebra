@@ -66,9 +66,9 @@ required $E$. (That will show the “only if” part.)
 ```mermaid
 stateDiagram-v2 
   direction LR
-  V --> W : S
-  V --> W : T
-  W --> W : E
+  V --> state "W" as s1 : S
+  V --> state "W" as s2 : T
+  s2 --> s1 : E
 ```
 
 What _is_ $E$? Starting from $V$, one can get to $W$ by using either
