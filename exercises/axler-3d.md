@@ -64,7 +64,7 @@ Suppose $\text{null } S = \text{null } T$. We'll try to construct the
 required $E$. (That will show the “only if” part.)
 
 ```mermaid
-stateDiagram-v2 
+graph
   direction LR
   state "W" as s1 
   state "W" as s2
@@ -73,10 +73,12 @@ stateDiagram-v2
   s2 --> s1 : E
 ```
 
-What _is_ $E$? Starting from $V$, one can get to $W$ by using either
-$S$ or $T$. Those two maps might give different answers: $E$ is the
-map which “makes them the same.” $E$ takes the element of $W$ you got
-by following $T$ and transforms it to the element of $W$ you got by
+What _is_ $E$? The diagram above isn't great but maybe gives some
+idea. Starting from $V$, one can get to $W$ by using either $S$ or
+$T$. (Note that the diagram “duplicates” $W$ -- that space appears
+twice.) Those two maps might give different answers: $E$ is the map
+which “makes them the same.” $E$ takes the element of $W$ you got by
+following $T$ and transforms it to the element of $W$ you got by
 following $S$.
 
 Roughly speaking, the $E$ that we are looking for is “$`E=S\circ
