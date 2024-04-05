@@ -66,8 +66,10 @@ required $E$. (That will show the “only if” part.)
 ```mermaid
 stateDiagram-v2 
   direction LR
-  V --> state "W" as s1 : S
-  V --> state "W" as s2 : T
+  state "W" as s1 
+  state "W" as s2
+  V --> s1 : S 
+  V --> s2 : T
   s2 --> s1 : E
 ```
 
