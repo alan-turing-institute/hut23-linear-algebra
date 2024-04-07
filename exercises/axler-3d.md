@@ -58,13 +58,62 @@ Suppose that $W$ is finite-dimensional and $S, T\in\mathcal{L}(V,
 W)$. Prove that $\text{null } S = \text{null } T$ if and only if there
 exists an invertible $E\in\mathcal{L}(W)$ such that $S=ET$.
 
+```mermaid
+stateDiagram-v2
+  direction LR
+  state "V" as s1 
+  state "W" as s2
+  s1 --> s2 : S 
+  s1 --> s2 : T
+  s2 --> s2 : E
+```
+
 ### Answer
+
+The “if” direction is the most straighforward. First, if such an $E$
+exists, then $\text{null }S \subset \text{null }T$. (To see this,
+suppose $v\in\text{null }T$; that is, $T(v)=\mathbf{0}$. Since $S(v) =
+E(T(v))$ we have $S(v)=\mathbf{0}$ and hence $v\in\text{null S}$.) Now
+run the argument again, using $E^{-1}$ and conclude that $\text{null
+}T\subset\text{null }S$. Putting those together implies $\text{null
+}S=\text{null }T$.
+
+The other direction is not so easy!
+
+What is this question saying? It is sort of saying two things. The
+first is something like, “if the null spaces of $S$ and $T$ are equal,
+then their ranges are isomorphic.” That's kind of interesting, because
+the null spaces live in the domain of $S$ and $T$, whereas the ranges
+live in the codomain.
+
+The second thing the question is saying is, “the ismorphism between
+the ranges of $S$ and $T$ can be extended to an isomporphism on the
+whole of $W$.” That is, “the bit of $W$ that isn't the range of $S$ is
+also isomorphic to the bit of $W$ that isn't the range of $T$.” This
+part is less interesting because it's nothing to do with maps like $S$
+and $T$ (at least, I don't think so).
+
+So, let's try to show that the range of $T$ is isomporphic to the
+range of $S$. That is, we will show
+
+```math
+\text{null }S = \text{null }T \implies \text{range }S \cong
+\text{range }T.
+```
+
+To do so, we will construct a linear map, $\tilde{E}\colon \text{range
+}T\to\text{range }S$, that is both injective and surjective (and thus
+invertible).
+
+
+
+
 
 Suppose $\text{null } S = \text{null } T$. We'll try to construct the
 required $E$. (That will show the “only if” part.)
 
 ```mermaid
-graph
+stateDiagram-v2
   direction LR
   state "W" as s1 
   state "W" as s2
@@ -75,21 +124,21 @@ graph
 
 What _is_ $E$? The diagram above isn't great but maybe gives some
 idea. Starting from $V$, one can get to $W$ by using either $S$ or
-$T$. (Note that the diagram “duplicates” $W$ -- that space appears
-twice.) Those two maps might give different answers: $E$ is the map
-which “makes them the same.” $E$ takes the element of $W$ you got by
-following $T$ and transforms it to the element of $W$ you got by
-following $S$.
+$T$. (Note that the diagram “duplicates” $W$ -- that is, $W$ appears
+twice.) The two maps $T$ and $S$ might give different answers: $E$ is
+the map which “makes them the same.” $E$ takes the element of $W$ you
+got by following $T$ and transforms it to the element of $W$ you got
+by following $S$.
 
 Roughly speaking, the $E$ that we are looking for is “$`E=S\circ
 T^{-1}`$”. That is, given some element of $W$, we “take it back to $V$
 with $T^{-1}$ and then forwards again to $W$ using $S$.” Well, anyway,
 that's the intuition -- but there are several questions to resolve.
 
-First, $T^{-1}$ might not exist if $T$ isn't surjective. That is, we
-can't “go back to $V$” from elements not in the range of $T$ because
-there's nowhere for them to have come from. We will need to fix that
-by making up somewhere for them to go when acted on by $E$.
+First, $T^{-1}$ might not exist if $T$ isn't surjective. We can't “go
+back to $V$” from elements not in the range of $T$ because there's
+nowhere for them to have come from. We will need to fix that by making
+up somewhere for them to go when acted on by $E$.
 
 Second, $T^{-1}$ might not exist if $T$ isn't injective. That is,
 it might be that there are _many_ elements of $V$ which are mapped by
@@ -104,8 +153,9 @@ write $W$ as a direct sum $W = (\text{range }T)\oplus Z$ where $Z$ is
 some other subspace of $W$. (This is Axler 2.33.) What this means is
 that there's a way to write any vector in $W$ uniquely as the sum of a
 vector in $\text{range }T$ and a vector in some other subspace $Z$
-which has no overlap with $\{range }T$ (except the zero vector). (The
-choice of $Z$ itself is not unique but we don't care about that.)
+which has no overlap with $\text{range }T$ (except the zero
+vector). (The choice of $Z$ itself is not unique but we don't care
+about that.)
 
 To define $E$ we need to say what it does to any element $w\in
 W$. First, using the decomposition $W = \text{range }T\oplus Z$, write
@@ -113,19 +163,26 @@ that element as $w=u+z$ where $u\in\text{range }T$ and $z\in Z$. To
 define the action of $E$ on $w$, we may separately define the action
 of $E$ on $u$ and on $z$.
 
-Let's start with $u$. Since $u\in \text{range }T$, there must be some
+Start with $u$. Since $u\in \text{range }T$, there must be some
 $v\in V$ such that $T(v) = u$. Set
 
 ```math
 E(u) = S(v).
 ```
 
-We must be careful! There might be _another_ $v\in V$ such that $T(v')
+We must be careful! There might be _another_ $v'\in V$ such that $T(v')
 = u$. The rule above makes sense only if $S(v) = S(v')$ for any such
 $v'$. Fortunately, that is true. Indeed, if $T(v')=T(v)$ then
-$T(v'-v)=0$; in other words, $v'-v$ is in the null space of $T$. 
+$T(v'-v)=0$; in other words, $v'-v$ is in the null space of $T$. But
+by supposition this is the null space of $S$. So $S(v'-v)=0$ and
+therefore $S(v)=S(v')$.
 
+What about $z$? We will set
 
+```math
+E(z) = 
+```
+. 
 
 
 
