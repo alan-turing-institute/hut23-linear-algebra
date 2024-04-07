@@ -71,7 +71,7 @@ stateDiagram-v2
 ### Answer
 
 The “if” direction is the most straighforward. First, if such an $E$
-exists, then $\text{null }S \subset \text{null }T$. (To see this,
+exists, then $\text{null }T \subset \text{null }S$. (To see this,
 suppose $v\in\text{null }T$; that is, $T(v)=\mathbf{0}$. Since $S(v) =
 E(T(v))$ we have $S(v)=E(\mathbf{0}) = \mathbf{0}$ and hence $v\in\text{null S}$.) Now
 run the argument again, using $E^{-1}$ and conclude that $\text{null
@@ -133,32 +133,32 @@ injective and surjective. It would fail to be injective if there were
 $w,w'\in \text{range T}$, with $w\neq w'$, such that $\tilde{E}(w) =
 \tilde{E}(w')$. But this would mean that $\tilde{E}(w-w')=\mathbf{0}$
 and therefore (by the definition of $\tilde{E}$) that
-$\S(v'-v)=\mathbf{0}$ for some $v$ and $v'$ with $T(v)=w$ and
+$S(v'-v)=\mathbf{0}$ for some $v$ and $v'$ with $T(v)=w$ and
 $T(v')=w'$. But _that_ means (since the null spaces are equal) that
 $T(v'-v)=\mathbf{0}$ and therefore $w=w'$. So $\tilde{E}$ cannot fail
 to be injective.
 
-It would fail to be injective if there were some $z\in \text{range }S$
-that is not the image of any $w$ under $\tilde{E}$. But it's easy to
+It would fail to be surjective if there were some $z\in \text{range }S$
+that is not the image under $\tilde{E}$ of any $w$. But it's easy to
 find the required $w$: starting from $z$, “go back to $V$ using $S$
 and then forward to $W$ using $T$” following just the same argument above.
 
-We have shown that $\text{range }S$ and $text{range T}$ are
+We have shown that $\text{range }S$ and $\text{range }T$ are
 isomorphic. But to finish the argument, we must show that $\tilde{E}$
 has an extension to $W$. That is, we need to find an $E$ with
-$E|_{\text{range }T}\tilde{E}$.
+$E|_{\text{range }T}=\tilde{E}$.
 
 Since $\text{range }T$ is a subspace, there is another subspace, say
-$X_1$, such that $W=\text{range }T\oplus X$. (This is Axler 2.33, and
+$X$, such that $W=(\text{range }T)\oplus X$. (This is Axler 2.33, and
 relies upon $W$ being finite-dimensional.) That is, one can find a
-subspace $X$ such that any vector in $w$ can be written uniquely as
+subspace $X$ such that any vector in $W$ can be written uniquely as
 the sum of a vector in $\text{range }T$ and a vector in $X$. Likewise,
-we can find a subspace $Y$ such that $W=\text{range }S\oplus Y$. 
+we can find a subspace $Y$ such that $W=(\text{range }S)\oplus Y$.
 
-Now -- and this is not very satisying -- since $W$ is
+Now – and this is not very satisying – since $W$ is
 finite-dimensional, and since $\text{range }S\cong \text{range }T$, we
 must have $\text{dim }X = \text{dim }Y$. Thus $X$ and $Y$ are
-isomorphic. So there is some invertible $\tilde{F}\colon X\to Y$. 
+isomorphic. So there is some invertible $\tilde{F}\colon X\to Y$.
 
 Now we get to say what $E$ is. For $w\in W$, write $w = \tilde{w}+x$
 where $\tilde{w}\in\text{range }T$ and $x\in X$. Set
