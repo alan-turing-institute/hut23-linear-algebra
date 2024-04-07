@@ -73,7 +73,7 @@ stateDiagram-v2
 The “if” direction is the most straighforward. First, if such an $E$
 exists, then $\text{null }S \subset \text{null }T$. (To see this,
 suppose $v\in\text{null }T$; that is, $T(v)=\mathbf{0}$. Since $S(v) =
-E(T(v))$ we have $S(v)=\mathbf{0}$ and hence $v\in\text{null S}$.) Now
+E(T(v))$ we have $S(v)=E(\mathbf{0}) = \mathbf{0}$ and hence $v\in\text{null S}$.) Now
 run the argument again, using $E^{-1}$ and conclude that $\text{null
 }T\subset\text{null }S$. Putting those together implies $\text{null
 }S=\text{null }T$.
@@ -105,170 +105,67 @@ To do so, we will construct a linear map, $\tilde{E}\colon \text{range
 }T\to\text{range }S$, that is both injective and surjective (and thus
 invertible).
 
-
-
-
-
-Suppose $\text{null } S = \text{null } T$. We'll try to construct the
-required $E$. (That will show the “only if” part.)
-
-```mermaid
-stateDiagram-v2
-  direction LR
-  state "W" as s1 
-  state "W" as s2
-  V --> s1 : S 
-  V --> s2 : T
-  s2 --> s1 : E
-```
-
-What _is_ $E$? The diagram above isn't great but maybe gives some
-idea. Starting from $V$, one can get to $W$ by using either $S$ or
-$T$. (Note that the diagram “duplicates” $W$ -- that is, $W$ appears
-twice.) The two maps $T$ and $S$ might give different answers: $E$ is
-the map which “makes them the same.” $E$ takes the element of $W$ you
-got by following $T$ and transforms it to the element of $W$ you got
-by following $S$.
-
-Roughly speaking, the $E$ that we are looking for is “$`E=S\circ
+Roughly speaking, the $\tilde{E}$ that we are looking for is “$`\tilde{E}=S\circ
 T^{-1}`$”. That is, given some element of $W$, we “take it back to $V$
-with $T^{-1}$ and then forwards again to $W$ using $S$.” Well, anyway,
-that's the intuition -- but there are several questions to resolve.
+with $T^{-1}$ and then forwards again to $W$ using $S$.”
 
-First, $T^{-1}$ might not exist if $T$ isn't surjective. We can't “go
-back to $V$” from elements not in the range of $T$ because there's
-nowhere for them to have come from. We will need to fix that by making
-up somewhere for them to go when acted on by $E$.
-
-Second, $T^{-1}$ might not exist if $T$ isn't injective. That is,
-it might be that there are _many_ elements of $V$ which are mapped by
-$T$ to the same element of $W$. Then there is a choice of “where to go
-back to.” Fortunately, it will turn out that this choice will not
-matter.
-
-So let's start with what we can do. First of all, since we know what
-to do with vectors in the range of $T$, let's start by separating that
-out. Since $\text{range }T$ is a subspace of $W$, it is possible to
-write $W$ as a direct sum $W = (\text{range }T)\oplus Z$ where $Z$ is
-some other subspace of $W$. (This is Axler 2.33.) What this means is
-that there's a way to write any vector in $W$ uniquely as the sum of a
-vector in $\text{range }T$ and a vector in some other subspace $Z$
-which has no overlap with $\text{range }T$ (except the zero
-vector). (The choice of $Z$ itself is not unique but we don't care
-about that.)
-
-To define $E$ we need to say what it does to any element $w\in
-W$. First, using the decomposition $W = \text{range }T\oplus Z$, write
-that element as $w=u+z$ where $u\in\text{range }T$ and $z\in Z$. To
-define the action of $E$ on $w$, we may separately define the action
-of $E$ on $u$ and on $z$.
-
-Start with $u$. Since $u\in \text{range }T$, there must be some
-$v\in V$ such that $T(v) = u$. Set
+How do we make this more precise? Suppose we have some $w\in W$ that
+is in the range of $T$. There must be _some_ $v\in V$ such that $T(v)
+= w$. We'd like to be able to define $\tilde{E}$ by
 
 ```math
-E(u) = S(v).
+\tilde{E}(w) = S(v).
 ```
 
-We must be careful! There might be _another_ $v'\in V$ such that $T(v')
-= u$. The rule above makes sense only if $S(v) = S(v')$ for any such
-$v'$. Fortunately, that is true. Indeed, if $T(v')=T(v)$ then
-$T(v'-v)=0$; in other words, $v'-v$ is in the null space of $T$. But
-by supposition this is the null space of $S$. So $S(v'-v)=0$ and
-therefore $S(v)=S(v')$.
+The only problem is that there might be _another_ $v'\in V$ such that
+$T(v') = w$. The rule above will only make sense if $S(v) = S(v')$ for
+any such $v'$. Fortunately, that is true! Indeed, if $T(v')=T(v)$ then
+$T(v'-v)=\mathbf{0}$; in other words, $v'-v$ is in the null space of
+$T$. But by supposition this is the null space of $S$. So
+$S(v'-v)=\mathbf{0}$ and therefore $S(v)=S(v')$.
 
-What about $z$? We will set
+So we have constructed $\tilde{E}$ on any element of $\text{range
+T}$. It is “go back to $V$ using $T$ and then forward to $W$ using
+$S$, noting that it doesn't matter which element of $V$ you use.”
+
+To show that $\tilde{E}$ is an isomorphism, we need to show that it is
+injective and surjective. It would fail to be injective if there were
+$w,w'\in \text{range T}$, with $w\neq w'$, such that $\tilde{E}(w) =
+\tilde{E}(w')$. But this would mean that $\tilde{E}(w-w')=\mathbf{0}$
+and therefore (by the definition of $\tilde{E}$) that
+$\S(v'-v)=\mathbf{0}$ for some $v$ and $v'$ with $T(v)=w$ and
+$T(v')=w'$. But _that_ means (since the null spaces are equal) that
+$T(v'-v)=\mathbf{0}$ and therefore $w=w'$. So $\tilde{E}$ cannot fail
+to be injective.
+
+It would fail to be injective if there were some $z\in \text{range }S$
+that is not the image of any $w$ under $\tilde{E}$. But it's easy to
+find the required $w$: starting from $z$, “go back to $V$ using $S$
+and then forward to $W$ using $T$” following just the same argument above.
+
+We have shown that $\text{range }S$ and $text{range T}$ are
+isomorphic. But to finish the argument, we must show that $\tilde{E}$
+has an extension to $W$. That is, we need to find an $E$ with
+$E|_{\text{range }T}\tilde{E}$.
+
+Since $\text{range }T$ is a subspace, there is another subspace, say
+$X_1$, such that $W=\text{range }T\oplus X$. (This is Axler 2.33, and
+relies upon $W$ being finite-dimensional.) That is, one can find a
+subspace $X$ such that any vector in $w$ can be written uniquely as
+the sum of a vector in $\text{range }T$ and a vector in $X$. Likewise,
+we can find a subspace $Y$ such that $W=\text{range }S\oplus Y$. 
+
+Now -- and this is not very satisying -- since $W$ is
+finite-dimensional, and since $\text{range }S\cong \text{range }T$, we
+must have $\text{dim }X = \text{dim }Y$. Thus $X$ and $Y$ are
+isomorphic. So there is some invertible $\tilde{F}\colon X\to Y$. 
+
+Now we get to say what $E$ is. For $w\in W$, write $w = \tilde{w}+x$
+where $\tilde{w}\in\text{range }T$ and $x\in X$. Set
 
 ```math
-E(z) = 
+E(w) = \tilde{E}(\tilde{w}) + \tilde{F}(x).
 ```
-. 
-
-
-
-
-
-we know what $E$ has to do on vectors in the range of $T$ (it takes
-$T(\vec{v})$ to $`S(\vec{v})`$) so we need to ensure (a) the this
-action is linear and (b) that it does something sensible on other
-vectors to make it invertible. Our usual approach to saying what we
-mean by “other vectors” is to choose a basis for $W$ that contains a
-basis for $\text{range }T$.
-
-That is: (1) choose a basis for the range of $T$, say $\vec{e}_1,
-\dots, \vec{e}_m$, and then (2) extend to a basis for $W$, say
-$`\vec{e}_1, \dots, \vec{e}_m, \vec{e}_{m+1}, \dots, \vec{e}_n`$. With
-this basis, every element of $W$, say $\vec{w}$, can be written as
-$`\vec{w} = \sum_i w_i \vec{e}_i`$, which is
-
-```math
-\vec{w} = \sum_i w_i \vec{e}_i = \sum_{i=1}^{m} w_i \vec{e}_i +
-\sum_{j=m+1}^n w_j \vec{e}_j
-```
-
-That is, every vector in $W$ can be written as the sum of an element
-of $\text{range }T$ plus a vector not in the range of $T$.
-
-So now, for $\vec{w}\in W$, define $E$ in the following way. Write
-$\vec{w} = \vec{u}+\vec{u}'$, where $\vec{u}\in\text{range }T$. Since
-$\vec{u}\in\text{range }T$, there must be some place in $V$ from which
-this came: there must be some $\vec{v}\in V$ (not necessarily unique)
-such that $\vec{u} = T(\vec{v})$. We'd like to set $E(\vec{u}) =
-S(\vec{v})$, but we have the problem that the $v$ is not necessarily
-unique. Fortunately, the only ways that there can be multiple
-$`\vec{v}`$s with $\vec{u}=T(\vec{v})$ is if they differ by elements
-of the null space.
-
-That is, suppose $\vec{v}'$ is also such that $T(\vec{v}') =
-\vec{u}$. Then $T(\vec{v}'-\vec{v}) = \mathbf{0}$; in other words,
-$\vec{v}'-\vec{v}$ is in the null space of $T$. Therefore, by
-supposition, $\vec{v}'-\vec{v}$ is in the null space of $S$. Therefore
-$S(\vec{v}') = S(\vec{v})$ and so there is no ambiguity in setting
-$E(\vec{u}) = S(\vec{v})$.
-
-We are nearly done with the definition of $E$. We want to define
-$E(\vec{w})$ for some arbitrary $\vec{w}$, where however we have
-written $\vec{w} = \vec{u}+\vec{u}'$, with $\vec{u}\in\text{range
-T}$. We know what we want from $E(\vec{u})$ (it's wherever $S$ takes
-the vector that $T$ sent to $\vec{u}$) but what about $E(\vec{u}')$?
-We could just send that to zero but that would make $E$
-non-invertible. So instead let's leave it alone. In other words, $E$
-is defined by
-
-```math
-E(\vec{w}) = S(\vec{v}) + \vec{u}',
-```
-
-where $\vec{w} = \vec{u}+\vec{u}'$ and $T(\vec{v}) = \vec{u}$.
-
-We _still_ have to show that $E$ is a linear map and invertible. To
-show that it is linear is an annoying process of following through the
-definition above for some $\alpha \vec{w}_1 + \beta \vec{w}_2$ (though
-really it can't but be linear given that everything we have done is
-linear). Why is it invertible?
-
-$E$ is invertible if it is injective and surjective. It can't be
-non-injective on the bit of $W$ that is not the range of $T$, because
-we've defined it to be the identity there. Suppose there were distinct
-$\vec{u}, \vec{u}'$, both in the range of $T$ such that
-$E(\vec{u})=E(\vec{u}')$. That would mean that there must be
-$\vec{v},\vec{v}'\in V$, with $\vec{u}=T(\vec{v})$ and
-$\vec{u}'=T(vec{v}')$, such that $S(\vec{v}) = S(\vec{v}')$. But that
-means that $\vec{v}'-\vec{v}\in\text{null }S$, and hence
-$\vec{v}'-\vec{v}\in\text{null }T$ and hence in fact
-$T(\vec{v})=T(\vec{v}')$ or $\vec{u}=\vec{u}'$, in contradiction to
-the supposition. So $E$ is injective.
-
-Is $E$ surjective? In other words, does every $\vec{w}\in\text{range
-}S$ come from some $E(\vec{u})$? Yes: roughly, to find $\vec{u}$, go
-back to $V$ (using $S$) and then forward to $W$ (using $T$): existence
-and the required properties of $\vec{u}$ follow by running the same
-argument above with $T$ and $S$ switched.
-
-Well, that's the "only if" direction. The "if" direction is
-easy. Suppose $\vec{v}\in\text{null T}$, say. Then $S(\vec{v}) =
-E(T(\vec{v})) = \mathbf{0}$, so $\vec{v}$ is in the null space of
-$S$. The argument can be reversed, noting that $E$ is invertible.
 
 ## Question 9
 
