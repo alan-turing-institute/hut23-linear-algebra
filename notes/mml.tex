@@ -1,38 +1,114 @@
 \documentclass[11pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{concrete}
-\usepackage{euler}
+\usepackage{beton}
+\usepackage{eulervm}
 \usepackage{amsmath}
 \usepackage{bm}
+\DeclareFontSeriesDefault[rm]{bf}{sbc}
 % \usepackage{amssymb}
 %% Turing grid is 21 columns (of 1cm if we are using A4)
 %% Usually 4 "big columns", each of 4 text cols plus 1 gutter col;
 %% plus an additional gutter on the left.
-\usepackage[left=5cm, textwidth=11cm]{geometry}
+\usepackage[left=4cm, textwidth=13cm]{geometry}
 \author{James Geddes}
 \date{\today}
 \title{Linear Regression Done Right}
 %%
 \DeclareBoldMathCommand{\setR}{R}
 \begin{document}
+\maketitle
 
-The problem as formulated by Deisenroth \emph{et al.} is roughly as
-follows. We are given \(n\) “data points,” that is \(x_i\in\setR^D\) and
-\(y_i\in\setR\), for \(i\in\{1,\dotsc,n\}\), and we are to find a function
-\(f\colon \setR^D \to \setR\) such that the \(f(x_i)\)
-approximate the \(y_i\).
+This note is an attempt to rewrite chapter 9 of Deisenroth \emph{et
+al.}, on linear regression.
 
-The authors describes this notion of approxiation in several
-ways. They say that \(f\) should “[model] the training data” and
-“generalise well to predicting [values] at input locations that are
-not part of the training data.”
+\section*{Introduction}
 
-Already some things are curious. Why do the \(x_i\) live in
-\(\setR^D\), a vector space? It seems likely that we would want to
-approximate functions on other spaces. For example, suppose I am given
-a temperature, sampled at points on the surface of the earth, and I
-wish to find a function that describes the temperature at all
-points. Then the approximating function will be \(f\colon
-S^2\to\setR\). And \(S^2\) is very much not a vector space.
+Here are three problems which all seem to have something in common:
+
+\begin{enumerate}
+\item An ``urban farm'' grows crops underground in a vacant tunnel. To
+  monitor environmental conditions, temperature sensors are placed at
+  various locations around the tunnel. The farmers would like a sense
+  of the temperature at arbitrary locations.
+\item A data scientist is asked to create a model to predict the
+  species of a penguin, given some facts about its weight, flipper
+  size and bill size.
+\item An economist wants to understand whether there is a relationship
+  between measures of childhood education and later income.
+\end{enumerate}
+
+In each of these examples we believe that there is, in the world, some
+sort of map, or function, from an “input” to an “output.” In the first
+example, the input is “physical location” and the output is
+“temperature;” in the second, the input is “triple of morphological
+measurements” and the output is “species;” in the third, the input is
+whatever measures of childhood education are used, and the output is,
+say, “income at age 30.”
+
+Our challenge is to make a mathematical model of this relationship. In
+order to do so, we are provided with “data”---namely a set of pairs of
+input and output. The mathematical model of the relationship that we
+determine is supposed to match this data, more or less.
+
+On the other hand, there are significant differences between these
+problems. In the second and third examples, the map we are seeking
+exists somehow \emph{in potentia}, as a relationship between
+characteristics of a particular “observational unit” (penguins and
+people, respectively). In the first, by contrast, the map just “is” a
+thing in the world---the temperature exists at each point in space. The
+third example has a “causal” flavour: we presumably hope to be able to
+\emph{affect} the output by changing the input. In the second, the
+inputs are immutable. Temperature and income take values in a
+continuous, totally-ordered set but species comes from a finite,
+unordered set. 
+
+Can we capture the similarities between these problems in a way that
+will let us attempt to solve them? In each example, there is given a
+set $X$ and a set $Y$ and a collection of pairs $(x_i, y_i)\in X\times Y$$
+(for $i=1,\dots,N$). Consider the challenge of finding a map,
+$\tilde{f}\colon X\to Y$, having the property that $\tilde{f}(x_i)= y_i$
+for each~$i$.
+
+
+
+
+
+
+
+
+\section*{Notes on the original text}
+
+Like most machine learning techniques, linear regression involves the
+representation of a particular real-world problem by mathematical
+objects, as well as the use of mathematical methods to solve the
+problem. Therefore, in writing an exposition of the subject, one will
+move between informal descriptions and formal mathematics; between the
+real world and the mathematical world.
+
+It is important that the reader is clear at each point which is which!
+Mathematically-inclined texts often conflate informal descriptions and
+formal definitions, either by failing to give a proper definition when
+one was presaged, or by dropping into heavy mathematics before
+clarifying the question. 
+
+For example, Deisenroth \emph{et al.}\ begin as
+follows.\footnote{There is one other sentence before this but it
+merely introduces the chapter. I've numbered the sentences for ease of
+reference; these numbers are not part of the original text. And I have
+omitted one other sentence that is not important here.}
+
+\begin{quote}
+ [1] In \emph{regression}, we aim to find a function $f$ that maps
+ inputs $\bm{x} \in \setR^D$ to corresponding function values $f(\bm{x})
+ \in\setR$. [2] We assume that we are given a set of training inputs
+ $\bm{x}_n$ and corresponding noisy observations $y_n = f(\bm{x}_n) +
+ \epsilon$, where $\epsilon$ is an i.i.d.\ random variable that describes
+ measurement/observation noise and potentially unmodeled processes
+ [...]. [3] Our task is to find a function that not only models the
+ training data, but generalizes well [...].
+\end{quote}
+
+
+
 \end{document}
