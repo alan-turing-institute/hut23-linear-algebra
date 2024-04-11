@@ -44,7 +44,7 @@ example, the input is “physical location” and the output is
 “temperature;” in the second, the input is “triple of morphological
 measurements” and the output is “species;” in the third, the input is
 whatever measures of childhood education are used, and the output is,
-say, “income at age 30.”
+perhaps, “income at age 30.”
 
 Our challenge is to make a mathematical model of this relationship. In
 order to do so, we are typically provided with “data”---a set of
@@ -62,16 +62,16 @@ third example has a “causal” flavour: we presumably hope to be able to
 \emph{affect} the output by changing the input. In the second, the
 inputs are immutable. Temperature and income take values in a
 continuous, totally-ordered set but species comes from a finite,
-unordered set. 
+unordered set. Can we capture the similarities between these different
+problems in a way that will let us attempt to solve them?
 
-Can we capture the similarities between these problems in a way that
-will let us attempt to solve them? In each example, there is given a
-set $X$ (of possible inputs) and a set $Y$ (of possible outputs) and a
-collection $i=1,\dots,N$ of pairs $(x_i, y_i)\in X\times Y$ (the data).
+In each example, there is given a set $X$ (of possible inputs) and a
+set $Y$ (of possible outputs) and a collection $i=1,\dots,N$ of pairs
+$(x_i, y_i)\in X\times Y$ (the data). Consider the challenge of finding a
+map, $\tilde{f}\colon X\to Y$, having the property that $\tilde{f}(x_i)=
+y_i$ for each~$i$.
 
-Consider the challenge of finding a map, $\tilde{f}\colon X\to Y$,
-having the property that $\tilde{f}(x_i)= y_i$ for each~$i$. The
-immediate snag is that finding such a map is \emph{far too easy}:
+The immediate snag is that finding such a map is \emph{far too easy}:
 \begin{equation*}
   \tilde{f}(x) =
   \begin{cases}
@@ -79,11 +79,39 @@ immediate snag is that finding such a map is \emph{far too easy}:
       0 & \text{otherwise}.
   \end{cases}
 \end{equation*}
-Well, that's not what we wanted! What we meant to ask for was a
-function that “is likely to agree with the real function on
-\emph{other} values of the input, ones we haven't seen yet.” This
-function, being zero everywhere except just those points where we have
-data, is highly unlikely to be a good approximation to the “real” one.
+Well, that's not what we wanted! It certainly agrees with the data but
+since it is zero everywhere else it seems implausible that it
+represents the “real world.”
+
+What we meant to ask for was a function that “agrees with the data
+\emph{and} is likely to agree with the real function on \emph{other}
+values of the input, values we haven't seen yet.” This $\tilde{f}$,
+being zero everywhere except just those points where we have data, is
+highly unlikely to be a good approximation to the “real” one.
+
+A possible response to this snag is to admit that we don't want any
+old function, we want one that is in some sense “reasonable.” What is
+meant by reasonable presumably depends on the problem. It might take
+the form of a continuity condition: we'd like the output to be a
+continuous function of the input, or perhaps even
+smooth. Alternatively, there might be some nomological reason to
+prefer a particular kind of function: we might have a theory of the
+real function, such as that it satisfies some differential equation,
+which our solution also needs to satisfy.
+
+At any rate, suppose that, somehow or other, we have decided on a set
+of “reasonable” functions, $\mathcal{F}$, and what we are really asking for is a
+function taken from \emph{this} set (and matching the data).
+
+There is another snag. It turns out to be quite difficult to get the
+“size” of $\mathcal{F}$ right. If there are too few functions to draw from we
+run the risk of not being able to find \emph{any} function that
+matches the data. In the classical subject of “simple linear
+regression,” for example, one is interested in functions $\setR \to
+\setR$ and one chooses, for $\mathcal{F}$, all first-order polynomials (that is,
+straight-line functions). But hardly any sets of data can be matched
+by a first-order polynomial. (Most sets of three points do not lie on
+a straight line.)
 
 
 
@@ -92,6 +120,8 @@ data, is highly unlikely to be a good approximation to the “real” one.
 
 
 
+
+\end{document}
 
 \section*{Notes on the original text}
 
