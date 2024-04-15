@@ -24,8 +24,13 @@
 \newcommand{\defn}[1]{\textbf{#1}}
 \newcommand{\isdef}{\stackrel{\text{def}}{=}}
 \newcommand{\set}[1]{\mathbold{#1}}
+%\renewcommand{\vec}[1]{mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
+<<<<<<< HEAD
 \newcommand{\id}{\mathbold{1}}
+=======
+\newcommand{\id}{\boldmath{1}}
+>>>>>>> main
 %%
 \title{All the maths we know}
 \author{}
@@ -85,7 +90,7 @@
 \subsection*{Maps}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
-  \defn{Map} & A rule which assigns, to every element of a set (called the \emph{domain}), an element of another set (called the \emph{codomain} or \emph{range}). Sometimes called a \emph{function}, especially when the codomain is numbers. \\
+  \defn{Map} & A rule which assigns, to every element of a set (called the \emph{domain}), an element of another set (called the \emph{codomain}). Sometimes called a \emph{function}, especially when the codomain is numbers. \\
 
   $f\colon X\to Y$   & ``$f$ is a map from $X$ to $Y$.'' \\
 
@@ -179,7 +184,7 @@
   \begin{equation*}
     \lambda \cdot (x_1, \dotsc, x_n) \isdef (\lambda x_1, \dotsc, \lambda x_n) 
   \end{equation*} \\
-
+  
   $\set{R}^X$ (or $\set{C}^X$) & For $X$ a set, $\set{R}^X$ denotes the set of all functions $X\to\mathbold{R}$, together with the operation of “pointwise addition”:
   \begin{equation*}
     (f+g)(x) \isdef f(x) + g(x)
@@ -188,8 +193,13 @@
   \begin{equation*}
     (\alpha f)(x) \isdef \alpha f(x).
   \end{equation*}
-  (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”)
-    \end{tabularx}
+  (The notation “$(f+g)(x)$” means “the function $f+g$, where $+$ is addition of functions, evaluated at the point $x$.”) \\
+
+  $\mathcal{P}_m(\set{R})$ & The set of polynomials of degree at most $m$. Thus, $f\in\mathcal{P}_m(\set{R})$ implies $f(x) = a_0 + a_1x + \dots + a_m x^m$ for some~$m$. \\
+
+  $\mathcal{P}(\set{R})$ & The set of all polynomials of finite degree.
+
+\end{tabularx}
 
 %% ============================================================
 
@@ -210,9 +220,10 @@
   sum of subspaces, $U_1+\dots + U_n$, is called a \emph{direct sum} if
   the $U_i$ satisfy the following property: if $v_1+\dots +v_n =
   \mathbold{0}$, where $v_i\in U_i$, then each of the $v_i$
-  is~$\mathbold{0}$.
+  is~$\mathbold{0}$. 
 
   If the sum of the $U_i$ is a direct sum, it is written $U_1\oplus \dots\oplus U_n$. \\
+<<<<<<< HEAD
 
   \defn{Direct sum} & (Version 2.) Suppose $U_1, \dotsc, U_n$ are vector spaces (not necessarily subspaces of some other space). Their \emph{direct sum}, $U_1\oplus \dotsb \oplus U_n$, is:
   \begin{enumerate}
@@ -226,6 +237,26 @@
   Note that there are natural injective maps $U_i\to U_1\oplus\dotsb\oplus U_n$ which “embed” the $U_i$ as subspaces of the direct product. 
 
   \\
+=======
+\end{tabularx}
+
+\section*{Linear independence and bases}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+
+  \defn{Span} & Let $v_1, \dots, v_n$ be vectors in a real vector space,
+  $V$. The \emph{span} of this set is the subspace given by
+  \begin{equation*}
+    \{ \alpha_1 v_1 +\dots + \alpha_n v_n \mid \alpha_1, \dots \alpha_n\in\set{R} \}
+  \end{equation*}
+  (and likewise for a complex vector space). \\
+
+  \parbox[t]{0.8in}{\defn{Linear\\ independence}} & Vectors $v_1, \dots, v_n \in \set{R}$ are \emph{linearly independent} if $\alpha_1 v_1 + \dots + \alpha_n v_m = \set{0}$ implies $\alpha_1 = \dots = \alpha_n=0$. \\
+
+  \defn{Basis} & (Of a vector space, $V$.) A collection of vectors that (a) spans $V$; (b) is linearly independent. \\
+
+  \defn{Dimension} & (Of a vector-space, $V$.) The number of elements of any basis of $V$. (Noting that any two bases of $V$ have the same cardinality.) \\
+>>>>>>> main
   
 \end{tabularx}
 
@@ -349,6 +380,85 @@
   \end{equation*}
 
   Under these definitions, $\set{R}^{m,n}$ is a vector space. (The zero element of this space is the matrix $\mathbold{0}_{ij} = 0$.)
+  
+  “Multiplication” of matrices is defined between an $l\times m$ and and $m \times n$ matrix, the result being an $l\times n$ matrix:
+  \begin{equation*}
+    (AB)_{ij} = \sum_{k=1}^m A_{ik}B_{kj}.
+  \end{equation*}
+  \\
+\end{tabularx}
+
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+
+  \defn{Transpose} & The transpose of $A_{ij}$ is the matrix $A_{ji}$.
+  \\
+
+  \defn{Rank} & The rank of a matrix $A_{ij}\in\set{R}^{m,n}$ is the dimension of the span of the $n$ vectors $\vec{c}_j\in \set{R}^m$ where $\vec{c}_j = A_{ij}$ (that is, the $\vec{c}_j$ are the ``columns'' of $A_{ij}$).
+
+  The dimension of the span of the ``rows'' of $A_{ij}$ is also the rank.
+ 
+\end{tabularx}
+
+%% ============================================================
+
+\section*{Linear maps}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+
+  \defn{Linear map} & A map, $T\colon V\to W$ (where $V$ and $W$ are
+  vector spaces) such that $T(u+v) = T(u)+T(v)$ and $T(\alpha u) = \alpha T(u)$
+  for all $u,v\in V$. \\
+
+  $\mathcal{L}(V, W)$ & The set of all linear maps $V\to W$ with the vector space structure given by $(S+\alpha T)(v) \equiv S(v)+\alpha T(v)$ for any $S,T\in V$. \\
+
+  $\id_V$ & The identity map $\id_V\colon V\to V$ where $\id_V\colon v\mapsto v$. \\
+
+  $\circ$ & Composition of linear maps. For linear maps $T\colon V\to W$ and $S\colon W\to X$, their composition $S\circ T$ is that linear map given by $(S\circ T)(v) \equiv S(T(v))$.
+
+  Composition is associative and the identity map is a left and right
+  identity. \\
+
+  \defn{Null space} & (Or “kernel”.) Of a linear map, that subspace of the domain that is mapped to the zero vector. \\
+
+  \defn{Image} & Of a linear map, that subspace of the codomain that is mapped to by \emph{some} element of the domain. Sometimes called the \emph{range}. However, range used to mean “codomain” so the term can be ambiguous. \\
+
+  \defn{Inverse} & For $T:V\to W$ a linear map, the \emph{inverse} (if it
+  exists) is the linear map $T^{-1}$ such that $TT^{-1}=\id_V$ and $T^{-1}T=\id_W$. \\
+
+  \defn{Isomorphism} & An isomorphism of vector spaces $V$ and $W$ is an invertible, linear map between the two. If an isophormism exists the vector spaces are said to be \emph{isomorphic}. 
+  
+\end{tabularx}
+
+%% ============================================================
+
+\section*{Matrices}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Matrix} & An $m\times n$ matrix $A$ is $m\times n$ numbers, $A_{ij}$, indexed by $i\in\{1,\dotsc, m\}$ and $j\in\{1,\dotsc, n\}$. (Axler writes the elements as $A_{i,j}$.)
+
+  Conventionally, the matrix is written as a rectangular array of the
+  numbers, with $A_{ij}$ being written in the $i$th row (starting at the
+  top) and $j$th column (starting from the left).
+  
+  If $T\colon V\to W$ is a linear map and $\vec{e}_j\in V$ a basis of $V$ and $\vec{f}_i\in W$ a basis of $W$, the \defn{matrix of $T$} is given by:
+  \begin{equation*}
+    T(\vec{e}_j) = \sum_i T_{ij} \vec{f}_i.
+  \end{equation*}
+  (That is, $T_{ij}$ is the $i$th component of $T(\vec{e}_j)$ with respect to the basis $\vec{f}_i$.)
+  \\
+  
+  $\set{R}^{m,n}$ & The set of all $m\times n$ matrices over $\set{R}$ (or $\set{C}$, \emph{mutatis mutandis}).
+
+  Addition of matrices and multiplication of matrices by numbers is
+  defined elementwise:
+  \begin{equation*}
+    \begin{gathered}
+      (A+B)_{ij} \isdef A_{ij} + B_{ij} \\
+      (\lambda A)_{ij} \isdef \lambda A_{ij}.
+    \end{gathered}
+  \end{equation*}
+
+  Under these definitions, $\set{R}^{m,n}$ is a vector space. (The zero element of this space is the matrix $\boldmath{0}_{ij} = 0$.)
   
   “Multiplication” of matrices is defined between an $l\times m$ and and $m \times n$ matrix, the result being an $l\times n$ matrix:
   \begin{equation*}

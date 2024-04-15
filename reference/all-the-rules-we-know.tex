@@ -8,14 +8,22 @@
 \usepackage{tabularx}
 \usepackage{array}
 \usepackage{changepage}
+\usepackage[mathscr]{euscript}
 
 \newcommand{\defn}[1]{\textbf{\textsf{#1}}}
 \newcommand{\set}[1]{\mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
+\newcommand{\card}[1]{\##1}
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 \def\F{\mathbb{F}}
 \def\setsep{\mid}
+\def\vspan{\text{span}}
+\def\enumfix{\mbox{ } \vspace*{-1.2\baselineskip}}
+\def\L{\mathscr{L}}
+\def\M{\mathscr{M}}
+\DeclareMathOperator{\kernel}{null}
+\DeclareMathOperator{\range}{range}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -39,6 +47,15 @@
 \theoremstyle{break}
 \newtheorem{innerresult}{Result}
 
+\theoremstyle{break}
+\newtheorem{innerlemma}{Lemma}
+
+\theoremstyle{break}
+\newtheorem{innercorollary}{Corollary}
+
+\theoremstyle{break}
+\newtheorem{innertheorem}{Theorem}
+
 \newenvironment{definition}[1]
   {\renewcommand\theinnerdefinition{#1}\innerdefinition}
   {\endinnerdefinition}
@@ -54,6 +71,18 @@
 \newenvironment{result}[1]
   {\renewcommand\theinnerresult{#1}\innerresult}
   {\endinnerresult}
+
+\newenvironment{lemma}[1]
+  {\renewcommand\theinnerlemma{#1}\innerlemma}
+  {\endinnerlemma}
+
+\newenvironment{corollary}[1]
+  {\renewcommand\theinnercorollary{#1}\innercorollary}
+  {\endinnercorollary}
+
+\newenvironment{theorem}[1]
+  {\renewcommand\theinnertheorem{#1}\innertheorem}
+  {\endinnertheorem}
 
 \title{All the rules we know}
 \date{13 October 2023}
@@ -160,7 +189,11 @@ $$
 Two lists are equal if and only if they have the same length and the same elements in the same order.
 \end{definition}
 
-\begin{definition}{1.10}[$\F^n$]
+\begin{notation}{1.10}[notation: $n$]
+$n$ represents a positive integer.
+\end{notation}
+
+\begin{definition}{1.11}[$\F^n$, coordinate]
 $\F^n$ is the set of all lists of length $n$ of elements of $F$:
 $$
 \F^n = \{ (x_1, \ldots, x_n ) \setsep x_j \in \F \text{ for } j = 1, \ldots, n \}.
@@ -169,21 +202,21 @@ $$
 For $(x_1, \ldots, x_n ) \in \F^n$ and $j \in \{ 1, \ldots, n \}$, we say that $x_j$ is the $j^{\text{th}}$ \defn{coordinate} of $(x_1, \ldots, x_n )$.
 \end{definition}
 
-\begin{definition}{1.12}[addition in $F^n$]
-\defn{Addition} in $F^n$ is defined by adding corresponding coordinates:
+\begin{definition}{1.13}[addition in $\F^n$]
+\defn{Addition} in $\F^n$ is defined by adding corresponding coordinates:
 $$
 (x_1, \ldots, x_n ) + (y_1, \ldots, y_n ) = (x_1 + y_1, \ldots, x_n + y_n ).
 $$
 \end{definition}
 
-\begin{definition}{1.14}[$0$]
+\begin{definition}{1.15}[$0$]
 Let $0$ denote the list of length $n$ whose coorinates are all 0:
 $$
 (0, \ldots, 0 ).
 $$
 \end{definition}
 
-\begin{definition}{1.16}[additive inverse in $F^n$]
+\begin{definition}{1.17}[additive inverse in $\F^n$]
 For $x \in \F^n$, the \defn{additive inverse} of $x$, denoted $-x$, is the vector $-x \in \F^n$ such that
 $$
 x + (-x) = 0.
@@ -191,7 +224,7 @@ $$
 In other words, if $x = (x_1, \ldots, x_n)$, then $-x = (-x_1, \ldots, -x_n)$.
 \end{definition}
 
-\begin{definition}{1.17}[scalar multiplication in $F^n$]
+\begin{definition}{1.18}[scalar multiplication in $\F^n$]
 The \defn{product} of a number $\lambda$ and a vector in $\F^n$ is computed by multiplying each coordinate of the vector by $\lambda$:
 $$
 \lambda (x_1, \ldots, x_n) = (\lambda x_1, \ldots, \lambda x_n);
@@ -204,13 +237,13 @@ Here $\lambda \in \F$ and $(x_1, \ldots, x_n) \in \F^n$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section*{Chapter 1.B}
 
-\begin{definition}{1.18}[addition, scalar multiplication]
+\begin{definition}{1.19}[addition, scalar multiplication]
 An \defn{addition} on a set $V$ is a function that assigns an element $u + v \in V$ to each pair of elements $u, v \in V$.
 
 A \defn{scalar multiplication} on a set $V$ is a function that assigns an element $\lambda v \in V$ to each $\lambda \in \F$ and each $v \in V$.
 \end{definition}
 
-\begin{definition}{1.19}[vector space]
+\begin{definition}{1.20}[vector space]
 A \defn{vector space over $\F$} is a set $V$ along with an addition on $V$ and a scalar multiplication on $V$ such that the following properties hold:
 
 \defn{commutativity}
@@ -244,17 +277,17 @@ $a (u + v) = au + av$ and $(a + b)v = av + bv$ for all $a, b \in \F$ and all $u,
 \end{forceindent}
 \end{definition}
 
-\begin{definition}{1.20}[vector, point]
+\begin{definition}{1.21}[vector, point]
 Elements of a vector space are called \defn{vectors} or \defn{points}.
 \end{definition}
 
-\begin{definition}{1.21}[real vector space, complex vector space]
+\begin{definition}{1.22}[real vector space, complex vector space]
 A vector space over $\R$ is called a \defn{real vector space}.
 
 A vector space over $\C$ is called a \defn{complex vector space}.
 \end{definition}
 
-\begin{notation}{1.23}[$\F^S$]
+\begin{notation}{1.24}[$\F^S$]
 If $S$ is a set, $\F^S$ denotes the set of functions from $S$ to $\F$.
 
 For $f, g \in \F^S$ the \defn{sum} $f + g \in \F^S$ is the function defined by
@@ -270,7 +303,7 @@ $$
 for all $x \in S$.
 \end{notation}
 
-\begin{notation}{1.27}[$-v, w - v$]
+\begin{notation}{1.28}[$-v, w - v$]
 Let $v, w \in V$. Then
 \begin{enumerate}
 \item $-v$ denotes the additive inverse of $v$;
@@ -278,32 +311,788 @@ Let $v, w \in V$. Then
 \end{enumerate}
 \end{notation}
 
-\begin{notation}{1.28}[$V$]
+\begin{notation}{1.29}[$V$]
 $V$ denotes a vector space over $\F$.
 \end{notation}
 
+\newpage
+
 The following rules can all derived from the definition of a vector space.
 
-\begin{result}{1.25}[Unique additive identity]
+\begin{result}{1.26}[unique additive identity]
 A vector space has a unique additive identity.
 \end{result}
 
-\begin{result}{1.26}[Unique additive inverse]
+\begin{result}{1.27}[unique additive inverse]
 Every element in a vector space has a unique additive inverse.
 \end{result}
 
-\begin{result}{1.29}[The number $0$ times a vector]
+\begin{result}{1.30}[the number $0$ times a vector]
 $0v = 0$ for every $v \in V$.
 \end{result}
 
-\begin{result}{1.30}[A number times the vector $0$]
+\begin{result}{1.31}[a number times the vector $0$]
 $a0 = 0$ for every $a \in \F$.
 \end{result}
 
-\begin{result}{1.31}[The number $-1$ times a vector]
+\begin{result}{1.32}[the number $-1$ times a vector]
 $(-1)v = -v$ for every $v \in V$.
 \end{result}
 
 \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 1.C}
+
+\begin{definition}{1.33}[subspace]
+A subset $U$ of $V$ is called a \defn{subspace} of $V$ if $U$ is also a vector space with the same additive identity, addition, and scalar multiplication as on $V$.
+\end{definition}
+
+\begin{definition}{1.36}[sum of subspaces]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$. The \defn{sum} of $V_1, \ldots, V_m$, denoted by $V_1 + \cdots + V_m$, is the set of all possible sums of elements of $V_1, \ldots, V_m$. More precisely:
+$$
+V_1 + \cdots + V_m = \{v_1 + \cdots + v_m \setsep v_1 \in V_1, \ldots, v_m \in V_m \}.
+$$
+\end{definition}
+
+\begin{definition}{1.41}[direct sum, $\oplus$]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$.
+
+\begin{enumerate}
+\item The sum $V_1 + \cdots + V_m$ is called a \defn{direct sum} if each element of $V_1 + \cdots + V_m$ can be written in only one way as a sum $v_1 + \cdots + v_m$, where each $v_k \in V_k$.
+\item If $V_1 + \cdots + V_m$ is a direct sum, then $V_1 \oplus \cdots \oplus V_m$ denotes $V_1 + \cdots + V_m$, with the $\oplus$ notation serving as an indication that this is a direct sum.
+\end{enumerate}
+\end{definition}
+
+\newpage
+
+The following rules can all be derived from the definitions.
+
+\begin{result}{1.34}[conditions for a subspace]
+A subset $U$ of $V$ is a subspace of $V$ if and only if $U$ satifies the following three conditions.
+
+\defn{additive identity}
+\begin{forceindent}
+$0 \in U$.
+\end{forceindent}
+
+\defn{closed under addition}
+\begin{forceindent}
+$u, w \in U$ implies $u + w \in U$.
+\end{forceindent}
+
+\defn{closed under scalar multiplication}
+\begin{forceindent}
+$a \in \F$ and $u \in U$ implies $au \in U$.
+\end{forceindent}
+\end{result}
+
+\begin{result}{1.40}[sum of subspaces is the smallest containing subspace]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$. Then $V_1 + \cdots + V_m$ is the smallest subspace of $V$ containing $V_1, \ldots, V_m$.
+\end{result}
+
+\begin{result}{1.45}[condition for a direct sum]
+Suppose $V_1, \ldots, V_m$ are subspaces of $V$. Then $V_1 + \cdots + V_m$ is a direct sum if and only if the only way to write $0$ as a sum $v_1 + \cdots + v_m$, where each $v_k \in V_k$, is by taking each $v_k$ equal to $0$.
+\end{result}
+
+\begin{result}{1.46}[direct sum of two subspaces]
+Suppose $U$ and $W$ are subspaces of $V$. Then
+$$
+U + W \text{ is a direct sum} \Longleftrightarrow U \cap W = \{ 0 \}.
+$$
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 2.A}
+
+\begin{notation}{2.1}[list of vectors]
+We write lists of vectors without surrounding parantheses.
+\end{notation}
+
+\begin{definition}{2.2}[linear combination]
+A \defn{linear combination} of a list $v_1, \ldots, v_m$ of vectors in $V$ is a vector of the form
+$$
+a_1 v_1 + \cdots + a_m v_m,
+$$
+where $a_1, \ldots, a_m \in \F$.
+\end{definition}
+
+\begin{definition}{2.4}[span]
+The set of all linear combinations of a list of vectors $v_1, \ldots, v_m$ in $V$ is called the \defn{span} of $v_1, \ldots, v_m$, denoted by $\vspan(v_1, \ldots, v_m)$. In other words
+$$
+\vspan(v_1, \ldots, v_m) = \{ a_1 v_1 + \cdots + a_m v_m \setsep a_1, \ldots, a_m \in \F \}.
+$$
+
+The span of the empty list $(\ )$ is defined to be $\{ 0 \}$.
+\end{definition}
+
+\begin{definition}{2.7}[spans]
+If $\vspan(v_1, \ldots, v_m)$ equals $V$, we say that the list $v_1, \ldots, v_m$ \defn{spans} $V$.
+\end{definition}
+
+\begin{definition}{2.9}[finite-dimensional vector space]
+A vector space is called \defn{finite-dimensional} if some list of vectors in it spans the space.
+\end{definition}
+
+\begin{definition}{2.10}[polynomial, $\mathscr{P}(\F)$] \enumfix
+\begin{enumerate}
+\item A function $p : \F \to \F$ is called a \defn{polynomial} with coefficients in $\F$ if there exist $a_0, \ldots, a_m \in \F$ such that
+$$
+p(z) = a_0 + a_1 z + a_2 z^2 + \cdots + a_m z^m
+$$
+for all $z \in \F$.
+\item $\mathscr{P}(\F)$ is the set of all polynomials with coefficients in $\F$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{2.11}[degree of a polynomial, $\deg\ p$] \enumfix
+\begin{enumerate}
+\item A polynomial $p \in \mathscr{P}(\F)$ is said to have \defn{degree $m$} if there exist scalars $a_0, a_1, \ldots, a_m \in \F$ with $a_m \not= 0$ such that for every $z \in \F$, we have
+$$
+p(z) = a_0 + a_1 z + \cdots + a_m z^m.
+$$
+\item The polynomial that is identically $0$ is said to have degree $-\infty$.
+\item The degree of polynomial $p$ is denoted by $\deg\ p$.
+\end{enumerate}
+\end{definition}
+
+\begin{notation}{2.12}[$\mathscr{P}_m (\F)$]
+For $m$ a nonnegative integer, $\mathscr{P}_m (\F)$ denotes the set of all polynomials with coefficients in $\F$ and degree at most $m$.
+\end{notation}
+
+\begin{definition}{2.13}[infinite-dimensional vector space]
+A vector space is called \defn{infinite-dimensional} if it is not finite-dimensional.
+\end{definition}
+
+\newpage
+
+\begin{definition}{2.15}[linearly independent] \enumfix
+\begin{enumerate}
+\item A list $v_1, \ldots, v_m$ of vectors in $V$ is called \defn{linearly independent} if the only choice of $a_1, \ldots, a_m \in \F$ that makes
+$$
+a_v v_1 + \cdots + a_m v_m = 0
+$$
+is $a_1 = \cdots = a_m = 0$.
+\item The empty list $(\ )$ is also declared to be linearly independent.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{2.17}[linearly dependent] \enumfix
+\begin{enumerate}
+\item A list of vectors $V$ is called \defn{linearly dependent} if it is not linearly independent.
+\item In other words, a list $v_1, \ldots, v_m$ of vectors in $V$ is linearly dependent if there exist $a_1, \ldots, a_m \in \F$, not all $0$, such that $a_1 v_1 + \cdots + a_m v_m = 0$.
+\end{enumerate}
+\end{definition}
+
+\vspace{17\baselineskip}
+
+The following can be derived from the definitions.
+
+\begin{result}{2.6}[span is the smallest containing subspace]
+The span of a list of vectors in $V$ is the smallest subspace of $V$ containing all vectors in the list.
+\end{result}
+
+\begin{lemma}{2.19}[linear dependence lemma]
+Suppose $v_1, \ldots, v_m$ is a linearly dependent list in $V$. Then there exists $k \in \{ 1, 2, \ldots, m \}$ such that
+$$
+v_k \in \vspan(v_1, \ldots, v_{k - 1}).
+$$
+Furthermore, if $k$ satisfies the condition above and the $k$\textsuperscript{th} term is removed from $v_1, \ldots, v_m$, then the span of the remaining list equals $\vspan(v_1, \ldots, v_m)$.
+\end{lemma}
+
+\begin{result}{2.22}[length of linearly independent list $\le$ length of spanning list]
+In a finite-dimensional vector space, the length of every linearly independent list of vectors is less than or equal to the length of every spanning list of vectors.
+\end{result}
+
+\begin{result}{2.25}[finite-dimensional subspaces]
+Every subspace of a finite-dimensional vector space is finite-dimensional.
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 2.B}
+
+\begin{definition}{2.26}[basis]
+A \defn{basis} of $V$ is a list of vectors in $V$ that is linearly dependent and spans $V$.
+\end{definition}
+
+\vspace{5\baselineskip}
+
+\begin{result}{2.28}[criterion for basis]
+A list $v_1, \ldots, v_n$ of vectors of $V$ is a basis of $V$ if and only if every $v \in V$ can be written uniquely in the form
+$$
+v = a_1 v_1 + \cdots + a_n v_n,
+$$
+where $a_1, \ldots, a_n \in \F$.
+\end{result}
+
+\begin{result}{2.30}[every spanning list contains a basis]
+Every spanning list in a vector space can be reduced to a basis of the vector space.
+\end{result}
+
+\begin{corollary}{2.31}[basis of finite-dimensional vector space]
+Every finite-dimensional vector space has a basis.
+\end{corollary}
+
+\begin{result}{2.32}[every linearly independent list extends to a basis]
+Every linearly independent list of vectors in a finite-dimensional vector space can be extended to a basis of the vector space.
+\end{result}
+
+\begin{corollary}{2.33}[every subspace of $V$ is part of a direct sum equal to $V$]
+Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$. Then there is a subspace $W$ of $V$ such that $V = U \oplus W$.
+\end{corollary}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 2.C}
+
+\begin{definition}{2.35}[dimension, $\dim V$]
+The \defn{dimension} of a finite-dimensional vector space is the length of any basis of the vector space.
+
+The dimension of a finite-dimensional vector space $V$ is denoted by $\dim V$.
+\end{definition}
+
+\vspace{2\baselineskip}
+
+\begin{result}{2.34}[basis length does not depend on basis]
+Any two bases of a finite-dimensional vector space have the same length.
+\end{result}
+
+\begin{result}{2.37}[dimension of a subspace]
+If $V$ is finite-dimensional and $U$ is a subspace of $V$, then $\dim U \le \dim V$.
+\end{result}
+
+\begin{result}{2.38}[linearly independent list of the right length is a basis]
+Suppose $V$ is finite-dimensional. Then every linearly independent list of vectors in $V$ of length $\dim V$ is a basis of $V$.
+\end{result}
+
+\begin{corollary}{2.39}[subspace of full dimension equals the whole space]
+Suppose that $V$ is finite-dimensional and $U$ is a subspace of $V$ such that $\dim U = \dim V$. Then $U = V$.
+\end{corollary}
+
+\begin{result}{2.42}[spanning list of the right length is a basis]
+Suppose $V$ is finite-dimensional. Then every spanning list of vectors in $V$ of length $\dim V$ is a basis of $V$.
+\end{result}
+
+\begin{result}{2.43}[dimension of sum]
+If $V_1$ and $V_2$ are subspaces of a finite-dimensional vector space, then
+$$
+\dim(V_1 + V_2) = \dim V_1 + \dim V_2 - \dim(V_1 \cap V_2).
+$$
+\end{result}
+
+\begin{result}{Page 48}[Sets and vector spaces]
+\begin{tabular}{| *{2}{>{\raggedright}p{0.5\columnwidth} |}} \hline
+{\bf sets} & {\bf vector spaces} \tabularnewline \hline
+$S$ is a finite set & $V$ is a finite-dimensional vector space \tabularnewline \hline
+$\card{S}$ & $\dim V$ \tabularnewline \hline
+for subsets $S_1$, $S_2$ of $S$, the union $S_1 \cup S_2$ is the smallest subset of $S$ containing $S_1$ and $S_2$ & for subspaces $V_1$, $V_2$ of $V$, the sum $V_1 + V_2$ is the smallest subspace of $V$ containing $V_1$ and $V_2$ \tabularnewline \hline
+$\card{(S_1 \cup S_2)} = \card{S_1} + \card{S_2} - \card{(S_1 \cap S_2)}$ & $\dim{(V_1 + V_2)} = \dim{V_1} + \dim{V_2} - \dim{(V_1 \cap V_2)}$ \tabularnewline \hline
+$\card{(S_1 \cup S_2)} = \card{S_1} + \card{S_2} \Longleftrightarrow \card{(S_1 \cap S_2)} = \empty$ & $\dim{(V_1 + V_2)} = \dim{V_1} + \dim{V_2} \Longleftrightarrow \dim{(V_1 \cap V_2)} = \empty$ \tabularnewline \hline
+$S_1 \cup \cdots \cup S_m$ is a disjoint union $\Longleftrightarrow \card{(S_1 \cup \cdots \cup S_M)} = \card{S_1} + \cdots + \card{S_M}$ & $V_1 \cdots + V_m$ is a direct sum $\Longleftrightarrow \dim{(V_1 + \cdots + V_m)} = \dim{V_1} + \cdots + \dim{V_m}$ \tabularnewline \hline
+\end{tabular}
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.A}
+
+\begin{definition}{3.1}[linear map]
+A \defn{linear map} from $V$ to $W$ is a function $T : V \to W$ with the following properties.
+
+\defn{additivity}
+\begin{forceindent}
+$T(u + v) = Tu + Tv$ for all $u, v \in V$.
+\end{forceindent}
+
+\defn{homogeneity}
+\begin{forceindent}
+$T(\lambda v) = \lambda(Tv)$ for all $\lambda \in \F$ and all $v \in V$.
+\end{forceindent}
+
+\end{definition}
+
+\begin{notation}{3.2}[$\L(V, W), \L(V)$] \enumfix
+\begin{enumerate}
+\item The set of linear maps from $V$ to $W$ is denoted by $\L(V, W)$.
+\item The set of linear maps from $V$ to $V$ is denoted by $\L(V)$. In other words, $\L(V) = \L(V, V)$.
+\end{enumerate}
+\end{notation}
+
+\begin{definition}{3.5}[addition and scalar multiplication on $\L(V, W)$]
+\label{def:addmultL}
+Suppose $S, T \in \L(V, w)$ and $\lambda \in \F$. The \defn{sum} $S + T$ and the \defn{product} $\lambda T$ are the linear maps from $V$ to $W$ defined by
+$$
+(S + T)(v) = Sv + Tv \quad \text{ and } \quad (\lambda T)(v) = \lambda(Tv)
+$$
+for all $v \in V$.
+\end{definition}
+
+\begin{definition}{3.7}[product of linear maps]
+If $T \in \L(U, V)$ and $S \in \L(V, W)$, then the \defn{product} $ST \in \L(U, V)$ is defined by
+$$
+(S T)(u) = S(Tu)
+$$
+for all $u \in U$.
+\end{definition}
+
+\newpage
+
+\begin{lemma}{3.4}[linear map lemma]
+Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m \in W$. Then there exists a unique linear map $T : V \to W$ such that
+$$
+Tv_k = w_k
+$$
+for each $k = 1, \ldots, n$.
+\end{lemma}
+
+\begin{result}{3.6}[$\L(V, W)$ is a vector space]
+With the operations of addition and scalar multiplication as in Definition \ref{def:addmultL}, $\L(V, W)$ is a vector space.
+\end{result}
+
+\begin{result}{3.8}[algebraic properties of products of linear maps]
+
+\defn{associativity}
+\begin{forceindent}
+$(T_1 T_2) T_3 = T_1(T_2 T_3)$ whenever $T_1, T_2$ and $T_3$ are linear maps such that the products make sense (meaning $T_3$ maps into the domain of $T_2$ and $T_2$ maps into the domain of $T_1$).
+\end{forceindent}
+
+\defn{identity}
+\begin{forceindent}
+$T I = I T = T$ whenever $T \in \L(V, W)$; here the first $I$ is the identity operator on $V$ and the second $I$ is the identity operator on $W$.
+\end{forceindent}
+
+\defn{distributive properties}
+\begin{forceindent}
+$(S_1 + S_2)T = S_1 T + S_2 T$ and $S(T_1 + T_2) = S T_1 + S T_2$ whenever $T, T_1, T_2 \in \L(U, V)$ and $S, S_1, S_2 \in \L(V, W)$.
+\end{forceindent}
+\end{result}
+
+\begin{result}{3.10}[linear maps take 0 to 0]
+Suppose $T$ is a linear map from $V$ to $W$. Then $T(0) = 0$.
+\end{result}
+
+\begin{result}{Ex. 3A, 13}[Linear maps on a subspace can be extended to a map on the whole vector space]
+Suppose $V$ is finite-dimentional. Prove that every linear map on a subspace of $V$ can be extended to a linear map on $V$. In other words, show that if $U$ is a subspace of $V$ and $S \in \L(U, V)$, then there exists $T \in \L(V, W)$ such that $Tu = Su$ for all $u \in E$.
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.B}
+
+\begin{definition}{3.11}[null space, $\kernel T$]
+For $T \in \L(V, W)$, the \defn{null space} of $T$, denoted by null $T$, is the subset of $V$ consisting of those vectors that $T$ maps to 0:
+$$
+\kernel T = \{ v \in V \setsep Tv = 0 \}.
+$$
+\end{definition}
+
+\begin{definition}{3.14}[injective]
+A function $T : V \to W$ is called \defn{injective} if $Tu = Tv$ implies $u = v$.
+\end{definition}
+
+\begin{definition}{3.16}[range]
+For $T \in \L(V, W)$, the \defn{range} of $T$ is the subset $W$ consisting of those vectors that are equal to $Tv$ for some $v \in V$:
+$$
+\range T = \{ Tv \setsep v \in V \}.
+$$
+\end{definition}
+
+\begin{definition}{3.19}[surjective]
+A function $T : V \to W$ is called \defn{surjective} if its range equals $W$.
+\end{definition}
+
+\newpage
+
+\begin{result}{3.13}[the null space is a subspace]
+Suppose $T \in \L(V, W)$. Then $\kernel T$ is a subspace of $V$.
+\end{result}
+
+\begin{result}{3.15}[$\text{injectivity } \Leftrightarrow \text{ null space equals } \{ 0 \}$]
+Let $T \in \L(V, W)$. Then $T$ is injective if and only if $\kernel T = \{ 0 \}$.
+\end{result}
+
+\begin{result}{3.18}[the range is a subspace]
+If $T \in \L(V, W)$, then the range $T$ is a subspace of $W$.
+\end{result}
+
+\begin{theorem}{3.21}[fundamental theorem of linear maps]
+Suppose $V$ is finite-dimensional and $T \in \L(V, W)$. Then $\range T$ is finite-dimensional and
+$$
+\dim V = \dim \kernel T + \dim \range T.
+$$
+\end{theorem}
+
+\begin{result}{3.22}[linear map to a lower-dimensional space is not injective]
+Suppose $V$ and $W$ are finite-dimensional vector spaces such that $\dim V > \dim W$. Then no linear map from $V$ to $W$ is injective.
+\end{result}
+
+\begin{result}{3.24}[linear map to a higher-dimensional space is not surjective]
+Suppose $V$ and $W$ are finite-dimensional vector spaces such that $\dim V < \dim W$. Then no linear map from $V$ to $W$ is surjective.
+\end{result}
+
+\begin{result}{3.26}[homogeneous system of linear equations]
+A homogeneous system of linear equations with more variables than equations has nonzero solutions.
+\end{result}
+
+\begin{result}{3.28}[inhomogeneous systems of linear equations]
+An inhomogeneous system of linear equations with more equations than variables has no solution for some choice of the constant terms.
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.C}
+
+\begin{definition}{3.29}[matrix, $A_{j, k}$]
+Suppose $m$ and $n$ are nonnegative integers. An $m$-by-$n$ \defn{matrix} $A$ is a rectangular array of elements of $\F$ with $m$ rows and $n$ columns:
+$$
+A =
+\begin{pmatrix}
+A_{1, 1} & \cdots & A_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} & \cdots & A_{m, n} \\
+\end{pmatrix}
+.
+$$
+The notation $A_{j, k}$ denotes the entry in row $j$, column $k$ of $A$.
+\end{definition}
+
+\begin{definition}{3.31}[matrix of a linear map, $\M(T)$]
+Suppose $T \in \L(V, W)$ and $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m$ is a basis of $W$. The \defn{matrix of $T$} with respect to these bases is the $m$-by-$n$ matrix $\M(T)$ whose entries $A_{j, k}$ are defined by
+$$
+T v_k = A_{1, k} w_1 + \cdots + A_{m, k} w_m .
+$$
+If the basis $v_1, \ldots, v_n$ and $w_1, \ldots, w_m$ are not clear from the context, then the notation $\M(T, (v_1, \ldots, v_n), (w_1, \ldots, w_m))$ is used.
+\end{definition}
+
+\begin{definition}{3.34}[matrix addition]
+The \defn{sum of two matrices of the same size} is the matrix obtained by adding corresponding entries in the matrices:
+\begin{align*}
+& \begin{pmatrix}
+A_{1, 1} & \cdots & A_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} & \cdots & A_{m, n} \\
+\end{pmatrix}
++
+\begin{pmatrix}
+C_{1, 1} & \cdots & C_{1, n} \\
+\vdots & & \vdots \\
+C_{m, 1} & \cdots & C_{m, n} \\
+\end{pmatrix} \\
+& \qquad \qquad \qquad \qquad =
+\begin{pmatrix}
+A_{1, 1} + C_{1, 1} & \cdots & A_{1, n} + C_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} + C_{m, 1} & \cdots & A_{m, n} + C_{m, n} \\
+\end{pmatrix}
+.
+\end{align*}
+\end{definition}
+
+\begin{definition}{3.36}[scalar multiplication of a matrix]
+The product of a scalar and a matrix is the matrix obtained by multiplying each entry in the matrix by the scalar:
+$$
+\lambda
+\begin{pmatrix}
+A_{1, 1} & \cdots & A_{1, n} \\
+\vdots & & \vdots \\
+A_{m, 1} & \cdots & A_{m, n} \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+\lambda A_{1, 1} & \cdots & \lambda A_{1, n} \\
+\vdots & & \vdots \\
+\lambda A_{m, 1} & \cdots & \lambda A_{m, n} \\
+\end{pmatrix}
+.
+$$
+\end{definition}
+
+\begin{notation}{3.39}[$\F^{m, n}$]
+For $m$ and $n$ positive integers, the set of all $m$-by-$n$ matrices with entries in $\F$ is denoted by $\F^{m, n}$.
+\end{notation}
+
+\begin{definition}{3.41}[matrix multiplication]
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then $A B$ is defined to be the $m$-by-$p$ matrix whose entry in row $j$, column $k$, is given by the equation
+$$
+(A B)_{j, k} = \sum_{r = 1}^n A_{j, r} B_{r, k} .
+$$
+Thus the entry in row $j$, column $k$, of $A B$ is computed by taking row $i$ of $A$ and column $k$ of $B$, multiplying together corresponding entries, and then summing.
+\end{definition}
+
+\begin{notation}{3.44}[$A_{j, \cdot}, A_{\cdot, k}$]
+Suppose $A$ is an $m$-by-$n$ matrix.
+\begin{enumerate}
+\item If $1 \le j \le m$, then $A_{j, \cdot}$ denotes the 1-by-$n$ matrix consisting of row $j$ of $A$.
+\item If $1 \le k \le n$, then $A_{\cdot, k}$ denotes the $m$-by-1 matrix consisting of column $k$ of $A$.
+\end{enumerate}
+\end{notation}
+
+\begin{definition}{3.52}[column rank, row rank]
+Suppose $A$ is an $m$-by-$n$ matrix with entries in $\F$.
+\begin{enumerate}
+\item The \defn{column rank} of $A$ is the dimension of the span of the columns of $A$ in $\F^{m, 1}$.
+\item The \defn{row rank} of $A$ is the dimension of the span of the rows of $A$ in $\F^{1, n}$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{3.54}[transpose, $A^t$]
+The \defn{transpose} of a matrix $A$, denoted by $A^t$, is the matrix obtained from $A$ by interchanging rows and columns. Specifically, if $A$ is an $m$-by-$n$ matrix, then $A^t$ is an $n$-by-$m$ matrix whose entries are given by the equation
+$$
+(A^t)_{k, j} = A_{j, k} .
+$$
+\end{definition}
+
+\begin{definition}{3.58}[rank]
+The \defn{rank} of a matrix $A \in \F^{m, n}$ is the column rank of $A$.
+\end{definition}
+
+\newpage
+
+\begin{result}{3.35}[matrix of the sum of linear maps]
+Suppose $S, T \in \L(V, W)$. Then $\M(S + T) = \M(S) + \M(T)$.
+\end{result}
+
+\begin{result}{3.38}[the matrix of a scalar times a linear map]
+Suppose $\lambda \in \F$ and $T \in \L(V, W)$. Then $\M(\lambda T) = \lambda \M(T)$.
+\end{result}
+
+\begin{result}{3.40}[$\dim \F^{m, n} = m n$]
+Suppose $m$ and $n$ are positive integers. With addition and scalar multiplication defined as above, $\F^{m, n}$ is a vector space of dimension $m n$.
+\end{result}
+
+\begin{result}{3.43}[matrix of product of linear maps]
+If $T \in \L(U., V)$ and $S \in \L(V, W)$, then $\M(S T) = \M(S) \M(T)$.
+\end{result}
+
+\begin{result}{3.46}[entry of matrix product equals row times column]
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+(A B)_{j, k} = A_{j, \cdot} B_{\cdot, k}
+$$
+if $1 \le j \le m$ and $1 \le k \le p$. In other words, the entry in row $j$, column $k$, of $A B$ equals (row $j$ of $A$) times (column $k$ of $B$).
+\end{result}
+
+\begin{result}{3.48}[column of matrix product equals matrix times column]
+\label{result:column-product}
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+(A B)_{\cdot, k} = A B_{\cdot, k}
+$$
+if $1 \le k \le p$. In other words, column $k$ of $A B$ equals $A$ times column $k$ of $B$.
+\end{result}
+
+% Exercise 8 (row version of 3.48)
+\begin{result}{Ex. 3C, 8}[row of matrix product equals matrix times row]
+Suppose $A$ is an $m$-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+(A B)_{j, \cdot} = A_{j, \cdot} B
+$$
+if $1 \le j \le m$. In other words, row $j$ of $A B$ equals row $j$ of $A$ times $B$.
+
+This is the row version of Result \ref{result:column-product}.
+\end{result}
+
+\begin{result}{3.50}[linear combination of columns]
+\label{result:linear-combination-cols}
+Suppose $A$ is an $m$-by-$n$ matrix and $b =
+\left(\begin{smallmatrix}
+b_1 \\
+\vdots \\
+b_n
+\end{smallmatrix}\right)$
+is an $n$-by-1 matrix. Then
+$$
+A b = b_1 A_{\cdot, 1} + \cdots + b_n A_{\cdot, n} .
+$$
+In other words, $A b$ is a linear combination of the columns of $A$, with the scalars that multiply the columns coming from $b$.
+\end{result}
+
+% Exercise 9 (row version of 3.50)
+\begin{result}{Ex. 3C, 9}[linear combination of rows]
+Suppose $a =
+\left(\begin{smallmatrix}
+a_1 & \ldots & a_n
+\end{smallmatrix}\right)$
+is a 1-by-$n$ matrix and $B$ is an $n$-by-$p$ matrix. Then
+$$
+a B = a_1 B_{1, \cdot} + \cdots + a_n B_{n, \cdot} .
+$$
+In other words, $a B$ is a linear combination of the rows of $B$, with the scalars that multiply the rows coming from $a$.
+
+This is the row version of Result \ref{result:linear-combination-cols}.
+\end{result}
+
+\begin{result}{3.51}[matrix multiplication as linear combinations of columns]
+Suppose $C$ is an $m$-by-$c$ matrix and $R$ is a $c$-by-$n$ matrix.
+\begin{enumerate}
+\item[(a)] If $k \in \{ 1, \ldots, n \}$, then column $k$ of $C R$ is a linear combination of the columns of $C$, with the coefficients of this linear combination coming from columns $k$ of $R$.
+\item[(b)] If $j \in \{ 1, \ldots, m \}$, then row $j$ of $C R$ is a linear combination of the rows of $R$, with the coefficients of this linear combination coming from row $j$ of $C$.
+\end{enumerate}
+\end{result}
+
+% Exercise 14
+\begin{result}{Ex. 3C, 14}[transpose is a linear map]
+Suppose $m$ and $n$ are positive integers. Then the function $A \mapsto A^t$ is a linear map from $\F^{m, n}$ to $\F^{n, m}$.
+
+In other words $(A + B)^t = A^t + B^t$, $(\lambda A)^t = \lambda A^t$ for all $m$-by-$n$ matrices $A$, $B$ and all $\lambda \in \F$.
+\end{result}
+
+% Exercise 15
+\begin{result}{Ex. 3C, 15}[The transpose of the product is the product of the transposes in the opposite order]
+If $A$ is an $m$-by-$n$ matrix and $C$ is an $n$-by-$p$ matrix, then
+$$
+(AC)^t = C^t A^t .
+$$
+\end{result}
+
+\begin{result}{3.56}[column-row factorization]
+Suppose $A$ is an $m$-by-$n$ matrix with entries in $\F$ and column rank $c \ge 1$. Then there exist an $m$-by-$c$ matrix $C$ and a $c$-by-$n$ matrix $R$, both with entries in $\F$, such that $A = C R$.
+\end{result}
+
+\begin{result}{3.57}[column rank equals row rank]
+Suppose $A \in \F^{m, n}$. Then the column rank of $A$ equals the row rank of $A$.
+\end{result}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.D}
+
+\begin{definition}{3.59}[invertible, inverse] \enumfix
+\begin{enumerate}
+\item A linear map $T \in \L(V, W)$ is called \defn{invertible} if there exists a linear map $S \in \L(W, V)$ such that $ST$ equals the identity operator on $V$ and $TS$ equals the identity operator on $W$.
+\item A linear map $S \in \L(W, V)$ satisfying $ST = I$ and $TS = I$ is called an \defn{inverse} of $T$ (note that the first $I$ is the identity operator on $V$ and the second $I$ is the identity operator on $W$.
+\end{enumerate}
+\end{definition}
+
+\begin{notation}{3.61}[$T^{-1}$]
+If $T$ is invertible, then its inverse is denoted by $T^{-1}$. In other words, if $T \in \L(V, W)$ is invertible, then $T^{-1}$ is the unique element of $\L(W, V)$ such that $T^{-1} T = I$ and $T T^{-1} = I$.
+\end{notation}
+
+\begin{definition}{3.69}[isomorphism, isomorphic] \enumfix
+\begin{enumerate}
+\item An \defn{isomorphism} is an invertible linear map.
+\item Two vector spaces are called \defn{isomorphic} if there is an isomorphism from one vector space onto the other one.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{3.73}[matrix of a vector, $\M(v)$]
+Suppose $v \in V$ and $v_1, \ldots, v_n$ is a basis of $V$. The \defn{matrix of $V$} with respect to this basis is the $n$-by-$1$ matrix
+$$
+\M(v) =
+\begin{pmatrix}
+b_1 \\
+\vdots \\
+b_n
+\end{pmatrix},
+$$
+where $b_1, \ldots, b_n$ are the scalars such that
+$$
+v = b_1 v_1 + \cdots + b_n v_n .
+$$
+\end{definition}
+
+\begin{definition}{3.79}[identity matrix, $I$]
+Suppose $n$ is a positive integer. The $n$-by-$n$ matrix
+$$
+\begin{pmatrix}
+1 & & 0 \\
+ & \ddots & \\
+0 & & 1
+\end{pmatrix}
+$$
+with 1's on the diagonal (the entries where the row number equals the column number) and 0's elsewhere is called the \defn{identity matrix} and is denoted by $I$.
+\end{definition}
+
+\begin{definition}{3.80}[invertible, inverse, $A^{-1}$]
+A square matrix $A$ is alled \defn{invertible} if there is a square matrix $B$ of the same size such that $AB = BA = I$; we call $B$ the \defn{inverse} of $A$ and denote it by $A^{-1}$.
+\end{definition}
+
+\newpage
+
+\begin{result}{3.60}[inverse is unique]
+An invertible linear map has a unique inverse.
+\end{result}
+
+\begin{result}{3.63}[invertibility $\Longleftrightarrow$ injectivity and surjectivity]
+A linear map is invertible if and only if it is injective and surjective.
+\end{result}
+
+\begin{result}{3.65}[injectivity is equivalent to surjectivity (if $\dim V = \dim W < \infty$)]
+Suppose that $V$ and $W$ are finite-dimensional vector spaces, $\dim V = \dim W$, and $T \in \L(V, W)$. Then
+$$
+T \text{ is invertible } \Longleftrightarrow T \text{ is injective } \Longleftrightarrow T \text{ is surjective}.
+$$
+\end{result}
+
+\begin{result}{3.68}[$ST = I \Longleftrightarrow TS = I$ (on vector spaces of the same dimension)]
+Suppose $V$ and $W$ are finite-dimensional vector spaces of the same dimension, $S \in \L(V, W)$, and $T \in \L(W, V)$. Then $S T = I$ if and only if $T S = I$.
+\end{result}
+
+\begin{result}{3.70}[dimension shows whether vector spaces are isomorphic]
+Two finite-dimensional vector spaces over $\F$ are isomorphic if and only if they have the same dimension.
+\end{result}
+
+\begin{result}{3.71}[$\L(V, W)$ and $\F^{m, n}$ are isomorphic]
+Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m$ is a basis of $W$. Then $M$ is an isomorphism between $\L(V, W)$ and $\F^{m, n}$.
+\end{result}
+
+\begin{result}{3.72}[$\dim \L(V, W) = (\dim V)(\dim W$]
+Suppose $V$ and $W$ are finite-dimensional. Then $\L(V, W)$ is finite-dimensional and
+$$
+\dim \L(V, W) = (\dim V)(\dim W).
+$$
+\end{result}
+
+\begin{result}{3.75}[$\M(T)_{\cdot, k} = \M(T v_k)$]
+Suppose $T \in \L(V, W)$ and $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_m$ is a basis of $W$. Let $1 \le k \le n$. Then the $k^\text{th}$ column of $\M(T)$, which is denoted by $\M(T)_{\cdot, k}$, equals $\M(T v_k)$.
+\end{result}
+
+\begin{result}{3.76}[linear maps act like matrix multiplication]
+Suppose $T \in \L(V, W)$ and $v \in V$. Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $w_1 \ldots, w_m$ is a basis of $W$. Then
+$$
+\M(T v) = \M(T) \M(V) .
+$$
+\end{result}
+
+\begin{result}{3.78}[dimension of range $T$ equals column rank of $\M(T)$]
+Suppose $V$ and $W$ are finite-dimensional and $T \in \L(V, W)$. Then $\dim \range T$ equals the column rank of $\M(T)$.
+\end{result}
+
+\begin{result}{3.81}[matrix of product of linear maps]
+Suppose $T \in \L(U, V)$ and $S \in \L(V, W)$. If $u_1, \ldots, u_m$ is a basis of $U$, $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldots, w_p$ is a basis for $W$, then
+\begin{align*}
+\M(ST, (u_1, \ldots, u_m), & (w_1, \ldots, w_p)) = \\
+& \M(S, (v_1, \ldots, v_n), (w_1, \ldots, w_p)) \\
+& \M(U, (u_1, \ldots, u_m), (v_1, \ldots, v_n)).
+\end{align*}
+\end{result}
+
+\begin{result}{3.82}[matrix of identity operator with respect to two bases]
+Suppose that $u_1, \ldots, u_n$ and $v_1, \ldots, v_n$ are bases of $V$. Then the matrices
+$\M(I, (u_1, \ldots, u_n), (v_1, \ldots, v_n))$ and 
+$\M(I, (v_1, \ldots, v_n), (u_1, \ldots, u_n))$
+are invertible, and each is the inverse of the other.
+\end{result}
+
+\begin{result}{3.84}[change-of-basis formula]
+Suppose $T \in \L(V)$. Suppose $u_1, \ldots, u_n$ and $v_1, \ldots, v_n$ are bases of $V$. Let
+$A = \M(T, (u_1, \ldots, u_n))$ and $B = \M(T, (v_1, \ldots, v_n))$ and $C = \M(I, (u_1, \ldots, u_n), (v_1 \ldots, v_n))$. Then
+$$
+A = C^{-1} B C.
+$$
+\end{result}
+
+\begin{result}{3.86}[matrix of inverse equals inverse of matrix]
+Suppose that $v_1, \ldots, v_n$ is a basis of $V$ and $T \in \L(V)$ is invertible. Then $\M(T^{-1}) = (\M(T))^{-1}$, where both matrixes are with respect to the basis $v_1, \ldots, v_n$.
+\end{result}
 
 \end{document}
