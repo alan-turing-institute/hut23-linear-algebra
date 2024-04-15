@@ -28,6 +28,10 @@
 \newcommand{\imag}{\mathrm{i}}
 \newcommand{\id}{\mathbold{1}}
 %%
+%% Some headings get broken over two lines, and I'd like the box to be as small as possible.
+\newlength{\termheaderwd}
+%% 
+%%
 \title{All the maths we know}
 \author{}
 \date{21 October 2023}
@@ -288,7 +292,7 @@
 \section*{Quotient spaces}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
-  \defn{$a+U$} & The set $\{a+u\mid \mid u\in U\}$. What you get by “translating” $U$ by~$a$.  \\ 
+  \defn{$a+U$} & The set $\{a+u\mid u\in U\}$. What you get by “translating” $U$ by~$a$.  \\ 
 
   \defn{Coset} & (Or “translate,” in Axler's terminology.) For $U$ a
   subspace of $V$, a coset of $U$ in $V$ is the set $a+U$ for some $a\in V$.
@@ -308,18 +312,11 @@
   \end{enumerate}
   \\
 
-  \defn{$V\setminus U$} & The quotient of $V$ by a subspace~$U$. \\
+  \defn{$V/U$} & The quotient of $V$ by a subspace~$U$. \\
   
-  \defn{\parbox[t]{0.8in}{\defn{Quotient\\ map}}} & The map
-  \begin{equation*}
-    \begin{aligned}
-      \pi \colon V &\to V\setminus U \\
-      v &\mapsto v + U.
-      \end{aligned}
-  \end{equation*}
-
-  
-  
+  \settowidth{\termheaderwd}{Quotient}%
+  \parbox[t]{\termheaderwd}{\defn{Quotient\\ map}} &
+  The map, $\pi\colon V\to V/U$, which takes $v\in V$ to its coset $v+U$.   
   \\
 \end{tabularx}
 
