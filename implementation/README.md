@@ -131,6 +131,12 @@ q()
 
 Clean up afterwards by deleting the `lib`, `venv` and `r-miniconda` folders from your working directory.
 
+## Asm implementation
+
+This is a variation on the C implementation so the same instructions apply.
+
+Only an ARM64/aarch64 version has been implemented.
+
 ## Benchmarking Results
 
 The following benchmarking results were obtained using the following devices:
@@ -202,3 +208,11 @@ With garbage collection enabled.
 | Intel i7     | 13.50 | 1 244 058.62 |
 | Apple M1 Pro | 10.40 | 1 612 762.75 |
 | Apple M2     |       |              |
+
+### Asm
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |   N/A |           N/A |
+| Apple M1 Pro |  1.28 | 13 115 540.66 |
+| Apple M2     |       |               |
