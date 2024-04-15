@@ -89,31 +89,58 @@ values of the input, values we haven't seen yet.” This $\tilde{f}$,
 being zero everywhere except just those points where we have data, is
 highly unlikely to be a good approximation to the “real” one.
 
-A possible response to this snag is to admit that we don't want any
-old function, we want one that is in some sense “reasonable.” What is
-meant by reasonable presumably depends on the problem. It might take
-the form of a continuity condition: we'd like the output to be a
-continuous function of the input, or perhaps even
-smooth. Alternatively, there might be some nomological reason to
-prefer a particular kind of function: we might have a theory of the
-real function, such as that it satisfies some differential equation,
-which our solution also needs to satisfy.
+A possible response to this snag is to admit that we don't want
+\emph{any} old function, we want one that is in some sense
+“reasonable.” What is meant by reasonable presumably depends on the
+problem. Reasonableness might take the form of a continuity condition:
+we'd like the output to be a continuous function of the input, or
+perhaps even smooth. Alternatively, there might be some nomological
+reason to prefer a particular kind of function: we might have a theory
+of the real function, such as that it satisfies some differential
+equation, which our solution also needs to satisfy.
 
 At any rate, suppose that, somehow or other, we have decided on a set
 of “reasonable” functions, $\mathcal{F}$, and what we are really asking for is a
 function taken from \emph{this} set (and matching the data).
 
-There is another snag. It turns out to be quite difficult to get the
-“size” of $\mathcal{F}$ right. If there are too few functions to draw from, we
-run the risk of not finding \emph{any} function that matches the
-data.\footnote{In the classical subject of “simple linear regression,” for
-example, one is interested in functions $\setR \to \setR$ and one
+There is now another snag. It turns out to be quite difficult to get
+the “size” of $\mathcal{F}$ right. If there are too few functions to draw from,
+we run the risk of not finding \emph{any} function that matches the
+data.\footnote{In the classical subject of “simple linear regression,”
+for example, one is interested in functions $\setR \to \setR$ and one
 chooses, for $\mathcal{F}$, all first-order polynomials (that is, straight-line
 functions). But hardly any sets of data can be matched by a
 first-order polynomial. (Most sets of three points do not lie on a
 straight line.)}
 
-However, perhaps serendipitously, 
+In practice, however, we may not want to match the data
+\emph{exactly}. There are good reasons for this. One reason is that we
+often choose $\mathcal{F}$ to contain only “simple” functions in order to make
+the calculations tractable. We might then expect that the “true”
+function---the one the real world is using to generate the data---will not
+be found within our simplified~$\mathcal{F}$. (For example, in econometrics or
+social science, I understand that it's common to fit a linear
+relationship, though we've no reason to believe that the real world is
+linear.) In this case what we're looking for is a function that is
+“close to” the real function and so only approximates the data.
+
+A related reason is that, in the real world, the outputs are not fully
+determined by the inputs. (For example, income at age 30 is clearly
+not solely determined by education.) If we were able to obtain more
+data with inputs $x_i$, we'd likely not get the same $y_i$.\footnote{A
+final reason is that the original measurements of $y_i$ might contain
+measurement error. Textbooks often harp on this reason, which seems
+odd to me: is there \emph{really} so much error in measuring, I don't
+know, temperature? I think what's going on is that the other two
+reasons are the real reasons but you then have to model them and it's
+very hard to justify any particular model. How do you model “we don't
+know the real function”? If you assume the measurement error theory,
+you get to wave your hands, intone “central limit theorem,” and assume
+a normal distribution of the error.
+
+
+
+
 
 
 
