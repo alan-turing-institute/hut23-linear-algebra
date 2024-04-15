@@ -1,0 +1,4 @@
+[deps]
+NPZ = "15e1cf62-19b3-5cfa-8e77-841668bca605"
+Octavian = "6fd5a793-0b7e-452c-907f-f8bfe9c57db4"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
