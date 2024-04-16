@@ -16,6 +16,7 @@
 \title{Linear Regression Done Right}
 %%
 \DeclareBoldMathCommand{\setR}{R}
+\DeclareMathOperator*{\argmin}{arg\,min}
 \begin{document}
 \maketitle
 
@@ -52,26 +53,26 @@ observations of particular inputs and outputs. The mathematical model
 of the relationship that we determine is supposed to match this data,
 more or less.
 
-On the other hand, there are significant differences between these
-problems. In the second and third examples, the map we are seeking
-exists somehow \emph{in potentia}, as a relationship between
-characteristics of a particular “observational unit” (penguins and
-people, respectively). In the first, by contrast, the map just “is” a
-thing in the world---the temperature exists at each point in space. The
-third example has a “causal” flavour: we presumably hope to be able to
+These three problems differ in several apparently significant
+ways. In the second and third examples, the map we are seeking exists
+somehow \emph{in potentia}, as a relationship between characteristics
+of a particular “observational unit” (penguins and people,
+respectively). In the first, by contrast, the map just “is” a thing in
+the world---the temperature exists at each point in space. The third
+example has a “causal” flavour: we presumably hope to be able to
 \emph{affect} the output by changing the input. In the second, the
 inputs are immutable. Temperature and income take values in a
 continuous, totally-ordered set but species comes from a finite,
 unordered set. Can we capture the similarities between these different
 problems in a way that will let us attempt to solve them?
 
-In each example, there is given a set $X$ (of possible inputs) and a
-set $Y$ (of possible outputs) and a collection $i=1,\dots,N$ of pairs
-$(x_i, y_i)\in X\times Y$ (the data). Consider the challenge of finding a
-map, $\tilde{f}\colon X\to Y$, having the property that $\tilde{f}(x_i)=
-y_i$ for each~$i$.
+A possible formulation is as follows: In each example, there is given
+a set $X$ (of possible inputs) and a set $Y$ (of possible outputs) and
+a collection $i=1,\dots,N$ of pairs $(x_i, y_i)\in X\times Y$ (the
+data). Consider the challenge of finding a map, $\tilde{f}\colon X\to
+Y$, having the property that $\tilde{f}(x_i)= y_i$ for each~$i$.
 
-The immediate snag is that finding such a map is \emph{far too easy}:
+One immediate snag is that finding such a map is \emph{far too easy}:
 \begin{equation*}
   \tilde{f}(x) =
   \begin{cases}
@@ -83,11 +84,12 @@ Well, that's not what we wanted! It certainly agrees with the data but
 since it is zero everywhere else it seems implausible that it
 represents the “real world.”
 
-What we meant to ask for was a function that “agrees with the data
-\emph{and} is likely to agree with the real function on \emph{other}
-values of the input, values we haven't seen yet.” This $\tilde{f}$,
-being zero everywhere except just those points where we have data, is
-highly unlikely to be a good approximation to the “real” one.
+What we presumably meant to ask for was a function that “agrees with
+the data \emph{and} is likely to agree with the real function on
+\emph{other} values of the input, values we haven't seen yet.” The
+$\tilde{f}$ above, being zero everywhere except just those points
+where we have data, is highly unlikely to be a good approximation to
+the “real” one.
 
 A possible response to this snag is to admit that we don't want
 \emph{any} old function, we want one that is in some sense
@@ -104,43 +106,107 @@ of “reasonable” functions, $\mathcal{F}$, and what we are really asking for 
 function taken from \emph{this} set (and matching the data).
 
 There is now another snag. It turns out to be quite difficult to get
-the “size” of $\mathcal{F}$ right. If there are too few functions to draw from,
-we run the risk of not finding \emph{any} function that matches the
-data.\footnote{In the classical subject of “simple linear regression,”
-for example, one is interested in functions $\setR \to \setR$ and one
-chooses, for $\mathcal{F}$, all first-order polynomials (that is, straight-line
-functions). But hardly any sets of data can be matched by a
-first-order polynomial. (Most sets of three points do not lie on a
-straight line.)}
+the “size” of $\mathcal{F}$ just right. If there are too few functions to draw
+from, we run the risk of not finding \emph{any} function that matches
+the data.\footnote{In the classical subject of “simple linear
+regression,” for example, one is interested in functions $\setR \to
+\setR$ and one chooses, for $\mathcal{F}$, all first-order polynomials (that is,
+straight-line functions). But hardly any sets of data can be matched
+by a first-order polynomial. (Most sets of three points do not lie on
+a straight line.)}
 
 In practice, however, we may not want to match the data
-\emph{exactly}. There are good reasons for this. One reason is that we
-often choose $\mathcal{F}$ to contain only “simple” functions in order to make
-the calculations tractable. We might then expect that the “true”
-function---the one the real world is using to generate the data---will not
-be found within our simplified~$\mathcal{F}$. (For example, in econometrics or
-social science, I understand that it's common to fit a linear
-relationship, though we've no reason to believe that the real world is
-linear.) In this case what we're looking for is a function that is
-“close to” the real function and so only approximates the data.
+\emph{exactly}. One reason for this, often cited, is “measurement
+error,” the idea that the $y_i$s are not measured exactly but contain
+some “noise” and so will differ from those generated by any function
+in~$\mathcal{F}$.\footnote{Textbooks often harp on this reason, which seems odd
+to me: is there \emph{really} so much error in measuring, I don't
+know, temperature?}
 
-A related reason is that, in the real world, the outputs are not fully
-determined by the inputs. (For example, income at age 30 is clearly
-not solely determined by education.) If we were able to obtain more
-data with inputs $x_i$, we'd likely not get the same $y_i$.\footnote{A
-final reason is that the original measurements of $y_i$ might contain
-measurement error. Textbooks often harp on this reason, which seems
-odd to me: is there \emph{really} so much error in measuring, I don't
-know, temperature? I think what's going on is that the other two
-reasons are the real reasons but you then have to model them and it's
-very hard to justify any particular model. How do you model “we don't
-know the real function”? If you assume the measurement error theory,
-you get to wave your hands, intone “central limit theorem,” and assume
-a normal distribution of the error.
+A related but perhaps more plausible reason is that, in the real
+world, the outputs are not likely to be fully determined by the
+measured inputs. For example, income at age 30 is clearly not
+determined by education alone: multiple other inputs, many of which
+are difficult to measure, must play a role. If we were somehow able to
+obtain another measurement of $y$ for the very same input $x_i$, these
+other, hidden, inputs would presumably be different and we'd likely
+not obtain the same~$y_i$.
+
+Finally, we often choose $\mathcal{F}$ to contain only “simple” functions, in
+order to make the calculations tractable. We might then expect that
+the “true” function---the one the real world is using to generate the
+data---will not be found within our simplified~$\mathcal{F}$. For example, in
+econometrics or social science, I understand that it's common to fit a
+linear relationship, though we've no reason to believe that the real
+world is linear. In this case what we're looking for is a function
+that is “close to” the real function and so only approximates the
+data.\footnote{Perhaps the reason that textbooks cite measurement
+error rather than this reason is that it's hard to see how you would
+model “we don't know the real function.” Whereas, if you go with the
+measurement error theory, you get to wave your hands, intone “central
+limit theorem,” and assume Gaussian noise.}
+
+In summary, the problem is as follows:
+\begin{enumerate}
+\item Given data $(x_i, y_i) \in X\times Y$ for $i=1,\dots,N$; and
+\item a collection, $\mathcal{F}$, of functions $X\to Y$;
+\item find $\tilde{f}\in\mathcal{F}$ that is “close to” the data in the sense that
+  the $y_i$ are “close to”~$\tilde{f}(x_i)$..
+\end{enumerate}
+
+In general this problem is hard. Deep learning, for example, falls
+under the very broad description above. In \emph{linear regression} we
+make two choices that turn out to simplify the problem enormously.
+First, we assume that the space of “outputs” is the real numbers, $Y =
+\setR$ and so $\mathcal{F}$ consists of real-valued functions. Given two
+real-valued functions there is a natural notion of their linear
+combination: for two functions $f$ and $g$, and number $\alpha$, define the
+function $f+\alpha g$ by:
+\begin{equation*}
+  (f+\alpha g)(x) = f(x) + \alpha g(x).
+\end{equation*}
+In other words, functions are added by “adding their values at each
+point.” Our second choice is then to demand that, under this
+definition of addition of functions and multiplication of functions by
+nunbers, the space $\mathcal{F}$ be a vector space.\footnote{Note that we have
+\emph{not} said anything about the “input” space,~$X$; especially not
+that it is a vector space! Nor have we specified what particular kinds
+of functions make up $\mathcal{F}$, for example, we have not said that they must
+be “linear functions of $X$.”}
+
+To make any further progress we need to say something more specific
+about the meaning of “close.” Before doing so, we digress to talk
+about the minimisation of certain functions on vector spaces.
+
+\section{Quadratic forms on vector spaces}
+
+Let $V$ be a (finite-dimensional) real vector space. Recall that the
+\emph{dual} of $V$, written $V*$, is the vector space of all linear
+maps from $V$ to~$R$. 
+
+Suppose $T\colon V\toV^*$ is a linear map. For any $u, v\in V$, $T(v)$
+is a an element of $V^*$, and thus $[T(v)](u)$ is a number. By abuse
+of notation, we write this as $T(v,u)$. Thus we can think of $T$ as a
+(multi-)linear map from pairs of vectors in $V$ to the reals.
 
 
 
 
+\section{Ordinary least squares}
+
+
+
+The “closeness” of some $f\in\mathcal{F}$ to the data is measured by the
+  value of $\sum_{i=1}^N{(f(x_i) - y_i)}^2$.
+
+
+We these assumptions, the solution we are looking for is
+\begin{equation*}
+  \tilde{f} = \argmin_{f\in\mathcal{F}} \sum_{i=1}^N {(f(x_i) - y_i)}^2.
+\end{equation*}
+
+Of course, this just says what the solution \emph{is}, it doesn't tell
+us how to \emph{find} it.
 
 
 
