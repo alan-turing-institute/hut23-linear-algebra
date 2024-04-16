@@ -137,6 +137,27 @@ This is a variation on the C implementation so the same instructions apply.
 
 Only an ARM64/aarch64 version has been implemented.
 
+## Julia implementation
+
+Install Julia on Ubuntu:
+```
+sudo snap install julia --classic
+```
+Or on macOS:
+```
+brew install julia
+```
+
+Then install dependencies:
+```
+julia --project=. -E "using Pkg; Pkg.instantiate()"
+```
+
+Finally run the benchmarks:
+```
+julia --project=. matmul.jl
+```
+
 ## Benchmarking Results
 
 The following benchmarking results were obtained using the following devices:
@@ -216,3 +237,46 @@ With garbage collection enabled.
 | Intel i7     |   N/A |           N/A |
 | Apple M1 Pro |  1.28 | 13 115 540.66 |
 | Apple M2     |       |               |
+
+### Julia
+
+"Naive" implementation.
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |  3.30 |  5 081 768.87 |
+| Apple M1 Pro |  2.48 |  6 765 298.34 |
+| Apple M2     |       |               |
+
+"Blas" implementation.
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |  2.22 |  7 562 284.71 |
+| Apple M1 Pro |  2.15 |  7 791 596.40 |
+| Apple M2     |       |               |
+
+"Unsafe" implementation.
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |  2.20 |  7 640 012.81 |
+| Apple M1 Pro |  2.28 |  7 359 173.67 |
+| Apple M2     |       |               |
+
+"Unsafe Preallocate" implementation.
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |  1.84 |  9 097 257.03 |
+| Apple M1 Pro |  1.79 |  9 347 138.34 |
+| Apple M2     |       |               |
+
+"Octavian" implementation.
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |  0.97 | 17 368 743.29 |
+| Apple M1 Pro |  0.97 | 17 274 799.31 |
+| Apple M2     |       |               |
+
