@@ -1,10 +1,14 @@
-\documentclass[11pt, a4paper]{article}
+\documentclass[10pt, twocolumn, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{beton}
 \usepackage{eulervm}
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage{microtype}
+\usepackage[left=1cm, right=1cm]{geometry}
+\setlength{\columnsep}{1cm}
+\usepackage[medium, compact]{titlesec}
 \DeclareFontSeriesDefault[rm]{bf}{sbc}
 % \usepackage{amssymb}
 %% Turing grid is 21 columns (of 1cm if we are using A4)
@@ -19,15 +23,17 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \begin{document}
 \maketitle
+\raggedright
 
 Here's a classic problem. We are given a real-valued function on some
-space $X$, say $f\colon X\to \setR$, and we are to find the point where
-$f$ is minimised (if there is one). That is, we are to find
-$x_\text{min}$ such that $f(x_\text{min}) < f(x)$ for every other $x\in
-X$ that is not~$x_\text{min}$. That is, find
+space $X$, say $f\colon X\to \setR$, and we are to find the point, $x =
+x_\text{min}$, where $f(x)$ attains its minimum value (if there is
+one). That is, we are to compute
 \begin{equation*}
   x_\text{min} = \argmin_{x\in X} f(x).
 \end{equation*}
+
+
 
 
 \end{document}
