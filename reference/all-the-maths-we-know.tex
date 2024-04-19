@@ -26,7 +26,11 @@
 \newcommand{\set}[1]{\mathbold{#1}}
 %\renewcommand{\vec}[1]{mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
-\newcommand{\id}{\boldmath{1}}
+\newcommand{\id}{\mathbold{1}}
+%%
+%% Some headings get broken over two lines, and I'd like the box to be as small as possible.
+\newlength{\termheaderwd}
+%% 
 %%
 \title{All the maths we know}
 \author{}
@@ -219,6 +223,19 @@
   is~$\mathbold{0}$. 
 
   If the sum of the $U_i$ is a direct sum, it is written $U_1\oplus \dots\oplus U_n$. \\
+
+  \defn{Direct sum} & (Version 2.) Suppose $U_1, \dotsc, U_n$ are vector spaces (not necessarily subspaces of some other space). Their \emph{direct sum}, $U_1\oplus \dotsb \oplus U_n$, is:
+  \begin{enumerate}
+  \item The set $U_1\times\dotsb \times U_n$; together with 
+  \item Addition and scalar multiplication given by
+      \begin{multline*}
+        (u_1, \dotsc, u_n) + \alpha\cdot (v_1, \dotsc, v_n) \\
+        = (u_1 + \alpha\cdot v_1, \dotsc, u_n + \alpha\cdot v_n).
+      \end{multline*}
+  \end{enumerate}
+  Note that there are natural injective maps $U_i\to U_1\oplus\dotsb\oplus U_n$ which “embed” the $U_i$ as subspaces of the direct product. 
+
+  \\
 \end{tabularx}
 
 \section*{Linear independence and bases}
@@ -239,7 +256,6 @@
   \defn{Dimension} & (Of a vector-space, $V$.) The number of elements of any basis of $V$. (Noting that any two bases of $V$ have the same cardinality.) \\
   
 \end{tabularx}
-
 
 %% ============================================================
 
@@ -273,6 +289,39 @@
 
 %% ============================================================
 
+\section*{Quotient spaces}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{$a+U$} & The set $\{a+u\mid u\in U\}$. What you get by “translating” $U$ by~$a$.  \\ 
+
+  \defn{Coset} & (Or “translate,” in Axler's terminology.) For $U$ a
+  subspace of $V$, a coset of $U$ in $V$ is the set $a+U$ for some $a\in V$.
+
+  Two cosets are either identical or disjoint. Every vector in $V$ lies
+  in one and only one coset.  \\
+
+  \defn{Quotient} & Of a vector space $V$ by a subspace $U$:
+  \begin{enumerate}
+  \item The set of all cosets of $U$; together with
+  \item The vector space structure given by
+    \begin{equation*}
+      (a + U) + \alpha\cdot(b + U) = (a+\alpha\cdot b) + U,
+    \end{equation*}
+    noting that this formula does not depend on which representatives
+    $a$ and $b$ are chosen.
+  \end{enumerate}
+  \\
+
+  \defn{$V/U$} & The quotient of $V$ by a subspace~$U$. \\
+  
+  \settowidth{\termheaderwd}{Quotient}%
+  \parbox[t]{\termheaderwd}{\defn{Quotient\\ map}} &
+  The map, $\pi\colon V\to V/U$, which takes $v\in V$ to its coset $v+U$.   
+  \\
+\end{tabularx}
+
+%% ============================================================
+
 \section*{Matrices}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
@@ -300,7 +349,7 @@
     \end{gathered}
   \end{equation*}
 
-  Under these definitions, $\set{R}^{m,n}$ is a vector space. (The zero element of this space is the matrix $\boldmath{0}_{ij} = 0$.)
+  Under these definitions, $\set{R}^{m,n}$ is a vector space. (The zero element of this space is the matrix $\mathbold{0}_{ij} = 0$.)
   
   “Multiplication” of matrices is defined between an $l\times m$ and and $m \times n$ matrix, the result being an $l\times n$ matrix:
   \begin{equation*}
