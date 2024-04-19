@@ -1,4 +1,4 @@
-# hut23-linear-algebra
+## hut23-linear-algebra
 
 [![LaTeX build](../../actions/workflows/pdflatex.yml/badge.svg)](../../actions/workflows/pdflatex.yml)
 [![All the maths](https://img.shields.io/badge/PDF-All_the_maths-orange.svg?style=flat)](../gh-action-result/pdf-files/reference/all-the-maths-we-know.pdf)
@@ -29,6 +29,10 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 | 22 March | Isomorphisms and inverses       | Axler, 3.D (discussion)           |
 | 29 March | --- Bank holiday ---            |                                   |
 | 5 April  | Isomorphisms and inverses       | Exercises, Axler 3.D              |
+| 12 April | More isomorphisms               |                                   |
+| 19 April | Quotient spaces                 | Axler, 3.E (discussion)           |
+| 26 April | Quotient spaces                 | Exercises from Axler 3.E          |
+
 
 Overall plan:
 
