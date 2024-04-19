@@ -1,4 +1,4 @@
-\documentclass[10pt, twocolumn, a4paper]{article}
+\documentclass[10pt, a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{beton}
@@ -6,32 +6,157 @@
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{microtype}
-\usepackage[left=1cm, right=1cm]{geometry}
-\setlength{\columnsep}{1cm}
-\usepackage[medium, compact]{titlesec}
+%\usepackage[medium, compact]{titlesec}
+\usepackage[inline]{asymptote}
 \DeclareFontSeriesDefault[rm]{bf}{sbc}
 % \usepackage{amssymb}
 %% Turing grid is 21 columns (of 1cm if we are using A4)
 %% Usually 4 "big columns", each of 4 text cols plus 1 gutter col;
 %% plus an additional gutter on the left.
-\usepackage[left=4cm, textwidth=13cm]{geometry}
+\usepackage[left=1cm, textwidth=11cm, marginparsep=1cm, marginparwidth=7cm]{geometry}
+\usepackage[Ragged, size=footnote, shape=up]{sidenotesplus}
+%% We used to use a two-column layout
+% \setlength{\columnsep}{1cm}
+\title{Simple optimisation (on vector spaces)}
 \author{James Geddes}
 \date{\today}
-\title{Optimisation (on vector spaces)}
 %%
 \DeclareBoldMathCommand{\setR}{R}
 \DeclareMathOperator*{\argmin}{arg\,min}
+\newcommand{\eg}{\emph{Example:}}
 \begin{document}
 \maketitle
-\raggedright
 
-Here's a classic problem. We are given a real-valued function on some
-space $X$, say $f\colon X\to \setR$, and we are to find the point, $x =
-x_\text{min}$, where $f(x)$ attains its minimum value (if there is
-one). That is, we are to compute
+A classic problem is that of finding the location of the minimum of a
+function. It is a hard problem! It is not just that the function
+itself might be complicated in some way; the domain of the function
+could be discrete, or multivariate, or have a complicated shape, all
+of which can prevent an analytic solution and impede a numerical one.
+
+One situation that can be more tractable arises when the domain of the
+function a vector space. Suppose we are given a vector space, $V$, and
+a real-valued function, $f\colon V\to \setR$. Then the problem at hand
+is to find $x_\text{min}\in V$ (if one exists) such that
 \begin{equation*}
-  x_\text{min} = \argmin_{x\in X} f(x).
+ f(x_\text{min}) \leq f(x) \quad\text{for all $x\in V$}.  
 \end{equation*}
+Sometimes this problem is expressed by writing
+\begin{equation*}
+  x_\text{min} = \argmin_{x\in V} f(x).
+\end{equation*}
+
+To get a sense for this problem, consider the case when $V$ is
+one-dimensional; that is, the real numbers. If we are lucky enough to
+have a smooth function, $f:\setR\to\setR$, then we know that at the
+minimum (if it exists) the derivative, $f'(x)$, is zero and the second
+derivative, $f''(x)$ is strictly positive (other values of $f''(x)$
+indicate maxima or “points of inflection.”) So a first step in finding
+the minimum is to enumerate the values of $x$ for which $f'(x) = 0$
+and $f''(x)>0$. Unfortunately, some of these values may be only local
+minima: the function is smaller there than at nearby points but may
+not be smaller than far away points.
+
+Still, in some simple cases, these ideas suffice to completely solve
+the problem.
+
+\eg{} A constant function attains its minimum value everywhere. Said
+another way, there is no unique point at which it is a minimum.
+
+\eg{} A linear function $f(x) = a + bx$, has no
+minimum.\sidenote{There is a slight inconsistency in terminology here:
+  a linear \emph{map} from one vector space to another necessarily
+  maps zero to zero, whereas a linear function, like this one, may
+  have a constant term.} Its value can be made arbitrarily large and
+negative by taking $x$ sufficiently large and negative (if $b>0$) or
+sufficiently large and positive (if $b<0$).
+
+\eg{} A quadratic, $f(x) = a + bx + cx^2$, is more interesting. It has
+an extremum where $b +2cx=0$ (that is, when the first derivative is
+zero) and that extremum is a minimum when $c>0$ (that is, when the
+second derivative is positive). In other words, the minimisation
+problem has a solution when $c>0$ and that solution is $x_\text{min}=
+-\frac{1}{2}c^{-1}b$.
+
+\begin{marginfigure}
+  \begin{center}
+    \asyinclude[width=4cm, height=4cm, keepAspect=false]{quadr.asy}
+  \end{center}
+\caption{A graph of $f(x) = 9 - 8x + 2x^2$. The minimum of $f(x)$ is
+  at $x=2$, as can be seen by rewriting it as $f(x) = 2{(x-2)}^2+1$.}
+\end{marginfigure}
+
+The quadratic case is often solved by making use of a certain “trick,”
+rather than by taking derivatives. Suppose we can find numbers $\kappa$,
+$\gamma$, and $\xi$ such that
+\begin{equation*}
+  a + bx + cx^2 = \kappa + \gamma{(x - \xi)}^2.
+\end{equation*}
+Then, since adding a constant to a function does not change the
+\emph{location} of any mimimum, we have only to find the minimum
+$\gamma{(x-\xi)}^2$. And since ${(x-\xi)}^2$ is nowhere less than zero, any
+extremum will occur when ${(x-\xi)}^2$ is precisely zero; that is,
+when~$x = \xi$. That point will be a minimum (rather than a maximum)
+only if $\gamma>0$, since then $\gamma{(x-\xi)}^2\geq 0$. The values of $\kappa$, $\gamma$, and
+$\xi$ can be read off from the equation above: $\gamma=c$ (equating terms in
+$x^2$); $-2\gamma\xi=b$ (equating terms in $x$); and the value of $\kappa$ does
+not matter. This trick is known as “completing the square.” It is
+useful if one has not yet learned the differential calculus but
+otherwise might seem unnecessary.
+
+Now we return to the multidimensional case. Thus, suppose, now, that
+$V$ is a finite-dimensional, real vector space. Our approach will be
+to reproduce the examples above. Since the quadratic form contains the
+other examples as special cases we shall immediately start there. 
+
+Our immediate challenge is to say what is mean by a “quadratic
+function.” It is composed of a constant term, a “linear term,” and a
+“quadratic term.” What is the equvalent of these on a vector space?
+
+It is reasonably clear what is meant by a “linear term.” It is a map
+from the vector space to the reals that is linear. That is, it is a
+linear map. That is, it is an element of $\mathcal{L}(V, \setR)$. This space,
+$\mathcal{L}(V, \setR)$, itself has the structure of a vector
+space.\sidenote{The vector space structure is as follows. For
+  $\tilde{p}, \tilde{q}\in V^*$ and number $\alpha$, the linear combination
+  $\tilde{p}+\alpha\cdot\tilde{q}$ is that element of $V^*$ whose action on any
+  vector $x\in V$ is $(\tilde{p}+\alpha\tilde{q})(x) = \tilde{p}(x) +
+  \tilde{q}(x)$.} It is known as the \emph{dual} of $V$ and usually
+denoted~$V^*$. The equivalent of a linear term, “$bx$”, is therefore a
+term of the form $\tilde{b}(x)$, where $\tilde{b}$ is an element of
+the dual of~$X$.
+
+A quadratic term would seem to involve the “product” of a vector with
+itself. Let $C\colon X\to X^*$ be a linear map from $X$ to its dual. For
+any vector $v\in X$, $C(v)$ is an element of $X^*$ and thus can be
+applied to $w\in X$ to obtain a number, $(C(v))(w)$. The notation here
+is cumbersome so instead we write $C(v,w)$, meaning “the linear map
+$C$ applied to $v$, the result then applied to~$w$.” Now we can say
+what is meant by a quadratic term: it is a term of the form
+$C(v,v)$. Note that if $w=\alpha v$, say, then $C(w,w)=\alpha^2 C(v,v)$, which
+is what we would expect of a quadratic term.
+
+A linear map $C\colon X\to X^*$ is said to be \emph{symmetric} if
+$C(v,w)=C(w,v)$ for all $v$ and~$w$. Consider the identity:
+\begin{equation*}
+  C(v, w) = \frac{1}{2}\bigl[C(v,w) + C(w,v)\bigr]
+  + \frac{1}{2}\bigl[C(v,w) - C(w,v)\bigr].
+\end{equation*}
+The first term on the right is symmetric. Moreover, the second term on
+the right is zero when $w=v$. Thus if we all are interested in is
+expressions of the form $C(v,v)$, there is no loss of generality in
+considering only symmetric maps.
+
+Taking all the above, a quadratic function on a vector space $X$ is a
+function of the form
+\begin{equation*}
+  f(x) = a + \tilde{b}(x) + \frac{1}{2}C(x,x)
+\end{equation*}
+where $\tilde{b}\in X^*$ and $C\colon X\to X^*$ is a symmetric linear
+map. (The factor of $1/2$ is conventional.)
+
+
+
+
 
 
 
