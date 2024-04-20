@@ -24,19 +24,24 @@
 \DeclareBoldMathCommand{\setR}{R}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \newcommand{\eg}{\emph{Example:}}
+\newcommand{\ie}{\emph{i.e.}}
 \begin{document}
 \maketitle
 
-A classic problem is that of finding the location of the minimum of a
-function. It is a hard problem! It is not just that the function
-itself might be complicated in some way; the domain of the function
-could be discrete, or multivariate, or have a complicated shape, all
-of which can prevent an analytic solution and impede a numerical one.
+A classic problem is that of finding the location of the minimum of
+some real-valued function. It is a hard problem! It is not just that
+the function itself might be complicated in some way; the
+\emph{domain} of the function might complicated: it could be discrete,
+or high-dimensional, or have a complicated shape. All of these can
+prevent an analytic solution and impede a numerical one.
 
-One situation that can be more tractable arises when the domain of the
-function a vector space. Suppose we are given a vector space, $V$, and
-a real-valued function, $f\colon V\to \setR$. Then the problem at hand
-is to find $x_\text{min}\in V$ (if one exists) such that
+Sometimes, however, the domain of the function is, or can be
+approximated by, a vector space; and then the problem may be more
+tractable.
+
+Fix, once and for all, a finite-dimensional, real vector space, $V$,
+and consider a real-valued function, $f\colon V\to \setR$. The problem
+at hand is to find $x_\text{min}\in V$ (if one exists) such that
 \begin{equation*}
  f(x_\text{min}) \leq f(x) \quad\text{for all $x\in V$}.  
 \end{equation*}
@@ -45,44 +50,40 @@ Sometimes this problem is expressed by writing
   x_\text{min} = \argmin_{x\in V} f(x).
 \end{equation*}
 
-To get a sense for this problem, consider the case when $V$ is
-one-dimensional; that is, the real numbers. If we are lucky enough to
-have a smooth function, $f:\setR\to\setR$, then we know that at the
-minimum (if it exists) the derivative, $f'(x)$, is zero and the second
-derivative, $f''(x)$ is strictly positive (other values of $f''(x)$
-indicate maxima or “points of inflection.”) So a first step in finding
-the minimum is to enumerate the values of $x$ for which $f'(x) = 0$
-and $f''(x)>0$. Unfortunately, some of these values may be only local
-minima: the function is smaller there than at nearby points but may
-not be smaller than far away points.
+To get a sense for this problem, suppose for the moment that $V$ is
+one-dimensional, $V=\setR$, and that $f\colon \setR\to\setR$ is
+“sufficiently nice” (for example, a smooth function). We now give a
+few simple examples where the minimum can be found without much
+difficulty.
 
-Still, in some simple cases, these ideas suffice to completely solve
-the problem.
+\eg{} A constant function, $f(x) = a$. Such a function attains its
+minimum value everywhere. To say in another way, there is no unique
+point at which it is a minimum.
 
-\eg{} A constant function attains its minimum value everywhere. Said
-another way, there is no unique point at which it is a minimum.
+\eg{} A linear function,\sidenote{There is a slight inconsistency in
+  terminology here.  A linear \emph{map} from one vector space to
+  another necessarily maps zero to zero, whereas a linear function,
+  like this one, may have a constant term.} $f(x) = a + bx$. This
+function has no minimum (assuming $b\neq0$). Its value can be made
+arbitrarily negative by taking $x$ sufficiently large.
 
-\eg{} A linear function $f(x) = a + bx$, has no
-minimum.\sidenote{There is a slight inconsistency in terminology here:
-  a linear \emph{map} from one vector space to another necessarily
-  maps zero to zero, whereas a linear function, like this one, may
-  have a constant term.} Its value can be made arbitrarily large and
-negative by taking $x$ sufficiently large and negative (if $b>0$) or
-sufficiently large and positive (if $b<0$).
-
-\eg{} A quadratic, $f(x) = a + bx + cx^2$, is more interesting. It has
-an extremum where $b +2cx=0$ (that is, when the first derivative is
-zero) and that extremum is a minimum when $c>0$ (that is, when the
-second derivative is positive). In other words, the minimisation
-problem has a solution when $c>0$ and that solution is $x_\text{min}=
--\frac{1}{2}c^{-1}b$.
+\eg{} A quadratic, $f(x) = a + bx + cx^2$. One way to approach the
+general case might be to start with the observation that, at any
+minimum of a function $f(x)$, the derivative, $f'(x)$, must be zero
+and the second derivative, $f''(x)$, must be strictly
+positive.\sidenote{Other values of $f''(x)$ indicate maxima ($f''(x) <
+  0$) or “points of inflection” ($f''(x)=0$).} However, for the case
+of a quadratic, there is a well-known “trick,” which, as a bonus, also
+allows us to determine
 
 \begin{marginfigure}
   \begin{center}
     \asyinclude[width=4cm, height=4cm, keepAspect=false]{quadr.asy}
   \end{center}
-\caption{A graph of $f(x) = 9 - 8x + 2x^2$. The minimum of $f(x)$ is
-  at $x=2$, as can be seen by rewriting it as $f(x) = 2{(x-2)}^2+1$.}
+\caption{A graph of $f(x) = 9 - 8x + 2x^2$. In the notation of the
+  text, $b = -8$ and $c = 2$; hence the minimum of $f(x)$ is at
+  $x=-\frac{1}{2}c^{-1}b = 2$. One may also see this by rewriting $f$
+  as $f(x) = 2{(x-2)}^2+1$.\label{fig:quadratic}}
 \end{marginfigure}
 
 The quadratic case is often solved by making use of a certain “trick,”
@@ -91,49 +92,80 @@ $\gamma$, and $\xi$ such that
 \begin{equation*}
   a + bx + cx^2 = \kappa + \gamma{(x - \xi)}^2.
 \end{equation*}
-Then, since adding a constant to a function does not change the
-\emph{location} of any mimimum, we have only to find the minimum
-$\gamma{(x-\xi)}^2$. And since ${(x-\xi)}^2$ is nowhere less than zero, any
+Since adding a constant to a function does not change the
+\emph{location} of any mimimum, we have only to find the minimum of
+$\gamma{(x-\xi)}^2$. And, since ${(x-\xi)}^2$ is nowhere less than zero, any
 extremum will occur when ${(x-\xi)}^2$ is precisely zero; that is,
 when~$x = \xi$. That point will be a minimum (rather than a maximum)
-only if $\gamma>0$, since then $\gamma{(x-\xi)}^2\geq 0$. The values of $\kappa$, $\gamma$, and
-$\xi$ can be read off from the equation above: $\gamma=c$ (equating terms in
-$x^2$); $-2\gamma\xi=b$ (equating terms in $x$); and the value of $\kappa$ does
-not matter. This trick is known as “completing the square.” It is
-useful if one has not yet learned the differential calculus but
-otherwise might seem unnecessary.
+only if $\gamma>0$, since then $\gamma{(x-\xi)}^2\geq 0$. Note that, as an immediate
+corollary, we have that the minimum is a global minimum.
 
-Now we return to the multidimensional case. Thus, suppose, now, that
-$V$ is a finite-dimensional, real vector space. Our approach will be
-to reproduce the examples above. Since the quadratic form contains the
-other examples as special cases we shall immediately start there. 
+The values of $\kappa$, $\gamma$, and $\xi$ can be read off from the equation
+above: $\gamma=c$ (equating terms in $x^2$); $-2\gamma\xi=b$ (equating terms in
+$x$); and the value of $\kappa$ does not matter. This trick is known as
+“completing the square.” 
 
-Our immediate challenge is to say what is mean by a “quadratic
-function.” It is composed of a constant term, a “linear term,” and a
-“quadratic term.” What is the equvalent of these on a vector space?
+We return, now, to the multidimensional case. Thus, suppose that $V$
+is a finite-dimensional, real vector space, not necessarily
+one-dimensional. What is the equivalent, on $V$, of a quadratic
+function on~$\setR$? We must say what we mean by a constant term, a
+linear term, and a quadratic term.
 
-It is reasonably clear what is meant by a “linear term.” It is a map
-from the vector space to the reals that is linear. That is, it is a
-linear map. That is, it is an element of $\mathcal{L}(V, \setR)$. This space,
-$\mathcal{L}(V, \setR)$, itself has the structure of a vector
-space.\sidenote{The vector space structure is as follows. For
-  $\tilde{p}, \tilde{q}\in V^*$ and number $\alpha$, the linear combination
+It is clear what is meant by a constant term. A constant function on
+$V$ is just a constant.\sidenote{Note, again, that a constant function
+  $f(x) = a$ is \emph{not} a linear map $V\to\setR$, since $f(0)\neq 0$.}
+
+It is reasonably clear what is meant by a “linear term.” It is a map,
+from the vector space to the reals, which is linear. That is, it is a
+linear map, \ie, an element of $\mathcal{L}(V, \setR)$. This space, $\mathcal{L}(V,
+\setR)$, itself has the structure of a vector space. It is known as
+the \emph{dual} of $V$ and is denoted~$V^*$. The equivalent of a
+linear term, “$bx$”, is therefore an expression of the form
+$\tilde{b}(x)$, for some $\tilde{b}\in V^*$.
+\marginpar{The vector space structure on $V^*$ is as follows. For
+  $\tilde{p}, \tilde{q}\in V^*$ and $\alpha\in\setR$, the linear combination
   $\tilde{p}+\alpha\cdot\tilde{q}$ is that element of $V^*$ whose action on any
-  vector $x\in V$ is $(\tilde{p}+\alpha\tilde{q})(x) = \tilde{p}(x) +
-  \tilde{q}(x)$.} It is known as the \emph{dual} of $V$ and usually
-denoted~$V^*$. The equivalent of a linear term, “$bx$”, is therefore a
-term of the form $\tilde{b}(x)$, where $\tilde{b}$ is an element of
-the dual of~$X$.
+  vector $x\in V$ is $(\tilde{p}+\alpha\cdot\tilde{q})(x) = \tilde{p}(x) +
+  \alpha\tilde{q}(x)$. \sidepar
 
-A quadratic term would seem to involve the “product” of a vector with
-itself. Let $C\colon X\to X^*$ be a linear map from $X$ to its dual. For
-any vector $v\in X$, $C(v)$ is an element of $X^*$ and thus can be
-applied to $w\in X$ to obtain a number, $(C(v))(w)$. The notation here
-is cumbersome so instead we write $C(v,w)$, meaning “the linear map
-$C$ applied to $v$, the result then applied to~$w$.” Now we can say
-what is meant by a quadratic term: it is a term of the form
-$C(v,v)$. Note that if $w=\alpha v$, say, then $C(w,w)=\alpha^2 C(v,v)$, which
-is what we would expect of a quadratic term.
+  Suppose $(e_1, \dotsc, e_n)$ is a basis for~$V$. To define an
+  element of $V^*$ it suffices to give its action on a basis
+  of~$V$. Define $\tilde{e}^j\in V^*$ by
+  \begin{equation*}
+      \tilde{e}^j(e_i) = 
+      \begin{cases}
+        1 & \text{if $i=j$}, \\
+        0 & \text{otherwise.}
+      \end{cases}
+  \end{equation*}
+  These $\tilde{e}^j$ are a basis for~$V^*$, known as the dual basis.}
+
+It is less clear what might be meant by a “quadratic term.” It would
+seem to involve the “product of a vector with itself,” and that is not
+an operation that is obviously available in a general vector space. We
+need some structure that will allow us to combine two elements $v, w\in
+V$, “respecting the vector space structure of $V$.” Once again, we
+make use of the dual space. The idea is to start with $v$, somehow
+“carry it across” to $V^*$, and then act with the result on~$w$.
+
+Thus, let $C\colon V\to V^*$ be a linear map from $V$ to its dual. For
+any vector $v\in V$, we obtain $C(v)\in V^*$, a linear map from $V$
+to~$\setR$. Since an element of $V^*$ is a linear map from $V$
+to~$\setR$, we may apply $C(v)$ to $w\in V$ and thereby obtain a number,
+$(C(v))(w)$.
+
+In a sense, one can think of $C$ as a map from pairs $(v,w)\in V\times V$ to
+the reals. However, the notation is extremely cumbersome. Instead of
+$(C(v))(w)$ we shall write $C(v,w)$. Thus, by $C(v, w)$ we shall mean,
+“apply $C$ to $v$, obtaining an elemement of $V^*$, and apply this
+element to $w$, obtaining a number.” The expression $C(v, w)$ is
+“linear in both $v$ and $w$.” For example, $C(\alpha v, \beta w) = \alpha\beta C(v,w)$,
+which very much gives $C$ the flavour of a product.
+
+We now say what is meant by a “quadratic term:” it is an expression of
+the form $C(v,v)$ for some $C\colon V\to V^*$. 
+
+
 
 A linear map $C\colon X\to X^*$ is said to be \emph{symmetric} if
 $C(v,w)=C(w,v)$ for all $v$ and~$w$. Consider the identity:
@@ -149,16 +181,22 @@ considering only symmetric maps.
 Taking all the above, a quadratic function on a vector space $X$ is a
 function of the form
 \begin{equation*}
-  f(x) = a + \tilde{b}(x) + \frac{1}{2}C(x,x)
+  f(x) = a - 2\tilde{b}(x) + C(x,x)
 \end{equation*}
 where $\tilde{b}\in X^*$ and $C\colon X\to X^*$ is a symmetric linear
-map. (The factor of $1/2$ is conventional.)
+map. (The factor of $-2$ is conventional and gets rid of a factor of
+$-\frac{1}{2}$ later.)
 
-
-
-
-
-
+Figure~\ref{fig:bilinear-form} illustrates
+the concepts involved.
+\begin{marginfigure}
+  \begin{center}
+    \asyinclude[width=5cm]{bilinear-form.asy}
+  \end{center}
+\caption{A vector space $V$ and its dual $V^*$, showing an element $x\in
+  V$ and its image in $V^*$ under $C$, as well as an element
+  $\tilde{b}\in V^*$ and its image in $V$ under~$C^{-1}$.\label{fig:bilinear-form}}
+\end{marginfigure}
 
 
 \end{document}
