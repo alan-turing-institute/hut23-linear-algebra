@@ -56,5 +56,13 @@ void matrix_print(Matrix *A) {
 	}
 }
 
-
+void matrix_fill(Matrix *A, uint32_t seed) {
+	srand(seed);
+	if (A) {
+		uint32_t size = A->height * A->width;
+		for (uint32_t index = 0; index < size; ++index) {
+			A->elements[index] = ((uint32_t)(rand() / (RAND_MAX / 1000))) / 10;
+		}
+	}
+}
 
