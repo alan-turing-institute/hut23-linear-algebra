@@ -26,11 +26,11 @@ draw(reflect((0,0),E) * mapcurve, margin = DotMargins, BeginArrow(size = 4pt));
 label("$V$", vt * (0.5, 1), 2 * N);
 label("$V^*$", xt * vt * (0.5, 1), 2 * N); 
 
-label("$C$", midpoint(mapcurve), N);
-label("$C^{-1}$", reflect((0,0),E) * midpoint(mapcurve), S);
+label("$\bm{C}$", midpoint(mapcurve), N);
+label("$\bm{C}^{-1}$", reflect((0,0),E) * midpoint(mapcurve), S);
 
-dot("$x$", vt * (0.7, 0.7), W);
-dot("$C(x)$", xt * vt * (0.3, 0.7), E);
+dot("$v$", vt * (0.7, 0.7), W);
+dot("$\bm{C}(v)$", xt * vt * (0.3, 0.7), E);
 
 dot("$\tilde{b}$", xt * vt * (0.3, 0.2), E);
-dot("$C^{-1}(\tilde{b})$", vt * (0.7, 0.2), W);
+dot("$\bm{C}^{-1}(\tilde{b})$", vt * (0.7, 0.2), W);
