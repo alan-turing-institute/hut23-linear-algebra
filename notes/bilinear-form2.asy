@@ -21,16 +21,16 @@ real[] c2s = intersect(curveofcentres, vecspace2);
 path mapcurve = subpath(curveofcentres, c1s[0], c2s[0]);
 
 draw(mapcurve, margin = DotMargins, Arrow(size=4pt));
-// draw(reflect((0,0),E) * mapcurve, margin = DotMargins, BeginArrow(size = 4pt));
+draw(reflect((0,0),E) * mapcurve, margin = DotMargins, BeginArrow(size = 4pt));
 
 label("$V$", vt * (0.5, 1), 2 * N);
 label("$V^*$", xt * vt * (0.5, 1), 2 * N); 
 
 label("$C$", midpoint(mapcurve), N);
-// label("$C^{-1}$", reflect((0,0),E) * midpoint(mapcurve), S);
+label("$C^{-1}$", reflect((0,0),E) * midpoint(mapcurve), S);
 
 dot("$x$", vt * (0.7, 0.7), W);
 dot("$C(x)$", xt * vt * (0.3, 0.7), E);
 
-// dot("$\tilde{b}$", xt * vt * (0.3, 0.2), E);
-// dot("$C^{-1}(\tilde{b})$", vt * (0.7, 0.2), W);
+dot("$\tilde{b}$", xt * vt * (0.3, 0.2), E);
+dot("$C^{-1}(\tilde{b})$", vt * (0.7, 0.2), W);
