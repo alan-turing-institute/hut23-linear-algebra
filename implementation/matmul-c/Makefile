@@ -26,6 +26,7 @@ matmul-c: \
 	src/matrix.c \
 	src/operations.c \
 	src/parse_header.c \
+	src/threadpool.c \
 	src/tests.c
 	$(CC) $(CFLAGS) -o$@ $^ $(CLIBS)
 
