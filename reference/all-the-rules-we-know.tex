@@ -634,6 +634,7 @@ for all $v \in V$.
 \end{definition}
 
 \begin{definition}{3.7}[product of linear maps]
+\label{def:mapproduct}
 If $T \in \L(U, V)$ and $S \in \L(V, W)$, then the \defn{product} $ST \in \L(U, V)$ is defined by
 $$
 (S T)(u) = S(Tu)
@@ -869,7 +870,7 @@ Suppose $m$ and $n$ are positive integers. With addition and scalar multiplicati
 \end{result}
 
 \begin{result}{3.43}[matrix of product of linear maps]
-If $T \in \L(U., V)$ and $S \in \L(V, W)$, then $\M(S T) = \M(S) \M(T)$.
+If $T \in \L(U, V)$ and $S \in \L(V, W)$, then $\M(S T) = \M(S) \M(T)$.
 \end{result}
 
 \begin{result}{3.46}[entry of matrix product equals row times column]
@@ -1013,7 +1014,7 @@ with 1's on the diagonal (the entries where the row number equals the column num
 \end{definition}
 
 \begin{definition}{3.80}[invertible, inverse, $A^{-1}$]
-A square matrix $A$ is alled \defn{invertible} if there is a square matrix $B$ of the same size such that $AB = BA = I$; we call $B$ the \defn{inverse} of $A$ and denote it by $A^{-1}$.
+A square matrix $A$ is called \defn{invertible} if there is a square matrix $B$ of the same size such that $AB = BA = I$; we call $B$ the \defn{inverse} of $A$ and denote it by $A^{-1}$.
 \end{definition}
 
 \newpage
@@ -1059,7 +1060,7 @@ Suppose $T \in \L(V, W)$ and $v_1, \ldots, v_n$ is a basis of $V$ and $w_1, \ldo
 \begin{result}{3.76}[linear maps act like matrix multiplication]
 Suppose $T \in \L(V, W)$ and $v \in V$. Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $w_1 \ldots, w_m$ is a basis of $W$. Then
 $$
-\M(T v) = \M(T) \M(V) .
+\M(T v) = \M(T) \M(v) .
 $$
 \end{result}
 
@@ -1093,6 +1094,132 @@ $$
 
 \begin{result}{3.86}[matrix of inverse equals inverse of matrix]
 Suppose that $v_1, \ldots, v_n$ is a basis of $V$ and $T \in \L(V)$ is invertible. Then $\M(T^{-1}) = (\M(T))^{-1}$, where both matrixes are with respect to the basis $v_1, \ldots, v_n$.
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.E}
+
+\begin{definition}{3.87}[product of vector spaces]
+Suppose $V_1, \ldots, V_m$ are vector spaces over $\F$.
+\begin{enumerate}
+\item The \defn{product} $V_1 \times \cdots \times V_m$ is defined by
+$$
+V_1 \times \cdots \times V_m = \{(v_1, \ldots, v_m) \setsep v_1 \in V_1, \ldots, v_m \in V_m \}.
+$$
+\item Addition on $V_1 \times \cdots \times V_m$ is defined by
+$$
+(u_1, \ldots, u_m) + (v_1, \ldots, v_m) = (u_1 + v_1, \ldots, u_m + v_m).
+$$
+\item Scalar multiplication on $V_1 \times \cdots \times V_m$ is defined by
+$$
+\lambda (v_1, \ldots, v_m) = (\lambda v_1, \ldots, \lambda v_m).
+$$
+\end{enumerate}
+\end{definition}
+
+\begin{notation}{3.95}[$v + U$]
+Suppose $v \in V$ and $U \subseteq V$. Then $v + U$ is the subset of $V$ defined by
+$$
+v + U = \{ v + u \setsep u \in U \}
+$$
+\end{notation}
+
+\begin{definition}{3.97}[translate]
+For $v \in V$ and $U$ a subset of $V$, the set $v + U$ is said to be a \defn{translate} of $U$.
+\end{definition}
+
+\begin{definition}{3.99}[quotient space, $V / U$]
+Suppose $U$ is a subspace of $V$. The \defn{quotient space} $V / U$ is the set of all translates of $U$. Thus
+$$
+V / U = \{ v + U \setsep v \in V \}.
+$$
+\end{definition}
+
+\begin{definition}{3.102}[addition and scalar multiplication on $V / U$]
+\label{def:quotientops}
+Suppose $U$ is a subspace of $V$. The \defn{addition} and \defn{scalar multiplication} are defined on $V / U$ by
+\begin{align*}
+(v + U) + (w + U) &= (v + w) + U \\
+\lambda (v + U) &= (\lambda v) + U
+\end{align*}
+for all $v, w \in V$ and all $\lambda \in \F$.
+\end{definition}
+
+\begin{definition}{3.104}[quotient map, $\pi$]
+Suppose $U$ is a subspace of $V$. The \defn{quotient map} $\pi : V \to V / U$ is the linear map defined by
+$$
+\pi (v) = v + U
+$$
+for each $v \in V$.
+\end{definition}
+
+\begin{notation}{3.106}[$\widetilde{T}$]
+Suppose $T \in \L (V, W)$. Define $\widetilde{T} : V / (\kernel T) \to W$ by
+$$
+\widetilde{T} (v + \kernel T) = T v.
+$$
+\end{notation}
+
+\begin{notation}{\!\!}[composition of linear maps, $\circ$]
+If $T \in \L(U, V)$ and $S \in \L(V, W)$, then the \defn{composition} notation $S \circ T$ is an alternative way of writing the product $S T$ of $S$ and $T$, as given in Definition \ref{def:mapproduct}.
+\end{notation}
+
+\newpage
+
+\begin{result}{3.89}[product of vector spaces is a vector space]
+Suppose $V_1, \ldots, V_n$ are vector spaces over $\F$. Then $V_1 \times \cdots \times V_m$ is a vector space over $\F$.
+\end{result}
+
+\begin{result}{3.92}[dimension of a product is the sum of dimensions]
+Suppose $V_1, \ldots, V_m$ are finite-dimensional vector spaces. Then $V_1 \times \cdots \times V_m$ is finite-dimensional and
+$$
+\dim (V_1 \times \cdots \times V_m) = \dim V_1 + \cdots + \dim V_m.
+$$
+\end{result}
+
+\begin{result}{3.93}[products and direct sums]
+Suppose that $V_1, \ldots, V_m$ are subspaces of $V$. Define a linear map $\Gamma : V_1 \times \cdots \times V_m \to V_1 + \cdots + V_m$ by
+$$
+\Gamma (v_1, \ldots, v_m) = v_1 + \ldots + v_m.
+$$
+Then $V_1 + \cdots + V_m$ is a direct sum if and only if $\Gamma$ is injective.
+\end{result}
+
+\begin{result}{3.94}[a sum is a direct sum if and only if dimensions add up]
+Suppose $V$ is finite-dimensional and $V_1, \ldots, V_m$ are subspaces of $V$. Then $V_1 + \cdots + V_m$ is a direct sum if and only if
+$$
+\dim (V_1 + \cdots + V_m) = \dim V_1 + \cdots + \dim V_m.
+$$
+\end{result}
+
+\begin{result}{3.101}[two translates of a subspace are equal or disjoint]
+Suppose $U$ is a subapace of $V$ and $v, w \in V$. Then
+$$
+v - w \in U \Longleftrightarrow v + U = w + U \Longleftrightarrow (v + U) \cap (w + U) \not= \emptyset.
+$$
+\end{result}
+
+\begin{result}{3.103}[quotient space is a vector space]
+Suppose $U$ is a subspace of $V$. Then $V / U$, with the operations of addition and scalar multiplication as defined in Definition \ref{def:quotientops}, is a vector space.
+\end{result}
+
+\begin{result}{3.105}[dimension of quotient space]
+Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$. Then
+$$
+\dim V / U = \dim U - \dim V.
+$$
+\end{result}
+
+\begin{result}{3.107}[null space and range of $\widetilde{T}$]
+Suppose $T \in \L (V, W)$. Then
+\begin{enumerate}
+\item[(a)] $\widetilde{T} \circ \pi = T$, where $\pi$ is the quotient map of $V$ onto $V / (\kernel T)$;
+\item[(b)] $\widetilde{T}$ is injective;
+\item[(c)] $\range \widetilde{T} = \range T$;
+\item[(d)] $V / (\kernel T)$ and $\range T$ are isomorphic vector spaces.
+\end{enumerate}
 \end{result}
 
 \end{document}
