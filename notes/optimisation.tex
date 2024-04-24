@@ -23,6 +23,7 @@
 %%
 \DeclareBoldMathCommand{\setR}{R}
 \DeclareBoldMathCommand{\bfC}{C}
+\newcommand{\bzero}{\mathbold{0}} % I don't know why \bm{0} fails.
 \DeclareMathOperator*{\argmin}{arg\,min}
 \newcommand{\eg}{\emph{Example:}}
 \newcommand{\ie}{\emph{i.e.}}
@@ -308,7 +309,7 @@ finite-dimensional vector space is invertible.
 invertible if it is injective and surjective. It suffices to show
 injectivity, since the dimension of $V$ is the same as the dimension
 of~$V^*$. To show injectivity suppose, for contradiction, that there
-is some $u\neq\bm{0}$ in $V$ such that $\bfC(u)=\bm{0}$ (with the
+is some $u\neq\bzero$ in $V$ such that $\bfC(u)=\bzero$ (with the
 right-hand side being the zero element of~$V^*$, and noting that this
 condition is equivalent to injectivity). Then we would have
 $\bfC(u, x) =0$ for any $x$; whence, in particular, $\bfC(u,u)=0$,

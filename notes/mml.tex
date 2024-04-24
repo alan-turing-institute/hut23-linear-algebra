@@ -78,12 +78,12 @@ problems in a way that will let us attempt to solve them?
 A possible formulation is as follows: In each example, there is given
 a set $X$ (of possible inputs) and a set $Y$ (of possible outputs) and
 a collection $i=1,\dots,N$ of pairs $(x_i, y_i)\in X\times Y$ (the
-data). Consider the challenge of finding a map, $\tilde{f}\colon X\to
-Y$, having the property that $\tilde{f}(x_i)= y_i$ for each~$i$.
+data). Consider the challenge of finding a map, $\hat{f}\colon X\to
+Y$, having the property that $\hat{f}(x_i)= y_i$ for each~$i$.
 
 One immediate snag is that finding such a map is \emph{far too easy}:
 \begin{equation*}
-  \tilde{f}(x) =
+  \hat{f}(x) =
   \begin{cases}
     y_i & \text{if $x = x_i$ for some $i$;} \\
       0 & \text{otherwise}.
@@ -96,7 +96,7 @@ represents the “real world.”
 What we presumably meant to ask for was a function that “agrees with
 the data \emph{and} is likely to agree with the real function on
 \emph{other} values of the input, values we haven't seen yet.” The
-$\tilde{f}$ above, being zero everywhere except just those points
+$\hat{f}$ above, being zero everywhere except just those points
 where we have data, is highly unlikely to be a good approximation to
 the “real” one.
 
@@ -159,8 +159,8 @@ In summary, the problem is as follows:
 \begin{enumerate}
 \item Given data $(x_i, y_i) \in X\times Y$ for $i=1,\dots,N$; and
 \item a collection, $\mathcal{F}$, of functions $X\to Y$;
-\item find $\tilde{f}\in\mathcal{F}$ that is “close to” the data in the sense that
-  the $y_i$ are “close to”~$\tilde{f}(x_i)$..
+\item find $\hat{f}\in\mathcal{F}$ that is “close to” the data in the sense that
+  the $y_i$ are “close to”~$\hat{f}(x_i)$..
 \end{enumerate}
 
 In general this problem is hard. Deep learning, for example, falls
@@ -177,45 +177,28 @@ function $f+\alpha g$ by:
 In other words, functions are added by “adding their values at each
 point.” Our second choice is then to demand that, under this
 definition of addition of functions and multiplication of functions by
-nunbers, the space $\mathcal{F}$ be a vector space.\sidenote{Note that we have
+nunbers, the space $\mathcal{F}$ is a vector space.\sidenote{Note that we have
 \emph{not} said anything about the “input” space,~$X$; especially not
 that it is a vector space! Nor have we specified what particular kinds
 of functions make up $\mathcal{F}$, for example, we have not said that they must
 be “linear functions of $X$.”}
 
-To make any further progress we need to say something more specific
-about the meaning of “close.” Before doing so, we digress to talk
-about the minimisation of certain functions on vector spaces.
-
-\section{Quadratic forms on vector spaces}
-
-Let $V$ be a (finite-dimensional) real vector space. Recall that the
-\emph{dual} of $V$, written $V^*$, is the vector space of all linear
-maps from $V$ to~$R$. 
-
-Suppose $T\colon V\to V^*$ is a linear map. For any $u, v\in V$, $T(v)$
-is a an element of $V^*$, and thus $[T(v)](u)$ is a number. By abuse
-of notation, we write this as $T(v,u)$. Thus we can think of $T$ as a
-(multi-)linear map from pairs of vectors in $V$ to the reals.
-
-
-
-
 \section{Ordinary least squares}
 
+To make any further progress we need to say something more specific
+about the meaning of “close.” In the method of \emph{ordinary least
+  squares} “closeness of a funcion to the data” is the value of the
+expression $\sum_{i=1}^N{(f(x_i) - y_i)}^2$, the sum of the squared
+differences between the value of the function and the $y_i$, evaluated
+at the~$x_i$. This particular measure has two nice properties: it is
+non-negative, and it is zero only when the function exactly matches
+the data. Thus, the problem of ordinary least-squares regression is
+to find
+\[
+  \hat{f} = \argmin_{f\in\mathcal{F}} \sum_{i=1}^N {(f(x_i) - y_i)}^2.
+\]
 
-
-The “closeness” of some $f\in\mathcal{F}$ to the data is measured by the
-  value of $\sum_{i=1}^N{(f(x_i) - y_i)}^2$.
-
-
-We these assumptions, the solution we are looking for is
-\begin{equation*}
-  \tilde{f} = \argmin_{f\in\mathcal{F}} \sum_{i=1}^N {(f(x_i) - y_i)}^2.
-\end{equation*}
-
-Of course, this just says what the solution \emph{is}, it doesn't tell
-us how to \emph{find} it.
+The right hand side is, for each $f\in$
 
 
 
