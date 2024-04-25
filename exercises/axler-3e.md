@@ -119,7 +119,17 @@ finite-dimensional. Prove that $V$ is isomorphic to $U\times (V/U)$.
 
 ### Answer
 
-Well $V/U$ might be finite-dimensional, but that doesn’t mean $U$ or
+The story here is something like this: “$V$ would like to be a direct
+sum of $U$ and $V/U$. But it isn’t (by Axler's definition) because
+$V/U$ is not a subspace of $V$. However, one can choose a subspace of
+$V$ that is _isomorphic_ to $V/U$ (I mean, there are many, but choose
+one). And $V$ can be written as the the direct sum of _that_ subspace
+and $U$.” This question is about that construction.
+
+This answer makes use of the “quotient map,” $\pi\colon V\to V/U$. See
+Axler 3.104.
+
+Okay, so $V/U$ might be finite-dimensional, but that doesn’t mean $U$ or
 $V$ are, so once again we’ll need to find an actual isomorphism. That
 is, we need an invertible map $U\times (V/U)\leftrightarrow V$.
 
@@ -137,7 +147,7 @@ However, $V/U$ is finite-dimensional, so has a basis $(\sigma_1,
 \dotsc, \sigma_n)$ for some $n$. Each of the $\sigma_i$ is a translate
 of $U$ in $V$; that is, it is a subset of the form $e_i + U$ for some
 $e_i$. Fix these $e_i$. (That is, for each $i$, choose _some_ $e_i$ so
-that $\sigma_i$ is the translate $e_i+U$.) 
+that $\sigma_i$ is the translate $e_i+U$.)
 
 Another way to say this is that the $e_i$ are chosen such that
 $\pi(e_i) = \sigma_i$ where $\pi$ is the quotient map $\pi:V\to V/U$.
@@ -161,7 +171,7 @@ $\alpha_i$, it follows that $\sum_i\alpha_i \pi(e_i) = \sum_i\alpha_i
 independent, that all the $\alpha_i$ are necessarily zero.
 
 Now, for any $v\in V$, compute $\pi(v)$ (an element of $V/U$) and
-write it in terms of the $\sigma$s, say
+write it in terms of the $`\sigma`$s, say
 $\pi(v)=\sum_i\beta_i\sigma_i$. Set $r= \sum_i\beta_i e_i$ and observe
 that $(v - r)$ is an element of $U$. Define a map $V\to U\times
 (V/U)$ by $v\mapsto (v - r, \pi(v))$.
@@ -169,3 +179,38 @@ that $(v - r)$ is an element of $U$. Define a map $V\to U\times
 To tie everything up, we need to show that these two maps are inverses
 of each other.
 
+As a reminder, the two maps are as follows. Fix $\sigma_i$, a basis of
+$V/U$; and choose $e_i$ such that $\pi(e_i)=\sigma_i$. Then the first
+map is:
+
+```math
+\begin{aligned}
+U\times (V/U) &\to V \\
+(u, \rho) &\mapsto (u + r)
+\end{aligned}
+```
+
+where $r=\sum_i\alpha_i e_i$ and the $\alpha_i$ are defined by
+$\rho=\sum_i\alpha_i \sigma_i$, so that $\pi(u+r)=\pi(r)=\rho$. And the second
+map is:
+
+```math
+\begin{aligned}
+V &\to U\times (V/U) \\
+v &\mapsto (v-r', \pi(v)),
+\end{aligned}
+```
+
+where $r' = \sum_i \alpha_i e_i$ and the $\alpha_i$ are defined by
+$\pi(v)=\sum_i\alpha_i\sigma_i$.
+
+Start with $(u,\rho)$ and apply the first map: we obtain $u +r$. To
+apply the second map to $u+r$, note that $\pi(u+r)=\rho$ and hence
+$r'=r$. Thus we obtain $((u+r)-r, \pi(u+r)) = (u, \rho)$.
+
+Conversely, start with $v\in V$ and apply the second map: we obtain
+$(v-r',\pi(v))$, where $\pi(r')=\pi(v)$. Now apply the first map. We
+need $r$ such that $\pi(r)=\pi(v)$ hence $r=r'$. Thus we obtain
+$(v-r')+r'=v$.
+
+In other words, the two maps are inverses of each other.
