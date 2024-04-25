@@ -6,6 +6,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "utils.h"
+
 #include "matrix.h"
 
 Matrix * new_matrix(uint16_t height, uint16_t width) {
@@ -57,12 +59,16 @@ void matrix_print(Matrix *A) {
 }
 
 void matrix_fill(Matrix *A, uint32_t seed) {
-	srand(seed);
+	Rand * rand = new_rand();
+	rand_seed(rand, seed);
+
 	if (A) {
 		uint32_t size = A->height * A->width;
 		for (uint32_t index = 0; index < size; ++index) {
-			A->elements[index] = ((uint32_t)(rand() / (RAND_MAX / 1000))) / 10;
+			A->elements[index] = rand_digit(rand);
 		}
 	}
+
+	rand = delete_rand(rand);
 }
 
