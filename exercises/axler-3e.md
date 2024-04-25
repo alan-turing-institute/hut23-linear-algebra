@@ -71,8 +71,8 @@ T(x) = c\}`$ is either the empty set or is a translate of $\text{null }T$.
 
 Write $`X = \{x\in V\mid T(x) = c\}`$.
 
-Roughly, the story here is that the null space of $T$ -- that is, the
-set of $x$ for which $T(x)=0$ -- is a subspace. It's the subspace of
+Roughly, the story here is that the null space of $T$ — that is, the
+set of $x$ for which $T(x)=0$ — is a subspace. It’s the subspace of
 everything in $V$ that $T$ “projects down onto 0.” So one could
 imagine that the set of “everything in $V$ that $T$ projects down onto
 $c$“ is a very similar space, and that is what we are trying to show.
@@ -83,9 +83,9 @@ of all such $x$, is empty. So now suppose instead that $c$ is in the
 range of $T$; that is, there is some (not necessarily unique) $t\in V$
 with $T(t)=c$.
 
-Consider $t+\text{null }T$ (the translate of $\text{null }T$ by
-$t$). To show $X = t+\text{null }T$ we
-must show $X\subset t+\text{null }T$ and $t+\text{null }T\subset X$.
+We will show that $X$ is $t+\text{null }T$ (the translate of
+$\text{null }T$ by $t$). To show $X = t+\text{null }T$ we must show
+$X\subset t+\text{null }T$ and $t+\text{null }T\subset X$.
 
 For any $x\in t+\text{null }T$, we have $T(x) = T(t)$ (by
 definition of the null) and hence $T(x) = c$, whence $x\in X$. Thus
@@ -102,15 +102,15 @@ Explain why the set of solutions to a system of linear equations such
 as 3.27 is either the empty set or is a translate of some subspace of
 $\mathbf{F}^n$.
 
-NB: A translate of $\text{null }T$ is some hyerplane; so now we know
-how to write linear constraints.
-
 ### Answer
 
 A system of equations like 3.27 just is the matrix version of
 $T(x)=c$. So either there are no solutions, or the solution set is a
-translate of $\text{null }T$, meaning it a translate of some
-$\mathbf{F}^n$ (the one that is isomorphic to $\text{null }T$.
+translate of $\text{null }T$, meaning it is a translate of some
+$\mathbf{F}^n$ (the one that is isomorphic to $\text{null }T$).
+
+NB: A translate of $\text{null }T$ is some hyerplane; so now we know
+how to write linear constraints.
 
 ## Question 13
 
@@ -119,14 +119,14 @@ finite-dimensional. Prove that $V$ is isomorphic to $U\times (V/U)$.
 
 ### Answer
 
-Well, $V/U$ might be finite-dimensional, but that doesn't mean $U$ or
-$V$ are, so once again we'll need to find an actual isomorphism. That
+Well, $V/U$ might be finite-dimensional, but that doesn’t mean $U$ or
+$V$ are, so once again we’ll need to find an actual isomorphism. That
 is, we need an invertible map $U\times (V/U)\to V$.
 
 $V/U$ is the vector space of translates of $U$ in $V$. So $U\times
 (V/U)$ is the space of pairs $(u, \rho)$ with $u\in U$ and $\rho$ a
-translate of $U$; that is, $rho$ is a subset of $V$ of the form $r+U$
-for some $r$.
+translate of $U$ (that is, $\rho$ is a subset of $V$ of the form $r+U$
+for some $r$).
 
 We'd like to identify $(u, \rho)$ with the vector $u+r\in V$: that
 would provide a map from $U\times (V/U)$ to $V$. But the problem is
