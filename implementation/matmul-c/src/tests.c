@@ -5,8 +5,7 @@
 
 #include <stdlib.h>
 
-#include "matrix.h"
-#include "load.h"
+#include "operations.h"
 
 #include "tests.h"
 
@@ -74,6 +73,40 @@ bool tests_allocate_results(Matrices *c, Matrices *d) {
 		d->matrices[index].matrix = new_matrix(c->matrices[index].matrix->height, c->matrices[index].matrix->width);
 	}
 	return true;
+}
+
+// Perform 512 multiplications and compare against the results from NumPy
+void tests_compare(Matrices *a, Matrices *b, Matrices *c, Matrices *d, ThreadPool *pool) {
+	printf("Performing unit tests...\n");
+	uint32_t passed = 0;
+	uint32_t total = d->count;
+	bool result;
+
+	for (uint32_t index = 0; index < total; ++index) {
+		result = multiply(d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
+		result = result && equals(c->matrices[index].matrix, d->matrices[index].matrix);
+		if (result) {
+			passed += 1;
+		}
+		else {
+			printf("Incorrect result\n");
+			matrix_print(c->matrices[index].matrix);
+			matrix_print(d->matrices[index].matrix);
+		}
+	}
+	for (uint32_t index = 0; index < total; ++index) {
+		result = multiply_parallel(pool, d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
+		result = result && equals(c->matrices[index].matrix, d->matrices[index].matrix);
+		if (result) {
+			passed += 1;
+		}
+		else {
+			printf("Incorrect result\n");
+			matrix_print(c->matrices[index].matrix);
+			matrix_print(d->matrices[index].matrix);
+		}
+	}
+	printf("Multiplication tests passed: %u out of %u\n", passed, total * 2);
 }
 
 

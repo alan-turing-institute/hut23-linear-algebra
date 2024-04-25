@@ -23,4 +23,4 @@ void matrix_npz_load(char *filename, Matrices *matrices);
 Matrices *new_matrices(uint32_t count);
 Matrices *delete_matrices(Matrices *matrices);
 
-#endif /* __MATRIX_OPERATIONS_H */
+#endif /* __MATRIX_LOAD_H */
