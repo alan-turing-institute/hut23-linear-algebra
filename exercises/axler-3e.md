@@ -119,25 +119,28 @@ finite-dimensional. Prove that $V$ is isomorphic to $U\times (V/U)$.
 
 ### Answer
 
-Well, $V/U$ might be finite-dimensional, but that doesn’t mean $U$ or
+Well $V/U$ might be finite-dimensional, but that doesn’t mean $U$ or
 $V$ are, so once again we’ll need to find an actual isomorphism. That
-is, we need an invertible map $U\times (V/U)\to V$.
+is, we need an invertible map $U\times (V/U)\leftrightarrow V$.
 
-$V/U$ is the vector space of translates of $U$ in $V$. So $U\times
-(V/U)$ is the space of pairs $(u, \rho)$ with $u\in U$ and $\rho$ a
-translate of $U$ (that is, $\rho$ is a subset of $V$ of the form $r+U$
-for some $r$).
+$V/U$ is the vector space of translates of $U$ in $V$. So an element
+of $U\times (V/U)$ is a pair $(u, \rho)$ with $u\in U$ and $\rho$ a
+translate of $U$.
 
-We'd like to identify $(u, \rho)$ with the vector $u+r\in V$: that
-would provide a map from $U\times (V/U)$ to $V$. But the problem is
-that this $r$ is not unique. (Adding any element of $U$ to $r$
-produces the very same translate $\rho$.)
+A translate of $U$, like $\rho$, is a subset of $V$ of the form $r+U$
+for some $r$. We'd like to identify $(u, \rho)$ with the vector
+$u+r\in V$: that would provide a map from $U\times (V/U)$ to $V$. But
+the problem is that this $r$ is not unique. Adding any element of $U$
+to $r$ produces the very same translate $\rho$.
 
 However, $V/U$ is finite-dimensional, so has a basis $(\sigma_1,
 \dotsc, \sigma_n)$ for some $n$. Each of the $\sigma_i$ is a translate
 of $U$ in $V$; that is, it is a subset of the form $e_i + U$ for some
 $e_i$. Fix these $e_i$. (That is, for each $i$, choose _some_ $e_i$ so
-that $\sigma_i$ is the translate $e_i+U$.)
+that $\sigma_i$ is the translate $e_i+U$.) 
+
+Another way to say this is that the $e_i$ are chosen such that
+$\pi(e_i) = \sigma_i$ where $\pi$ is the quotient map $\pi:V\to V/U$.
 
 We will use these basis elements, and the specific choice of $e_i$, to
 choose, consistently, a particular $r\in V$ which generates the
@@ -149,4 +152,20 @@ $(u,\rho)\in U\times(V/U)$ with $u+r\in V$.
 
 That is one direction of the map. (Again, you do have to convince
 yourself that this is a _linear_ map, but since every operation we use
-is linear, that is reasonably straightforward to do.) 
+is linear, that is reasonably straightforward to do.)
+
+For the other direction, first note that the $e_i$ (in $V$) are
+linearly independent. For, supposing $\sum_i\alpha_i e_i=0$ for some
+$\alpha_i$, it follows that $\sum_i\alpha_i \pi(e_i) = \sum_i\alpha_i
+\sigma_i =0$, and therefore, since the $\sigma_i$ are linearly
+independent, that all the $\alpha_i$ are necessarily zero.
+
+Now, for any $v\in V$, compute $\pi(v)$ (an element of $V/U$) and
+write it in terms of the $\sigma$s, say
+$\pi(v)=\sum_i\beta_i\sigma_i$. Set $r= \sum_i\beta_i e_i$ and observe
+that $(v - r)$ is an element of $U$. Define a map $V\to U\times
+(V/U)$ by $v\mapsto (v - r, \pi(v))$.
+
+To tie everything up, we need to show that these two maps are inverses
+of each other.
+
