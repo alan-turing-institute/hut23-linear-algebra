@@ -64,12 +64,12 @@ linearity of all the maps, which I have not done here.)
 
 ### (a)
 
-Suppose $T\in \mathcal{L}(V,W)$ and $c\in W$. Prove that $\{x\in V\mid
-T(x) = c\}$ is either the empty set or is a translate of $\text{null }T$.
+Suppose $T\in \mathcal{L}(V,W)$ and $c\in W$. Prove that $`\{x\in V\mid
+T(x) = c\}`$ is either the empty set or is a translate of $\text{null }T$.
 
 ### Answer
 
-Write $X = \{x\in V\mid T(x) = c\}$.
+Write $`X = \{x\in V\mid T(x) = c\}`$.
 
 Either $c$ is in the range of $T$ or it isn't. If it is not, then
 there is no $x\in V$ with $T(x)=c$ (by definition) and so $X$, the set
