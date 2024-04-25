@@ -119,7 +119,7 @@ finite-dimensional. Prove that $V$ is isomorphic to $U\times (V/U)$.
 
 ### Answer
 
-The story here is something like this: “$V$ would like to be a direct
+The story here is something like this: “$`V`$ would like to be a direct
 sum of $U$ and $V/U$. But it isn’t (by Axler's definition) because
 $V/U$ is not a subspace of $V$. However, one can choose a subspace of
 $V$ that is _isomorphic_ to $V/U$ (I mean, there are many, but choose
@@ -141,24 +141,26 @@ A translate of $U$, like $\rho$, is a subset of $V$ of the form $r+U$
 for some $r$. We'd like to identify $(u, \rho)$ with the vector
 $u+r\in V$: that would provide a map from $U\times (V/U)$ to $V$. But
 the problem is that this $r$ is not unique. Adding any element of $U$
-to $r$ produces the very same translate $\rho$.
+to $r$ produces the very same translate $\rho$. We need some way to
+“break” this non-uniqueness, by choosing some particular $r$, but we
+have to make a consistent choice each time.
 
-However, $V/U$ is finite-dimensional, so has a basis $(\sigma_1,
-\dotsc, \sigma_n)$ for some $n$. Each of the $\sigma_i$ is a translate
-of $U$ in $V$; that is, it is a subset of the form $e_i + U$ for some
+Now, $V/U$ is finite-dimensional, so has a basis $(\sigma_1, \dotsc,
+\sigma_n)$ for some $n$. Each of the $\sigma_i$ is a translate of $U$
+in $V$; that is, it is a subset of the form $e_i + U$ for some
 $e_i$. Fix these $e_i$. (That is, for each $i$, choose _some_ $e_i$ so
 that $\sigma_i$ is the translate $e_i+U$.)
 
 Another way to say this is that the $e_i$ are chosen such that
 $\pi(e_i) = \sigma_i$ where $\pi$ is the quotient map $\pi:V\to V/U$.
 
-We will use these basis elements, and the specific choice of $e_i$, to
-choose, consistently, a particular $r\in V$ which generates the
-subspace $\rho$, in the following way. For any $\rho$, write $\rho =
-\sum_i\alpha_i\sigma_i$ (that is, the $\alpha_i$ are the components of
-$\rho$ in the basis $\sigma_i$). Now set $r=\sum_i\alpha_i e_i$, the
-same linear combination but back in $V$. Now we can identify
-$(u,\rho)\in U\times(V/U)$ with $u+r\in V$.
+We will use these basis elements, $\sigma_i\in V/U$, and the specific
+choice of $e_i\in V$, to choose, consistently, a particular $r\in V$
+which generates the subspace $\rho$, in the following way. For any
+$\rho\in V/U$, write $\rho = \sum_i\alpha_i\sigma_i$ (that is, the
+$\alpha_i$ are the components of $\rho$ in the basis $\sigma_i$). Now
+set $r=\sum_i\alpha_i e_i$, the same linear combination but back in
+$V$. Now we can identify $(u,\rho)\in U\times(V/U)$ with $u+r\in V$.
 
 That is one direction of the map. (Again, you do have to convince
 yourself that this is a _linear_ map, but since every operation we use
