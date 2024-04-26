@@ -32,30 +32,28 @@
 \maketitle
 
 A classic problem is that of finding the location of the minimum of
-some real-valued function. It is a hard problem! It is not just that
-the function itself might be complicated in some way; the
-\emph{domain} of the function might be complicated: it could be
-discrete, or high-dimensional, or have some complicated shape. All of
-these can prevent an analytic solution and impede a numerical one.
+some real-valued function. That is, given a function,
+$f\colon X\to\setR$, defined on some set $X$, we seek
+$x_\text{min} = \argmin_{x\in X} f(x)$. The value $x_\text{min}$ is
+called the \emph{minimiser} of~$f$: it is that value of $x$ at which
+$f$ takes on its minimum value.
 
-The general problem is this. Let $X$ be a set, possibly with
-additional structure, and $f\colon X \to \setR$ a real-valued function
-on~$X$. We are to find $x_\text{min}\in X$ (if one exists) such that
-\[
- f(x_\text{min}) \leq f(x) \quad\text{for all $x\in X$}.  
-\]
-The value $x_\text{min}$ is called the \emph{minimiser}
-of~$f$. Alternatively, we say
-\begin{equation}
-  x_\text{min} = \argmin_{x\in X} f(x).
-\label{eq:argmin}
-\end{equation}
+It is a hard problem! It is not just that the function itself might be
+complicated in some way; the \emph{domain} of the function, $X$, might
+be complicated: it could be discrete, or high-dimensional, or have
+some complicated shape. All of these can prevent an analytic solution
+and impede a numerical one.
 
-Sometimes, the domain of the function is, or can be approximated by, a
-vector space; and then the problem may be more tractable. To get a
-sense for the problem in this case, suppose, for the moment, that the
-domain of $f$ is the reals. Here are a few, simple examples where the
-minimum can be found without much difficulty.
+Sometimes, however, the domain of the function is a vector space; and
+then the problem is much more tractable. In this note we will make two
+simplifying assumptions: first, that the domain is a
+(finite-dimensional) vector space; and second, that the function takes
+a particularly simple form.
+
+To get a sense for the issues, suppose, for the moment, that the
+domain of the function is in the fact just the reals, and consider
+“functions of a single variable,” $f\colon \setR\to\setR$. Here are a
+few examples where the minimum can be found without much difficulty.
 
 \eg{} A constant function, $f(x) = a$. Such a function attains its
 minimum value everywhere. To say it another way, there is no unique
@@ -63,22 +61,16 @@ point at which it is a minimum.
 
 \eg{} A linear function,\sidenote{There is a slight inconsistency in
   terminology here.  A linear \emph{map} from one vector space to
-  another necessarily maps zero to zero, whereas a linear function,
-  like this one, may have a constant term.} $f(x) = a + bx$. This
-function has no minimum (assuming $b\neq0$). Its value can be made
-arbitrarily negative by taking $x$ sufficiently large.
+  another necessarily maps zero to zero, whereas a linear
+  \emph{function}, like this one, may have a constant term.}
+$f(x) = a + bx$. This function has no minimum (assuming $b\neq0$). Its
+value can be made arbitrarily negative by taking $x$ sufficiently
+large.
 
 \eg{} A quadratic, $f(x) = a + bx + cx^2$. The previous examples could
-be solved by inspection. One way to approach the general case is to
-observe that, at any minimum of a function, the derivative of the
-function must be zero and its second derivative must be strictly
-positive.\sidenote{Other values of the second derivative indicate
-  maxima ($f''(x) < 0$) or “points of inflection” ($f''(x)=0$).}
-However, for the case of a quadratic, there is, as an alternative, a
-well-known “trick,” which, as a bonus, also demonstrates that a
-mimumum is a global minimum.
-
-Suppose we can find numbers $\kappa$, $\gamma$, and $\xi$ such that
+be solved by inspection. For this example we employ a “trick,”
+sometimes known as “completing the square.” Suppose we can find
+numbers $\kappa$, $\gamma$, and $\xi$ such that
 \begin{equation}
   a + bx + cx^2 = \kappa + \gamma{(x - \xi)}^2.
 \label{eq:completing-the-square}
@@ -92,9 +84,9 @@ minimum will be at $x=\xi$.
   \begin{center}
     \asyinclude[width=4cm, height=4cm, keepAspect=false]{quadr.asy}
   \end{center}
-\caption{A graph of $f(x) = 9 - 8x + 2x^2$. The minimum occurs at
-  $x=2$, which may be seen by rewriting $f$ as $f(x) =
-  2{(x-2)}^2+1$.\label{fig:quadratic}}
+  \caption{A graph of $f(x) = 9 - 8x + 2x^2$. The minimum occurs at
+    $x=2$, as may be seen by “completing the square;” that is, writing
+    $f$ as $f(x) = 2{(x-2)}^2+1$.\label{fig:quadratic}}
 \end{marginfigure}
 The values of $\kappa$, $\gamma$, and $\xi$ can be read off from the equation
 above: equating terms in $x^2$ gives $\gamma=c$ and equating terms in
@@ -105,12 +97,13 @@ square.”
 
 We return, now, to the multidimensional case. Fix, once and for all, a
 finite-dimensional, real vector space, $V$, not necessarily
-one-dimensional. What is the equivalent, on $V$, of a quadratic
-function on~$\setR$? We would like to write something of the form,
-“$f(v) = a+bv+cv^2$” but in order to do so we must attach a meaning to
-each of the terms. The issue is that $f(v)$ is a real number; whereas,
-“$bv$”, for instance, is on the face of it a vector; and “$cv^2$” is
-not even defined.
+one-dimensional.
+
+What is the equivalent, on $V$, of a quadratic function on~$\setR$? We
+would like to write something of the form, “$f(v) = a+bv+cv^2$” but in
+order to do so we must attach a meaning to each of the terms. The
+issue is that $f(v)$ is a real number; whereas, “$bv$”, for instance,
+is on the face of it a vector; and “$cv^2$” is not even defined.
 
 To make sense of the linear term, we must find some way of forming a
 number from a vector, while “respecting the vector space structure of
@@ -324,9 +317,9 @@ positive-definite, symmetric bilinear form on $V$. Then,
 \]
 
 Here is a variation on the problem. Let $\bm{T}:V\to V$ be a linear map,
-not necessarily invertible, and $s\in V$ a fixed element
-of~$V$. Minimise the same quadratic form as before, now subject to the
-constraint $\bm{T}(v)= s$.
+not necessarily invertible, and $s\in V$ a fixed element of~$V$. Find
+the minimiser of the same quadratic form as before but now subject to
+the constraint $\bm{T}(v)= s$.
 
 Observe that if $s=\bzero$ then the constraint says that $v$ lies in
 the null space of $T$. For any other $s$, the constraint says that $v$
