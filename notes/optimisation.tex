@@ -25,6 +25,7 @@
 \DeclareBoldMathCommand{\bfC}{C}
 \newcommand{\bzero}{\mathbold{0}} % I don't know why \bm{0} fails.
 \DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator{\nullspace}{null}
 \newcommand{\eg}{\emph{Example:}}
 \newcommand{\ie}{\emph{i.e.}}
 \hyphenation{anti-sym-met-ric}
@@ -305,7 +306,7 @@ of~$V^*$. To show injectivity suppose, for contradiction, that there
 is some $u\neq\bzero$ in $V$ such that $\bfC(u)=\bzero$ (with the
 right-hand side being the zero element of~$V^*$, and noting that this
 condition is equivalent to injectivity). Then we would have
-$\bfC(u, x) =0$ for any $x$; whence, in particular, $\bfC(u,u)=0$,
+$\bfC(u, x) = 0$ for any $x$; whence, in particular, $\bfC(u,u)=0$,
 contradicting the assumed positive-definiteness of~$\bfC$.
 
 All these remarks lead to the following result: Let $V$ be a
@@ -323,7 +324,8 @@ the constraint $\bm{T}(v)= s$.
 
 Observe that if $s=\bzero$ then the constraint says that $v$ lies in
 the null space of $T$. For any other $s$, the constraint says that $v$
-lies in a coset of the null space of~$T$. 
+lies in a coset of the null space of~$T$; specifically the one in
+which $v-T^{-1}s\in\nullspace T$. 
 
 
 
