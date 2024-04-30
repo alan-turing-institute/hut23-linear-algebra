@@ -132,16 +132,16 @@ approximating function also satisifies this law.\sidenote{More
   make the problem tractable. “Simple” might mean “smooth,” or
   “low-order” or even “linear.”}
 
-At any rate, suppose that, somehow or other, we have decided on a set
+At any rate, imagine that, somehow or other, we have decided on a set
 of “reasonable” functions, $\mathcal{F}$, and what we are really asking for is a
 function taken from \emph{this} set that is in some way “close” to the
 data.\sidenote{It turns out to be quite difficult to get the “size” of
   $\mathcal{F}$ just right. If there are too few functions to draw from, we run
   the risk of not being able to match the real function; if there are
   too many, we run the risk of choosing one that is not physically
-  reasonable just because it is a good match to the data.} In otder to
-make any further progress we need to say something more specific
-about the meaning of “close.”
+  reasonable just because it is a good match to the data.} In order to
+make any further progress we need to say something more specific about
+the meaning of “close.”
 
 \section{Least squares}
 
@@ -152,11 +152,18 @@ $f\colon X\to\setR$, to the data, $(x_i, y_i)$, is the value of the expression
 \sum_{i=1}^d{(f(x_i) - y_i)}^2.
 \]
 This particular measure has several nice properties: it is very
-clearly related to the distance of $y_i$ from $f(x_i)$, it is
-non-negative, and it is zero only when the function exactly matches
+clearly related to the distance of $y_i$ from $f(x_i)$; it is
+non-negative; and it is zero only when the function exactly matches
 the data.
 
-
+There is a suggestive way to rewrite this expression. The vector space
+$\setR^d$ is the set of tuples of real numbers, with addition and
+scalar multiplication defined elementwise. We introduce on $\setR^d$ a
+bilinear form, $\Delta$, as follows. For any vectors
+$\bm{u} = (u_1,\dotsc,u_d)$ and $\bm{v}=(v_1,\dotsc,v_d)$ set
+\[
+\Delta(\bm{u}, \bm{v}) = \sum_{i=1}^d u_iv_i.
+\]
 
 
 Thus,
