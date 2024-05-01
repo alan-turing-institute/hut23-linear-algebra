@@ -145,57 +145,69 @@ the meaning of “close.”
 
 \section{Least squares}
 
-Suppose, now, that $Y$, the set of “possible outputs,” is the real
+Suppose, now, that the set of “possible outputs,” $Y$, is the real
 numbers,~$\setR$. A popular measure of the closeness of a function,
-$f\colon X\to\setR$, to the data, $(x_i, y_i)$, is the value of the expression
+$f\colon X\to\setR$, to the data, $(x_i, y_i)$, is the value of the
+expression $\sum_{i=1}^d{(f(x_i) - y_i)}^2$. This particular expression
+has several nice properties: it is very clearly related to the
+distance of the $y_i$ from the $f(x_i)$; it is non-negative; and it is
+zero only when the function exactly matches the data. Holding the data
+fixed, one thinks of this expression as a real-valued function on
+$\mathcal{F}$, sometimes called the \emph{loss function}, and denoted
+$L(f)$. Thus:
 \[
-\sum_{i=1}^d{(f(x_i) - y_i)}^2.
+L(f) = \sum_{i=1}^d{(f(x_i) - y_i)}^2.
 \]
-This particular measure has several nice properties: it is very
-clearly related to the distance of $y_i$ from $f(x_i)$; it is
-non-negative; and it is zero only when the function exactly matches
-the data.
+What we mean by “the function is close to the data” is now more
+precisely the proposition that $L(f)$ is small.
 
-There is a suggestive way to rewrite this expression. The vector space
-$\setR^d$ is the set of tuples of real numbers, with addition and
-scalar multiplication defined elementwise. We introduce on $\setR^d$ a
-bilinear form, $\Delta$, as follows. For any vectors
+There is a suggestive way to rewrite the loss function. Recall that
+the vector space $\setR^d$ is the set of tuples of real numbers, with
+addition and scalar multiplication defined elementwise. We introduce
+on $\setR^d$ a bilinear form, $\Delta$, as follows. For any vectors
 $\bm{u} = (u_1,\dotsc,u_d)$ and $\bm{v}=(v_1,\dotsc,v_d)$ set
 \[
 \Delta(\bm{u}, \bm{v}) = \sum_{i=1}^d u_iv_i.
 \]
 
-
-Thus,
-the problem of ordinary least-squares regression is to find
+We now express the loss function using this bilinear form. To do so,
+we need an element of $\setR^d$ corresponding to the $y_i$, and an
+element of $\setR^d$ corresponding to the~$f(x_i)$. For the former,
+denote by $\bm{y}$ the element of $\setR^d$ obtained by packaging up
+the $y$-values of the data into a tuple, $\bm{y}=(y_1, \dotsc,
+y_d)$. For the latter, note that we obain $(f(x_1),\dotsc,f(x_d)$, an
+element of $\setR^d$, by “evaluating $f$ at the data.” We can capture
+this idea as a map, known as the \emph{evaluation
+  map},~$\mathcal{E}_{\bm{x}}$:\sidenote{The subscript $\bm{x}$ is there to
+  remind ourselves that the evaluation map depends upon the $x$-values
+  of the data. However, note that $\bm{x}$ is \emph{not}, in general,
+  a vector, because $X$ is not, in general, a vector space. One is
+  perfectly entitled to write, say, $\bm{x}=(x_1, \dotsc, x_d)$, but
+  what is denoted is a tuple, not a vector.}
 \[
-  \hat{f} = \argmin_{f\in\mathcal{F}} \sum_{i=1}^N {(f(x_i) - y_i)}^2.
+  \begin{aligned}
+    \mathcal{E}_{\bm{x}} \colon \mathcal{F} &\to \setR^d \\
+    f &\mapsto (f(x_1), \dotsc, f(x_d)).
+  \end{aligned}
+\]
+Thus we have,
+\[
+  L(f) = \Delta(\mathcal{E}_{\bm{x}}(f) - \bm{y}, \mathcal{E}_{\bm{x}}(f) - \bm{y}).
 \]
 
-The right hand side is, for each $f\in$
-
-
-
-In general this problem is hard. Deep learning, for example, falls
-under the very broad description above. In \emph{linear regression} we
-make two choices that turn out to simplify the problem enormously.
-First, we assume that the space of “outputs” is the real numbers, $Y =
-\setR$ and so $\mathcal{F}$ consists of real-valued functions. Given two
-real-valued functions there is a natural notion of their linear
-combination: for two functions $f$ and $g$, and number $\alpha$, define the
-function $f+\alpha g$ by:
-\begin{equation*}
-  (f+\alpha g)(x) = f(x) + \alpha g(x).
-\end{equation*}
-In other words, functions are added by “adding their values at each
-point.” Our second choice is then to demand that, under this
-definition of addition of functions and multiplication of functions by
-nunbers, the space $\mathcal{F}$ is a vector space.\sidenote{Note that we have
-\emph{not} said anything about the “input” space,~$X$; especially not
-that it is a vector space! Nor have we specified what particular kinds
-of functions make up $\mathcal{F}$, for example, we have not said that they must
-be “linear functions of $X$.”}
-
+It is worth summarising the preceding discussion. Our problem is to
+choose, from a set of functions, $\mathcal{F}$, a particular function,
+$\hat{f}$, which approximates the data in the sense that the values of
+the function evaluated at the $x$-values of the data are “close to”
+the $y$-values of the data. The concept of “close to” was chosen to
+mean “having a small distance in the space $\setR^d$,” where
+“distance” is the usual Euclidean distance computed by Pythagoras'
+rule. In summary, we are to solve the following minimisation problem:
+\begin{equation}
+  \label{eq:least-squares-loss}
+  \hat{f} = \argmin_{f\in\mathcal{F}} \Delta(\mathcal{E}_{\bm{x}}(f) - \bm{y}, \mathcal{E}_{\bm{x}}(f) - \bm{y}),
+\end{equation}
+where, in this minimisation, the data are held fixed.
 
 
 
