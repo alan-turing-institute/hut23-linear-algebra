@@ -146,11 +146,12 @@ something more specific about the meaning of “close.”
 
 \section{Least squares}
 
-A popular version of “close” is as follows. First, suppose that the
+A popular version of “close” runs as follows. First, suppose that the
 set of “possible outputs,” $Y$, is the real numbers,~$\setR$. For any
 particular datum, $(x_i, y_i)$, we might say that $y_i$ is close to
-$f(x_i)$ just in case $( f(x)_i-y_i )$ is small. Extending this idea,
-define a function on $\mathcal{F}$ by
+$f(x_i)$ just in case $ f(x_i)-y_i $ is small; and therefore that
+$f$ is close to the data when $f(x_i)-y_i$ is small for
+every~$i$. Thus, consider the following function on $\mathcal{F}$:
 \[
 L(f) = \sum_{i=1}^d{(f(x_i) - y_i)}^2.
 \]
@@ -164,32 +165,36 @@ the \emph{loss function}, and this one is sometimes called the
   other principles. In truth, I suspect it is popular largely because
   it makes the subsequent calculations tractable.}
 
-The expression for $L(f)$ looks a lot like the (square of the)
-Euclidean distance, in $\setR^d$, between the point
-$(y_1, \dotsc, y_d)$, which we shall denote by $\bm{y}$, and the point
-$(f(x_1), \dotsc, f(x_d))$, and this observation suggests a helpful
-way to rewrite the loss function. The first point,
-$(y_1, \dotsc, y_d)$, is the $y$-values of the data “packaged up” into
-a single point in~$\setR^d$. The second point,
-$(f(x_1), \dotsc, f(x_d))$, is, roughly, the result of “evaluating $f$
-at the data, $x_i$.” The notion of evaluating $f$ at the data is
-captured by the following map, knowm as the \emph{evaluation
-  map},~$\mathcal{E}_{\bm{x}}$:\sidenote{The subscript $\bm{x}$ is there to
-  remind ourselves that the evaluation map depends upon the $x$-values
-  of the data. However, note that $\bm{x}$ is \emph{not}, in general,
-  a vector, because $X$ is not, in general, a vector space. One is
-  perfectly entitled to write, say, $\bm{x}=(x_1, \dotsc, x_d)$, but
-  what is denoted is a tuple, not a vector.}
+Before returning to the question of finding a function close to the
+data, we rewrite the expression for the loss function in a way that
+will be helpful later. The idea is to think of the $y$-values of the
+data not as $d$ separate values but as a single point of $\setR^d$;
+likewise, the result of evaluating $f$ on the inputs, $x_i$, can be
+“packaged up” as another point of~$\setR^d$. Then the expression for
+$L(f)$ will look a lot like a “distance” between these two points.
+
+First, it is convenient to have available a notion of “evaluating a
+function at the data.” For fixed data, consider the map:
 \[
   \begin{aligned}
     \mathcal{E}_{\bm{x}} \colon \mathcal{F} &\to \setR^d \\
     f &\mapsto (f(x_1), \dotsc, f(x_d)).
   \end{aligned}
 \]
-
-With this notation, we can say that the loss function is the squared
-Euclidean distance, in $\setR^d$, between $\bm{y}$ and
-$\mathcal{E}_{\bm{x}}(f)$.
+That is, $\mathcal{E}_{\bm{x}}(f)$ is “the value of a function $f$, evaluated on
+the inputs, and expressed as an element of~$\setR^d$.” This
+$\mathcal{E}_{\bm{x}}$ is known as the \emph{evaluation map}.\sidenote{The
+  subscript $\bm{x}$ is there to remind ourselves that the evaluation
+  map depends upon the $x$-values of the data. However, note that
+  $\bm{x}$ is \emph{not}, in general, a vector, because $X$ is not, in
+  general, a vector space. One is perfectly entitled to write, say,
+  $\bm{x}=(x_1, \dotsc, x_d)$, but what is denoted is a tuple, not a
+  vector.} There are, then, two interesting points in~$\setR^d$: one,
+$\mathcal{E}_{\bm{x}}(f)$, is what the function $f$ says the outputs “should be”
+for the given inputs; the other, $(y_1, \dotsc, y_d)$, which we shall
+denote by $\bm{y}$, is what the outputs actually are. And the loss
+function looks a lot like the (square of the) Euclidean distance
+between $\mathcal{E}_{\bm{x}}(f)$ and~$\bm{y}$. 
 
 
 . Recall that
