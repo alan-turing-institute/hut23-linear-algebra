@@ -147,10 +147,11 @@ something more specific about the meaning of “close.”
 \section{Least squares}
 
 A popular version of “close” runs as follows. First, suppose that the
-set of “possible outputs,” $Y$, is the real numbers,~$\setR$. For any
-particular datum, $(x_i, y_i)$, we might say that $y_i$ is close to
-$f(x_i)$ just in case $ f(x_i)-y_i $ is small; and therefore that
-$f$ is close to the data when $f(x_i)-y_i$ is small for
+set of “possible outputs,” $Y$, is the real numbers,~$\setR$. That is,
+the values of the $y_i$ and the value of $f(x)$ are all real
+numbers. For any particular datum, $(x_i, y_i)$, we might say that
+$f(x_i)$ is close to $y_i$ just in case $ f(x_i)-y_i $ is small; and
+therefore that $f$ is close to the data when $f(x_i)-y_i$ is small for
 every~$i$. Thus, consider the following function on $\mathcal{F}$:
 \[
 L(f) = \sum_{i=1}^d{(f(x_i) - y_i)}^2.
@@ -161,28 +162,30 @@ the $f(x_i)$; it is non-negative; and it is zero only when the
 function exactly matches the data. A function like $L(f)$ is known as
 the \emph{loss function}, and this one is sometimes called the
 \emph{quadratic loss} or \emph{squared loss}.\sidenote{One might
-  attempt to justify this choice of $L(f)$ from some statistical or
-  other principles. In truth, I suspect it is popular largely because
-  it makes the subsequent calculations tractable.}
+  attempt to \emph{justify} this choice of $L(f)$ from some
+  statistical or other principles. In truth, I suspect it is popular
+  largely because it makes the subsequent calculations tractable.}
 
 Before returning to the question of finding a function close to the
-data, we rewrite the expression for the loss function in a way that
-will be helpful later. The idea is to think of the $y$-values of the
-data not as $d$ separate values but as a single point of $\setR^d$;
-likewise, the result of evaluating $f$ on the inputs, $x_i$, can be
-“packaged up” as another point of~$\setR^d$. Then the expression for
-$L(f)$ will look a lot like a “distance” between these two points.
+data, we shall rewrite the expression for the loss function in a way
+that will be helpful later. The idea is to think of the $y$-values of
+the data not as $d$ separate, individual values, but rather as a
+single point of $\setR^d$; likewise, we will “package up” the result
+of evaluating $f$ on the inputs as another point of~$\setR^d$, namely
+$(f(x_1),\dotsc, f(x_d)$. 
 
-First, it is convenient to have available a notion of “evaluating a
-function at the data.” For fixed data, consider the map:
+To effect this “packaging up,” it is convenient to have available a
+notion of “evaluating a function at the data.” For fixed data,
+consider the map:
 \[
   \begin{aligned}
     \mathcal{E}_{\bm{x}} \colon \mathcal{F} &\to \setR^d \\
     f &\mapsto (f(x_1), \dotsc, f(x_d)).
   \end{aligned}
 \]
-That is, $\mathcal{E}_{\bm{x}}(f)$ is “the value of a function $f$, evaluated on
-the inputs, and expressed as an element of~$\setR^d$.” This
+That is, for some function $f\in\mathcal{F}$, the expression
+$\mathcal{E}_{\bm{x}}(f)$ is “the value of the function $f$, evaluated on the
+inputs, and expressed as an element of~$\setR^d$.” This
 $\mathcal{E}_{\bm{x}}$ is known as the \emph{evaluation map}.\sidenote{The
   subscript $\bm{x}$ is there to remind ourselves that the evaluation
   map depends upon the $x$-values of the data. However, note that
@@ -190,45 +193,53 @@ $\mathcal{E}_{\bm{x}}$ is known as the \emph{evaluation map}.\sidenote{The
   general, a vector space. One is perfectly entitled to write, say,
   $\bm{x}=(x_1, \dotsc, x_d)$, but what is denoted is a tuple, not a
   vector.} There are, then, two interesting points in~$\setR^d$: one,
-$\mathcal{E}_{\bm{x}}(f)$, is what the function $f$ says the outputs “should be”
-for the given inputs; the other, $(y_1, \dotsc, y_d)$, which we shall
-denote by $\bm{y}$, is what the outputs actually are. And the loss
-function looks a lot like the (square of the) Euclidean distance
-between $\mathcal{E}_{\bm{x}}(f)$ and~$\bm{y}$. 
+$\mathcal{E}_{\bm{x}}(f)$, is what the function $f$ says the outputs “ought to
+be” for the given inputs; the other, $(y_1, \dotsc, y_d)$, which we
+shall denote by $\bm{y}$, is what the outputs actually are.
 
-
-. Recall that
-the vector space $\setR^d$ is the set of tuples of real numbers, with
-addition and scalar multiplication defined elementwise. We introduce
-on $\setR^d$ a bilinear form, $\Delta$, as follows. For any vectors
+With this notation, the loss function looks a lot like the (square of
+the) Euclidean distance between $\mathcal{E}_{\bm{x}}(f)$
+and~$\bm{y}$. To make this connection clearer, we introduce on
+$\setR^d$ a bilinear form, $\Delta$, as follows. For vectors
 $\bm{u} = (u_1,\dotsc,u_d)$ and $\bm{v}=(v_1,\dotsc,v_d)$, set
 \[
   \Delta(\bm{u}, \bm{v}) = \sum_{i=1}^d u_iv_i.
 \]
-Note that for any $\bm{v}\in\setR^d$, the value of
-$\Delta(\bm{v}, \bm{v})$ is the (square of the) Euclidean length of
-$\bm{v}$, as computed by Pythogoras' rule. Likewise, the value of
-$L(f)$ is the (square of the) Euclidean distance between the point
-$(y_1, \dotsc, y_d)\in\setR^d$, which we shall denote by $\bm{y}$, and
-the point $(f(x_1), \dotsc, f(x_d))$. This latter point is
-Thus we have,
+It is immediate that $\Delta$ is symmetric and positive definite. To see
+the latter, note that for $\bm{v}\in\setR^d$, the value of
+$\Delta(\bm{v}, \bm{v})$ is the square of the Euclidean length of
+$\bm{v}$, as computed by Pythogoras' rule. In fact, applying $\Delta$ to a
+single vector (twice) is such a common use of $\Delta$ that one often sees
+an abbreviated notion that removes the need to \emph{write} the vector
+twice. We write:
+\[
+  {\lVert \bm{v} \rVert}_\Delta^2 \equiv \Delta(\bm{v}, \bm{v}).
+\]
+(The subscript $\Delta$ on ${\Vert\bm{v}\rVert}_\Delta^2$ is there because there are
+sometimes other kinds of distance.)
+
+Finally, using this accumulated notation, we can write
 \begin{equation}
-  L(f) = \Delta(\mathcal{E}_{\bm{x}}(f) - \bm{y}, \mathcal{E}_{\bm{x}}(f) - \bm{y}).
+  L(f) = \mathcal{E}_{\bm{x}}(f) - \bm{y}).
 \end{equation}
 
-Here is a summary of the discussion to this point. Our problem is to
-choose, from a set of functions, $\mathcal{F}$, a particular function,
-$\hat{f}$, which approximates the data in the sense that the values of
-the function evaluated at the $x$-values of the data are “close to”
-the $y$-values of the data. The concept of “close to” was chosen to
-mean “having a small distance in the space $\setR^d$,” where
-“distance” is the usual Euclidean distance computed by Pythagoras'
-rule. In summary, we are to solve the following minimisation problem:
+We now step back and summarise the discussion to this point. Our
+problem was to choose, from a set of functions, $\mathcal{F}$, a particular
+function, $\hat{f}$, which approximates given data. The sense in which
+we mean “approximates” is that the values of the function, evaluated
+at the $x$-values of the data, are “close to” the $y$-values of the
+data. The notion of “close to” that we will use is that of “having a
+small Euclidean distance in the space $\setR^d$,” expressed using the
+bilinear form~$\Delta$.
+
+In summary, we are to solve the following minimisation problem: 
 \begin{equation}
-  \label{eq:least-squares-loss}
+  \label{eq:least-squares}
   \hat{f} = \argmin_{f\in\mathcal{F}} \Delta(\mathcal{E}_{\bm{x}}(f) - \bm{y}, \mathcal{E}_{\bm{x}}(f) - \bm{y}),
 \end{equation}
 where, in this minimisation, the data are held fixed.
+
+\section{Linear regression}
 
 
 
