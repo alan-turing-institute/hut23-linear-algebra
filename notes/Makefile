@@ -1,4 +1,4 @@
-pdfs = vs-bijection.pdf
+pdfs = vs-bijection.pdf 
 
 all: $(pdfs)
 
