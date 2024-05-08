@@ -188,34 +188,44 @@ $\mathcal{E}_{\bm{x}}$ is known as the evaluation map.\sidenote{The subscript
   is \emph{not}, in general, a vector, because $X$ is not, in general,
   a vector space. One is perfectly entitled to write, say,
   $\bm{x}=(x_1, \dotsc, x_d)$, but what is denoted is a tuple, not a
-  vector.} For some function $f\in\mathcal{F}$, the expression
+  vector.} For $f\in\mathcal{F}$, the expression
 $\mathcal{E}_{\bm{x}}(f)$ is “the value of the function $f$, evaluated on the
-inputs, and expressed as an element of~$\setR^d$.” This
-$\mathcal{E}_{\bm{x}}$ is known as the \emph{evaluation
-  map}. Figure~\ref{fig:evalmap-on-f} shows thes two points
-of~$\setR^d$.
+inputs, and expressed as an element of~$\setR^d$.”
+Figure~\ref{fig:evalmap-on-f} illustrates this construction.
 \begin{marginfigure}
   \begin{center}
     \asyinclude[width=4cm, height=4cm, keepAspect=false]{evalmap.asy}
   \end{center}
   \caption{The evaluation map, $\mathcal{E}_{\bm{x}}$, acts on a function
     $f\in\mathcal{F}$ to produce a point in~$\setR^d$. The “loss function”
-    measures the distance from this point to the data,
+    measures the distance from this point to the data, 
     $\bm{y}$.\label{fig:evalmap-on-f}}
 \end{marginfigure}
 
-With this notation, the loss function looks a lot like the (square of
-the) Euclidean distance between $\mathcal{E}_{\bm{x}}(f)$
-and~$\bm{y}$. For any point, $\bm{p}=(p_1,\dotsc, p_d)\in\setR^d$, we
-write the square of its “length” as
-\[
-  {\lVert \bm{p} \rVert}^2 = \sum_{i=1}^d p_i^2,
-\]
-whereupon the loss function can be written
+Now we make use of the vector space structure of $setR^d$ to write the
+loss function is a vector as the (square of the) Euclidean distance
+between $\mathcal{E}_{\bm{x}}(f)$ and~$\bm{y}$. For any point,
+$\bm{p}=(p_1,\dotsc, p_d)\in\setR^d$, we write the square of its
+“length” as ${\lVert \bm{p} \rVert}^2 = \sum_{i=1}^d p_i^2$, whereupon
+the loss function can be written
 \begin{equation}
   \label{eq:norm-loss}
   L(f) = {\Vert \mathcal{E}_{\bm{x}}(f) - \bm{y}\rVert }^2.
 \end{equation}
+
+We now summarise the discussion to this point. Our problem was to
+choose, from a set of functions, $\mathcal{F}$, a particular function,
+$\hat{f}$, which should approximate given data. The sense in which we
+mean “approximates” is that the values of the function, evaluated at
+the $x$-values of the data, should be “close to” the $y$-values of the
+data. And the notion of “close to” that we have assumed that of
+“having a small Euclidean distance in the space $\setR^d$. In brief,
+we are to solve the following minimisation problem:
+\begin{equation}
+  \label{eq:least-squares}
+  \hat{f} = \argmin_{f\in\mathcal{F}} {\lVert \mathcal{E}_{\bm{x}}(f) - \bm{y}\rVert}^2,
+\end{equation}
+where, in this minimisation, the data are held fixed.
 
 The difference between the form of the loss function in
 eq.~\eqref{eq:norm-loss} and the original form,
@@ -224,8 +234,19 @@ notation, however. On the right hand side we have concepts from the
 space~$\setR^d$ thought of as a vector space: the squared distance,
 ${\Vert\cdot\rVert}^2$, is a member in good standing of the pantheon of vector
 space concepts. It is a simplifcation to make these assumptions for
-the domain of the data and the loss function.\sidenote{Note that in \emp{none}}
- 
+the domain of the data and the loss function.\sidenote{For example,
+  none of the examples at the top of this note have the reals as the
+  domain of the target.} Have we simplified enough to be able to
+attack this general problem?
+
+\section{Linear regression}
+
+
+
+
+
+
+\end{document}
 
 
 To make this connection clearer, we introduce on
@@ -252,30 +273,6 @@ Finally, using this accumulated notation, we can write
   L(f) = \mathcal{E}_{\bm{x}}(f) - \bm{y}).
 \end{equation}
 
-We now step back and summarise the discussion to this point. Our
-problem was to choose, from a set of functions, $\mathcal{F}$, a particular
-function, $\hat{f}$, which approximates given data. The sense in which
-we mean “approximates” is that the values of the function, evaluated
-at the $x$-values of the data, are “close to” the $y$-values of the
-data. The notion of “close to” that we will use is that of “having a
-small Euclidean distance in the space $\setR^d$,” expressed using the
-bilinear form~$\Delta$.
-
-In summary, we are to solve the following minimisation problem: 
-\begin{equation}
-  \label{eq:least-squares}
-  \hat{f} = \argmin_{f\in\mathcal{F}} \Delta(\mathcal{E}_{\bm{x}}(f) - \bm{y}, \mathcal{E}_{\bm{x}}(f) - \bm{y}),
-\end{equation}
-where, in this minimisation, the data are held fixed.
-
-\section{Linear regression}
-
-
-
-
-
-
-\end{document}
 
 \section*{Notes on the original text}
 
