@@ -14,6 +14,7 @@
 \newcommand{\set}[1]{\mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
 \newcommand{\card}[1]{\##1}
+\newcommand{\transpose}[1]{{#1}^{\rm t}}
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 \def\F{\mathbb{F}}
@@ -844,10 +845,10 @@ Suppose $A$ is an $m$-by-$n$ matrix with entries in $\F$.
 \end{enumerate}
 \end{definition}
 
-\begin{definition}{3.54}[transpose, $A^t$]
-The \defn{transpose} of a matrix $A$, denoted by $A^t$, is the matrix obtained from $A$ by interchanging rows and columns. Specifically, if $A$ is an $m$-by-$n$ matrix, then $A^t$ is an $n$-by-$m$ matrix whose entries are given by the equation
+\begin{definition}{3.54}[transpose, $\transpose{A}$]
+The \defn{transpose} of a matrix $A$, denoted by $\transpose{A}$, is the matrix obtained from $A$ by interchanging rows and columns. Specifically, if $A$ is an $m$-by-$n$ matrix, then $\transpose{A}$ is an $n$-by-$m$ matrix whose entries are given by the equation
 $$
-(A^t)_{k, j} = A_{j, k} .
+(\transpose{A})_{k, j} = A_{j, k} .
 $$
 \end{definition}
 
@@ -941,16 +942,16 @@ Suppose $C$ is an $m$-by-$c$ matrix and $R$ is a $c$-by-$n$ matrix.
 
 % Exercise 14
 \begin{result}{Ex. 3C, 14}[transpose is a linear map]
-Suppose $m$ and $n$ are positive integers. Then the function $A \mapsto A^t$ is a linear map from $\F^{m, n}$ to $\F^{n, m}$.
+Suppose $m$ and $n$ are positive integers. Then the function $A \mapsto \transpose{A}$ is a linear map from $\F^{m, n}$ to $\F^{n, m}$.
 
-In other words $(A + B)^t = A^t + B^t$, $(\lambda A)^t = \lambda A^t$ for all $m$-by-$n$ matrices $A$, $B$ and all $\lambda \in \F$.
+In other words $\transpose{(A + B)} = \transpose{A} + \transpose{B}$, $\transpose{(\lambda A)} = \lambda \transpose{A}$ for all $m$-by-$n$ matrices $A$, $B$ and all $\lambda \in \F$.
 \end{result}
 
 % Exercise 15
 \begin{result}{Ex. 3C, 15}[The transpose of the product is the product of the transposes in the opposite order]
 If $A$ is an $m$-by-$n$ matrix and $C$ is an $n$-by-$p$ matrix, then
 $$
-(AC)^t = C^t A^t .
+\transpose{(AC)} = \transpose{C} \transpose{A} .
 $$
 \end{result}
 
@@ -1220,6 +1221,137 @@ Suppose $T \in \L (V, W)$. Then
 \item[(c)] $\range \widetilde{T} = \range T$;
 \item[(d)] $V / (\kernel T)$ and $\range T$ are isomorphic vector spaces.
 \end{enumerate}
+\end{result}
+
+% Exercise 18
+\begin{result}{Ex. 3E, 18}[Direct sum of a quotient]
+Suppose $U$ is a subspace of $V$ such that $V / U$ is finite-dimensional. Then there exists a finite-dimensional subspace $W$ of $V$ such that $\dim W = \dim V / U$ and $V = U \oplus W$.
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 3.F}
+
+\begin{definition}{3.108}[linear functional]
+A \defn{linear functional} on $V$ is a linear map from $V$ to $\F$. In other words, a linear functional is an element of $\L(V, \F)$.
+\end{definition}
+
+\begin{definition}{3.110}[dual space $V'$]
+The \defn{dual space} of $V$, denoted by $V'$, is the vector space of all linear functionals on $V$. In other words, $V' = \L(V, \F)$.
+\end{definition}
+
+\begin{definition}{3.112}[dual basis]
+If $v_1, \ldots, v_n$ is a basis of $V$, then the \defn{dual basis} of $v_1, \ldots, v_n$ is the list $\varphi_1, \ldots, \varphi_n$ of elements of $V'$, where each $\varphi_j$ is the linear functional on $V$ such that
+$$
+\varphi_j(v_k) =
+\begin{cases}
+1 & \text{if } k = j, \\
+0 & \text{if } k \not= j.
+\end{cases}
+$$
+\end{definition}
+
+\begin{definition}{3.118}[dual map, $T'$]
+Suppose $T \in \L(V, W)$. The \defn{dual map} of $T$ is the linear map $T' \in \L(W', V')$ defined for each $\varphi \in W'$ by
+$$
+T'(\varphi) = \varphi \circ T.
+$$
+\end{definition}
+
+\begin{definition}{3.121}[annihilator, $U^0$]
+For $U \subseteq V$, the \defn{annihilator} of $U$, denoted by $U^0$, is defined by
+$$
+U^0 = \{ \varphi \in V' \setsep \varphi(u) = 0 \text{ for all } u \in U \}.
+$$
+\end{definition}
+
+\newpage
+
+\begin{result}{3.111}[$\dim V' = \dim V$]
+Suppose $V$ is finite-dimensional. Then $V'$ is also finite-dimensional and
+$$
+\dim V' = \dim V.
+$$
+\end{result}
+
+\begin{result}{3.114}[dual basis gives coefficients for linear combination]
+Suppose $v_1, \ldots, v_n$ is a basis of $V$ and $\varphi_i, \ldots, \varphi_n$ is the dual basis. Then for each $v \in V$
+$$
+v = \varphi_1(v) v_1 + \cdots + \varphi_n(v) v_n
+$$
+\end{result}
+
+\begin{result}{3.116}[dual basis is a basis of the dual space]
+Suppose $V$ is finite-dimensional. Then the dual basis of a basis of $V$ is a basis of $V'$.
+\end{result}
+
+\begin{result}{3.120}[algebraic properties of dual maps]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $(S + T)' = S' + T'$ for all $S \in \L(V, W)$;
+\item[(b)] $(\lambda T)' = \lambda T'$ for all $\lambda \in \F$;
+\item[(c)] $(ST)' = T' S'$ for all $S \in \L(W, U)$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{3.124}[the annihilator is a subspace]
+Suppose $U \subseteq V$. Then $U^0$ is a subspace of $V'$.
+\end{result}
+
+\begin{result}{3.125}[dimension of the annihilator]
+If $V$ is finite-dimensional and $U$ is a subspace of $V$ then
+$$
+\dim U^0 = \dim V - \dim U.
+$$
+\end{result}
+
+\begin{result}{3.127}[condition for the annihilator to equal $\{ 0 \}$ or the whole space]
+If $V$ is finite-dimensional and $U$ is a subspace of $V$ then
+\begin{enumerate}
+\item[(a)] $U^0 = \{ 0 \} \Longleftrightarrow U = V$;
+\item[(b)] $U^0 = V' \Longleftrightarrow U = \{ 0 \}$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{3.128}[the null space of $T'$]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $\kernel T' = (\range T)^0$.
+\end{enumerate}
+Suppose further that $V$ and $W$ are finite-dimensional. Then
+\begin{enumerate}
+\item[(b)] $\dim \kernel T' = \dim \kernel T + \dim W - \dim W$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{3.129}[$T$ surjective is equivalent to $T'$ injective]
+If $V$ and $W$ are finite-dimensional and $T \in \L(V, W)$ then
+$$
+T \text{ is surjective } \Longleftrightarrow T' \text{ is injective}.
+$$
+\end{result}
+
+\begin{result}{3.130}[the range of $T'$]
+If $V$ and $W$ are finite-dimensional and $T \in \L(V, W)$ then
+\begin{enumerate}
+\item[(a)] $\dim \range T' = \dim \range T$;
+\item[(b)] $\range T' = (\kernel T)^0$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{3.131}[$T$ injective is equivalent to $T'$ surjective]
+If $V$ and $W$ are finite-dimensional and $T \in \L(V, W)$ then
+$$
+T \text{ is injective } \Longleftrightarrow T' \text{ is surjective}.
+$$
+\end{result}
+
+\begin{result}{3.132}[matrix of $T'$ is transpose of matrix of $T$]
+If $V$ and $W$ are finite-dimensional and $T \in \L(V, W)$ then
+$$
+\M(T') = \transpose{(\M(T))}.
+$$
 \end{result}
 
 \end{document}
