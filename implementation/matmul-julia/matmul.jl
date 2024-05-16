@@ -1,6 +1,12 @@
+using LinearAlgebra
 using NPZ
 using StaticArrays
 using Octavian
+using Plots
+using CSV
+using DataFrames
+
+include("utils.jl")
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # The various matrix multiplication functions that we'll benchmark and compare
@@ -17,6 +23,22 @@ function matmul_naive(a, b)
         for j in 1:dim3
             for k in 1:dim2
                 c[i, j]  += a[i, k] * b[k, j]
+            end
+        end
+    end
+    return c
+end
+
+function matmul_naive_transpose(a, b)
+    dim1, dim2 = size(a)
+    dim3 = size(b, 2)
+    c = zeros(eltype(a), (dim1, dim3))
+    a_transpose = zeros(eltype(a), size(a))
+    LinearAlgebra.transpose!(a_transpose, a)
+    for i in 1:dim1
+        for j in 1:dim3
+            for k in 1:dim2
+                c[i, j]  += a_transpose[k, i] * b[k, j]
             end
         end
     end
@@ -89,6 +111,15 @@ function loop_matmul_naive(as, bs, num_repeats)
     for _ in 1:num_repeats
         for i in 1:num_pairs
             matmul_naive(as[i], bs[i])
+        end
+    end
+end
+
+function loop_matmul_naive_transpose(as, bs, num_repeats)
+    num_pairs = length(as)
+    for _ in 1:num_repeats
+        for i in 1:num_pairs
+            matmul_naive_transpose(as[i], bs[i])
         end
     end
 end
@@ -168,7 +199,7 @@ function main_benchmark()
     @time loop_matmul_octavian(as, bs, BENCHMARK_REPEAT)
 end
 
-main_benchmark()
+# main_benchmark()
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
 # Static array stuff
@@ -231,3 +262,96 @@ function static_benchmark()
 end
 
 # static_benchmark()
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Scaling benchmark
+
+function scaling_benchmark(method)
+    dims = [2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 768, 1024]
+
+    base_num_pairs = 2^32
+    threads = Threads.nthreads()
+    thread_string = threads > 1 ? "$(threads) threads" : "single-threaded"
+
+    method_name = "none"
+    times = Array{Float64}(undef, 0)
+
+    rand = rand_init(42)
+
+    for dim in dims
+        println("\nBenchmarking scaling with matrices of dimension $dim")
+        dim1 = dim
+        dim2 = dim
+        dim3 = dim
+        num_pairs = div(base_num_pairs, dim^3)
+        # Use fewer pairs for small matrices.
+        if dim <= 2
+            num_pairs = div(num_pairs, 16)
+        elseif 2 < dim <= 4
+            num_pairs = div(num_pairs, 8)
+        elseif 4 < dim <= 8
+            num_pairs = div(num_pairs, 4)
+        end
+        println("Using $num_pairs pairs of matrices")
+
+        as = [rand_matrix(rand, dim1, dim2) for _ in 1:num_pairs]
+        bs = [rand_matrix(rand, dim2, dim3) for _ in 1:num_pairs]
+
+        if method == :octavian
+            loop_matmul_octavian(as[1:1], bs[1:1], 1)
+            timing_result = @elapsed loop_matmul_octavian(as, bs, 1)
+            method_name = "octavian, $(thread_string)"
+        elseif method == :naive
+            loop_matmul_naive(as[1:1], bs[1:1], 1)
+            timing_result = @elapsed loop_matmul_naive(as, bs, 1)
+            method_name = "naive, $(thread_string)"
+        elseif method == :naive_transpose
+            loop_matmul_naive_transpose(as[1:1], bs[1:1], 1)
+            timing_result = @elapsed loop_matmul_naive_transpose(as, bs, 1)
+            method_name = "naive transpose, $(thread_string)"
+        elseif method == :blas
+            method_name = "blas, $(thread_string)"
+            loop_matmul_blas(as[1:1], bs[1:1], 1)
+            timing_result = @elapsed loop_matmul_blas(as, bs, 1)
+        end
+        per_matrix_time = timing_result / num_pairs
+        println("Raw timing: $timing_result")
+        println("Per matrix time: $(per_matrix_time)")
+        times = vcat(times, per_matrix_time)
+    end
+    println("dims = $dims")
+    println("times = $times")
+    plot(dims, times, xscale=:log10, yscale=:log10, xlabel="Dimension", ylabel="Time (s)", legend=:topleft, lw=2, marker=:circle, ms=5)
+    export_data("../results.csv", method_name, times)
+end
+
+function export_data(filename, name, data)
+    if (isfile(filename))
+        df = CSV.read(filename, DataFrame)
+        df[!, :method] = convert.(String, df[!, :method])
+    else
+        df = DataFrame([Float32[] for i in 1:size(data, 1)], :auto)
+        insertcols!(df, 1, :method => String[])
+    end
+
+    df = filter(row -> row.method != name, df)
+
+    push!(df, vcat(name, data))
+    println("Writing data to: $(filename)")
+    CSV.write(filename, df)
+end
+
+function scaling_benchmarks()
+    methods = [:octavian, :naive, :naive_transpose, :blas]
+    for method in methods
+        scaling_benchmark(method)
+    end
+end
+
+# Run as follows for single-threaded tests
+# julia --project=. --threads=1 matmul.jl
+
+# Run as follows for multi-threaded tests
+# julia --project=. --threads=10 matmul.jl
+
+scaling_benchmarks()
