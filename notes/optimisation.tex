@@ -35,7 +35,7 @@
 A classic problem is that of finding the location of the minimum of
 some real-valued function. That is, given a function,
 $f\colon X\to\setR$, defined on some set $X$, we seek
-$x_\text{min} = \argmin_{x\in X} f(x)$. The value $x_\text{min}$ is
+$\hat{x} = \argmin_{x\in X} f(x)$. The value $\hat{x}$ is
 called the \emph{minimiser} of~$f$: it is that value of $x$ at which
 $f$ takes on its minimum value.
 
@@ -56,7 +56,7 @@ domain of the function is in the fact just the reals, and consider
 “functions of a single variable,” $f\colon \setR\to\setR$. Here are a
 few examples where the minimum can be found without much difficulty.
 
-\eg{} A constant function, $f(x) = a$. Such a function attains its
+\eg{} A constant function, $f(x) = a$ attains its
 minimum value everywhere. To say it another way, there is no unique
 point at which it is a minimum.
 
@@ -141,7 +141,7 @@ seem to involve the “product of a vector with itself,” and that is not
 an operation that is obviously available in a general vector
 space. Once again, we make use of the dual space. The idea is to start
 with $v$, somehow “carry it across” to $V^*$, and then act with the
-result on~$w$.
+result on $V$ again.
 
 Thus, let $\bfC\colon V\to V^*$ be a linear map from $V$ to its
 dual. For any vector $v\in V$, we obtain $\bfC(v)\in V^*$ (see

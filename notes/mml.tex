@@ -98,7 +98,7 @@ To be more specific, suppose there is given a set, $X$, of possible
 inputs, a set, $Y$, of possible outputs, and a collection of $d$ pairs
 $(x_i, y_i)\in X\times Y$ (for $i=1,\dots,d$), that comprise the data. For
 now, we suppose no extra structure on $X$; however, on $Y$ we imagine
-there is some notion of “closeness” (to be made precise
+that there is some notion of “closeness” (to be made precise
 later). Consider the challenge of finding a map,
 $\hat{f}\colon X\to Y$, having the property that $\hat{f}(x_i)$ is close
 to $y_i$ for each~$i$. (All of this is somewhat informal. In
@@ -116,9 +116,9 @@ One immediate snag is that finding such a map is \emph{far too
 This map is not just “close” to the data: it exactly matches the
 data. However, since it is zero everywhere else, it seems implausible
 that it represents the real world. What we presumably meant to ask for
-was a function that agrees with the data \emph{and} is likely to agree
-with the real function on \emph{other} values of the input, values we
-haven't seen yet.
+was a function which not only agrees with the data but is also likely
+to agree with the real function on \emph{other} values of the input,
+values we haven't seen yet.
 
 A possible response to this snag is to observe that this function,
 $\hat{f}$, is somehow “physically unreasonable.” We just don't expect
@@ -152,15 +152,15 @@ A popular version of “close” runs as follows. First, suppose that the
 set of “possible outputs,” $Y$, is the real
 numbers,~$\setR$.\sidenote{On the face of it, this is quite a strong
   supposition. For example, it is not true of any of the examples at
-  the beginning of this note.} One immediate advantage is that there
-is a natural notion of the closeness of two real numbers such as $y_i$
-and $f(x_i)$; namely the value of $\lvert f(x_i)-y_i\rvert$. In the
-version of curve fitting known as \emph{least squares}, the closeness
-of a function $f$ to the whole dataset $(x_i, y_i)$ is measured by the
+  the beginning of this note.} There is, on the reals, an obvious
+notion of the closeness of two numbers such as $y_i$ and $f(x_i)$;
+namely the value of $\lvert f(x_i)-y_i\rvert$. In the version of
+function fitting known as \emph{least squares}, the closeness of a
+function $f$ to the whole dataset $(x_i, y_i)$ is measured by the
 value of the expression
 \begin{equation}
-  \label{eq:least-squares-sum}
-  L(f) \isdef \sum_{i=1}^d {\bigl(f(x_i)-y_i\bigr)}^2  
+  \label{eq:least-squares-loss}
+  L(f) = \sum_{i=1}^d {\bigl(f(x_i)-y_i\bigr)}^2  
 \end{equation}
 That is, one says that the function $f$ is close to the data just in
 case the value of $L(f)$ is small. More generally, a function like $L$
@@ -198,33 +198,23 @@ of $\setR^d$ is given by the following map:
   \end{aligned}
 \]
 The subscript $\bm{x}$ (in $\mathcal{E}_{\bm{x}}$) is there as a reminder that
-the evaluation map depends upon the data. For fixed data,
-$\mathcal{E}_{\bm{x}}$ maps a function, $f$, to the element of
-$\setR^d$ given by $(f(x)_1, \dotsc, f(x_d))$. This map is known as
-the \emph{evaluation map}. (See figure~\ref{fig:evalmap-on-f} for an
-illustratation.)
+the map depends upon the data. For fixed data, $\mathcal{E}_{\bm{x}}$ maps a
+function, $f$, to the element of $\setR^d$ given by
+$(f(x_1), \dotsc, f(x_d))$: this map is known as the \emph{evaluation
+  map}. (See figure~\ref{fig:evalmap-on-f} for an illustratation.)
 
 The idea, now, is to express $L(f)$ as the “distance” between
 $\mathcal{E}_{\bm{x}}(f)$ and $\bm{y}$; or, equivalently, as the “length” of
 $\mathcal{E}_{\bm{x}}(f)-\bm{y}$. A natural notion of length in
-$\setR^d$ is the “Euclidean distance:” for
-$\bm{v}=(v_1, v_2, \dotsc, v_d)$, the “length” of $bm{v}$ is given by
+$\setR^d$ is the Euclidean distance: for
+$\bm{v}=(v_1, v_2, \dotsc, v_d)$, the “length” of $\bm{v}$ is given by
 ${\lVert \bm{v} \rVert}^2 = \sum_{i=1}^d v_i^2$. The expression
-$\lVert\cdot\rVert$ is called the \emph{canonical norm}.
-
-However, note that $\bm{x}$ is \emph{not}, in general, a vector,
-because $X$ is not, in general, a vector space. One is perfectly
-entitled to write, say, $\bm{x}=(x_1, \dotsc, x_d)$, but what is
-denoted is a tuple, not a vector.
-
-Now we make use of the vector space structure of $\setR^d$.  Now the loss function
-can be written
+$\lVert\cdot\rVert$ is called the \emph{canonical norm}.  Making use of
+this notation, eq.~\eqref{eq:least-squares-loss} may be rewritten as
 \begin{equation}
   \label{eq:norm-loss}
   L(f) = {\Vert \mathcal{E}_{\bm{x}}(f) - \bm{y}\rVert }^2.
 \end{equation}
-The vector space structure is made use of in the subtraction on the
-right-hand side of this expression.
 
 We now summarise the discussion to this point. Our problem was to
 choose, from a set of functions, $\mathcal{F}$, a particular function,
@@ -240,17 +230,50 @@ we are to solve the following minimisation problem:
 \end{equation}
 where, in this minimisation, the data are held fixed.
 
-The difference between the form of the loss function in
-eq.~\eqref{eq:norm-loss} and the original form,
-eq.~\eqref{eq:square-loss}, is just notation. It is suggestive
-notation, however. On the right-hand side of eq.~\eqref{norm-loss} we
-have an expression built from natural vector-space concepts
-(subtraction and the norm). It is a simplifcation to make
-these assumptions for the domain of the data and the loss
-function Have we
-simplified enough to be able to attack this general problem?
+Can we say anything about solutions to this problem? One possibility
+is that the evaluation map,
+$\mathcal{E}_{\bm{x}}\colon \mathcal{F} \to \setR^d$, is surjective. In that case, there is
+at least one function, $\hat{f}$, which reproduces the data exactly
+and therefore solves eq.~\ref{eq:least-squares}; namely,
+$\hat{f}=\mathcal{E}_{\bm{x}}^{-1}(\bm{y})$. But in practice this is not the
+usual case (at least, not for this loss function). A surjective
+$\mathcal{E}_{\bm{x}}$ typically means that $\mathcal{F}$ is “too large” and we are at
+risk of choosing unreasonable functions which just happen to match
+these particular data.
+
+The case when $\mathcal{E}_{\bm{x}}$ is not surjective is illustrated in
+figure~\ref{fig:evalmap-in}.
+\begin{marginfigure}
+  \begin{center}
+    \asyinclude[width=4cm, height=4cm, keepAspect=false]{evalmap-in.asy}
+  \end{center}
+  \caption{The image of $\mathcal{F}$ under $\mathcal{E}_{\bm{x}}$ is a subset of
+    $\setR^d$.\label{fig:evalmap-in}}
+\end{marginfigure}
+Under $\mathcal{E}_{\bm{x}}$, the space of functions is mapped to a subset
+of~$\setR^d$. To solve eq.~\eqref{eq:least-squares} one might imagine
+finding the point in this subspace that is closest to $\bm{y}$ and
+then finding the the preimage of this point (in the sense of
+${\lVert\cdot\rVert}^2$) in~$\mathcal{F}$. Alternatively, one might consider
+“distance to $\bm{y}$” as a function on
+$\mathcal{E}_{\bm{x}}[\mathcal{F}]$, pull back this function to
+$\mathcal{F}$, and then find the minimum there. In general, no closed-form
+solution is available under either approach. However, it turns out
+that there is a certain class of problems for which a closed-form
+solution \emph{can} be found, and that is when $\mathcal{F}$ is itself a vector
+space.
 
 \section{Linear regression}
+
+
+
+$\mathcal{F}$ is a vector space!
+
+So $\mathcal{E}_{\bm{x}}$ is a linear map!
+
+And the pullback of $L(f)$ under $\mathcal{E}_{\bm{x}}$ is a quadratic form.
+
+Which we can mimise,
 
 
 
@@ -259,12 +282,17 @@ simplified enough to be able to attack this general problem?
 
 \end{document}
 
+However, note that $\bm{x}$ is \emph{not}, in general, a vector,
+because $X$ is not, in general, a vector space. One is perfectly
+entitled to write, say, $\bm{x}=(x_1, \dotsc, x_d)$, but what is
+denoted is a tuple, not a vector.
+
 
 To make this connection clearer, we introduce on
 $\setR^d$ a bilinear form, $\Delta$, as follows. For vectors
 $\bm{u} = (u_1,\dotsc,u_d)$ and $\bm{v}=(v_1,\dotsc,v_d)$, set
 \[
-  \Delta(\bm{u}, \bm{v}) = \sum_{i=1}^d u_iv_i.
+  \Delta(\bm{u}, \bm{v}) = \sum_{i=1}^d u_i v_i.
 \]
 It is immediate that $\Delta$ is symmetric and positive definite. To see
 the latter, note that for $\bm{v}\in\setR^d$, the value of
@@ -281,7 +309,7 @@ sometimes other kinds of distance.)
 
 Finally, using this accumulated notation, we can write
 \begin{equation}
-  L(f) = \mathcal{E}_{\bm{x}}(f) - \bm{y}).
+  L(f) = \mathcal{E}_{\bm{x}}(f) - \bm{y}.
 \end{equation}
 
 
@@ -313,10 +341,10 @@ omitted one other sentence that is not important here.}
  $\bm{x}_n$ and corresponding noisy observations $y_n = f(\bm{x}_n) +
  \epsilon$, where $\epsilon$ is an i.i.d.\ random variable that describes
  measurement/observation noise and potentially unmodeled processes
- [...]. [3] Our task is to find a function that not only models the
- training data, but generalizes well [...].
+ [\ldots]. [3] Our task is to find a function that not only models the
+ training data, but generalizes well [\ldots].
 \end{quote}
 
 
 
-\end{document}
+
