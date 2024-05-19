@@ -1,4 +1,4 @@
-/* vim: noet:ts=2:sts=2:sw=2 */ 
+/* vim: noet:ts=2:sts=2:sw=2 */
 
 /* SPDX-License-Identifier: MIT */
 /* Copyright © 2024 David Llewellyn-Jones */
@@ -58,17 +58,12 @@ void matrix_print(Matrix *A) {
 	}
 }
 
-void matrix_fill(Matrix *A, uint32_t seed) {
-	Rand * rand = new_rand();
-	rand_seed(rand, seed);
-
+void matrix_fill(Matrix *A, Rand * const rand) {
 	if (A) {
 		uint32_t size = A->height * A->width;
 		for (uint32_t index = 0; index < size; ++index) {
-			A->elements[index] = rand_digit(rand);
+			A->elements[index] = rand_value(rand);
 		}
 	}
-
-	rand = delete_rand(rand);
 }
 

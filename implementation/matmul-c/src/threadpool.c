@@ -1,4 +1,4 @@
-/* vim: noet:ts=2:sts=2:sw=2 */ 
+/* vim: noet:ts=2:sts=2:sw=2 */
 
 /* SPDX-License-Identifier: MIT */
 /* Copyright © 2024 David Llewellyn-Jones */
@@ -9,8 +9,6 @@
 #include <stdbool.h>
 
 #include "threadpool.h"
-
-#define MAX_THREADS (8)
 
 typedef struct _ThreadContext {
 	pthread_mutex_t *working_mutex;
@@ -28,13 +26,14 @@ typedef struct _ThreadContext {
 } ThreadContext;
 
 struct _ThreadPool {
-	pthread_t thread_id[MAX_THREADS];
-	ThreadContext *context[MAX_THREADS];
+	pthread_t *thread_id;
+	ThreadContext **context;
 
 	pthread_mutex_t working_mutex;
 	pthread_cond_t working_cond;
 	pthread_mutex_t begin_mutex;
 	pthread_cond_t begin_cond;
+	uint32_t threads;
 	uint32_t working;
 };
 
@@ -65,19 +64,23 @@ inline void multiply_work(Matrix *result, Matrix *A, Matrix *B, uint32_t start, 
 	}
 }
 
-ThreadPool * new_threadpool() {
+ThreadPool * new_threadpool(uint32_t threads) {
 	ThreadPool *pool = calloc(sizeof(ThreadPool), sizeof(char));
 
-	if (pool) {
+	if (pool && threads > 0) {
+		pool->thread_id = calloc(sizeof(pthread_t), threads);
+		pool->context = calloc(sizeof(ThreadContext *), threads);
+
 		// Initialise the pool context
 		pthread_mutex_init(&pool->working_mutex, NULL);
 		pthread_cond_init(&pool->working_cond, NULL);
 		pthread_mutex_init(&pool->begin_mutex, NULL);
 		pthread_cond_init(&pool->begin_cond, NULL);
-		pool->working = MAX_THREADS;
+		pool->threads = threads;
+		pool->working = threads;
 
 		// Initialise the threads
-		for (uint32_t thread = 0; thread < MAX_THREADS; ++thread) {
+		for (uint32_t thread = 0; thread < threads; ++thread) {
 			pool->context[thread] = calloc(sizeof(ThreadContext), sizeof(char));
 			pool->context[thread]->working_mutex = &pool->working_mutex;
 			pool->context[thread]->working_cond = &pool->working_cond;
@@ -103,14 +106,14 @@ ThreadPool * delete_threadpool(ThreadPool *pool) {
 	if (pool) {
 		// Remove all work
 		pthread_mutex_lock(&pool->begin_mutex);
-		for (uint32_t thread = 0; thread < MAX_THREADS; ++thread) {
+		for (uint32_t thread = 0; thread < pool->threads; ++thread) {
 			pool->context[thread]->live = false;
 		}
 		pthread_cond_broadcast(&pool->begin_cond);
 		pthread_mutex_unlock(&pool->begin_mutex);
 
 		// Wait for the threads to complete
-		for (uint32_t thread = 0; thread < MAX_THREADS; ++thread) {
+		for (uint32_t thread = 0; thread < pool->threads; ++thread) {
 			pthread_join(pool->thread_id[thread], NULL);
 			free(pool->context[thread]);
 		}
@@ -120,6 +123,8 @@ ThreadPool * delete_threadpool(ThreadPool *pool) {
 		pthread_mutex_destroy(&pool->begin_mutex);
 		pthread_cond_destroy(&pool->begin_cond);
 
+		free(pool->thread_id);
+		free(pool->context);
 		free(pool);
 	}
 	return NULL;
@@ -155,7 +160,7 @@ void *thread_runner(void *vargp) {
 bool multiply_parallel(ThreadPool *pool, Matrix *result, Matrix *A, Matrix *B) {
 	uint32_t size = result->height * result->width;
 
-	uint32_t chunk = (size + (MAX_THREADS - 1)) / MAX_THREADS;
+	uint32_t chunk = (size + (pool->threads - 1)) / pool->threads;
 	uint32_t allocated = 0;
 	uint32_t thread = 0;
 
@@ -175,7 +180,7 @@ bool multiply_parallel(ThreadPool *pool, Matrix *result, Matrix *A, Matrix *B) {
 
 	// Trigger the runners to work
 	pthread_mutex_lock(&pool->begin_mutex);
-	pool->working = MAX_THREADS;
+	pool->working = pool->threads;
 	pthread_cond_broadcast(&pool->begin_cond);
 	pthread_mutex_unlock(&pool->begin_mutex);
 
@@ -187,5 +192,9 @@ bool multiply_parallel(ThreadPool *pool, Matrix *result, Matrix *A, Matrix *B) {
 	pthread_mutex_unlock(&pool->working_mutex);
 
 	return true;
+}
+
+uint32_t threadpool_threads(ThreadPool *pool) {
+	return pool->threads;
 }
 

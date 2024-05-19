@@ -1,4 +1,4 @@
-/* vim: noet:ts=2:sts=2:sw=2 */ 
+/* vim: noet:ts=2:sts=2:sw=2 */
 
 /* SPDX-License-Identifier: MIT */
 /* Copyright © 2024 David Llewellyn-Jones */
@@ -6,6 +6,7 @@
 #include <stdlib.h>
 
 #include "utils.h"
+#include "matrix.h"
 
 #define A (16807)
 #define C (0)
@@ -35,16 +36,15 @@ void rand_seed(Rand *rand, uint32_t seed) {
 
 // A decimal between 0.0 and 1.0
 // See https://www.math.arizona.edu/~tgk/mc/book_chap3.pdf
-double rand_next(Rand *rand) {
+inline double rand_next(Rand *rand) {
 	rand->state = ((A * rand->state) + C) % M;
 	return (double)rand->state / (double)M;
 }
 
-// A digit between 0.0 and 100.0
-double rand_digit(Rand *rand) {
+// A value between 0.0 and 100.0
+inline double rand_value(Rand *rand) {
 	double result;
 	result = rand_next(rand);
-	result = (double)rand->state / (double)M;
 	result = ((int)(result * 1000.0)) / 10.0;
 	return result;
 }

@@ -29,6 +29,7 @@ matmul-c: \
 	src/threadpool.c \
 	src/utils.c \
 	src/benchmarks.c \
+	src/store.c \
 	src/tests.c
 	$(CC) $(CFLAGS) -o$@ $^ $(CLIBS)
 
