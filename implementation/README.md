@@ -158,15 +158,15 @@ Finally run the benchmarks:
 julia --project=. matmul.jl
 ```
 
-## Benchmarking Results
+## Benchmarking small matrix results
 
-The following benchmarking results were obtained using the following devices:
+Time to perform 16 777 216 matrix multiply operations for all matrix sizes between 2 × 2 and 10 × 10.
+
+Obtained using the following devices:
 
 1. 12th Gen Intel Core i7-1260P (powered) running Ubuntu 22.04.4, Python 3.10.12 and NumPy 1.25.5.
 2. Apple M1 Pro (powered) running macOS 13.6.3, Python 3.12.2 and NumPy 1.24.2.
 3. Apple M2 (powered), macOS 14.4, Python 3.12.2, numpy 1.26.4.
-
-The times taken are to perform 16,777,216 matrix multiply operations.
 
 ### Python
 
@@ -280,3 +280,15 @@ With garbage collection enabled.
 | Apple M1 Pro |  0.97 | 17 274 799.31 |
 | Apple M2     |       |               |
 
+## Benchmarking matrix size scaling results
+
+Time to perform matrix multiply operations for square matrices between 2 × 2 and 1024 × 1024.
+Comparison between different matrix multiplication approaches.
+
+Obtained using the following devices:
+
+1. 12th Gen Intel Core i7-1260P (powered) running Ubuntu 22.04.4, Python 3.10.12 and NumPy 1.25.5.
+
+Results should be added to the `results.csv` file. Execute `plots.jl` to generate the graph.
+
+![Graph showing increasing matrix dimension against time in seconds to multiply square matrices](./results.svg?raw=true "Time to multiply two square matrices as a function of matrix size")
