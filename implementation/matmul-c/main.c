@@ -1,4 +1,4 @@
-/* vim: noet:ts=2:sts=2:sw=2 */ 
+/* vim: noet:ts=2:sts=2:sw=2 */
 
 /* SPDX-License-Identifier: MIT */
 /* Copyright © 2024 David Llewellyn-Jones */
@@ -20,7 +20,7 @@ int main(int argc, char *argv[]) {
 	bool result;
 	uint32_t total;
 
-	ThreadPool *pool = new_threadpool();
+	ThreadPool *pool = new_threadpool(10);
 
 	// Play around with the API
 	printf("Example matrix manipulation...\n");	
@@ -55,11 +55,19 @@ int main(int argc, char *argv[]) {
 	// Perform 512 multiplications and compare against the results from NumPy
 	tests_compare(a, b, c, d, pool);
 
+	// Benchmark square matrix multiplications single-threaded
+	printf("Square matrix benchmark single-threaded\n");
+	benchmark_multiply_square(NULL);
+
+	// Benchmark square matrix multiplications using threads
+	printf("Square matrix benchmark multi-threaded\n");
+	benchmark_multiply_square(pool);
+
 	// Benchmark large matrix multiplications
-	benchmarks_multiply_big(pool);
+	//benchmarks_multiply_big(pool);
 
 	// Measure time taken to perform 16777216 multiplications
-	benchmarks_multiply_small(a, b, d);
+	//benchmarks_multiply_small(a, b, d);
 
 	a = delete_matrices(a);
 	b = delete_matrices(b);

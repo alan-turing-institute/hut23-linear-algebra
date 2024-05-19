@@ -1,4 +1,4 @@
-/* vim: noet:ts=2:sts=2:sw=2 */ 
+/* vim: noet:ts=2:sts=2:sw=2 */
 
 /* SPDX-License-Identifier: MIT */
 /* Copyright © 2024 David Llewellyn-Jones */
