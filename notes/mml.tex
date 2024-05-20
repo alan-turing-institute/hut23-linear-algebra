@@ -8,6 +8,7 @@
 \usepackage{microtype}
 %\usepackage[medium, compact]{titlesec}
 \usepackage[inline]{asymptote}
+\usepackage{tikz-cd}
 \DeclareFontSeriesDefault[rm]{bf}{sbc}
 % \usepackage{amssymb}
 %% Turing grid is 21 columns (of 1cm if we are using A4)
@@ -22,6 +23,7 @@
 \newcommand{\eg}{\emph{Example:}}
 \newcommand{\ie}{\emph{i.e.}}
 \newcommand{\isdef}{\stackrel{\text{def}}{=}}
+\newcommand{\evalmap}{\mathcal{E}_{\bm{x}}}
 \hyphenation{anti-sym-met-ric}
 %%
 \author{James Geddes}
@@ -193,7 +195,7 @@ of~$\setR^d$ is the tuple $\bm{y}=(y_1,\dotsc,y_d)$. Another element
 of $\setR^d$ is given by the following map:
 \[
   \begin{aligned}
-    \mathcal{E}_{\bm{x}} \colon \mathcal{F} &\to \setR^d \\
+    \evalmap \colon \mathcal{F} &\to \setR^d \\
     f &\mapsto (f(x_1), \dotsc, f(x_d)).
   \end{aligned}
 \]
@@ -270,24 +272,97 @@ functions. Suppose $f$ and $g$ are functions in $\mathcal{F}$, and
 $\alpha$ is a real number. The linear combination $f+\alpha g$ is defined by
 $(f+\alpha g)(x) = f(x)+\alpha g(x)$. That is, we “add functions pointwise.”
 
-Suppose, now, that $\mathcal{F}$ is a vector space under this definition of
-addition, as shown in fig.~\ref{fig:vector-f}. It follows reasonably
-directly that $\mathcal{E}_{\bm{x}}$ is a linear map and hence that
+\begin{marginfigure}
+  \begin{center}
+    \asyinclude[width=4cm, height=4cm, keepAspect=false]{evalmap-lin.asy}
+  \end{center}
+  \caption{When $\mathcal{F}$ is a vector space, the map
+    $\mathcal{E}_{\bm{x}}$ is a linear map. Thus the image of
+    $\mathcal{F}$ under $\mathcal{E}_{\bm{x}}$, denoted
+    $\mathcal{E}_{\bm{x}}[\mathcal{F}]$, is a sub\emph{space} of
+    $\setR^d$.\label{fig:evalmap-lin}}
+\end{marginfigure}
+Suppose, then, that $\mathcal{F}$ is a vector space under this definition of
+addition, as shown in fig.~\ref{fig:evalmap-lin}. It follows
+reasonably directly that $\mathcal{E}_{\bm{x}}$ is a linear map and hence that
 $\mathcal{E}_{\bm{x}}[\mathcal{F}]$, the image of $\mathcal{F}$ under
-$\mathcal{E}_{\bm{x}}$, is a subspace of~$\setR^d$.
+$\mathcal{E}_{\bm{x}}$, is a subspace of~$\setR^d$. As before, there are two
+plausible approaches to solving~\eqref{eq:least-squares}. One might
+treat ${\lVert \evalmap(f)-\bm{y}\rVert}^2$ as a function on~$\mathcal{F}$ and
+seek to minimise this function over points in~$\mathcal{F}$. Alternatively, one
+might treat the problem as a constrained minimisation problem
+in~$\setR^d$: minimise ${\lVert \bm{p}-\bm{y}\rVert}^2$ over points
+$\bm{p}\in\setR^d$ that are constrained to lie in the
+subspace~$\evalmap[\mathcal{F}]$.
 
-So $\mathcal{E}_{\bm{x}}$ is a linear map!
+It is not immediately clear which approach will be easier. The loss
+function is in fact a quadratic form on $\setR^d$ (see below) and so
+on the face of it minimisation might be more tractable there. On the
+other hand, the constraint adds some difficulty; and then there is the
+challenge of finding the preimage, in $\mathcal{F}$, of the resulting point in
+$\setR^d$, given that $\evalmap$ is not in general an invertible
+map. Thus, we begin with the first approach and return to the second
+later.
 
-And the pullback of $L(f)$ under $\mathcal{E}_{\bm{x}}$ is a quadratic form.
+Before proceeding, what is the justification for the claim that the
+loss function is a quadratric form? Consider the bilinear form
+$\Delta\colon \setR^d\to{(\setR^d)}^*$, defined for any
+$\bm{u}=(u_1, \dotsc, u_d)$ by its action on ay
+$\bm{v}=(v_1,\dotsc, v_d)$, as:
+\[
+  \Delta(\bm{u}, \bm{v}) \isdef \sum_{i=1}^d u_i v_i.
+\]
+It is immediate that $\Delta$ is symmetric and positive
+definite. Furthermore,
+${\lVert \bm{u} \rVert}^2 = \Delta(\bm{u}, \bm{u})$. Thus the canonical
+norm arises from a symmetric, positive-definite bilinear form. Now
+note that
+${\lVert \bm{p}-\bm{y}\rVert}^2 = \Delta(\bm{p}-\bm{y}, \bm{p}-\bm{y}) =
+\Delta(\bm{p}, \bm{p})-2 \Delta(\bm{y}, \bm{p}) + \Delta(\bm{y}, \bm{y})$.
 
-Which we can mimise,
+Now consider the map $D:\mathcal{F}\to\mathcal{F}^*$ given by
+$D = \evalmap^* \circ \Delta \circ \evalmap$.
+\begin{marginfigure}
+  \[\begin{tikzcd}[column sep=large]
+      & \mathcal{F}^*  & (\setR^d)^* \arrow[l, "\evalmap^*"'] \\
+      & \mathcal{F} \arrow[u, "D"] \arrow[r, "\evalmap"] & \setR^d \arrow[u,
+      "\Delta"'] 
+      \end{tikzcd}\]
+\end{marginfigure}  
+That is, for any
+$f\in\mathcal{F}$ we “go across to $\setR^d$ by $\evalmap$, over to
+${(\setR^d)}^*$ by $\Delta$, and then back to $\mathcal{F}^*$ by the transpose of
+$\evalmap$.” It follows (from the definition of the transpose of a map)
+that, for any $f_1,f_2\in\mathcal{F}$, we have
+$D(f_1,f_2) = \Delta(\evalmap(f_1), \evalmap(f_2))$ and thus that $D$ is a
+symmetric, positive-definite bilinear form on~$\mathcal{F}$.
 
+As a function on $\mathcal{F}$, then, the loss function is
+\[
+  \begin{aligned}
+    L(f)
+    & =  \Delta\bigl(\evalmap(f), \evalmap(f)\bigr)-2 \Delta\bigl(\bm{y}, \evalmap(f)\bigr) +
+      \Delta(\bm{y}, \bm{y}) \\
+    & = D(f, f) - 2 \bigl(\evalmap^*(\Delta(\bm{y}))\bigr)(f) + \Delta(\bm{y}, \bm{y}).
+  \end{aligned}
+\]
+Thus we have written $L$ as a quadratic form on~$\mathcal{F}$. From a previous
+note, the minimiser of $L$ is, therefore,
+\[
+\hat{f} = D^{-1}\bigl(\evalmap^*(\Delta(\bm{y}))\bigr).
+\]
 
 
 
 
 
 \end{document}
+
+$$\begin{tikzcd}
+
+\end{tikzcd}$$
+
+
 
 However, note that $\bm{x}$ is \emph{not}, in general, a vector,
 because $X$ is not, in general, a vector space. One is perfectly
