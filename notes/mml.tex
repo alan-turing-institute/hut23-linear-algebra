@@ -232,19 +232,24 @@ we are to solve the following minimisation problem:
 \end{equation}
 where, in this minimisation, the data are held fixed.
 
-Can we say anything about solutions to this problem? One possibility
-is that the evaluation map,
-$\mathcal{E}_{\bm{x}}\colon \mathcal{F} \to \setR^d$, is surjective. In that case, there is
-at least one function, $\hat{f}$, which reproduces the data exactly
-and therefore solves eq.~\ref{eq:least-squares}; namely,
+Can we say anything about solutions to this problem? One question is
+whether the evaluation map,
+$\mathcal{E}_{\bm{x}}\colon \mathcal{F} \to \setR^d$, is either injective or surjective. If
+the evaluation map is surjective, then there will be at least one
+function, $\hat{f}$, which reproduces the data exactly (and hence is a
+minimiser of the loss function); namely,
 $\hat{f}=\mathcal{E}_{\bm{x}}^{-1}(\bm{y})$. But in practice this is not the
 usual case (at least, not for this loss function). A surjective
 $\mathcal{E}_{\bm{x}}$ typically means that $\mathcal{F}$ is “too large” and we are at
 risk of choosing unreasonable functions which just happen to match
 these particular data.
 
-The case when $\mathcal{E}_{\bm{x}}$ is not surjective is illustrated in
-figure~\ref{fig:evalmap-in}.
+On the other hand, if the evaluation map is not injective, then there
+may be multiple minimisers; that is, the solution to
+eq.~\eqref{eq:least-squares} may not be unique.
+
+For now, suppose $\mathcal{E}_{\bm{x}}$ is injective but not surjective, as
+illustrated in figure~\ref{fig:evalmap-in}.
 \begin{marginfigure}
   \begin{center}
     \asyinclude[width=4cm, height=4cm, keepAspect=false]{evalmap-in.asy}
@@ -255,9 +260,8 @@ figure~\ref{fig:evalmap-in}.
 Under $\mathcal{E}_{\bm{x}}$, the space of functions is mapped to a subset
 of~$\setR^d$. To solve eq.~\eqref{eq:least-squares} one might imagine
 finding the point in this subspace that is closest to $\bm{y}$ and
-then finding the the preimage of this point (in the sense of
-${\lVert\cdot\rVert}^2$) in~$\mathcal{F}$. Alternatively, one might consider
-“distance to $\bm{y}$” as a function on
+then finding the the preimage of this point in~$\mathcal{F}$. Alternatively, one
+might consider “distance to $\bm{y}$” as a function on
 $\mathcal{E}_{\bm{x}}[\mathcal{F}]$, pull back this function to
 $\mathcal{F}$, and then find the minimum there. In general, no closed-form
 solution is available under either approach. However, it turns out
@@ -347,7 +351,7 @@ As a function on $\mathcal{F}$, then, the loss function is
   \end{aligned}
 \]
 Thus we have written $L$ as a quadratic form on~$\mathcal{F}$. From a previous
-note, the minimiser of $L$ is, therefore,
+note the minimiser of $L$ is, therefore,
 \[
 \hat{f} = D^{-1}\bigl(\evalmap^*(\Delta(\bm{y}))\bigr).
 \]
@@ -357,11 +361,6 @@ note, the minimiser of $L$ is, therefore,
 
 
 \end{document}
-
-$$\begin{tikzcd}
-
-\end{tikzcd}$$
-
 
 
 However, note that $\bm{x}$ is \emph{not}, in general, a vector,
