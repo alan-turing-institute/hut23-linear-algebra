@@ -24,7 +24,7 @@
 %%
 \DeclareBoldMathCommand{\setR}{R}
 \DeclareBoldMathCommand{\bfC}{C}
-\DeclareBoldMathCommand{\bfD}{D}
+\DeclareBoldMathCommand{\bfG}{\Gamma}
 \newcommand{\bzero}{\mathbold{0}} % I don't know why \bm{0} fails.
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator{\nullspace}{null}
@@ -251,12 +251,11 @@ $Q(v)>Q(\xi)$ for all $v \neq \xi$ which, from eq.~\eqref{eq:vector-square},
 is equivalent to the condition $\bfC(v-\xi,v-\xi)>\bfC(0,0)$. Since
 $v$ is arbitrary and since $\bfC(0,0)=0$ this condition is equivalent
 to
-\begin{equation}
-  \label{eq:positive-definite}
+\[
   \bfC(v,v) > 0 \quad\text{for all $v\in V$ such that $v\neq0$}.
-\end{equation}
-A symmetric bilinear form for which eq.~\eqref{eq:positive-definite}
-holds is said to be \emph{positive definite}. The $\xi$ given by
+\]
+A symmetric bilinear form for which the above condition holds is said
+to be \emph{positive definite}. The $\xi$ given by
 eq.~\eqref{eq:minimiser}, if it exists, will be a unique minimiser if
 and only if $\bfC$ is positive definite.
 
@@ -296,45 +295,52 @@ on~$U$. The problem is to find the minimiser of this $Q\circ\phi$; that is,
 to find $\hat{u}\in U$, where
 \begin{equation}
   \hat{u} = \argmin_{u\in U} Q(\phi(u)).
-\label{eq:quadratic-minimiser}
 \end{equation}
 
 One way to view this problem is as a constrained minimisation. The
 image of $U$ under $\phi$ is a subspace of $V$ (see
-figure~\ref{fig:constrained-min}) and the problem is to find the
-minimiser of $Q$ on $V$ subject to the constraint that the minimiser
-must lie in the subspace~$\phi[U]$. Having found this minimiser,
-$\hat{u}$ is then any point in its pre-image under~$\phi$.
+figure~\ref{fig:constrained-min}). We might ask for the minimiser of
+$Q$ on $V$, subject to the constraint that the minimiser must lie in
+the subspace~$\phi[U]$. Having found this minimiser, $\hat{u}$ is then
+its pre-image under~$\phi$.
 \begin{marginfigure}
   \begin{center}
     \asyinclude[width=5cm]{constrained-min.asy}
   \end{center}
   \caption{The image of $U$ under the linear map $\phi:U\to V$ is a
-    subspace, $\phi[U]$, of~$V$.\label{fig:constrained-min}}
+    subspace, $\phi[U]$, of~$V$. The quadratic form $Q$ is a function on
+    $V$, whereas $Q\circ\phi$ is a function
+    on~$U$.\label{fig:constrained-min}}
 \end{marginfigure}
 
-In fact, however, the function on $U$ given by the composition
-$Q\circ\phi$ turns out to be a quadratic form on~$U$. If we were able to find
-an explicit form for $Q\circ\phi$ we would obtain a minimiser by application
-of eq.~\eqref{eq:quadratic-minimiser}. 
+In fact, however, $Q\circ\phi$ turns out to be itself a quadratic form
+on~$U$. If we were able to find an explicit form for $Q\circ\phi$ we would
+obtain a minimiser by direct application of
+eq.~\eqref{eq:quadratic-minimiser}.
 
 We now show that $Q\circ\phi$ is indeed a quadratic form on~$U$. As before,
 write $Q(v)=a -2\tilde{b}(v) + \bfC(v,v)$, where $\tilde{b}\in V^*$ and
 $\bfC$ is a symmetric, positive-definite bilinear form. Thus, for any
 $u\in U$, we have
 $(Q\circ\phi)(u) = a -2\tilde{b}(\phi(u)) + \bfC(\phi(u), \phi(u))$. Our plan is to
-find a number $\alpha\in\setR$, dual vector $\tilde{\beta}\in U^*$, and symmetric,
-positive-definite bilinear form $\bm{\Gamma}$, such that
-$(Q\circ\phi)(u)=\alpha -2\tilde{\beta}(u) + \bm{\Gamma}(u,u)$ and then to
-apply~eq.\eqref{quadratic-minimiser}.
+find a dual vector $\tilde{\beta}\in U^*$ and a symmetric, positive-definite
+bilinear form $\bm{\Gamma}$, such that
+$(Q\circ\phi)(u)=a -2\tilde{\beta}(u) + \bm{\Gamma}(u,u)$. Were we to do so, an
+application of eq.~\eqref{eq:quadratic-minimiser} would lead to
+$\hat{u}=\bm{\Gamma}^{-1}(\tilde{\beta})$.
 
-Consider first the term $\tilde{b}(\phi(u))$. By the definition of the
-transpose of a linear map (see figure~\ref{fig:transposes}) we have
-$\tilde{b}(\phi(u))=\phi^*(\tilde{b})(u)$ where $\phi^*(\tilde{b})\in U$.
+Consider first the linear term. $\tilde{b}$ is an element of $V^*$ and
+we wish to replace it with $\tilde{\beta}$, an element of~$U^*$. Since the
+transpose of $\phi$ is a map $\phi^*\colon V^*\to U^*$ (see
+figure~\ref{fig:transposes}) one might suspect that a plausible choice
+for $\tilde{\beta}$ would be $\tilde{\beta}=\phi^*(\tilde{b})$. And indeed, with
+this choice,
+$\tilde{\beta}(u) = \phi^*(\tilde{b})(u)= \tilde{b}(\phi(u))$ (by the
+definition of the transpose of a linear map).
 \begin{marginfigure}
   \[\begin{tikzcd}[column sep=large]
       & U^*  & V^* \arrow[l, "\phi^*"'] \\
-      & U \arrow[u, "\bfD"] \arrow[r, "\phi"] & V \arrow[u,
+      & U \arrow[u, "\bfG"] \arrow[r, "\phi"] & V \arrow[u,
       "\bfC"'] 
     \end{tikzcd}\]
   \caption{The transpose of the map $\phi\colon U\to V$ is the map
@@ -343,31 +349,52 @@ $\tilde{b}(\phi(u))=\phi^*(\tilde{b})(u)$ where $\phi^*(\tilde{b})\in U$.
     $\tilde{v}\in V^*$. \label{fig:transposes}}
 \end{marginfigure} 
 
-
-
-
-
-
-Define a map $\bfD:U\to U^*$ (see figure~\ref{fig:transposes})
-by
+Next consider the quadratic term. If the required $\bfG$ exists, it
+will be a map $\bfG\colon U\to U^*$. Such a map can be constructed by
+setting:
 \[
-  \bfD = \phi^*\circ \bfC \circ \phi
+  \bfG = \phi^*\circ \bfC \circ \phi
 \]
-Here $\phi^*\colon V^*\to U^*$ is the transpose of
-$\phi$.
+(see figure~\ref{fig:transposes} again). Note that, for any $u,w\in U$,
+we have
+$\bfG(u,w) = (\bfG(u))(w) = \phi^*(\bfC(\phi(u)))(w) = \bfC(\phi(u))(\phi(w)) =
+\bfC(\phi(u), \phi(w))$, and so $\bfG(u,u)=\bfC(\phi(u), \phi(u))$, as desired.
 
-We claim that $\bfD$ is a symmetric, positive-definite, bilinear form
-on~$U$. It is clearly a bilinear form. That it is symmetric follows
-from
-$\bfD^* = (\phi^*\circ \bfC \circ \phi)^* = \phi^*\circ \bfC^* \circ (\phi^*)^*$ and noting that
-$(\phi^*)^* = \phi$ and $\bfC^* = \bfC$ (because $\bfC$ is
-symmetric). Furthermore, $\bfD(u,u)\geq0$ (from the corresponding
-property of~$\bfC$) and, if $\bfD(u,u) = 0$, then either $\phi(u)=0$ and
-thus $u=0$ (since $\phi$ is injective) or $\bfC(\phi(u),\phi(u)) = 0$; if the
-former, then $u=0$ (since $\phi$ is injective); if the latter, then also
-$u=0$ (since $\bfC$ is positive definite). In either case, $u=0$, so
-we have $\bfD(u,u)=0$ only when $u=0$, and hence $\bfD$ is
-positive-definite.
+We now claim: this $\bfG$, so defined, is a symmetric,
+positive-definite bilinear form on~$U$. That it is symmetric follows
+from the corresponding property of~$\bfC$, noting that
+$\bfG^* = {(\phi^*\circ \bfC \circ \phi)}^* = \phi^*\circ \bfC^* \circ \phi$. That it is positive,
+$\bfG(u,u)\geq 0$, follows directly from the corresponding property of
+$\bfC$. It remains to show that it is positive-definite; that is, to
+show that if $\bfG(u,u)=0$ then necessarily $u=0$. Suppose then that
+$u$ is such that $\bfG(u,u)=0$. Since
+$\bfG(u,u) = \bfC(\phi(u),\phi(u))$, and since $\bfC$ is positive definite,
+it follows that $\phi(u)=0$. But $\phi$ was supposed to be an injective map
+and so we must have $u=0$.
+
+In summary, $Q\circ\phi$ is a quadratic form on $U$, of the form
+\[
+(Q\circ\phi)(u) = a - 2(\phi^*(\tilde{b}))(u) + (\phi^*\circ\bfC\circ\phi)(u, u).
+\]
+and the minimiser of $Q\circ\phi$ is given by
+\begin{equation}
+\hat{u} = {(\phi^*\circ\bfC\circ\phi)}^{-1}(\phi^*(\tilde{b})).
+\label{eq:constrained-minimiser}
+\end{equation}
+
+The formula above answers the original question. However, there is
+another way of thinking about this answer. Since
+$\tilde{b}=(C\circ C^{-1})(\tilde{b})$, the right-hand side
+eq.~\eqref{eq:constrained-minimiser} may be rewritten has
+\[
+  {(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ(C\circ C^{-1}(\tilde{b})) = 
+\]
+Informally, one thinks of $\hat{u}$ as the ``pullback'' to $U$ (by
+$\phi^{-1}$) of the minimiser of $Q$ on~$V$. Now consider the expression 
+
+
+
+
 
 
 
