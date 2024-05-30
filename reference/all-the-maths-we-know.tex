@@ -233,7 +233,7 @@
         = (u_1 + \alpha\cdot v_1, \dotsc, u_n + \alpha\cdot v_n).
       \end{multline*}
   \end{enumerate}
-  Note that there are natural injective maps $U_i\to U_1\oplus\dotsb\oplus U_n$ which “embed” the $U_i$ as subspaces of the direct product. 
+  Note that there are natural injective maps $U_i\to U_1\oplus\dotsb\oplus U_n$ which “embed” the $U_i$ as subspaces of the direct sum. 
 
   \\
 \end{tabularx}
@@ -249,7 +249,7 @@
   \end{equation*}
   (and likewise for a complex vector space). \\
 
-  \parbox[t]{0.8in}{\defn{Linear\\ independence}} & Vectors $v_1, \dots, v_n \in \set{R}$ are \emph{linearly independent} if $\alpha_1 v_1 + \dots + \alpha_n v_m = \set{0}$ implies $\alpha_1 = \dots = \alpha_n=0$. \\
+  \parbox[t]{0.8in}{\defn{Linear\\ independence}} & Vectors $v_1, \dots, v_n \in V$ are \emph{linearly independent} if $\alpha_1 v_1 + \dots + \alpha_n v_m = \set{0}$ implies $\alpha_1 = \dots = \alpha_n=0$. \\
 
   \defn{Basis} & (Of a vector space, $V$.) A collection of vectors that (a) spans $V$; (b) is linearly independent. \\
 
@@ -276,9 +276,9 @@
   Composition is associative and the identity map is a left and right
   identity. \\
 
-  \defn{Null space} & (Or “kernel”.) Of a linear map, that subspace of the domain that is mapped to the zero vector. \\
-
   \defn{Image} & Of a linear map, that subspace of the codomain that is mapped to by \emph{some} element of the domain. Sometimes called the \emph{range}. However, range used to mean “codomain” so the term can be ambiguous. \\
+
+  \defn{Null space} & (Or “kernel”.) Of a linear map, that subspace of the domain whose image is the subspace containing only the zero vector. \\
 
   \defn{Inverse} & For $T:V\to W$ a linear map, the \emph{inverse} (if it
   exists) is the linear map $T^{-1}$ such that $TT^{-1}=\id_V$ and $T^{-1}T=\id_W$. \\
@@ -319,6 +319,34 @@
   The map, $\pi\colon V\to V/U$, which takes $v\in V$ to its coset $v+U$.   
   \\
 \end{tabularx}
+
+\section*{Dual space}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Dual space} & The dual of a real (respectively, complex) vector space $V$ is the vector space $V^*=\mathcal{L}(V, \set{R})$ (respectively, $V^*=\mathcal{L}(V, \set{C})$).
+
+  An element of $V^*$ is sometimes called a \emph{linear functional}. \\
+
+  \defn{Dual basis} & For $(e_{(1)}, \dotsc, e_{(n)})$ a basis of $V$, the dual basis is that basis $(f^{(1)}, \dotsc, f^{(n)})$ of $V^*$ such that
+                      \[
+                      f^{(i)}(e_{(j)}) =
+                      \begin{cases}
+                        1 & \text{if $i=j$}, \\
+                        0 & \text{otherwise.}
+                      \end{cases}
+                      \] \\
+
+  \defn{Dual map} & For $\phi\colon U\to V$ a linear map, its dual (sometimes called its transpose), is that map $\phi^*\colon V^*\to U^*$ such that, for all $u\in U$ and $\tilde{v}\in V^*$,
+                    \[
+                    \tilde{v}(\phi(u)) = (\phi^*(\tilde{v}))(u).
+                    \] \\
+
+  \defn{Annihilator} & For $U\subset V$ a subset of $V$, the annihilator of $U$ is that subspace $U^0\subset V^*$ of the dual of $V$ given by
+                       \[
+                       U^0 = \{ \tilde{u}\in V^* \mid \tilde{u}(w)=0 \;\text{for all $w\in U$} \}.
+                       \]
+  \end{tabularx}
+
 
 %% ============================================================
 
