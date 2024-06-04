@@ -25,6 +25,7 @@
 \DeclareBoldMathCommand{\setR}{R}
 \DeclareBoldMathCommand{\bfC}{C}
 \DeclareBoldMathCommand{\bfG}{\Gamma}
+\newcommand{\id}{\mathbold{1}} 
 \newcommand{\bzero}{\mathbold{0}} % I don't know why \bm{0} fails.
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator{\nullspace}{null}
@@ -43,39 +44,38 @@ optimisation problem.
 A classic problem is that of finding the location of the minimum of
 some real-valued function. That is, given a function,
 $f\colon X\to\setR$, defined on some set $X$, we seek $\hat{x}\in X$ such
-  that $f(\hat{x})<f(x)$ for every other $x\in X$. We call $\hat{x}$ the 
-  \emph{minimiser} of~$f$ and write $\hat{x} = \argmin_{x\in X} f(x)$.
+that $f(\hat{x})<f(x)$ for every other $x\in X$. We call $\hat{x}$ the
+\emph{minimiser} of~$f$ and write $\hat{x} = \argmin_{x\in X} f(x)$.
 
 It is a hard problem! It is not just that the function itself might be
-complicated in some way; the \emph{domain} of the function, $X$, might
-be complicated: it could be discrete, or high-dimensional, or have
-some complicated shape. All of these can prevent an analytic solution
-and impede a numerical one.
+complicated in some way; the \emph{domain} of the function might be
+complicated: it could be discrete, or high-dimensional, or have some
+complicated shape. All of these can prevent an analytic solution and
+impede a numerical one.
 
-Sometimes, however, $X$, the domain of the function, is a vector space;
-and then the problem is much more tractable. In this note we derivce
-closed-form expressions for the minimisers of certain particularly
-simple functions on finite-dimensional vector spaces.
+Sometimes, however, $X$ is a vector space; and then the problem is
+much more tractable. In this note we derive closed-form expressions
+for the minimisers of certain particularly simple functions on
+finite-dimensional vector spaces.
 
 To get a sense for the issues, suppose, for the moment, that we are
 interested only in “functions of a single variable;” that is,
 functions $f\colon \setR\to\setR$. Here are a few examples where the
 minimum can be found without much difficulty.
 
-\eg{} A constant function, $f(x) = a$. This function attains its
-minimum value everywhere. To say it another way, there is no
-\emph{unique} point at which it is a minimum.
+\eg{} A constant function, $f(x) = a$ attains its minimum value
+everywhere. To say it another way, there is no \emph{unique} point at
+which it is a minimum.
 
-\eg{} A linear function,\sidenote{There is a slight inconsistency in
+\eg{} A linear function\sidenote{There is a slight inconsistency in
   terminology here.  A linear \emph{map} from one vector space to
   another necessarily maps zero to zero, whereas a linear
   \emph{function}, like this one, may have a constant term.}
-$f(x) = a + bx$. This function has no minimum (assuming $b\neq0$). Its
-value can be made arbitrarily negative by taking $x$ sufficiently
-large.
+$f(x) = a + bx$ n has no minimum (assuming $b\neq0$). Its value can be
+made arbitrarily negative by taking $x$ sufficiently large.
 
-\eg{} A quadratic, $f(x) = a + bx + cx^2$. (See
-figure~\ref{fig:quadratic} for an illustration.)
+\eg{} A quadratic, $f(x) = a + bx + cx^2$, \emph{may} have a
+minimiser. (See figure~\ref{fig:quadratic} for an illustration.)
 \begin{marginfigure}
   \begin{center}
     \asyinclude[width=4cm, height=4cm, keepAspect=false]{quadr.asy}
@@ -355,10 +355,10 @@ setting:
 \[
   \bfG = \phi^*\circ \bfC \circ \phi
 \]
-(see figure~\ref{fig:transposes} again). Note that, for any $u,w\in U$,
-we have
+(see figure~\ref{fig:transposes} again). Note that, for any
+$u,w\in U$, we have
 $\bfG(u,w) = (\bfG(u))(w) = \phi^*(\bfC(\phi(u)))(w) = \bfC(\phi(u))(\phi(w)) =
-\bfC(\phi(u), \phi(w))$, and so $\bfG(u,u)=\bfC(\phi(u), \phi(u))$, as desired.
+\bfC(\phi(u), \phi(w))$. Thus $\bfG(u,u)=\bfC(\phi(u), \phi(u))$ as desired.
 
 We now claim: this $\bfG$, so defined, is a symmetric,
 positive-definite bilinear form on~$U$. That it is symmetric follows
@@ -366,17 +366,17 @@ from the corresponding property of~$\bfC$, noting that
 $\bfG^* = {(\phi^*\circ \bfC \circ \phi)}^* = \phi^*\circ \bfC^* \circ \phi$. That it is positive,
 $\bfG(u,u)\geq 0$, follows directly from the corresponding property of
 $\bfC$. It remains to show that it is positive-definite; that is, to
-show that if $\bfG(u,u)=0$ then necessarily $u=0$. Suppose then that
+show that if $\bfG(u,u)=0$ then necessarily $u=\bzero$. Suppose then that
 $u$ is such that $\bfG(u,u)=0$. Since
 $\bfG(u,u) = \bfC(\phi(u),\phi(u))$, and since $\bfC$ is positive definite,
-it follows that $\phi(u)=0$. But $\phi$ was supposed to be an injective map
-and so we must have $u=0$.
+it follows that $\phi(u)=\bzero$. But $\phi$ was supposed to be an injective map
+and so we must have $u=\bzero$.
 
 In summary, $Q\circ\phi$ is a quadratic form on $U$, of the form
 \[
 (Q\circ\phi)(u) = a - 2(\phi^*(\tilde{b}))(u) + (\phi^*\circ\bfC\circ\phi)(u, u).
 \]
-and the minimiser of $Q\circ\phi$ is given by
+and the minimiser of $Q\circ\phi$ is, therefore, given by
 \begin{equation}
 \hat{u} = {(\phi^*\circ\bfC\circ\phi)}^{-1}(\phi^*(\tilde{b})).
 \label{eq:constrained-minimiser}
@@ -384,13 +384,32 @@ and the minimiser of $Q\circ\phi$ is given by
 
 The formula above answers the original question. However, there is
 another way of thinking about this answer. Since
-$\tilde{b}=(C\circ C^{-1})(\tilde{b})$, the right-hand side
-eq.~\eqref{eq:constrained-minimiser} may be rewritten has
+$\bfC\circ \bfC^{-1} = \id$, the right-hand side of
+eq.~\eqref{eq:constrained-minimiser} may be rewritten as
 \[
-  {(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ(C\circ C^{-1}(\tilde{b})) = 
+  \hat{u} = \bigl[{(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ \bfC\bigr]\circ
+  \bfC^{-1}(\tilde{b})
 \]
-Informally, one thinks of $\hat{u}$ as the ``pullback'' to $U$ (by
-$\phi^{-1}$) of the minimiser of $Q$ on~$V$. Now consider the expression 
+The term $\bfC^{-1}(\tilde{b})$ is the minimiser of $Q$ on~$V$. The
+term ${(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ C$ is a map from
+$V$ to $U$; it ``carries the minimiser back to~$U$.'' If $\phi$ were
+invertible, this term would reduce to $\phi^{-1}$ and $\hat{u}$ would
+just be $\phi^{-1}(\bfC(\tilde{b}))$.  In general, $\phi$ is \emph{not}
+invertible and the minimiser of $Q$ on $V$ does not lie in the image
+of $U$ under~$\phi$. Nonetheless one sometimes thinks of the larger term
+as a \emph{sort} of inverse. 
+
+Write $\psi={(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ C$. This $\psi$ satisfies the
+identity $\psi\circ\phi=\id_U$. It is a left-inverse of~$\phi$. However, in
+general, it is not true that $\phi\circ\psi$ is the identity on~$V$; that is, it
+is not generally true that $\psi$ is a right-inverse of~$\phi$.
+
+The term $\phi^*\circ \bfC$ appears twice in the expression for~$\psi$. 
+
+
+
+
+
 
 
 
