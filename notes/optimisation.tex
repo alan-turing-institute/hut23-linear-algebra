@@ -24,7 +24,8 @@
 %%
 \DeclareBoldMathCommand{\setR}{R}
 \DeclareBoldMathCommand{\bfC}{C}
-\DeclareBoldMathCommand{\bfD}{D}
+\DeclareBoldMathCommand{\bfG}{\Gamma}
+\newcommand{\id}{\mathbold{1}} 
 \newcommand{\bzero}{\mathbold{0}} % I don't know why \bm{0} fails.
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator{\nullspace}{null}
@@ -43,39 +44,38 @@ optimisation problem.
 A classic problem is that of finding the location of the minimum of
 some real-valued function. That is, given a function,
 $f\colon X\to\setR$, defined on some set $X$, we seek $\hat{x}\in X$ such
-  that $f(\hat{x})<f(x)$ for every other $x\in X$. We call $\hat{x}$ the 
-  \emph{minimiser} of~$f$ and write $\hat{x} = \argmin_{x\in X} f(x)$.
+that $f(\hat{x})<f(x)$ for every other $x\in X$. We call $\hat{x}$ the
+\emph{minimiser} of~$f$ and write $\hat{x} = \argmin_{x\in X} f(x)$.
 
 It is a hard problem! It is not just that the function itself might be
-complicated in some way; the \emph{domain} of the function, $X$, might
-be complicated: it could be discrete, or high-dimensional, or have
-some complicated shape. All of these can prevent an analytic solution
-and impede a numerical one.
+complicated in some way; the \emph{domain} of the function might be
+complicated: it could be discrete, or high-dimensional, or have some
+complicated shape. All of these can prevent an analytic solution and
+impede a numerical one.
 
-Sometimes, however, $X$, the domain of the function, is a vector space;
-and then the problem is much more tractable. In this note we derivce
-closed-form expressions for the minimisers of certain particularly
-simple functions on finite-dimensional vector spaces.
+Sometimes, however, $X$ is a vector space; and then the problem is
+much more tractable. In this note we derive closed-form expressions
+for the minimisers of certain particularly simple functions on
+finite-dimensional vector spaces.
 
 To get a sense for the issues, suppose, for the moment, that we are
 interested only in “functions of a single variable;” that is,
 functions $f\colon \setR\to\setR$. Here are a few examples where the
 minimum can be found without much difficulty.
 
-\eg{} A constant function, $f(x) = a$. This function attains its
-minimum value everywhere. To say it another way, there is no
-\emph{unique} point at which it is a minimum.
+\eg{} A constant function, $f(x) = a$ attains its minimum value
+everywhere. To say it another way, there is no \emph{unique} point at
+which it is a minimum.
 
-\eg{} A linear function,\sidenote{There is a slight inconsistency in
+\eg{} A linear function\sidenote{There is a slight inconsistency in
   terminology here.  A linear \emph{map} from one vector space to
   another necessarily maps zero to zero, whereas a linear
   \emph{function}, like this one, may have a constant term.}
-$f(x) = a + bx$. This function has no minimum (assuming $b\neq0$). Its
-value can be made arbitrarily negative by taking $x$ sufficiently
-large.
+$f(x) = a + bx$ n has no minimum (assuming $b\neq0$). Its value can be
+made arbitrarily negative by taking $x$ sufficiently large.
 
-\eg{} A quadratic, $f(x) = a + bx + cx^2$. (See
-figure~\ref{fig:quadratic} for an illustration.)
+\eg{} A quadratic, $f(x) = a + bx + cx^2$, \emph{may} have a
+minimiser. (See figure~\ref{fig:quadratic} for an illustration.)
 \begin{marginfigure}
   \begin{center}
     \asyinclude[width=4cm, height=4cm, keepAspect=false]{quadr.asy}
@@ -88,19 +88,19 @@ Whereas the previous examples could be solved by inspection, for this
 example we employ a trick, sometimes known as “completing the square.”
 Suppose we can find numbers $\kappa$, $\gamma$, and $\xi$ such that
 \begin{equation}
-  a + bx + cx^2 = \kappa + \gamma{(x - \xi)}^2.
+  f(x) = a + bx + cx^2 = \kappa + \gamma{(x - \xi)}^2.
 \label{eq:completing-the-square}
 \end{equation}
 Then, since the addition of a constant, $\kappa$, does not change the
 \emph{location} of any mimimum, the minimiser of $f$ is the same the
 minimiser of $\gamma{(x-\xi)}^2$. And, since ${(x-\xi)}^2$ is non-negative and
-is zero only when $x-\xi$, a minimum will exist only when $\gamma >0$ and
-that minimum will be at $x=\xi$.
+is zero only when $x-\xi=0$, a minimum will exist only when $\gamma >0$ and
+that minimum will be at $\hat{x}=\xi$.
 
 The values of $\kappa$, $\gamma$, and $\xi$ can be read off from
 eq.~\eqref{eq:completing-the-square} above by equating equal powers
 of~$x$: some manipulation gives the minimiser as
-$\xi=-\frac{1}{2}c^{-1}b$.
+$\hat{x}=-\frac{1}{2}c^{-1}b$.
 
 \subsection*{Quadratic forms}
 We return, now, to the multidimensional case. Fix, once and for all, a
@@ -129,13 +129,13 @@ The quadratic term, ``$cv^2$,'' would seem to involve the ``product of
 a vector with itself,'' and that is not an operation that is obviously
 available in a general vector space. However, suppose there were a way
 to obtain, from some vector $v$, an element $\tilde{v}\in V^*$ of the
-dual space. Then the expression $\tilde{v}(v)$ would be a number that
+dual space. Then the expression $\tilde{v}(v)$ would be a number, which
 we might interpret as ``$v^2$.''
 
 Thus, let $\bfC\colon V\to V^*$ be a linear map from $V$ to its
 dual. For any vector $v\in V$, we obtain $\bfC(v)\in V^*$ (see
 figure~\ref{fig:bilinear-form}). Now suppose $w\in V$ is any other
-vector. Since an element of $V^*$ is a linear map from $V$ to~$\setR$,
+vector. Since $\bfC(v)$ is a linear map from $V$ to~$\setR$,
 the expression $\bigl(\bfC(v)\bigr)(w)$ is a number. We shall think of
 this number as the ``product of $v$ and $w$'' (where this “product”
 depends of course upon~$\bfC$).
@@ -152,7 +152,7 @@ However, the notation is extremely cumbersome. Since we are thinking
 of $\bfC$ as ``a way to obtain a number from two vectors,'' we shall
 write $\bfC(v,w)$ instead of $\bigl(\bfC(v)\bigr)(w)$. Thus, by
 $\bfC(v, w)$ we shall mean, ``apply $\bfC$ to $v$, obtaining an
-element of, $\bfC(v)\in V^*$ of the dual space, and then apply this
+element, $\bfC(v)\in V^*$, of the dual space, and then apply this
 element to $w$, obtaining a number.'' When $\bfC$ is viewed from this
 perspective, it is known as a \emph{bilinear form}. In a sense, one
 thinks of $\bfC$ as a map from pairs $(v,w)\in V\times V$ to the reals, a map
@@ -178,13 +178,12 @@ which $\bm{S}(v,w)=\bm{S}(w,v)$ is said to be \emph{symmetric}. From
 the foregoing, the addition, to $\bfC$, of any antisymmetric bilinear
 form does not change value of $\bfC(v,v)$.
 
-
 Now consider the identity (for any bilinear form):
 \[
   \bfC(v, w) = \frac{1}{2}\bigl[\bfC(v,w) + \bfC(w,v)\bigr]
   + \frac{1}{2}\bigl[\bfC(v,w) - \bfC(w,v)\bigr].
 \]
-The first term on the right-hand side is symmetric whereas the second
+The first term on the right-hand side is symmetric, whereas the second
 is antisymmetric. Since the antisymmetric term vanishes when both
 arguments are the same, we assume, without loss of generality, that
 $\bfC$ is symmetric.\sidenote{The identity
@@ -213,47 +212,27 @@ finding the location of its minimum. That is, what is
 \]
 By direct analogy with the one-dimensional case,
 eq.~\eqref{eq:completing-the-square}, we might attempt to “complete
-the square” by rewriting eq.~\eqref{eq:quadratic-function} as:
+the square.” A little work will show that
 \begin{equation}
-  Q(v) = \kappa + \bm{\Gamma}(v - \xi, v - \xi),
+  Q(v) = \bigl[a-\bfC(\xi,\xi)\bigr] + \bfC(v-\xi,v-\xi),
   \label{eq:vector-square}
 \end{equation}
-where now $\kappa$ is a number, $\xi$ is a vector (which we hope will turn
-out to be the minimiser of $Q$!), and $\bm{\Gamma}$ is a symmetric bilinear
-form.
-
-In the one-dimensional case we next expanded the quadratic
-term. Noting that $\bm{\Gamma}$ is linear in both arguments, we obtain
-\[
-  a -2\tilde{b}(v)+\bfC(v,v) = \kappa+\bm{\Gamma}(\xi,\xi) -2\bm{\Gamma}(\xi,v) + \bm{\Gamma}(v,v).
-\]
-Equating terms ``quadratic in $v$'' we find
-$\bm{\bfC}(v,v) = \bm{\Gamma}(v,v)$ and thus $\bfC=\bm{\Gamma}$; using this, and
-equating terms linear in $v$, we find $\bfC(\xi, v) = \tilde{b}(v)$. On
-the left we have $\bfC(\xi)$ applied to~$v$; on the right we have
-$\tilde{b}$ applied to~$v$. Since these are supposed to be equal for
-\emph{all} $v\in V$, we must have $\bfC(\xi) = \tilde{b}$. A candidate
-answer for the minimiser of $Q(v)$, is therefore
+where $\xi$ must satisfy
 \begin{equation}
   \label{eq:minimiser}
-  \xi = \bfC^{-1}(\tilde{b}).
+  \bfC(\xi) = \tilde{b}.
 \end{equation}
 
-Unfortunately, we are not yet done. To conclude that
-$\bfC^{-1}(\tilde{b})$ \emph{is} a minimiser we must, in addition,
-show two things: first, that $\bfC$ \emph{has} an inverse; and second
-that $Q(v)$ is indeed a minimum at this value.
-
-It is convenient to tackle the second property first. Assume, for the
-moment, that $\bfC$ is invertible and that $\xi$ is given by
+Assume, for the moment, that $\bfC$ is invertible so that
+$\xi=\bfC^{-1}(\tilde{b})$ indeed satisfies
 eq.~\eqref{eq:minimiser}. This $\xi$ will be a minimiser of $Q$ if
-$Q(v)>Q(\xi)$ for all $v \neq \xi$ which, from eq.~\eqref{eq:vector-square},
-is equivalent to the condition $\bfC(v-\xi,v-\xi)>\bfC(0,0)$. Since
-$v$ is arbitrary and since $\bfC(0,0)=0$ this condition is equivalent
-to
+$Q(v)>Q(\xi)$ for all $v \neq \xi$. From eq.~\eqref{eq:vector-square}, that
+is equivalent to the condition $\bfC(v-\xi,v-\xi)>\bfC(0,0)$ for all
+$v\neq\xi$. However $v$ is arbitrary and so, noting that
+$\bfC(0,0)=0$, we obtain
 \begin{equation}
-  \label{eq:positive-definite}
   \bfC(v,v) > 0 \quad\text{for all $v\in V$ such that $v\neq0$}.
+  \label{eq:positive-definite}
 \end{equation}
 A symmetric bilinear form for which eq.~\eqref{eq:positive-definite}
 holds is said to be \emph{positive definite}. The $\xi$ given by
@@ -296,45 +275,52 @@ on~$U$. The problem is to find the minimiser of this $Q\circ\phi$; that is,
 to find $\hat{u}\in U$, where
 \begin{equation}
   \hat{u} = \argmin_{u\in U} Q(\phi(u)).
-\label{eq:quadratic-minimiser}
 \end{equation}
 
 One way to view this problem is as a constrained minimisation. The
 image of $U$ under $\phi$ is a subspace of $V$ (see
-figure~\ref{fig:constrained-min}) and the problem is to find the
-minimiser of $Q$ on $V$ subject to the constraint that the minimiser
-must lie in the subspace~$\phi[U]$. Having found this minimiser,
-$\hat{u}$ is then any point in its pre-image under~$\phi$.
+figure~\ref{fig:constrained-min}). We might ask for the minimiser of
+$Q$ on $V$, subject to the constraint that the minimiser must lie in
+the subspace~$\phi[U]$. Having found this minimiser, $\hat{u}$ is then
+its pre-image under~$\phi$.
 \begin{marginfigure}
   \begin{center}
     \asyinclude[width=5cm]{constrained-min.asy}
   \end{center}
   \caption{The image of $U$ under the linear map $\phi:U\to V$ is a
-    subspace, $\phi[U]$, of~$V$.\label{fig:constrained-min}}
+    subspace, $\phi[U]$, of~$V$. The quadratic form $Q$ is a function on
+    $V$, whereas $Q\circ\phi$ is a function
+    on~$U$.\label{fig:constrained-min}}
 \end{marginfigure}
 
-In fact, however, the function on $U$ given by the composition
-$Q\circ\phi$ turns out to be a quadratic form on~$U$. If we were able to find
-an explicit form for $Q\circ\phi$ we would obtain a minimiser by application
-of eq.~\eqref{eq:quadratic-minimiser}. 
+In fact, however, $Q\circ\phi$ turns out to be itself a quadratic form
+on~$U$. If we were able to find an explicit form for $Q\circ\phi$ we would
+obtain a minimiser by direct application of
+eq.~\eqref{eq:quadratic-minimiser}.
 
 We now show that $Q\circ\phi$ is indeed a quadratic form on~$U$. As before,
 write $Q(v)=a -2\tilde{b}(v) + \bfC(v,v)$, where $\tilde{b}\in V^*$ and
 $\bfC$ is a symmetric, positive-definite bilinear form. Thus, for any
 $u\in U$, we have
 $(Q\circ\phi)(u) = a -2\tilde{b}(\phi(u)) + \bfC(\phi(u), \phi(u))$. Our plan is to
-find a number $\alpha\in\setR$, dual vector $\tilde{\beta}\in U^*$, and symmetric,
-positive-definite bilinear form $\bm{\Gamma}$, such that
-$(Q\circ\phi)(u)=\alpha -2\tilde{\beta}(u) + \bm{\Gamma}(u,u)$ and then to
-apply~eq.\eqref{quadratic-minimiser}.
+find a dual vector $\tilde{\beta}\in U^*$ and a symmetric, positive-definite
+bilinear form $\bm{\Gamma}$, such that
+$(Q\circ\phi)(u)=a -2\tilde{\beta}(u) + \bm{\Gamma}(u,u)$. Were we to do so, an
+application of eq.~\eqref{eq:quadratic-minimiser} would lead to
+$\hat{u}=\bm{\Gamma}^{-1}(\tilde{\beta})$.
 
-Consider first the term $\tilde{b}(\phi(u))$. By the definition of the
-transpose of a linear map (see figure~\ref{fig:transposes}) we have
-$\tilde{b}(\phi(u))=\phi^*(\tilde{b})(u)$ where $\phi^*(\tilde{b})\in U$.
+Consider first the linear term. $\tilde{b}$ is an element of $V^*$ and
+we wish to replace it with $\tilde{\beta}$, an element of~$U^*$. Since the
+transpose of $\phi$ is a map $\phi^*\colon V^*\to U^*$ (see
+figure~\ref{fig:transposes}) one might suspect that a plausible choice
+for $\tilde{\beta}$ would be $\tilde{\beta}=\phi^*(\tilde{b})$. And indeed, with
+this choice,
+$\tilde{\beta}(u) = \phi^*(\tilde{b})(u)= \tilde{b}(\phi(u))$ (by the
+definition of the transpose of a linear map).
 \begin{marginfigure}
   \[\begin{tikzcd}[column sep=large]
       & U^*  & V^* \arrow[l, "\phi^*"'] \\
-      & U \arrow[u, "\bfD"] \arrow[r, "\phi"] & V \arrow[u,
+      & U \arrow[u, "\bfG"] \arrow[r, "\phi"] & V \arrow[u,
       "\bfC"'] 
     \end{tikzcd}\]
   \caption{The transpose of the map $\phi\colon U\to V$ is the map
@@ -343,31 +329,90 @@ $\tilde{b}(\phi(u))=\phi^*(\tilde{b})(u)$ where $\phi^*(\tilde{b})\in U$.
     $\tilde{v}\in V^*$. \label{fig:transposes}}
 \end{marginfigure} 
 
-
-
-
-
-
-Define a map $\bfD:U\to U^*$ (see figure~\ref{fig:transposes})
-by
+Next consider the quadratic term. If the required $\bfG$ exists, it
+will be a map $\bfG\colon U\to U^*$. Such a map can be constructed by
+setting:
 \[
-  \bfD = \phi^*\circ \bfC \circ \phi
+  \bfG = \phi^*\circ \bfC \circ \phi
 \]
-Here $\phi^*\colon V^*\to U^*$ is the transpose of
-$\phi$.
+(see figure~\ref{fig:transposes} again). Note that, for any
+$u,w\in U$, we have
+$\bfG(u,w) = (\bfG(u))(w) = \phi^*(\bfC(\phi(u)))(w) = \bfC(\phi(u))(\phi(w)) =
+\bfC(\phi(u), \phi(w))$. Thus $\bfG(u,u)=\bfC(\phi(u), \phi(u))$ as desired.
 
-We claim that $\bfD$ is a symmetric, positive-definite, bilinear form
-on~$U$. It is clearly a bilinear form. That it is symmetric follows
-from
-$\bfD^* = (\phi^*\circ \bfC \circ \phi)^* = \phi^*\circ \bfC^* \circ (\phi^*)^*$ and noting that
-$(\phi^*)^* = \phi$ and $\bfC^* = \bfC$ (because $\bfC$ is
-symmetric). Furthermore, $\bfD(u,u)\geq0$ (from the corresponding
-property of~$\bfC$) and, if $\bfD(u,u) = 0$, then either $\phi(u)=0$ and
-thus $u=0$ (since $\phi$ is injective) or $\bfC(\phi(u),\phi(u)) = 0$; if the
-former, then $u=0$ (since $\phi$ is injective); if the latter, then also
-$u=0$ (since $\bfC$ is positive definite). In either case, $u=0$, so
-we have $\bfD(u,u)=0$ only when $u=0$, and hence $\bfD$ is
-positive-definite.
+We now claim: this $\bfG$, so defined, is a symmetric,
+positive-definite bilinear form on~$U$. That it is symmetric follows
+from the corresponding property of~$\bfC$, noting that
+$\bfG^* = {(\phi^*\circ \bfC \circ \phi)}^* = \phi^*\circ \bfC^* \circ \phi$. That it is positive,
+$\bfG(u,u)\geq 0$, follows directly from the corresponding property of
+$\bfC$. It remains to show that it is positive-definite; that is, to
+show that if $\bfG(u,u)=0$ then necessarily $u=\bzero$. Suppose then that
+$u$ is such that $\bfG(u,u)=0$. Since
+$\bfG(u,u) = \bfC(\phi(u),\phi(u))$, and since $\bfC$ is positive definite,
+it follows that $\phi(u)=\bzero$. But $\phi$ was supposed to be an injective map
+and so we must have $u=\bzero$.
+
+In summary, $Q\circ\phi$ is a quadratic form on $U$, of the form
+\[
+(Q\circ\phi)(u) = a - 2(\phi^*(\tilde{b}))(u) + (\phi^*\circ\bfC\circ\phi)(u, u).
+\]
+and the minimiser of $Q\circ\phi$ is, therefore, given by
+\begin{equation}
+\hat{u} = {(\phi^*\circ\bfC\circ\phi)}^{-1}(\phi^*(\tilde{b})).
+\label{eq:constrained-minimiser}
+\end{equation}
+
+The formula above answers the original question. However, there is
+another way of thinking about this answer. Since
+$\bfC\circ \bfC^{-1} = \id$, the right-hand side of
+eq.~\eqref{eq:constrained-minimiser} may be rewritten as
+\[
+  \hat{u} = \bigl[{(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ \bfC\bigr]\circ
+  \bfC^{-1}(\tilde{b})
+\]
+The term $\bfC^{-1}(\tilde{b})$ is the minimiser of $Q$ on~$V$. The
+term ${(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ C$ is a map from
+$V$ to $U$; it ``carries the minimiser back to~$U$.'' If $\phi$ were
+invertible, this term would reduce to $\phi^{-1}$ and $\hat{u}$ would
+just be $\phi^{-1}(\bfC(\tilde{b}))$.  In general, $\phi$ is \emph{not}
+invertible and the minimiser of $Q$ on $V$ does not lie in the image
+of $U$ under~$\phi$. Nonetheless one sometimes thinks of the larger term
+as a \emph{sort} of inverse. 
+
+Write $\psi={(\phi^*\circ\bfC\circ\phi)}^{-1}\circ\phi^*\circ C$. This
+$\psi$ satisfies the identity $\psi\circ\phi=\id_U$: it is a left-inverse
+of~$\phi$. However, it is not true in general that $\phi\circ\psi$ is the identity
+on~$V$; that is, it is not generally true that $\psi$ is a right-inverse
+of~$\phi$.
+
+In applications, one typically chooses a basis for $U$ and $V$,
+together with the corresponding dual bases for $U^*$ and $V^*$. Often,
+the basis for $V$ is chosen to give $\bfC$ the particularly simple
+form:
+\[
+  \bfC(e_i, e_j) =
+  \begin{cases}
+    1 & \text{if $i=j$;} \\
+    0 & \text{otherwise.}
+  \end{cases}
+\]
+When $\bfC$ has this form, the matrix representation of
+$\phi^*\circ \bfC$ is the transpose of the matrix representation
+of~$\phi$.\sidenote{In general, it is the matrix of $\phi^*$ that is the
+  transpose of the matrix of $\phi$.} Thus, interpreting now $\phi$ as a
+matrix, we have
+\[
+  \psi = (\phi^T\phi)^{-1}\phi^T.
+\]
+In this form, $\psi$ is known as the \emph{Moore--Penrose pseudo-inverse}
+of~$\phi$.
+
+
+
+
+
+
+
 
 
 
