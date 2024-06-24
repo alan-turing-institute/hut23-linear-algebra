@@ -80,7 +80,7 @@ cd matmul-racket
 racket matmul.rkt
 ```
 
-## Rust implementation
+## Rust implementation by Ed
 
 This is Ed Chapman's [Rust implementation](https://github.com/edchapman88/matrix_library) included as a submodule.
 Ensure the submodule has been updated and that Rust is available.
@@ -91,6 +91,17 @@ git submodule update --init
 cd matmul-rst
 cargo run --release
 ```
+
+## Rust implementation from Hackweek
+
+To run the improved Rust implementation developed during Hackweek, do
+
+```
+cd matmul-rst-hackweek
+cargo run --release
+```
+
+This is a much simplified and streamlined version of the Hackweek code we developed, which could handle tensors with arbitrary numbers of dimensions and do many things beside matmuls.
 
 ## R implementation
 
