@@ -30,10 +30,10 @@ choose the space of all integrable functions. Then the map $f
 ### Answer
 
 First note that $\phi_k$ is a linear map. Next, consider
-$\phi_k(x^n)$. If $n< k$ then the $`k`$th derivative of $x^n$ is
+$\frac{d^k}{dx^k} (x^n)\mid_0$. If $n< k$ then the $`k`$th derivative of $x^n$ is
 identically zero. On the other hand, if $n > k$ then the $`k`$th
 derivative of $x^n$ is $n (n-1)(n-2)\dots(n-k+1)x^{n-k}$, which is
-zero when evaluated at $x-0$. Finally, when $n=k$, the $`k`$th
+zero when evaluated at $x=0$. Finally, when $n=k$, the $`k`$th
 derivative of $x^n$ is the constant $n (n-1)(n-2)\dots 1=n!=k!$. In
 summary
 \begin{equation}
