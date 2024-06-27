@@ -32,6 +32,8 @@ repo uses $\LaTeX$ (and/or Makefiles). On a mac, use `brew install mactex`.
 | 12 April | More isomorphisms               |                                   |
 | 19 April | Quotient spaces                 | Axler, 3.E (discussion)           |
 | 26 April | Quotient spaces                 | Exercises from Axler 3.E          |
+| ...      | ...                             | ...                               |
+| 28 June  | Duals                           | Exercises, Axler 3.F              |
 
 
 Overall plan:
