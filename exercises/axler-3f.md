@@ -36,11 +36,13 @@ derivative of $x^n$ is $n (n-1)(n-2)\dots(n-k+1)x^{n-k}$, which is
 zero when evaluated at $x=0$. Finally, when $n=k$, the $`k`$th
 derivative of $x^n$ is the constant $n (n-1)(n-2)\dots 1=n!=k!$. In
 summary
-\begin{equation}
+
+$$
 \phi_k(x^n) = 
 \begin{cases}
 k! & \text{when } n = k \\
 0  & \text{otherwise},
 \end{cases}
-\end{equation}
+$$
+
 from which the duality follows.
