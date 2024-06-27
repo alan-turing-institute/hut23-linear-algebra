@@ -215,13 +215,21 @@ Using Numpy.
 | Apple M1 Pro |  5.37 | 3 127 160.48 |
 | Apple M2     |       |              |
 
-### Rust
+### Rust - Ed's original
 
 | Device       |     s |      ops/s |
 |:-------------|------:|-----------:|
 | Intel i7     | 41.08 | 408 403.51 |
 | Apple M1 Pro | 50.61 | 331 473.82 |
 | Apple M2     |       |            |
+
+### Rust - HackWeek
+
+| Device       |     s |         ops/s |
+|:-------------|------:|--------------:|
+| Intel i7     |  1.66 | 10 118 948.13 |
+| Apple M1 Pro |  2.28 |  7 240 921.88 |
+| Apple M2     |       |               |
 
 ### R
 
