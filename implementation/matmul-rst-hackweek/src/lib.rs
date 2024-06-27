@@ -96,7 +96,7 @@ impl<E: Element> MatrixImpl<E> {
         let dim1 = self.num_rows;
         let dim_inner = self.num_cols;
         let dim2 = other.num_rows;
-        // Create an unallocated data vector for the result.
+        // Create an uninitialised data vector for the result.
         let n_elements = dim1 * dim2;
         let mut new_data: Vec<E> = Vec::with_capacity(n_elements);
 
@@ -131,7 +131,7 @@ impl<E: Element> MatrixImpl<E> {
         let dim1 = self.num_rows;
         let dim_inner = self.num_cols;
         let dim2 = other.num_cols;
-        // Create an unallocated data vector for the result.
+        // Create an uninitialised data vector for the result.
         let n_elements = dim1 * dim2;
         let mut new_data: Vec<E> = Vec::with_capacity(n_elements);
 
