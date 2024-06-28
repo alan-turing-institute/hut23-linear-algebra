@@ -27,29 +27,29 @@ choose the space of all integrable functions. Then the map $f
 ## Question 9
 
 Suppose $m$ is a positive integer. Show that the dual basis of the
-basis $1, x, \dots, x_m$ of $\mathcal{𝒫}_m(\mathbf{R})) is $\phi_0,
-\phi_1, \dots, \phi_m$, where $\phi_k(p) = 𝑝^{(𝑘)}(0)/k!$. 
+basis $1, x, \dots, x^m$ of $\mathcal{𝒫}_m(\mathbf{R})) is $\phi_0,
+\phi_1, \dots, \phi_m$, where $\phi_k(p) = 𝑝^{(𝑘)}(0)/k!$.
 
 Here $𝑝^{(𝑘)}$ denotes the $k$th derivative of $p$, with the
 understanding that the 0th derivative of $p$ is $p$.
 
 ### Answer
 
-### Question 9
+(What are the $\phi_k(p)$? They are the coefficiencts of the Taylor
+series expansion of $p$.)
 
+First note that $\phi_k$ is a linear map. We must show that
+$\phi_k(x^m) =\delta_{km}$.
 
-### Answer
-
-First note that $\phi_k$ is a linear map. Next, consider
-$\frac{d^k}{dx^k} (x^n)\mid_0$. If $n< k$ then the $`k`$th derivative of $x^n$ is
-identically zero. On the other hand, if $n > k$ then the $`k`$th
-derivative of $x^n$ is $n (n-1)(n-2)\dots(n-k+1)x^{n-k}$, which is
-zero when evaluated at $x=0$. Finally, when $n=k$, the $`k`$th
-derivative of $x^n$ is the constant $n (n-1)(n-2)\dots 1=n!=k!$. In
-summary
+Consider $\frac{d^k}{dx^k} (x^n)\mid_0$. If $n< k$ then the $`k`$th
+derivative of $x^n$ is identically zero. On the other hand, if $n > k$
+then the $`k`$th derivative of $x^n$ is $n
+(n-1)(n-2)\dots(n-k+1)x^{n-k}$, which is zero when evaluated at
+$x=0$. Finally, when $n=k$, the $`k`$th derivative of $x^n$ is the
+constant $n (n-1)(n-2)\dots 1=n!=k!$. In summary
 
 $$
-\phi_k(x^n) = 
+\frac{d^k}{dx^k} x^n =
 \begin{cases}
 k! & \text{when } n = k \\
 0  & \text{otherwise},
@@ -57,3 +57,60 @@ k! & \text{when } n = k \\
 $$
 
 from which the duality follows.
+
+## Question 32
+
+The _double dual space_ of $V$, denoted by $V''$, is defined to be the
+dual space of $V'$. In other words, $V''=(V')'$. Define $\Lambda\colon
+V\to V''$ by $(\Lambda v)(\phi) =\phi(v)$ for each $v\in V$ and each
+$\phi\in V'$.
+
+### (a)
+
+Show that $\Lambda$ is a linear map from $V$ to $V''$.
+
+### Answer
+
+We must show that $\Lambda (u+\alpha v) = \Lambda u +\alpha\Lambda
+v$. The action of $\Lambda (u+\alpha v)$ on an arbitrary $\phi$ is
+$$
+(\Lambda (u+\alpha v))(\phi) = \phi(u+\alpha v) = \phi(u)+\alpha\phi(v),
+$$
+by linearity of $\phi$. But this is precisely $(\Lambda u)(\phi) +
+\alpha(\Lambda v)(\phi)$.
+
+### (b)
+
+Show that if $T\in\mathcal{L}(V)$, then $T''\circ \Lambda =
+\Lambda\circ T$, where $T''=(T')'$.
+
+### Answer
+
+For any $v\in V$, $(T''\circ\Lambda)(v)$ is an element of $V''$.  For
+any $\phi\in V'$, we have
+
+$$
+\begin{aligned}
+\bigl((T''\circ\Lambda)(v)\bigr)(\phi)
+&= \bigl(T''(\Lambda(v))\bigr(\phi) \\
+&= \Lambda(v)(T'(\phi)) \text{ by definition of }T' \\
+&= (T'(\phi))(v) \text{ by definition of }\Lambda \\
+&= \phi(T(v)) \text{ by definition of }T' \\
+&= (\Lambda(T(v)))(\phi) \text{ by definition of }\Lambda.
+\end{aligned}
+$$
+
+Thus $\bigl(T''(\Lambda(v))\bigr(\phi) = (\Lambda(T(v)))(\phi)$ for
+all $\phi$; hence $T''(\Lambda(v)) = (\Lambda(T(v)))$.
+
+### (c)
+
+Show that if $V$ is finite-dimensional, then $\Lambda$ is an
+isomorphism from $V$ onto $V''$.
+
+### Answer
+
+Since $V$ is finite-dimensional, $\text{dim }V'' = \text{dim }V' =
+\text{dim V}$. So it suffices to show that $\Lambda$ is injective.
+
+
