@@ -49,7 +49,7 @@ $x=0$. Finally, when $n=k$, the $`k`$th derivative of $x^n$ is the
 constant $n (n-1)(n-2)\dots 1=n!=k!$. In summary
 
 $$
-\frac{d^k}{dx^k} x^n =
+\left.\frac{d^k}{dx^k}\right|_{x=0} x^n =
 \begin{cases}
 k! & \text{when } n = k \\
 0  & \text{otherwise},
@@ -73,9 +73,11 @@ Show that $\Lambda$ is a linear map from $V$ to $V''$.
 
 We must show that $\Lambda (u+\alpha v) = \Lambda u +\alpha\Lambda
 v$. The action of $\Lambda (u+\alpha v)$ on an arbitrary $\phi$ is
+
 $$
 (\Lambda (u+\alpha v))(\phi) = \phi(u+\alpha v) = \phi(u)+\alpha\phi(v),
 $$
+
 by linearity of $\phi$. But this is precisely $(\Lambda u)(\phi) +
 \alpha(\Lambda v)(\phi)$.
 
@@ -92,11 +94,11 @@ any $\phi\in V'$, we have
 $$
 \begin{aligned}
 \bigl((T''\circ\Lambda)(v)\bigr)(\phi)
-&= \bigl(T''(\Lambda(v))\bigr(\phi) \\
-&= \Lambda(v)(T'(\phi)) \text{ by definition of }T' \\
-&= (T'(\phi))(v) \text{ by definition of }\Lambda \\
-&= \phi(T(v)) \text{ by definition of }T' \\
-&= (\Lambda(T(v)))(\phi) \text{ by definition of }\Lambda.
+&= \bigl(T''(\Lambda(v))\bigr(\phi) & \\
+&= \Lambda(v)(T'(\phi))  & \text{ by definition of }T' \\
+&= (T'(\phi))(v)         & \text{ by definition of }\Lambda \\
+&= \phi(T(v))            & \text{ by definition of }T' \\
+&= (\Lambda(T(v)))(\phi) & \text{ by definition of }\Lambda.
 \end{aligned}
 $$
 
