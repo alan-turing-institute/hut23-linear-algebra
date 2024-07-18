@@ -1,0 +1,16 @@
+#+title: Questions from Axler 5a
+
+3,8,13,35
+
+* Question 3
+
+Suppose \( T \in \mathcal{L}(V)\). Prove that the intersection of every
+collection of subspaces of \(V\) invariant under \(T\) is invariant
+under \(T\).
+
+** Answer
+
+Let \(U_\lambda\) (\(\lambda\in\Lambda\)) be some family of subspaces such that each \(U_\lambda\)
+is invariant under \(T\). 
+
+
