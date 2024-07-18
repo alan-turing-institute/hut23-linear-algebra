@@ -29,10 +29,10 @@ means is that, for any $\lambda$ and for any $w\in U_\lambda$, we have
 $Tw\in U_\lambda$.
 
 The intersection of all the $U_\lambda$ is
-$$
+```math
 \bigcap_{\lambda\in\Lambda} U_\lambda = \{ u \mid u\in\U_\lambda 
 \text{ for every }\lambda\}.
-$$
+```
 
 
 
