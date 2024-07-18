@@ -4,13 +4,13 @@
 
 * Question 3
 
-Suppose \( T \in \mathcal{L}(V)\). Prove that the intersection of every
-collection of subspaces of \(V\) invariant under \(T\) is invariant
-under \(T\).
+Suppose $T \in \mathcal{L}(V)$. Prove that the intersection of every
+collection of subspaces of $V$ invariant under $T$ is invariant
+under $T$.
 
 ** Answer
 
-Let \(U_\lambda\) (\(\lambda\in\Lambda\)) be some family of subspaces such that each \(U_\lambda\)
-is invariant under \(T\). 
+Let $U_\lambda$ ($\lambda\in\Lambda$) be some family of subspaces such that each $U_\lambda$
+is invariant under $T$. 
 
 
