@@ -81,7 +81,7 @@ $S^{-1}(T-\lambda I)S$ to the vector $S^{-1}v$ (noting that $S$ is
 invertible). We have
 
 ```math
-\bigl(S^{-1}(T-\lambda I) $\bigr) S^{-1)(v) = S^{-1}(T-\lambda I) v = 0$.
+\bigl(S^{-1}(T-\lambda I) $\bigr) S^{-1)(v) = S^{-1}(T-\lambda I) v = 0.
 ```
 On the other hand, we also have 
 
@@ -97,7 +97,7 @@ eigenvalue of $S^{-1}TS$.
 ### (b)
 
 What is the relationship between the eigenvectors of $T$ and the
-eigenvectors of $S^{-1}TS$. 
+eigenvectors of $S^{-1}TS$?
 
 #### Answer
 
@@ -110,7 +110,7 @@ $S^{-1}v$ is an eigenvector of $S^{-1}TS$.
 Suppose that $\lambda_1, \dotsc, \lambda_n$ is a list of distinct real
 numbers. Prove that the list $e^{\lambda_1 x}, \dotsc, e^{\lambda_n
 x}$ is linearly independent in the vector space of real-valued
-functions on \mathbf{R}. 
+functions on $\mathbf{R}$. 
 
 Hint: Let $V=\text{span}(e^{\lambda_1 x}, \dotsc, e^{\lambda_n x})$,
 and define an operator $D\in\mathcal{L}(V)$ by $Df=f'$. Find
