@@ -80,11 +80,11 @@ $(T-\lambda I)v=0$ for some $v\neq 0$. Now consider applying
 $S^{-1}(T-\lambda I)S$ to the vector $S^{-1}v$ (noting that $S$ is
 invertible). We have
 ```math
-\bigl(S^{-1}(T-\lambda I) \bigr) S^{-1)(v) = S^{-1}(T-\lambda I) v = 0.
+\bigl(S^{-1}(T-\lambda I) \bigr) S^{-1}(v) = S^{-1}(T-\lambda I) v = 0.
 ```
 On the other hand, we also have 
 ```math
-\bigl(S^{-1}(T-\lambda I) \bigr) S^{-1)(v) = (S^{-1}TS-\lambda I) (S^{-1}v),
+\bigl(S^{-1}(T-\lambda I) \bigr) S^{-1}(v) = (S^{-1}TS-\lambda I) (S^{-1}v),
 ```
 where, on the the right hand side, we have used $S^{-1}IS = I$. 
 
