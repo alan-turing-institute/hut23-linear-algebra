@@ -38,12 +38,12 @@ That is, for a vector $w$ to be in _all_ the subspaces means that it
 is in _every_ subspace. 
 
 Well, if $w\in U_\lambda$ for some $\lambda$, then $Tw\in U_\lambda$
-for the same $\lambda$. And so if $w$ is in every $U_\lambda$ then $Tw$ is also
-in every $U_lambda$, and hence in all the $U_\lambda$; and hence in
-their intersection. In other words, $w\in \bigcup_{\lambda\in\Lambda}
-U_\lambda$ implies $Tw\in \bigcup_{\lambda\in\Lambda}
-U_\lambda$, and thus \bigcup_{\lambda\in\Lambda}
-U_\lambda$ is invariant under $T$. 
+for the same $\lambda$. And so if $w$ is in every $U_\lambda$ then
+$Tw$ is also in every $U_\lambda$, and hence in all the $U_\lambda$;
+and hence in their intersection. In other words, $w\in
+\bigcup_{\lambda\in\Lambda} U_\lambda$ implies $Tw\in
+\bigcup_{\lambda\in\Lambda} U_\lambda$, and thus
+$\bigcup_{\lambda\in\Lambda} U_\lambda$ is invariant under $T$.
 
 
 ## Question 8
@@ -79,14 +79,12 @@ Suppose that $\lambda$ is an eigenvalue of $T$. That means that
 $(T-\lambda I)v=0$ for some $v\neq 0$. Now consider applying
 $S^{-1}(T-\lambda I)S$ to the vector $S^{-1}v$ (noting that $S$ is
 invertible). We have
-
 ```math
-\bigl(S^{-1}(T-\lambda I) $\bigr) S^{-1)(v) = S^{-1}(T-\lambda I) v = 0.
+\bigl(S^{-1}(T-\lambda I) \bigr) S^{-1)(v) = S^{-1}(T-\lambda I) v = 0.
 ```
 On the other hand, we also have 
-
 ```math
-\bigl(S^{-1}(T-\lambda I) $\bigr) S^{-1)(v) = (S^{-1}TS-\lambda I) (S^{-1}v),
+\bigl(S^{-1}(T-\lambda I) \bigr) S^{-1)(v) = (S^{-1}TS-\lambda I) (S^{-1}v),
 ```
 where, on the the right hand side, we have used $S^{-1}IS = I$. 
 
