@@ -105,3 +105,24 @@ From the above, we have that, if $v$ is an eigenvector of $T$, then
 $S^{-1}v$ is an eigenvector of $S^{-1}TS$. 
 
 
+## Question 35
+
+Suppose that $\lambda_1, \dotsc, \lambda_n$ is a list of distinct real
+numbers. Prove that the list $e^{\lambda_1 x}, \dotsc, e^{\lambda_n
+x}$ is linearly independent in the vector space of real-valued
+functions on \mathbf{R}. 
+
+Hint: Let $V=\text{span}(e^{\lambda_1 x}, \dotsc, e^{\lambda_n x})$,
+and define an operator $D\in\mathcal{L}(V)$ by $Df=f'$. Find
+eigenvalues and eigenvectors of $D$. 
+
+### Answer
+
+Let's follow the hint. Note that $D e^{\lambda_i x} = \lambda_i
+e^{\lambda_i x}$. Thus, $\lambda_i$ is an eigenvalue of $D$ on the
+space $V$. But the $\lambda_i$ are distinct. So there are at least $n$
+distinct eigenvalues. So the dimension of $V$ is at least $n$. But the
+dimension of $V$ is at most $n$ by construction. Thus $\text{dim
+}V=n$. Since the $e^{\lambda_i x}$ span $V$, and there are $n$ of
+them, they must be linearly independent. 
+
