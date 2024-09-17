@@ -95,10 +95,10 @@ $$
 \begin{aligned}
 \bigl((T''\circ\Lambda)(v)\bigr)(\phi)
 &= \bigl(T''(\Lambda(v))\bigr(\phi) & \\
-&= \Lambda(v)(T'(\phi))  & \text{ by definition of }T' \\
-&= (T'(\phi))(v)         & \text{ by definition of }\Lambda \\
-&= \phi(T(v))            & \text{ by definition of }T' \\
-&= (\Lambda(T(v)))(\phi) & \text{ by definition of }\Lambda.
+&= \Lambda(v)(T'(\phi))  & \text{by definition of }T' \\
+&= (T'(\phi))(v)         & \text{by definition of }\Lambda \\
+&= \phi(T(v))            & \text{by definition of }T' \\
+&= (\Lambda(T(v)))(\phi) & \text{by definition of }\Lambda.
 \end{aligned}
 $$
 
@@ -115,4 +115,7 @@ isomorphism from $V$ onto $V''$.
 Since $V$ is finite-dimensional, $\text{dim }V'' = \text{dim }V' =
 \text{dim V}$. So it suffices to show that $\Lambda$ is injective.
 
-
+Let $v\in V$ be such that $\Lambda(v)=0$. Then, for all $\phi\in V'$,
+we have $(\Lambda(v))(\phi) = 0 = \phi(v)$. But the annihilator of
+$V'$ (in $V$) is just $0\in V$, so we have $v = 0$. Thus, $\Lambda$ is
+injective, hence an isomorphism.
