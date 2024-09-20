@@ -25,6 +25,8 @@
 \def\M{\mathscr{M}}
 \DeclareMathOperator{\kernel}{null}
 \DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Imag}{Im}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -1352,6 +1354,227 @@ If $V$ and $W$ are finite-dimensional and $T \in \L(V, W)$ then
 $$
 \M(T') = \transpose{(\M(T))}.
 $$
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 4}
+
+\begin{definition}{4.1}[real part, $\Real{z}$, imaginary part, $\Imag{z}$]
+Suppose $z = a + bi$, where $a$ and $b$ are real numbers.
+\begin{enumerate}
+\item The \defn{real part} of $z$, denoted $\Real{z}$, is defined by $\Real{z} = a$.
+\item The \defn{imaginary part} of $z$, denoted by $\Imag{z}$, is defined by $\Imag{z} = b$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{4.2}[complex conjugate, $\bar{z}$, absolute value, $|z|$]
+Suppose $z \in \C$.
+\begin{enumerate}
+\item The \defn{complex conjugate} of $z \in \C$, denoted by $\bar{z}$, is defined by
+$$
+\bar{z} = \Real{z} - (\Imag{z}) i.
+$$
+\item The \defn{absolute value} of a complex number $z$, denoted by $|z|$, is defined by
+$$
+|z| = \sqrt{(\Real{z})^2 + (\Imag{z})^2}.
+$$
+\end{enumerate}
+\end{definition}
+
+\begin{property}{4.4}[properties of complex numbers]
+Suppose $w, z \in \C$. Then the following equalities and inequalities hold.
+
+\defn{sum of $z$ and $\bar{z}$}
+\begin{forceindent}
+$z + \bar{z} = 2 \Real{z}$.
+\end{forceindent}
+
+\defn{difference of $z$ and $\bar{z}$}
+\begin{forceindent}
+$z - \bar{z} = 2 (\Imag{z}) i$.
+\end{forceindent}
+
+\defn{product of $z$ and $\bar{z}$}
+\begin{forceindent}
+$z \bar{z} = |z|^2$.
+\end{forceindent}
+
+\defn{additivity and multiplicativity of complex conjugate}
+\begin{forceindent}
+$\overline{w + z} = \bar{w} + \bar{z}$ and $\overline{w z} = \bar{w} \bar{z}$.
+\end{forceindent}
+
+\defn{double complex conjugate}
+\begin{forceindent}
+$\bar{\bar{z}} = z$.
+\end{forceindent}
+
+\defn{real and imaginary parts are bounded by $|z|$}
+\begin{forceindent}
+$|\Real{z}| \le |z|$ and $|\Imag{z}| \le |z|$.
+\end{forceindent}
+
+\defn{absolute value of the complex conjugate}
+\begin{forceindent}
+$|\bar{z}| = |z|$.
+\end{forceindent}
+
+\defn{multiplicativity of absolute value}
+\begin{forceindent}
+$|w z| = |w| |z|$.
+\end{forceindent}
+
+\defn{triangle inequality}
+\begin{forceindent}
+$|w + z| \le |w| + |z|$.
+\end{forceindent}
+\end{property}
+
+\begin{definition}{4.5}[zero of a polynomial]
+A number $\lambda \in \F$ is called a \defn{zero} (or \defn{root}) of a polynomial $p \in \mathscr{P}(\F)$ if
+$$
+p(\lambda) = 0 .
+$$
+\end{definition}
+
+\newpage
+
+\begin{result}{4.6}[each zero of a polynomial corresponds to a degree-one factor]
+Suppose $m$ is a positive integer and $p \in \mathscr{P}(\F)$ is a polynomial of degree $m$. Suppose $\lambda \in \F$. Then $p(\lambda) = 0$ if and only if there exists a polynomial $q \in \mathscr{P}(\F)$ of degree $m - 1$ such that
+$$
+p(z) = (z - \lambda) q(z)
+$$
+for every $z \in \F$.
+\end{result}
+
+\begin{result}{4.8}[degree $m$ implies at most $m$ zeros]
+Suppose $m$ is a positive integer and $p \in \mathscr{P}(\F)$ is a polynomial of degree $m$. Then $p$ has at most $m$ zeros in $\F$.
+\end{result}
+
+\begin{result}{4.9}[division algorithm for polynomials]
+Suppose that $p, s \in \mathscr{P}(\F)$, with $s \not= 0$. Then there exist unique polynomials $q, r \in \mathscr{P}(\F)$ such that
+$$
+p = s q + r
+$$
+and $\deg{r} < \deg{s}$.
+\end{result}
+
+\begin{result}{4.12}[fundamental theorem of algebra, first version]
+Every nonconstant polynomial with complex coefficients has a zero in $\C$.
+\end{result}
+
+\begin{result}{4.13}[fundamental theorem of algebra, second version]
+If $p \in \mathcal{P}(\C)$ is a nonconstant polynomial, then $p$ has a unique factorisation (except for the order of the factors) of the form
+$$
+p(z) = c (z - \lambda_1) \cdots (z - \lambda_m) ,
+$$
+where $c, \lambda_1, \ldots, \lambda_m \in \C$.
+\end{result}
+
+\begin{result}{4.14}[polynomials with real coefficients have nonreal zeros in pairs]
+Suppose $p \in \mathcal{P}(\C)$ is a polynomial with real coefficients. If $\lambda \in \C$ is a zero of $p$, then so is $\bar{\lambda}$.
+\end{result}
+
+\begin{result}{4.15}[factorisation of a quadratic polynomial]
+Suppose $b, c \in \R$. Then there is a polynomial factorisation of the form
+$$
+x^2 + b x + c = (x - \lambda_1) (x - \lambda_2)
+$$
+with $\lambda_1, \lambda_2 \in \R$ if and only if $b^2 \ge 4 c$.
+\end{result}
+
+\begin{result}{4.16}[factorisation of a polynomial over $\R$]
+Suppose $p \in \mathcal{P}(\R)$ is a nonconstant polynomial. Then $p$ has a unique factorisation (except for the order of the factors) of the form
+$$
+p(x) = c (x - \lambda_1) \cdots (x - \lambda_m) (x^2 + b_1 x + c_1) \cdots (x^2 + b_M x + c_M ) .
+$$
+where $c, \lambda_1, \ldots, \lambda_m, b_1, \ldots, b_M, c_1, \ldots, c_M \in \R$ with $b_k^2 < 4 c_k$ for each $k$.
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 5.A}
+
+\begin{definition}{5.1}[operator]
+A linear map from a vector space to itself is called an $operator$.
+\end{definition}
+
+\begin{definition}{5.2}[invariant subspace]
+Suppose $T \in \L(V)$. A subspace $U$ of $V$ is called \defn{invariant} under $T$ if $T u \in U$ for every $u \in U$.
+\end{definition}
+
+\begin{definition}{5.5}[eigenvalue]
+Suppose $T \in \L(V)$. A number $\lambda \in \F$ is called an \defn{eigenvalue} of $T$ if there exists $v \in V$ such that $v \not= 0$ and $T v = \lambda v$.
+\end{definition}
+
+\begin{definition}{5.8}[eigenvector]
+Suppose $T \in \L(V)$ and $\lambda \in \F$ is an eigenvalue of $T$. A vector $v \in V$ is called an \defn{eigenvector} of $T$ corresponding to $\lambda$ if $v \not= 0$ and $T v = \lambda v$.
+\end{definition}
+
+\begin{notation}{5.13}[$T^m$]
+Suppose $T \in \L(V)$ and $m$ is a positive integer.
+\begin{enumerate}
+\item $T^m \in \L(V)$ is defined by $T^m = \underbrace{T \cdots T}_{\text{$m$ times}}$.
+\item $T^0$ is defined to be the identity operator $I$ on $V$.
+\item If $T$ is invertible with inverse $T^{-1}$, then $T^{-m} \in \L(V)$ is defined by
+$$
+T^{-m} = (T^{-1})^m .
+$$
+\end{enumerate}
+\end{notation}
+
+\begin{notation}{5.14}[$p(T)$]
+Suppose $T \in \L(V)$ and $p \in \mathcal{P}(\F)$ is a polynomial given by
+$$
+p(z) = a_0 + a_1 z + a_2 z^2 + \cdots + a_m z^m
+$$
+for all $z \in \F$. Then $p(T)$ is the operator $V$ defined by
+$$
+p(T) = a_0 I + a_1 T + a_2 T^2 + \cdots + a_m T^m .
+$$
+\end{notation}
+
+\begin{definition}{5.16}[product of polynomials]
+If $p, q \in \mathcal{P}(\F)$, then $pq \in \mathcal{P}(\F)$ is the polynomial defined by
+$$
+(p q)(z) = p(z) q(z)
+$$
+for all $z \in \F$.
+\end{definition}
+
+\newpage
+
+\begin{result}{5.7}[equivalent conditions to be an eigenvalue]
+Suppose $V$ is finite-dimensional, $T \in \L(V)$, and $\lambda \in F$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $\lambda$ is an eigenvalue of $T$.
+\item[(b)] $T - \lambda I$ is not injective.
+\item[(c)] $T - \lambda I$ is not surjective.
+\item[(d)] $T - \lambda I$ is not invertible.
+\end{enumerate}
+\end{result}
+
+\begin{result}{5.11}[linearly independent eigenvectors]
+Suppose $T \in \L(V)$. Then every list of eigenvectors of $T$ corresponding to distinct eigenvalues of $T$ is linearly independent.
+\end{result}
+
+\begin{result}{5.12}[operator cannot have more eigenvalues than dimension of vector space]
+Suppose $V$ is finite-dimensional. Then each operator on $V$ has at most $\dim{V}$ distinct eigenvalues.
+\end{result}
+
+\begin{result}{5.17}[multiplicative properties]
+Suppose $p, q \in \mathcal{P}(\F)$ and $T \in \L(V)$. Then
+\begin{enumerate}
+\item[(a)] $(p q)(T) = p(T) q(T)$;
+\item[(b)] $p(T) q(T) = q(T) p(T)$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{5.18}[null space and range of $p(T)$ are invariant under $T$]
+Suppose $T \in \L(V)$ and $p \in \mathcal{P}(\F)$. Then $\kernel{p(T)}$ and $\range{p(T)}$ are invariant under $T$.
 \end{result}
 
 \end{document}
