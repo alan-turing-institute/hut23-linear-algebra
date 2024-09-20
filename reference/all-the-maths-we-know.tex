@@ -345,8 +345,18 @@
                        \[
                        U^0 = \{ \tilde{u}\in V^* \mid \tilde{u}(w)=0 \;\text{for all $w\in U$} \}.
                        \]
-  \end{tabularx}
+\end{tabularx}
 
+%% ============================================================
+  
+\section*{Operators}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Operator} & A linear map from a vector space to itself. \\
+
+  \parbox[t]{\termheaderwd}{\defn{Invariant\\ subspace}} & Of an operator, $T\colon V\to V$. A subspace $U \subset V$ is \emph{invariant} under $T$ if $T u\in U$ for all $u\in U$. \\
+
+\end{tabularx}
 
 %% ============================================================
 
@@ -394,27 +404,26 @@
   \defn{Rank} & The rank of a matrix $A_{ij}\in\set{R}^{m,n}$ is the dimension of the span of the $n$ vectors $\vec{c}_j\in \set{R}^m$ where $\vec{c}_j = A_{ij}$ (that is, the $\vec{c}_j$ are the ``columns'' of $A_{ij}$).
 
   The dimension of the span of the ``rows'' of $A_{ij}$ is also the rank.
- 
+  \\
+
+  \parbox[t]{\termheaderwd}{\defn{Upper\\ triangular}} & Of a matrix, having zero for all entries below the diagonal.    
+                
 \end{tabularx}
 
 %% ============================================================
 
-\section*{Operators}
+
+\section*{Eigenvalues}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
-  \defn{Operator} & A linear map from a vector space to itself. \\
-
-  \parbox[t]{\termheaderwd}{\defn{Invariant\\ subspace}} & Of an operator, $T\colon V\to V$. A subspace $U$ of $V$ is invariant under $T$ if $T u\in U$ for all $u\in U$. \\
-
   \defn{Eigenvalue} &
                       Of an operator, $T$. A number $\lambda$ such that there exists a vector $v\neq 0$ with $Tv=\lambda v$. 
-
-                      (The vector $v$ is called an \emph{eignvector}.)
-
-                      
-  \\ 
-
+  \\
+  \defn{Eigenvector} &
+                       Of an operator, $T$. A non-zero vector, $v$, such that $Tv=\lambda v$ for some number $\lambda$.. 
+  \\
+  \parbox[t]{\termheaderwd}{\defn{Minimal\\ polynomial}} & (Of an operator, $T$ on a finite-dimensional vector space over field~$\mathbold{F}$.) The (unique) monic polynomial $p\in\mathcal{P}(\mathbold{F})$ such that $p(T)=0$. (``Monic'' means ``the coefficient of the highest-degree term is~1.'')  
+  \\
 \end{tabularx}
-
 \end{multicols*}
 \end{document}
