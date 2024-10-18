@@ -1701,4 +1701,72 @@ Suppose $V$ is finite-dimensional and $T \in \L(V)$. Then $T$ has an upper-trian
 Suppose $V$ is a finite-dimensional complex vector space and $T \in \L(V)$. Then $T$ has an upper-triangular matrix with respect to some basis of $V$.
 \end{result}
 
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 5.D}
+
+\begin{definition}{5.48}[diagnoal matrix]
+A \defn{diagonal matrix} is a square matrix that is 0 everywhere except possibly on the diagonal.
+\end{definition}
+
+\begin{definition}{5.50}[diagonalizable]
+An operator $V$ is called \defn{diagonizable} if the operator has a diagonal matrix with respect to some basis $V$.
+\end{definition}
+
+\begin{definition}{5.52}[eigenspace, $E(\lambda, T)$]
+Suppose $T \in \L(V)$ and $\lambda \in \F$. The \defn{eigenspace} of $T$ corresponding to $\lambda$ is the subspace $E(\lambda, T)$ of $V$ defined by
+$$
+E(\lambda, T) = \kernel(T - \lambda I) = \{ v \in V \setsep Tv = \lambda v \}.
+$$
+Hence $E(\lambda, T)$ is the set of all eigenvectors of $T$ corresponding to $\lambda$, along with the 0 vector.
+\end{definition}
+
+\begin{definition}{5.66}[Gershgorin disks]
+Suppose $T \in \L(V)$ and $v_1, \ldots, v_n$ is a basis of $V$. Let $A$ denote the matrix of $T$ with respect to this basis. A \defn{Gershgorin disk} of $T$ with respect to the basis $v_1, \ldots, v_n$ is a set of the form
+$$
+\left\{ z \in \F \setsep |z - A_{j, j}| \le \smash{\sum_{\substack{k = 1 \\ k \not= j}}^n} \vphantom{\sum^n} |A_{j, k}| \right\},
+$$
+where $j \in \{1, \ldots, n\}$.
+\end{definition}
+
+\newpage
+
+\begin{result}{5.54}[sum of eigenspaces is a direct sum]
+Suppose $T \in \L(V)$ and $\lambda_1, \ldots, \lambda_m$ are distinct eigenvalues of $T$. Then
+$$
+E(\lambda_1, T) + \cdots + E(\lambda_m, T)
+$$
+is a direct sum. Furthermore, if $V$ is finite-dimensional, then
+$$
+\dim E(\lambda_1, T) + \cdots + \dim E(\lambda_m, T) \le \dim V .
+$$
+\end{result}
+
+\begin{result}{5.55}[conditions equivalent to diagonalizability]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$. Let $\lambda_1, \ldots, \lambda_m$ denote the distinct eigenvalues of $T$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $T$ is diagonalizable.
+\item[(b)] $V$ has a basis consisting of eigenvectors of $T$.
+\item[(c)] $V = E(\lambda_1, T) \oplus \cdots \oplus E(\lambda_m, T)$.
+\item[(d)] $\dim V = \dim E(\lambda_1, T) + \cdots + \dim E(\lambda_m, T)$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{5.58}[enough eigenvalues implies diagonalizability]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$ has $\dim V$ distinct eigenvalues. Then $T$ is diagonalizable.
+\end{result}
+
+\begin{result}{5.62}[necessary and sufficient condition for diagonalizability]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$. Then $T$ is diagonalizable if and only if the minimal polynomial of $T$ equals $(z - \lambda_1) \cdots (z - \lambda_m)$ for some list of distinct numbers $\lambda_1, \ldots, \lambda_m \in \F$.
+\end{result}
+
+\begin{result}{5.65}[restriction of diagonalizable operator to invariant subspace]
+Suppose $T \in \L(V)$ is diagonalizable and $U$ is a subspace of $V$ that is invariant under $T$. Then $T|_U$ is a diagonalizable operator on $U$.
+\end{result}
+
+\begin{theorem}{5.67}[Gershgorin disk theorem]
+Suppose $T \in \L(V)$ and $v_1, \ldots, v_n$ is a basis of $V$. Then each eigenvalue of $T$ is contained in some Gershgorin disk of $T$ with respect to the basis $v_1, \ldots, v_n$.
+\end{theorem}
+
 \end{document}
