@@ -352,9 +352,13 @@
 \section*{Operators}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
+  \settowidth{\termheaderwd}{polynomial}
   \defn{Operator} & A linear map from a vector space to itself. \\
 
-  \parbox[t]{\termheaderwd}{\defn{Invariant\\ subspace}} & Of an operator, $T\colon V\to V$. A subspace $U \subset V$ is \emph{invariant} under $T$ if $T u\in U$ for all $u\in U$. \\
+  \parbox[t]{\termheaderwd}{\defn{Invariant\\ subspace}} & A subspace $U \subset V$ is \emph{invariant} under operator $T$ if $T u\in U$ for all $u\in U$. \\
+
+  \parbox[t]{\termheaderwd}{\defn{Minimal\\ polynomial}} & Of an operator, $T$ on a finite-dimensional vector space over field~$\mathbold{F}$. The (unique) monic polynomial $p\in\mathcal{P}(\mathbold{F})$ such that $p(T)=0$. (``Monic'' means that the coefficient of the highest-degree term is~1.)  \\
+  
 
 \end{tabularx}
 
@@ -406,7 +410,10 @@
   The dimension of the span of the ``rows'' of $A_{ij}$ is also the rank.
   \\
 
-  \parbox[t]{\termheaderwd}{\defn{Upper\\ triangular}} & Of a matrix, having zero for all entries below the diagonal.    
+  \parbox[t]{\termheaderwd}{\defn{Upper\\ triangular}} & Of a matrix, having zero for all entries below the diagonal. \\
+
+  \defn{Diagonal} & Of a matrix, having zero for all entries except on the diagonal.
+                                                     
                 
 \end{tabularx}
 
@@ -420,10 +427,9 @@
                       Of an operator, $T$. A number $\lambda$ such that there exists a vector $v\neq 0$ with $Tv=\lambda v$. 
   \\
   \defn{Eigenvector} &
-                       Of an operator, $T$. A non-zero vector, $v$, such that $Tv=\lambda v$ for some number $\lambda$.. 
+                       Of an operator, $T$. A non-zero vector, $v$, such that $Tv=\lambda v$ for some number $\lambda$.
   \\
-  \parbox[t]{\termheaderwd}{\defn{Minimal\\ polynomial}} & (Of an operator, $T$ on a finite-dimensional vector space over field~$\mathbold{F}$.) The (unique) monic polynomial $p\in\mathcal{P}(\mathbold{F})$ such that $p(T)=0$. (``Monic'' means ``the coefficient of the highest-degree term is~1.'')  
-  \\
+
 \end{tabularx}
 \end{multicols*}
 \end{document}
