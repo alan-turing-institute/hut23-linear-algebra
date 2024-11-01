@@ -1020,6 +1020,15 @@ with 1's on the diagonal (the entries where the row number equals the column num
 A square matrix $A$ is called \defn{invertible} if there is a square matrix $B$ of the same size such that $AB = BA = I$; we call $B$ the \defn{inverse} of $A$ and denote it by $A^{-1}$.
 \end{definition}
 
+% Exercise 9
+\begin{notation}{Ex. 3D, 9}[Restriction of a map to a subset]
+If $T : V \to W$ and $U \subseteq V$ then the \defn{restriction} $T|_U$ of $T$ to $U$ is the function $T : U \to W$ whose domain is $U$, with $T|_U$ defined by
+$$
+T|_U (u) = T(u)
+$$
+for every $u \in U$.
+\end{notation}
+
 \newpage
 
 \begin{result}{3.60}[inverse is unique]
@@ -1575,6 +1584,61 @@ Suppose $p, q \in \mathcal{P}(\F)$ and $T \in \L(V)$. Then
 
 \begin{result}{5.18}[null space and range of $p(T)$ are invariant under $T$]
 Suppose $T \in \L(V)$ and $p \in \mathcal{P}(\F)$. Then $\kernel{p(T)}$ and $\range{p(T)}$ are invariant under $T$.
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 5.B}
+
+\begin{definition}{5.21}[monic polynomial]
+A \defn{monic polynomial} is a polynomial whose highest-degree coefficient equals 1.
+\end{definition}
+
+\begin{definition}{5.24}[minimal polynomial]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$. Then the \defn{minimial polynomial} of $T$ is the unique monic polynomial $p \in \mathcal{P}(\F)$ of smallest degree such that $p(T) = 0$.
+\end{definition}
+
+\newpage
+
+\begin{result}{5.19}[existence of eigenvalues]
+Every operator on a finite-dimensional nonzero complex vector space has an eigenvalue.
+\end{result}
+
+\begin{result}{5.22}[existence, uniqueness, and degree of minimal polynomial]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$. Then there is a unique monic polynomial $p \in \mathcal{P}(\F)$ of smallest degree such that $p(T) = 0$. Furthermore, $\deg p \le \dim V$.
+\end{result}
+
+\begin{result}{5.27}[eigenvalues are the zeros of the minimal polynomial]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$,
+\begin{enumerate}
+\item[(a)] The zeros of the minimal polynomial of $T$ are the eigenvalues of $T$.
+\item[(b)] If $V$ is a complex vector space, then the minimal polynomial of $T$ has the form
+$$
+(z - \lambda_1) \cdots (z - \lambda_m),
+$$
+where $\lambda_1, \ldots, \lambda_m$ is a list of all eigenvalues of $T$, possibly with repetitions.
+\end{enumerate}
+\end{result}
+
+\begin{result}{5.29}[$q(T) = 0 \Longleftrightarrow q$ is a polynomial multiple of the minimal polynomial]
+Suppose $V$ is finite-dimensional, $T \in \L(V)$, and $q \in \mathcal{P}(\F)$. Then $q(T) = 0$ if and only if $q$ is a polynomial multiple of the minimal polynomial $T$.
+\end{result}
+
+\begin{result}{5.31}[minimal polynomial of a restriction operator]
+Suppose $V$ is finite-dimensional, $T \in \L(V)$, and $U$ is a subspace of $V$ that is invariant under $T$. Then the minimal polynomial of $T$ is a polynomial multiple of the minimal polynomial of $T|_U$.
+\end{result}
+
+\begin{result}{5.32}[$T$ not invertible $\Longleftrightarrow$ constant term of minimal polynomial of $T$ is 0]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$. Then $T$ is not invertible if and only if the constant term of the minimal polynomial of $T$ is 0.
+\end{result}
+
+\begin{result}{5.33}[even-dimensional null space]
+Suppose $\F = \R$ and $V$ is finite-dimensional. Suppose also that $T \in \L(V)$ and $b, c \in \R$ with $b^2 < 4c$. Then $\dim \null(T^2 + bT +cI)$ is an even number.
+\end{result}
+
+\begin{result}{5.34}[operators on odd-dimensional vector spaces have eigenvalues]
+Every operator of an odd-dimensional vector space has an eigenvalue.
 \end{result}
 
 \end{document}
