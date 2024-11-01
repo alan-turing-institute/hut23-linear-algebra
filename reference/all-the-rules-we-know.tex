@@ -1641,4 +1641,64 @@ Suppose $\F = \R$ and $V$ is finite-dimensional. Suppose also that $T \in \L(V)$
 Every operator of an odd-dimensional vector space has an eigenvalue.
 \end{result}
 
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 5.C}
+
+\begin{definition}{5.35}[matrix of an operator, $\M(T)$]
+Suppose $T \in \L(V)$. The \defn{matrix of $T$} with respect to a basis $v_1, \ldots, v_n$ of $V$ is the $n$-by-$n$ matrix
+$$
+\M(T) = 
+\begin{pmatrix}
+A_{1, 1} & \cdots & A_{1, n} \\
+\vdots & & \vdots \\
+A_{n, 1} & \cdots & A_{n, n} \\
+\end{pmatrix}
+$$
+whose entries $A_{j, k}$ are defined by
+$$
+T v_k = A_{1, k} v_1 + \cdots + A_{n, k} v_n .
+$$
+The notation $\M(T, (v, 1, \ldots, v_n))$ is used if the basis is not clear from the context.
+\end{definition}
+
+\begin{definition}{5.37}[diagonal of a matrix]
+The \defn{diagonal} of a square matrix consists of the entries on the line from the upper left corner to the bottom right corner.
+\end{definition}
+
+\begin{definition}{5.38}[upper-triangular matrix]
+A square matrix is called \defn{upper triangular} if all entries below the diagonal are 0.
+\end{definition}
+
+\newpage
+
+\begin{result}{5.39}[conditions for upper-triangular matrix]
+Suppose $T \in \L(V)$ and $v_1 \ldots, v_n$ is a basis for $V$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] The matrix of $T$ with respect to $v_1, \ldots, v_n$ is upper triangular.
+\item[(b)] $\vspan(v_1, \ldots, v_k)$ is invariant under $T$ for each $k = 1, \ldots, n$.
+\item[(c)] $T v_k \in \vspan(v_1, \ldots, v_k)$ for each $k = 1, \ldots, n$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{5.40}[equation satisfied by operator with upper-triangular matrix]
+Suppose $T \in \L(V)$ and $V$ has a basis with respect to which $T$ has an upper-triangular matrix with diagonal entries $\lambda_1, \ldots, \lambda_n$. Then
+$$
+(T - \lambda_1 I) \cdots (T - \lambda_n I) = 0.
+$$
+\end{result}
+
+\begin{result}{5.41}[determination of eigenvalues from upper-triangular matrix]
+Suppose $T \in \L(V)$ has an upper-triangular matrix with respect to some basis of $V$. Then the eigenvalues of $T$ are precisely the entries on the diagonal of that upper-triangular matrix.
+\end{result}
+
+\begin{result}{5.44}[necessary and sufficient condition to have an upper-triangular matrix]
+Suppose $V$ is finite-dimensional and $T \in \L(V)$. Then $T$ has an upper-triangular matrix with respect to some basis of $V$ if and only if the minimal polynomial of $T$ equals $(z - \lambda_1) \cdots (z - \lambda_m)$ for some $\lambda_1, \ldots, \lambda_m \in \F$.
+\end{result}
+
+\begin{result}{5.47}[if $\F = \C$, then every operator on $V$ has an upper triangular matrix]
+Suppose $V$ is a finite-dimensional complex vector space and $T \in \L(V)$. Then $T$ has an upper-triangular matrix with respect to some basis of $V$.
+\end{result}
+
 \end{document}
