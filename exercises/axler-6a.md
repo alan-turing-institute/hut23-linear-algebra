@@ -34,6 +34,8 @@ product on $\mathbf{R}^2$.
 (y_1, y_2, y_3))$ of elements of $\mathbf{R}^3$ to $x_1y_1+x_3y_3$ is not an
 inner product on $\mathbf{R}^3$.
 
+
+
 ## Question 13
 
 Show that the square of an average is less than or equal to the
