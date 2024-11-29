@@ -27,7 +27,8 @@
 %\renewcommand{\vec}[1]{mathbold{#1}}
 \newcommand{\imag}{\mathrm{i}}
 \newcommand{\id}{\mathbold{1}}
-%%
+\newcommand{\inner}[2]{{\langle #1,#2 \rangle}}
+%% 
 %% Some headings get broken over two lines, and I'd like the box to be as small as possible.
 \newlength{\termheaderwd}
 %% 
@@ -349,17 +350,16 @@
 
 %% ============================================================
   
-\section*{Operators}
+\section*{Operators I}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
-  \settowidth{\termheaderwd}{polynomial}
   \defn{Operator} & A linear map from a vector space to itself. \\
 
-  \parbox[t]{\termheaderwd}{\defn{Invariant\\ subspace}} & A subspace $U \subset V$ is \emph{invariant} under operator $T$ if $T u\in U$ for all $u\in U$. \\
+ \settowidth{\termheaderwd}{polynomial}%
+ \parbox[t]{\termheaderwd}{\defn{Invariant\\ subspace}} & A subspace $U \subset V$ is \emph{invariant} under operator $T$ if $T u\in U$ for all $u\in U$. \\
 
   \parbox[t]{\termheaderwd}{\defn{Minimal\\ polynomial}} & Of an operator, $T$ on a finite-dimensional vector space over field~$\mathbold{F}$. The (unique) monic polynomial $p\in\mathcal{P}(\mathbold{F})$ such that $p(T)=0$. (``Monic'' means that the coefficient of the highest-degree term is~1.)  \\
   
-
 \end{tabularx}
 
 %% ============================================================
@@ -419,7 +419,6 @@
 
 %% ============================================================
 
-
 \section*{Eigenvalues}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
@@ -431,5 +430,35 @@
   \\
 
 \end{tabularx}
+
+%% ============================================================
+
+\section*{Operators II}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Commuting} & Operators $A$ and $B$ commute if $AB-BA=0$. 
+\end{tabularx}
+
+%% ============================================================
+
+\section*{Inner products}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \settowidth{\termheaderwd}{product}%
+  \parbox[t]{\termheaderwd}{\defn{Inner\\ product}} 
+  & On a real or complex vector space, $V$, a conjugate-symmetric, positive-definite map $V\times V\to\set{F}$, written $\langle v, w\rangle$ for $v, w\in\set{F}$, which is linear in its first argument (and conjugate linear in its second). That is: 
+    \begin{gather*}
+      \inner{v}{w} \geq 0 \tag{positive}\\
+      \inner{v}{v} = 0 \implies v = 0 \tag{definite}\\
+      \langle v, w\rangle = \overline{\langle w, v\rangle} \tag{conj.\ symm.} \\ 
+        \langle v, x+\lambda y\rangle = \langle v,x\rangle + \lambda \langle v, y\rangle \tag{linear} \\
+      \end{gather*} \\
+  \defn{Norm} & (Given an inner product) the norm of $v$ is
+                \begin{equation*}
+                  \| v\| = \sqrt{\inner{v}{v}}.
+                \end{equation*}
+\end{tabularx}
+
+
 \end{multicols*}
 \end{document}
