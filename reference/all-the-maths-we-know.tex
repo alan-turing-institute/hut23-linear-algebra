@@ -28,6 +28,7 @@
 \newcommand{\imag}{\mathrm{i}}
 \newcommand{\id}{\mathbold{1}}
 \newcommand{\inner}[2]{{\langle #1,#2 \rangle}}
+\newcommand{\norm}[1]{{\lVert #1 \rVert}}
 %% 
 %% Some headings get broken over two lines, and I'd like the box to be as small as possible.
 \newlength{\termheaderwd}
@@ -441,22 +442,38 @@
 
 %% ============================================================
 
-\section*{Inner products}
+\section*{Inner product spaces}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
   \settowidth{\termheaderwd}{product}%
   \parbox[t]{\termheaderwd}{\defn{Inner\\ product}} 
   & On a real or complex vector space, $V$, a conjugate-symmetric, positive-definite map $V\times V\to\set{F}$, written $\langle v, w\rangle$ for $v, w\in\set{F}$, which is linear in its first argument (and conjugate linear in its second). That is: 
-    \begin{gather*}
-      \inner{v}{w} \geq 0 \tag{positive}\\
-      \inner{v}{v} = 0 \implies v = 0 \tag{definite}\\
-      \langle v, w\rangle = \overline{\langle w, v\rangle} \tag{conj.\ symm.} \\ 
-        \langle v, x+\lambda y\rangle = \langle v,x\rangle + \lambda \langle v, y\rangle \tag{linear} \\
-      \end{gather*} \\
+\begin{equation*}
+    \begin{aligned}
+      &\inner{v}{w} \geq 0                 & \text{(positive)}\\
+      &\inner{v}{v} = 0 \implies v = 0  & \text{(definite)}\\
+      &\langle v, w\rangle = \overline{\langle w, v\rangle}     & \text{(conj.\ symm.)} \\ 
+      &\langle v, x+\lambda y\rangle = \langle v,x\rangle + \lambda \langle v, y\rangle & \text{(linear)} 
+    \end{aligned}
+    \end{equation*}
+
+    An \defn{inner product space} is a vector space, $V$, together with an inner product on~$V$.\\
   \defn{Norm} & (Given an inner product) the norm of $v$ is
                 \begin{equation*}
-                  \| v\| = \sqrt{\inner{v}{v}}.
+                  \lVert v\rVert = \sqrt{\inner{v}{v}}.
                 \end{equation*}
+
+                Most authors give an independent definition of a norm, from which it follows that the above construction gives rise to a norm, in those authors' sense.
+
+                The \emph{Cauchy-Schwarz inequality} is that $\lvert \inner{v}{w}\rvert \leq \lVert v\rVert \lVert w \rVert$ with the inequality saturated only if $v$ and $w$ are colinear. The \emph{triangle inequality} is that $\norm{v+w}\leq\norm{v}+\norm{w}$.  \\
+  \defn{Orthogonal} & Describes two vectors, $v$ and $w$, having the property that $\inner{v}{w} =0$. \\
+
+  \defn{Orthonormal} & A list of vectors is orthonormal if every vector in the list has norm 1 and is orthogonal to every other vector in the list. \\
+
+  
+                      
+                      
+
 \end{tabularx}
 
 
