@@ -1769,4 +1769,46 @@ Suppose $T \in \L(V)$ is diagonalizable and $U$ is a subspace of $V$ that is inv
 Suppose $T \in \L(V)$ and $v_1, \ldots, v_n$ is a basis of $V$. Then each eigenvalue of $T$ is contained in some Gershgorin disk of $T$ with respect to the basis $v_1, \ldots, v_n$.
 \end{theorem}
 
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 5.E}
+
+\begin{definition}{5.71}[commute] \enumfix
+\begin{enumerate}
+\item Two operators $S$ and $T$ on the same vector space \defn{commute} if $ST = TS$.
+\item Two square matrices $A$ and $B$ of the same size \defn{commute} if $AB = BA$.
+\end{enumerate}
+\end{definition}
+
+\newpage
+
+\begin{result}{5.74}[commuting operators correspond to commuting matrices]
+Suppose $S, T \in \L(V)$ and $v_1, \ldots, v_n$ is a basis of $V$. Then $S$ and $T$ commute if and only if $\M(S, (v_1, \ldots, v_n))$ and $\M(T, (v_1, \ldots, v_n))$ commute.
+\end{result}
+
+\begin{result}{5.75}[eigenspace is invariant under commuting operator]
+Suppose $S, T \in \L(V)$ commute and $\lambda \in \F$. Then $E(\lambda, S)$ is invariant under $T$.
+\end{result}
+
+\begin{result}{5.76}[simultaneous diagonalizability $\Longleftrightarrow$ commutativity]
+Two diagonalizable operators on the same vector space have diagonal matrices with respect to the same basis if and only if the two operators commute.
+\end{result}
+
+\begin{result}{5.78}[common eigenvector for commuting operators]
+Every pair of commuting operators on a finite-dimensional nonzero complex vector space has a common eigenvector.
+\end{result}
+
+\begin{result}{5.80}[commuting operators are simultaneously upper triangularizable]
+Suppose $V$ is a finite-dimensional complex vector space and $S, T$ are commuting operators on $V$. Then there is a basis of $V$ with respect to which both $S$ and $T$ have upper-triangular matrices.
+\end{result}
+
+\begin{result}{5.81}[eigenvalues of sum and product of commuting operators]
+Suppose $V$ is a finite-dimensional complex vector space and $S, T$ are commuting operators on $V$. Then
+\begin{enumerate}
+\item every eigenvalue of $S + T$ is an eigenvalue of $S$ plus an eigenvalue of $T$,
+\item every eigenvalue of $ST$ is an eigenvalue of $S$ times an eigenvalue of $T$.
+\end{enumerate}
+\end{result}
+
 \end{document}
