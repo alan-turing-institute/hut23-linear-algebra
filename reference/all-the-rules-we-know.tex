@@ -1959,4 +1959,116 @@ $$
 $$
 \end{result}
 
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 6.B}
+
+\begin{definition}{6.22}[orthonormal] \enumfix
+\begin{enumerate}
+\item A list of vectors is called \defn{orthonormal} if each vector in the list has norm 1 and is orthogonal to all the other vectors in the list.
+\item In other words, a list $e_1, \ldots, e_m$ of vectors in $V$ is orthonormal if
+$$
+\inner{e_j}{e_k} =
+\begin{cases}
+1 & \text{if } j = k, \\
+0 & \text{if } j \not= k.
+\end{cases}
+$$
+for all $j, k \in \{1, \ldots, m \}$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}{6.27}[orthonormal basis]
+An \defn{orthonormal basis} of $V$ is an orthonormal list of vectors in $V$ that is also a basis of $V$.
+\end{definition}
+
+\begin{definition}{6.39}[linear functional, dual space, $V'$] \enumfix
+\begin{enumerate}
+\item A \defn{linear functional} on $V$ is a linear map from $V$ to $F$.
+\item The \defn{dual space} of $V$, denoted by $V'$, is the vector space of all linear functionals on $V$. In other words, $V' = \L(V, \F)$.
+\end{enumerate}
+\end{definition}
+
+\vspace{20\baselineskip}
+
+\begin{result}{6.24}[norm of an orthonormal linear combination]
+Suppose $e_1, \ldots, e_m$ is an orthonormal list of vectors $V$. Then
+$$
+\norm{a_1 e_1 + \cdots + a_m e_m}^2 = | a_1 |^2 + \cdots | a_m |^2
+$$
+for all $a_1, \ldots, a_m \in \F$.
+\end{result}
+
+\begin{corollary}{6.25}[orthonormal lists are linearly independent]
+Every orthonormal list of vectors is linearly independent.
+\end{corollary}
+
+% Exercise 1
+\begin{result}{Ex. 6B, 1}[equivalence of square norm sums implies orthonormality]
+Suppose $e_1, \ldots, e_m$ is a list of vectors in $V$ such that
+$$
+\norm{a_1 e_1 + \cdots + a_m e_m}^2 = | a_1 |^2 + \cdots | a_m |^2
+$$
+for all $a_1, \ldots, a_m \in \F$. Then $e_1, \ldots, e_m$ is an orthonormal list.
+\end{result}
+
+\newpage
+
+\begin{result}{6.26}[Bessel's inequality]
+Suppose $e_1 \ldots, e_m$ is an orthonormal list of vectors in $V$. If $v \in V$ then
+$$
+| \inner{v}{e_1} |^2 + \cdots + | \inner{v}{e_m} |^2 \le \norm{v}^2 .
+$$
+\end{result}
+
+\begin{result}{6.28}[orthonormal lists of the right length are orthonormal bases]
+Suppose $V$ is finite-dimensional. Then every orthonormal list of vectors in $V$ of length $\dim V$ is an orthonormal basis of $V$.
+\end{result}
+
+\begin{result}{6.30}[writing a vector as a linear combination of an orthonormal basis]
+Suppose $e_1, \ldots, e_n$ is in orthonormal basis $V$ and $u,v \in V$. Then
+\begin{enumerate}
+\item[(a)] $v = \inner{v}{e_1} e_1 + \cdots + \inner{v}{e_n} e_n,$
+\item[(b)] $\norm{v}^2 = | \inner{v}{e_1} |^2 + \cdots + | \inner{v}{e_n} |^2,$
+\item[(c)] $\inner{u}{v} = \inner{u}{e_1} \overline{\inner{v}{e_1}} + \cdots + \inner{u}{e_n} \overline{\inner{v}{e_n}}.$
+\end{enumerate}
+\end{result}
+
+\begin{result}{6.32}[Gram-Schmidt procedure]
+Suppose $v_1, \ldots, v_m$ is a linearly independent list of vectors in $V$. Let $f_1 = v_1$. For $k = 2, \ldots, m$, define $f_k$ inductively by
+$$
+f_k = v_k - \frac{\inner{v_k}{f_1}}{\norm{f_1}^2} f_1 - \cdots - \frac{\inner{v_k}{f_{k - 1}}}{\norm{f_{k - 1}}^2} f_{k - 1} .
+$$
+For each $k = 1, \ldots, m$, let $e_k = \frac{f_k}{\norm{f_k}}$. Then $e_1, \ldots, e_m$ is an orthonormal list of vectors $V$ such that
+$$
+\vspan(v_1, \ldots, v_k) = \vspan(e_1, \ldots, e_k)
+$$
+for each $k = 1, \ldots, m$.
+\end{result}
+
+\begin{result}{6.35}[existence of orthonormal basis]
+Every finite-dimensional inner product space has an orthonormal basis.
+\end{result}
+
+\begin{result}{6.36}[every orthonormal list extends to an orthonormal basis]
+Suppose $V$ is finite-dimensional. Then every orthonormal list of vectors in $V$ can be extended to an orthonormal basis of $V$.
+\end{result}
+
+\begin{result}{6.37}[upper-triangular matrix with respect to some orthonormal basis]
+Suppose $V$ is finite-dimentional and $T \in \L(V)$. Then $T$ has an upper-triangular matrix with respect to some orthonormal basis of $V$ if and only if the minimal polynomial of $T$ equals $(z - \lambda_1) \cdots (z - \lambda_m)$ for some $\lambda_1, \ldots, \lambda_m \in \F$.
+\end{result}
+
+\begin{theorem}{6.38}[Schur's theorem]
+Every operator on a finite-dimensional complex inner product space has an upper-triangular matrix with respect to some orthonormal basis.
+\end{theorem}
+
+\begin{theorem}{6.42}[Riesz representation theorem]
+Suppose $V$ is finite-dimensional and $\varphi$ is a linear functional on $V$. Then there is a unique vector $v \in V$ such that
+$$
+\varphi(u) = \inner{u}{v}
+$$
+for every $u \in V$.
+\end{theorem}
+
 \end{document}
