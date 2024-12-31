@@ -32,7 +32,7 @@ typedef enum _HEADER_STATE {
 void string_reset(char **string, size_t *length, size_t *buffer) {
 	if (*buffer != STRING_BLOCK) {
 		*buffer = STRING_BLOCK;
-		*string = realloc(*string, STRING_BLOCK);
+		*string = static_cast<char *>(realloc(*string, STRING_BLOCK));
 	}
 	*length = 0;
 	memset(*string, 0, STRING_BLOCK);
@@ -40,7 +40,7 @@ void string_reset(char **string, size_t *length, size_t *buffer) {
 
 void string_append(char **string, size_t *length, size_t *buffer, char character) {
 	if (*length >= ((*buffer) - 1)) {
-		*string = realloc(*string, *buffer + STRING_BLOCK);
+		*string = static_cast<char *>(realloc(*string, *buffer + STRING_BLOCK));
 		memset((*string) + (*buffer), 0, STRING_BLOCK);
 		*buffer += STRING_BLOCK;
 	}

@@ -5,8 +5,9 @@
 
 #include <stdlib.h>
 
-#include "utils.hpp"
 #include "matrix.hpp"
+
+#include "utils.hpp"
 
 #define A (16807)
 #define C (0)
@@ -17,7 +18,7 @@ struct _Rand {
 };
 
 Rand * new_rand() {
-	Rand *rand = calloc(sizeof(Rand), sizeof(char));
+	Rand *rand = static_cast<Rand *>(calloc(sizeof(Rand), sizeof(char)));
 
 	return rand;
 }
@@ -42,7 +43,7 @@ inline double rand_next(Rand *rand) {
 }
 
 // A value between 0.0 and 100.0
-inline double rand_value(Rand *rand) {
+double rand_value(Rand *rand) {
 	double result;
 	result = rand_next(rand);
 	result = ((int)(result * 1000.0)) / 10.0;

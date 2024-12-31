@@ -3,6 +3,8 @@
 /* SPDX-License-Identifier: MIT */
 /* Copyright © 2024 David Llewellyn-Jones */
 
+#include <string>
+
 #include "matrix.hpp"
 
 #ifndef __MATRIX_LOAD_H
@@ -18,9 +20,9 @@ typedef struct _Matrices {
 	NamedMatrix *matrices;
 } Matrices;
 
-Matrix * matrix_load(char *filename);
-void matrix_npz_load(char *filename, Matrices *matrices);
+Matrix * matrix_load(sycl::queue &Q, std::string filename);
+void matrix_npz_load(sycl::queue &Q, std::string filename, Matrices *matrices);
 Matrices *new_matrices(uint32_t count);
-Matrices *delete_matrices(Matrices *matrices);
+Matrices *delete_matrices(Matrices *matrices, sycl::queue &Q);
 
 #endif /* __MATRIX_LOAD_H */

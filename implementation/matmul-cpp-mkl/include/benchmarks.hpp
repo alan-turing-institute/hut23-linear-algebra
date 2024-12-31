@@ -11,15 +11,15 @@
 
 typedef struct _Benchmark Benchmark;
 
-Benchmark * new_benchmark();
+Benchmark * new_benchmark(sycl::queue &Q);
 Benchmark * delete_benchmark(Benchmark *benchmark);
 
 void benchmarks_start(Benchmark *benchmark, uint32_t operations);
 void benchmarks_end(Benchmark *benchmark);
 void benchmark_set_quiet(Benchmark *benchmark, bool quiet);
-void benchmarks_multiply_big(ThreadPool *pool);
-void benchmarks_multiply_small(Matrices *a, Matrices *b, Matrices *d);
-void benchmark_multiply_square(ThreadPool *pool);
+void benchmarks_multiply_big(sycl::queue &Q);
+void benchmarks_multiply_small(sycl::queue &Q, Matrices *a, Matrices *b, Matrices *d);
+void benchmark_multiply_square(sycl::queue &Q);
 
 #endif /* __MATRIX_BENCHMARKS_H */
 

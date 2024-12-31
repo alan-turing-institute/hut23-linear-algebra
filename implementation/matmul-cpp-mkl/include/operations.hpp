@@ -8,31 +8,16 @@
 #include <math.h>
 #include <stdbool.h>
 #include <string.h>
+#include <sycl/sycl.hpp>
 
 #include "matrix.hpp"
 
 #ifndef __MATRIX_OPERATIONS_H
 #define __MATRIX_OPERATIONS_H (1)
 
-inline double entry_get(Matrix *A, uint16_t col, uint16_t row) {
-	double element = NAN;
-
-	if ((col < A->width) && (row < A->height)) {
-		element = A->elements[(row * A->width) + col];
-	}
-	
-	return element;
-}
-
-inline void entry_set(Matrix *A, uint16_t col, uint16_t row, double value) {
-	if ((col < A->width) && (row < A->height)) {
-		A->elements[(row * A->width) + col] = value;
-	}
-}
-
-bool equals(Matrix *A, Matrix *B);
-bool multiply(Matrix *result, Matrix *A, Matrix *B);
-bool add(Matrix *result, Matrix *A, Matrix *B);
-bool scalar_multiply(Matrix *result, double scalar, Matrix *A);
+bool equals(sycl::queue &Q, Matrix *A, Matrix *B);
+bool multiply(sycl::queue &Q, Matrix *result, Matrix *A, Matrix *B);
+bool add(sycl::queue &Q, Matrix *result, Matrix *A, Matrix *B);
+bool scalar_multiply(sycl::queue &Q, Matrix *result, double scalar, Matrix *A);
 
 #endif /* __MATRIX_OPERATIONS_H */
