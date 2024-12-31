@@ -7,22 +7,42 @@
 #include <stdint.h>
 #include <math.h>
 #include <stdbool.h>
+#include <sycl/sycl.hpp>
+#include <oneapi/mkl.hpp>
 
 #include "operations.hpp"
 
 #define COMPARISON_ACCURACY (0.0000001)
 
-bool equals(Matrix *A, Matrix *B) {
+bool equals(sycl::queue &Q, Matrix *A, Matrix *B) {
+	// There's no oneMKL implementation so we do it the hard way
 	bool result = A && B && (A->width == B->width) && (A->height == B->height);
-	uint32_t size = A->width * A->height;
-	uint32_t offset = 0;	
+	uint32_t size = A->stride * A->height;
+	uint32_t offset_A = 0;
+	uint32_t offset_B = 0;
 	double difference;
 
-	while ((offset < size) && result) {
-		difference = fabs((A->elements[offset] - B->elements[offset]));
-		result = (difference < COMPARISON_ACCURACY);
-		++offset;
+  double *host_A = sycl::malloc_host<double>(size, Q);
+  double *host_B = sycl::malloc_host<double>(size, Q);
+	Q.copy(A->elements, host_A, size);
+	Q.wait();
+	Q.copy(B->elements, host_B, size);
+	Q.wait();
+
+	for (uint32_t row = 0; (row < A->height) && result; ++row) {
+		for (uint32_t col = 0; (col < A->width) && result; ++col) {
+			difference = fabs((host_A[offset_A + col] - host_B[offset_B + col]));
+			result = (difference < COMPARISON_ACCURACY);
+			if (!result) {
+				printf("Difference: %f - %f = %f\n", host_A[offset_A + col], host_B[offset_B + col], difference);
+			}
+		}
+		offset_A += A->stride;
+		offset_B += B->stride;
 	}
+
+	sycl::free(host_A, Q);
+	sycl::free(host_B, Q);
 	return result;
 }
 
@@ -35,58 +55,32 @@ bool equals(Matrix *A, Matrix *B) {
  *
  * @return true if the matrices could be multiplied, false o/w
  */
-bool multiply(Matrix *result, Matrix *A, Matrix *B) {
+bool multiply(sycl::queue &Q, Matrix *result, Matrix *A, Matrix *B) {
 	// Ensure the matrices exist and have suitable sizes
 	bool success = A && B && result && (A->width == B->height) && (result->width == B->width) && (result->height == A->height);
-	
+
 	if (success) {
-		uint32_t apos = 0;
-		uint32_t bpos = 0;
-		uint32_t size = result->height * result->width;
-		// Step through all the entries in the result matrix
-		for (uint32_t cpos = 0; cpos < size; ++cpos) {
-			// For A start at the beginning of the row
-			apos = (cpos / result->width) * A->width;
-			// For B start at the top of a column
-			bpos = cpos % result->width;
-			// Accumulator for the products
-			double element = 0.0f;
-			// For each entry in the result, sum the product of row/column pairs
-			for (uint32_t pos = 0; pos < A->width; ++pos) {
-				// Accumulate the products
-				element += A->elements[apos] * B->elements[bpos];
-				// Row stride of 1
-				apos += 1;
-				// Column stride of "width of B"
-				bpos += B->width;
-			}
-			// Write out the resulting element
-			result->elements[cpos] = element;
-		}
+		oneapi::mkl::blas::row_major::gemm(Q, oneapi::mkl::transpose::N, oneapi::mkl::transpose::N, A->height, B->width, A->width, 1.0, A->elements, A->stride, B->elements, B->stride, 0.0, result->elements, result->stride);
 	}
 	return success;
 }
 
-bool add(Matrix *result, Matrix *A, Matrix *B) {
+bool add(sycl::queue &Q, Matrix *result, Matrix *A, Matrix *B) {
+	// Ensure the matrices exist and have suitable sizes
 	bool success = A && B && result && (A->height == B->height) && (A->width == B->width) && (result->height == A->height) && (result->width == A->width);
-	
+
 	if (success) {
-		uint32_t size = A->height * A->width;
-		for (uint32_t index = 0; index < size; ++index) {
-			result->elements[index] = A->elements[index] + B->elements[index];
-		}
+		oneapi::mkl::blas::column_major::omatadd(Q, oneapi::mkl::transpose::N, oneapi::mkl::transpose::N, result->height, result->width, 1.0, A->elements, A->stride, 1.0, B->elements, B->stride, result->elements, result->stride);
 	}
 	return success;
 }
 
-bool scalar_multiply(Matrix *result, double scalar, Matrix *A) {
+bool scalar_multiply(sycl::queue &Q, Matrix *result, double scalar, Matrix *A) {
+	// Ensure the matrices exist and have suitable sizes
 	bool success = A && result && (result->height == A->height) && (result->width == A->width);
-	
+
 	if (success) {
-		uint32_t size = A->height * A->width;
-		for (uint32_t index = 0; index < size; ++index) {
-			result->elements[index] *= scalar;
-		}
+		oneapi::mkl::blas::column_major::omatadd(Q, oneapi::mkl::transpose::N, oneapi::mkl::transpose::N, result->height, result->width, scalar, A->elements, A->stride, 0.0, A->elements, A->stride, result->elements, result->stride);
 	}
 	return success;
 }
