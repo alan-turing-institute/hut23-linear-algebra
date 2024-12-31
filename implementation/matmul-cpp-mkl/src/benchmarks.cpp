@@ -5,11 +5,11 @@
 
 #include <stdlib.h>
 #include <inttypes.h>
+#include <mkl.h>
 
 #include "matrix.hpp"
 #include "load.hpp"
 #include "operations.hpp"
-#include "threadpool.hpp"
 #include "store.hpp"
 
 #include "benchmarks.hpp"
@@ -31,9 +31,8 @@ struct _Benchmark {
 	bool quiet;
 };
 
-Benchmark * new_benchmark() {
-	Benchmark *benchmark = calloc(sizeof(Benchmark), sizeof(char));
-	
+Benchmark * new_benchmark(sycl::queue &Q) {
+	Benchmark *benchmark = static_cast<Benchmark *>(calloc(sizeof(Benchmark), sizeof(char)));
 	return benchmark;
 }
 
@@ -72,7 +71,7 @@ void benchmarks_end(Benchmark *benchmark) {
 	}
 }
 
-void benchmarks_multiply_big(ThreadPool *pool) {
+void benchmarks_multiply_big(sycl::queue &Q) {
 	Benchmark *benchmark;
 	Matrix *A;
 	Matrix *B;
@@ -82,7 +81,7 @@ void benchmarks_multiply_big(ThreadPool *pool) {
 	printf("\n");
 	printf("## Large matrix multiplication\n");
 
-	benchmark = new_benchmark();
+	benchmark = new_benchmark(Q);
 	benchmark_set_quiet(benchmark, true);
 	rand = new_rand();
 
@@ -91,17 +90,17 @@ void benchmarks_multiply_big(ThreadPool *pool) {
 		uint32_t height = width;
 		uint32_t const repeat = BENCHMARK_REPEAT_LARGE * (width < 512 ? 1024 : width < 1024 ? 16 : 1);
 
-		A = new_matrix(width, diag);
-		B = new_matrix(diag, height);
-		D = new_matrix(width, height);
+		A = new_matrix(Q, width, diag);
+		B = new_matrix(Q, diag, height);
+		D = new_matrix(Q, width, height);
 		rand_seed(rand, 8);
-		matrix_fill(A, rand);
+		matrix_fill(A, Q, rand);
 		rand_seed(rand, 16);
-		matrix_fill(B, rand);
+		matrix_fill(B, Q, rand);
 
 		benchmarks_start(benchmark, repeat);
 		for (uint32_t count = 0; count < repeat; ++count) {
-			multiply(D, A, B);
+			multiply(Q, D, A, B);
 		}
 		benchmarks_end(benchmark);
 		printf("Size: (%d, %d, %d), time per operation: %.02f seconds\n", width, diag, height, benchmark->elapsed / benchmark->operations);
@@ -109,9 +108,9 @@ void benchmarks_multiply_big(ThreadPool *pool) {
 		double speed = (double)order / (benchmark->elapsed / benchmark->operations);
 		printf("Order: %" PRIu64 ", elements per second: %.02f\n", order, speed);
 
-		A = delete_matrix(A);
-		B = delete_matrix(B);
-		D = delete_matrix(D);
+		A = delete_matrix(A, Q);
+		B = delete_matrix(B, Q);
+		D = delete_matrix(D, Q);
 	}
 
 	printf("\n");
@@ -122,17 +121,17 @@ void benchmarks_multiply_big(ThreadPool *pool) {
 		uint32_t height = width;
 		uint32_t const repeat = BENCHMARK_REPEAT_LARGE * (width < 512 ? 1024 : width < 1024 ? 16 : 1);
 
-		A = new_matrix(width, diag);
-		B = new_matrix(diag, height);
-		D = new_matrix(width, height);
+		A = new_matrix(Q, width, diag);
+		B = new_matrix(Q, diag, height);
+		D = new_matrix(Q, width, height);
 		rand_seed(rand, 8);
-		matrix_fill(A, rand);
+		matrix_fill(A, Q, rand);
 		rand_seed(rand, 16);
-		matrix_fill(B, rand);
+		matrix_fill(A, Q, rand);
 
 		benchmarks_start(benchmark, repeat);
 		for (uint32_t count = 0; count < repeat; ++count) {
-			multiply_parallel(pool, D, A, B);
+			multiply(Q, D, A, B);
 		}
 		benchmarks_end(benchmark);
 		printf("Size: (%d, %d, %d), time per operation: %.02f seconds\n", width, diag, height, benchmark->elapsed / benchmark->operations);
@@ -140,20 +139,20 @@ void benchmarks_multiply_big(ThreadPool *pool) {
 		double speed = (double)order / (benchmark->elapsed / benchmark->operations);
 		printf("Order: %" PRIu64 ", elements per second: %.02f\n", order, speed);
 
-		A = delete_matrix(A);
-		B = delete_matrix(B);
-		D = delete_matrix(D);
+		A = delete_matrix(A, Q);
+		B = delete_matrix(B, Q);
+		D = delete_matrix(D, Q);
 	}
 
 	rand = delete_rand(rand);
 	benchmark = delete_benchmark(benchmark);
 }
 
-void benchmarks_multiply_small(Matrices *a, Matrices *b, Matrices *d) {
+void benchmarks_multiply_small(sycl::queue &Q, Matrices *a, Matrices *b, Matrices *d) {
 	Benchmark *benchmark;
 	uint32_t total;
 
-	benchmark = new_benchmark();
+	benchmark = new_benchmark(Q);
 	total = d->count;
 
 	printf("\n");
@@ -162,7 +161,7 @@ void benchmarks_multiply_small(Matrices *a, Matrices *b, Matrices *d) {
 
 	for (uint32_t count = 0; count < BENCHMARK_REPEAT_SMALL; ++count) {
 		for (uint32_t index = 0; index < total; ++index) {
-			multiply(d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
+			multiply(Q, d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
 		}
 	}
 
@@ -243,27 +242,30 @@ void export_data(char const * const filename, char const * const method, double 
 	}
 }
 
-void benchmark_multiply_square(ThreadPool *pool) {
+void benchmark_multiply_square(sycl::queue &Q) {
 	Benchmark *benchmark;
 	uint32_t const dims[] = {2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192, 256, 384, 512, 768, 1024};
 	uint32_t const dim_num = sizeof(dims) / sizeof(dims[0]);
 	double times[dim_num];
-	uint64_t const base_num_pairs = 2l << 31;
+	uint64_t const base_num_pairs = 2l << 32;
 	Rand * rand;
 	uint64_t pos;
 	uint64_t index;
 	Matrix * result;
 	uint32_t dim;
+	int32_t max_threads;
 
 	rand = new_rand();
 	rand_seed(rand, 42);
-	benchmark = new_benchmark();
+	benchmark = new_benchmark(Q);
+	max_threads = mkl_get_max_threads();
 
 	// Loop through the matrix sizes
 	for (pos = 0; pos < dim_num; ++pos) {
 		dim = dims[pos];
 
 		printf("\nBenchmarking scaling with matrices of dimension %u\n", dim);
+		printf("Max threads: %d\n", max_threads);
 
 		// All square matrices
 		uint64_t const dim1 = dim;
@@ -274,47 +276,48 @@ void benchmark_multiply_square(ThreadPool *pool) {
 
 		// Use fewer pairs for small matrices
 		if (dim <= 2) {
+			num_pairs = num_pairs / 256;
+		}
+		else if (dim <= 4) {
+			num_pairs = num_pairs / 128;
+		}
+		else if (dim <= 6) {
 			num_pairs = num_pairs / 16;
 		}
 		else if (dim <= 8) {
 			num_pairs = num_pairs / 8;
 		}
-		else if (dim <= 2) {
+		else if (dim <= 32) {
 			num_pairs = num_pairs / 4;
+		}
+		else if (dim <= 64) {
+			num_pairs = num_pairs / 2;
 		}
 		printf("Using %" PRIu64 " pairs of matrices\n", num_pairs);
 
 		// Create random matrices for our calculations
-		Matrix **as = calloc(num_pairs, sizeof(Matrix*));
+		Matrix **as = static_cast<Matrix **>(calloc(num_pairs, sizeof(Matrix*)));
 		for (index = 0; index < num_pairs; ++index) {
-			as[index] = new_matrix(dim1, dim2);
-			matrix_fill(as[index], rand);
+			as[index] = new_matrix(Q, dim1, dim2);
+			matrix_fill(as[index], Q, rand);
 		}
-		Matrix **bs = calloc(num_pairs, sizeof(Matrix*));
+		Matrix **bs = static_cast<Matrix **>(calloc(num_pairs, sizeof(Matrix*)));
 		for (index = 0; index < num_pairs; ++index) {
-			bs[index] = new_matrix(dim2, dim3);
-			matrix_fill(bs[index], rand);
+			bs[index] = new_matrix(Q, dim2, dim3);
+			matrix_fill(bs[index], Q, rand);
 		}
 		printf("Matrices generated\n");
 
 		// Create a temporary array to store the result in
-		result = new_matrix(dim1, dim3);
+		result = new_matrix(Q, dim1, dim3);
 
 		// Start benchmark
-		if (pool) {
-			benchmarks_start(benchmark, num_pairs);
-			for (index = 0; index < num_pairs; ++index) {
-				multiply_parallel(pool, result, as[index], bs[index]);
-			}
-			benchmarks_end(benchmark);
+		benchmarks_start(benchmark, num_pairs);
+		for (index = 0; index < num_pairs; ++index) {
+			multiply(Q, result, as[index], bs[index]);
 		}
-		else {
-			benchmarks_start(benchmark, num_pairs);
-			for (index = 0; index < num_pairs; ++index) {
-				multiply(result, as[index], bs[index]);
-			}
-			benchmarks_end(benchmark);
-		}
+		Q.wait_and_throw();
+		benchmarks_end(benchmark);
 		// End benchmark
 
 		double per_matrix_time = benchmark->elapsed / (double)benchmark->operations;
@@ -323,10 +326,10 @@ void benchmark_multiply_square(ThreadPool *pool) {
 		times[pos] = per_matrix_time;
 
 		// Clean up
-		result = delete_matrix(result);
+		result = delete_matrix(result, Q);
 		for (index = 0; index < num_pairs; ++index) {
-			as[index] = delete_matrix(as[index]);
-			bs[index] = delete_matrix(bs[index]);
+			as[index] = delete_matrix(as[index], Q);
+			bs[index] = delete_matrix(bs[index], Q);
 		}
 		free(as);
 		free(bs);
@@ -334,12 +337,7 @@ void benchmark_multiply_square(ThreadPool *pool) {
 	benchmark = delete_benchmark(benchmark);
 
 	Store *method = new_store(ALLOC_CHUNK);
-	if (pool) {
-		store_printf_append(method, "C naive, %u threads", threadpool_threads(pool));
-	}
-	else {
-		store_printf_append(method, "C naive, single threaded");
-	}
+	store_printf_append(method, "C++ oneMKL, %d threads", max_threads);
 	export_data("../results.csv", method->data, times, dim_num);
 	method = delete_store(method);
 }

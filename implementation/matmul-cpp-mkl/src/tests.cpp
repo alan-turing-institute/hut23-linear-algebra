@@ -5,17 +5,19 @@
 
 #include <stdlib.h>
 
+#include "matrix.hpp"
+#include "load.hpp"
 #include "operations.hpp"
 
 #include "tests.hpp"
 
-uint32_t tests_load_matrices(Matrices *a, Matrices *b, Matrices *c) {
+uint32_t tests_load_matrices(sycl::queue &Q, Matrices *a, Matrices *b, Matrices *c) {
 	uint32_t total = 0;
 
-	printf("Reading test matrices from file\n");	
+	printf("Reading test matrices from file\n");
 
 	Matrices *matrices = new_matrices(0);
-	matrix_npz_load("../testdata/matrices.npz", matrices);
+	matrix_npz_load(Q, "../testdata/matrices.npz", matrices);
 	if ((matrices->count % 3) == 0) {
 		total = matrices->count / 3;
 	}
@@ -23,11 +25,11 @@ uint32_t tests_load_matrices(Matrices *a, Matrices *b, Matrices *c) {
 		printf("Test matrices must come in A, B, C triplets\n");
 	}
 
-	a->matrices = realloc(a->matrices, sizeof(NamedMatrix) * total);
+	a->matrices = static_cast<NamedMatrix *>(realloc(a->matrices, sizeof(NamedMatrix) * total));
 	a->count = total;
-	b->matrices = realloc(b->matrices, sizeof(NamedMatrix) * total);
+	b->matrices = static_cast<NamedMatrix *>(realloc(b->matrices, sizeof(NamedMatrix) * total));
 	b->count = total;
-	c->matrices = realloc(c->matrices, sizeof(NamedMatrix) * total);
+	c->matrices = static_cast<NamedMatrix *>(realloc(c->matrices, sizeof(NamedMatrix) * total));
 	c->count = total;
 
 	NamedMatrix *from;
@@ -57,7 +59,7 @@ uint32_t tests_load_matrices(Matrices *a, Matrices *b, Matrices *c) {
 		}
 	}
 
-	matrices = delete_matrices(matrices);
+	matrices = delete_matrices(matrices, Q);
 
 	for (uint32_t index = 0; index < total; ++index) {
 		if (!a->matrices[index].matrix || !b->matrices[index].matrix || !c->matrices[index].matrix) {
@@ -68,42 +70,44 @@ uint32_t tests_load_matrices(Matrices *a, Matrices *b, Matrices *c) {
 	return total;
 }
 
-bool tests_allocate_results(Matrices *c, Matrices *d) {
+bool tests_allocate_results(sycl::queue &Q, Matrices *c, Matrices *d) {
 	for (uint32_t index = 0; index < c->count; ++index) {
-		d->matrices[index].matrix = new_matrix(c->matrices[index].matrix->height, c->matrices[index].matrix->width);
+		d->matrices[index].matrix = new_matrix(Q, c->matrices[index].matrix->height, c->matrices[index].matrix->width);
 	}
 	return true;
 }
 
 // Perform 512 multiplications and compare against the results from NumPy
-void tests_compare(Matrices *a, Matrices *b, Matrices *c, Matrices *d, ThreadPool *pool) {
+void tests_compare(sycl::queue &Q, Matrices *a, Matrices *b, Matrices *c, Matrices *d) {
 	printf("Performing unit tests...\n");
 	uint32_t passed = 0;
 	uint32_t total = d->count;
 	bool result;
 
 	for (uint32_t index = 0; index < total; ++index) {
-		result = multiply(d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
-		result = result && equals(c->matrices[index].matrix, d->matrices[index].matrix);
+		result = multiply(Q, d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
+		Q.wait_and_throw();
+		result = result && equals(Q, c->matrices[index].matrix, d->matrices[index].matrix);
 		if (result) {
 			passed += 1;
 		}
 		else {
 			printf("Incorrect result\n");
-			matrix_print(c->matrices[index].matrix);
-			matrix_print(d->matrices[index].matrix);
+			matrix_print(c->matrices[index].matrix, Q);
+			matrix_print(d->matrices[index].matrix, Q);
 		}
 	}
 	for (uint32_t index = 0; index < total; ++index) {
-		result = multiply_parallel(pool, d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
-		result = result && equals(c->matrices[index].matrix, d->matrices[index].matrix);
+		result = multiply(Q, d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
+		Q.wait_and_throw();
+		result = result && equals(Q, c->matrices[index].matrix, d->matrices[index].matrix);
 		if (result) {
 			passed += 1;
 		}
 		else {
 			printf("Incorrect result\n");
-			matrix_print(c->matrices[index].matrix);
-			matrix_print(d->matrices[index].matrix);
+			matrix_print(c->matrices[index].matrix, Q);
+			matrix_print(d->matrices[index].matrix, Q);
 		}
 	}
 	printf("Multiplication tests passed: %u out of %u\n", passed, total * 2);

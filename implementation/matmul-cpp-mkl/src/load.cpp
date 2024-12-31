@@ -14,10 +14,10 @@
 
 #define MAGIC "\x93NUMPY"
 
-Matrix *matrix_npz_load_entry(struct archive *a);
+Matrix *matrix_npz_load_entry(sycl::queue &Q, struct archive *a);
 
-Matrix * matrix_load(char *filename) {
-	FILE *fh = fopen(filename, "rb");
+Matrix * matrix_load(sycl::queue &Q, std::string filename) {
+	FILE *fh = fopen(filename.c_str(), "rb");
 	uint16_t header_size;
 	bool result = true;
 	Matrix *A = NULL;
@@ -48,7 +48,7 @@ Matrix * matrix_load(char *filename) {
 	}
 
 	if (result) {
-		header_text = calloc(header_size, sizeof(char));
+		header_text = static_cast<char *>(calloc(header_size, sizeof(char)));
 		len = fread(header_text, sizeof(char), header_size, fh);
 		result = (len == header_size);
 	}
@@ -63,12 +63,17 @@ Matrix * matrix_load(char *filename) {
 	if (result) {
 		height = header.height;
 		width = header.width;
-		A = new_matrix(height, width);
+		A = new_matrix(Q, height, width);
 		result = (A != NULL);
 	}
 	
 	if (result) {
-		len = fread(A->elements, sizeof(double), height * width, fh);
+		uint32_t size = height * width;
+		double *host_elements = sycl::malloc_host<double>(size, Q);
+
+		len = fread(host_elements, sizeof(double), height * width, fh);
+		matrix_entries_set(A, Q, host_elements, len);
+		sycl::free(host_elements, Q);
 		result = (len == height * width);
 	}
 	
@@ -80,7 +85,7 @@ Matrix * matrix_load(char *filename) {
 	return A;
 }
 
-Matrix *matrix_npz_load_entry(struct archive *a) {
+Matrix *matrix_npz_load_entry(sycl::queue &Q, struct archive *a) {
 	char magic[6];
 	uint16_t header_size = 0;
 	uint8_t major = 0;
@@ -112,7 +117,7 @@ Matrix *matrix_npz_load_entry(struct archive *a) {
 	}
 	
 	if (result) {
-		header_text = calloc(header_size, sizeof(char));
+		header_text = static_cast<char *>(calloc(header_size, sizeof(char)));
 		result = (header_text != NULL);
 	}
 
@@ -130,14 +135,17 @@ Matrix *matrix_npz_load_entry(struct archive *a) {
 	}
 	
 	if (result) {
-		A = new_matrix(header.height, header.width);
+		A = new_matrix(Q, header.height, header.width);
 		result = (A != NULL);
 	}
 
 	if (result) {
-		const uint32_t size = sizeof(double) * header.height * header.width;
-		len = archive_read_data(a, A->elements, size);
-		result = (len == size);
+		const uint32_t size = header.height * header.width;
+		double *host_elements = sycl::malloc_host<double>(size, Q);
+		len = archive_read_data(a, host_elements, sizeof(double) * size);
+		matrix_entries_set(A, Q, host_elements, size);
+		sycl::free(host_elements, Q);
+		result = ((sizeof(double) * len) == size);
 	}
 	
 	if (header_text) {
@@ -146,7 +154,7 @@ Matrix *matrix_npz_load_entry(struct archive *a) {
 	return A;
 }
 
-void matrix_npz_load(char *filename, Matrices *matrices) {
+void matrix_npz_load(sycl::queue &Q, std::string filename, Matrices *matrices) {
 	struct archive *a;
 	struct archive_entry *entry;
 	int r;
@@ -157,7 +165,7 @@ void matrix_npz_load(char *filename, Matrices *matrices) {
 		a = archive_read_new();
 		archive_read_support_filter_all(a);
 		archive_read_support_format_all(a);
-		r = archive_read_open_filename(a, filename, 10240);
+		r = archive_read_open_filename(a, filename.c_str(), 10240);
 		result = (r == ARCHIVE_OK);
 	}
 	
@@ -171,7 +179,7 @@ void matrix_npz_load(char *filename, Matrices *matrices) {
 	}
 	
 	if (result) {
-		matrices->matrices = realloc(matrices->matrices, sizeof(NamedMatrix) * count);
+		matrices->matrices = static_cast<NamedMatrix *>(realloc(matrices->matrices, sizeof(NamedMatrix) * count));
 		result = (matrices->matrices != NULL);
 		if (result) {
 			memset(matrices->matrices, 0, sizeof(NamedMatrix) * count);
@@ -182,14 +190,14 @@ void matrix_npz_load(char *filename, Matrices *matrices) {
 		a = archive_read_new();
 		archive_read_support_filter_all(a);
 		archive_read_support_format_all(a);
-		r = archive_read_open_filename(a, filename, 10240);
+		r = archive_read_open_filename(a, filename.c_str(), 10240);
 		result = (r == ARCHIVE_OK);
 	}
 	
 	if (result) {
 		uint32_t index = 0;
 		while ((archive_read_next_header(a, &entry) == ARCHIVE_OK) && (index < count)) {
-			matrices->matrices[index].matrix = matrix_npz_load_entry(a);
+			matrices->matrices[index].matrix = matrix_npz_load_entry(Q, a);
 			matrices->matrices[index].name = strdup(archive_entry_pathname(entry));
 			archive_read_data_skip(a);
 			index += 1;
@@ -201,10 +209,10 @@ void matrix_npz_load(char *filename, Matrices *matrices) {
 
 
 Matrices *new_matrices(uint32_t count) {
-	Matrices *matrices = calloc(sizeof(Matrices), 1);
+	Matrices *matrices = static_cast<Matrices *>(calloc(sizeof(Matrices), 1));
 	matrices->count = count;
 	if (count > 0) {
-		matrices->matrices = calloc(sizeof(NamedMatrix), count);
+		matrices->matrices = static_cast<NamedMatrix *>(calloc(sizeof(NamedMatrix), count));
 	}
 	else {
 		matrices->matrices = NULL;
@@ -212,12 +220,12 @@ Matrices *new_matrices(uint32_t count) {
 	return matrices;
 }
 
-Matrices *delete_matrices(Matrices *matrices) {
+Matrices *delete_matrices(Matrices *matrices, sycl::queue &Q) {
 	if (matrices) {
 		if (matrices->matrices) {
 			for (uint32_t index = 0; index < matrices->count; ++index) {
 				if (matrices->matrices[index].matrix) {
-					matrices->matrices[index].matrix = delete_matrix(matrices->matrices[index].matrix);
+					matrices->matrices[index].matrix = delete_matrix(matrices->matrices[index].matrix, Q);
 				}
 				if (matrices->matrices[index].name) {
 					free(matrices->matrices[index].name);

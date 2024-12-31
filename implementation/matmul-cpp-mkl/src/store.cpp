@@ -11,11 +11,11 @@
 #include "store.hpp"
 
 Store * new_store(size_t chunk_size) {
-	Store *store = malloc(sizeof(Store));
-	
+	Store *store = static_cast<Store *>(malloc(sizeof(Store)));
+
 	if (store) {
 		// Ensure the buffer is null terminated even for size 0
-		store->data = calloc(sizeof(char), 1);
+		store->data = static_cast<char *>(calloc(sizeof(char), 1));
 		store->size = 1;
 		store->length = 0;
 		store->chunk_size = chunk_size;
@@ -29,7 +29,7 @@ Store * delete_store(Store *store) {
 			free(store->data);
 		}
 		free(store);
-	}	
+	}
 	return NULL;
 }
 
@@ -56,7 +56,7 @@ bool store_setsize(Store * const store, size_t size) {
 		// Quantize the size
 		size = ((size_t)(size / store->chunk_size) + 1) * store->chunk_size;
 		if (size != store->size) {
-			store->data = realloc(store->data, size);
+			store->data = static_cast<char *>(realloc(store->data, size));
 			if (store->data) {
 				store->size = size - 1;
 				if (store->length > store->size) {
@@ -96,7 +96,7 @@ size_t store_printf (Store * const store, char const * const format, ...) {
 		store->length += result;
 		va_end (args);
 	}
-	
+
 	return result;
 }
 
@@ -120,7 +120,7 @@ size_t store_printf_append (Store * const store, char const * const format, ...)
 		store->length += result;
 		va_end (args);
 	}
-	
+
 	return result;
 }
 
