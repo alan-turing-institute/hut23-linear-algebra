@@ -15,6 +15,8 @@
 \newcommand{\imag}{\mathrm{i}}
 \newcommand{\card}[1]{\##1}
 \newcommand{\transpose}[1]{{#1}^{\rm t}}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
 \def\R{\mathbb{R}}
 \def\C{\mathbb{C}}
 \def\F{\mathbb{F}}
@@ -1809,6 +1811,152 @@ Suppose $V$ is a finite-dimensional complex vector space and $S, T$ are commutin
 \item every eigenvalue of $S + T$ is an eigenvalue of $S$ plus an eigenvalue of $T$,
 \item every eigenvalue of $ST$ is an eigenvalue of $S$ times an eigenvalue of $T$.
 \end{enumerate}
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 6.A}
+
+\begin{definition}{6.1}[dot product]
+For $x, y \in \R^n$, the \defn{dot product} of $x$ and $y$, denoted $x \cdot y$, is defined by
+$$
+x \cdot y = x_1 y_1 + \cdots + x_n y_n,
+$$
+where $x = (x_1, \ldots, x_n)$ and $y = (y_1, \ldots, y_n)$.
+\end{definition}
+
+\begin{notation}{6.1\textonehalf}[complex nonnegative]
+For $\lambda \in \C$, the notation $\lambda \ge 0$ means $\lambda$ is real and nonnegative.
+\end{notation}
+
+\begin{definition}{6.2}[inner product]
+An \defn{inner product} on $V$ is a function that takes each ordered pair $(u, v)$ of elements of $V$ to a number $\inner{u}{v} \in \F$ and has the following properties.
+
+\defn{positivity}
+\begin{forceindent}
+$\inner{v}{v} \ge 0$ for all $v \in V$.
+\end{forceindent}
+
+\defn{definiteness}
+\begin{forceindent}
+$\inner{v}{v} = 0$ if and only if $v = 0$.
+\end{forceindent}
+
+\defn{additivity in first slot}
+\begin{forceindent}
+$\inner{u + v}{w} = \inner{u}{w} + \inner{v}{w}$ for all $u, v, w \in V$.
+\end{forceindent}
+
+\defn{homogeneity in first slot}
+\begin{forceindent}
+$\inner{\lambda u}{v} = \lambda \inner{u}{v}$ for all $\lambda \in \F$ and all $u, v \in V$.
+\end{forceindent}
+
+\defn{conjugate symmetry}
+\begin{forceindent}
+$\inner{u}{v} = \overline{\inner{v}{u}}$ for all $u, v \in V$.
+\end{forceindent}
+\end{definition}
+
+\begin{definition}{6.4}[inner product space]
+An \defn{inner product space} is a vector space $V$ along with an inner product $V$.
+\end{definition}
+
+\begin{notation}{6.5}[$V, W$]
+For chapters 6 and 7, $V$ and $W$ denote inner product spaces over $F$.
+\end{notation}
+
+\begin{definition}{6.7}[norm, $\norm{v}$]
+For $v \in V$, the \defn{norm}, denoted by $\norm{v}$, is defined by
+$$
+\norm{v} = \sqrt{\inner{v}{v}} .
+$$
+\end{definition}
+
+\begin{definition}{6.10}[orthogonal]
+Two vectors $u, v \in V$ are called \defn{orthogonal} if $\inner{u}{v} = 0$.
+\end{definition}
+
+\newpage
+
+\begin{result}{6.6}[basic properties of an inner product] \enumfix
+\begin{enumerate}
+\item[(a)] For each fixed $v \in V$, the function that takes $u \in V$ to $\inner{u}{v}$ is a linear map from $V$ to $\F$.
+\item[(b)] $\inner{0}{v} = 0$ for every $v \in V$.
+\item[(c)] $\inner{v}{0} = 0$ for every $v \in V$.
+\item[(d)] $\inner{u}{v + w} = \inner{u}{v} + \inner{u}{w}$ for all $u, v, w \in V$.
+\item[(e)] $\inner{u}{\lambda v} = \bar\lambda \inner{u}{v}$ for all $\lambda \in \F$ and all $u, v \in V$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{6.9}[basic properties of the norm]
+Suppose $v \in V$.
+\begin{enumerate}
+\item[(a)] $\norm{v} = 0$ if and only if $v = 0$.
+\item[(b)] $\norm{\lambda v} = |\lambda| \norm{v}$ for all $\lambda \in \F$.
+\end{enumerate}
+\end{result}
+
+% Exercise 15
+\begin{result}{Ex. 6A, 15}[angle between vectors in $\R^2$]
+If $u, v \in \R^2$ are non-zero then
+$$
+\inner{u}{v} = \norm{u} \norm{v} \cos \theta,
+$$
+where $\theta$ is the angle between $u$ and $v$.
+\end{result}
+
+\begin{result}{6.11}[orthogonality and 0] \enumfix
+\begin{enumerate}
+\item[(a)] 0 is orthogonal to every vector in $V$.
+\item[(b)] 0 is the only vector in $V$ that is orthogonal to itself.
+\end{enumerate}
+\end{result}
+
+\begin{theorem}{6.12}[Pythagorean theorem]
+Suppose $u, v \in V$. If $u$ and $v$ are orthogonal, then
+$$
+\norm{u + v}^2 = \norm{u}^2 + \norm{v}^2 .
+$$
+\end{theorem}
+
+\begin{result}{6.13}[an orthogonal decomposition]
+Suppose $u, v \in V$, with $v \not= 0$. Set $c = \frac{\inner{u}{v}}{\norm{v}^2}$ and $w = u - \frac{\inner{u}{v}}{\norm{v}^2} v$. Then
+$$
+u = cv + w \quad \text{and} \quad \inner{w}{v} = 0.
+$$
+\end{result}
+
+\begin{theorem}{6.14}[Cauchy-Schwarz inequality]
+Suppose $u, v \in V$. Then
+$$
+|\inner{u}{v}| \le \norm{u}\norm{v} .
+$$
+This inequality is an equality if and only if one of $u, v$ is a scalar multiple of the other.
+\end{theorem}
+
+\begin{theorem}{6.17}[triangle inequality]
+Suppose $u, v \in V$. Then
+$$
+\norm{u + v} \le \norm{u} + \norm{v} .
+$$
+This inequality is an equality if and only if one of $u, v$ is a nonnegative real multiple of the other.
+\end{theorem}
+
+% Exercise 20
+\begin{result}{Ex. 6A, 20}[reverse triangle inequality]
+If $u, v \in V$, then
+$$
+\left| \vphantom{\sum} \norm{u} - \norm{v} \vphantom{\sum} \right| \le \norm{u - v} .
+$$
+\end{result}
+
+\begin{result}{6.21}[parallelogram inequality]
+Suppose $u, v \in V$. Then
+$$
+\norm{u + v}^2 + \norm{u - v}^2 = 2(\norm{u}^2 + \norm{v}^2 ) .
+$$
 \end{result}
 
 \end{document}
