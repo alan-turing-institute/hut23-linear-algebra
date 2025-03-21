@@ -169,6 +169,27 @@ Finally run the benchmarks:
 julia --project=. matmul.jl
 ```
 
+## C++ oneMKL implementation
+
+This isn't intended to be idiomatic C++, it's just a variation on the C implementation updated to use the Intel oneMKL Math Kernel Library and Intel C++ compiler.
+To build the code for Linux you'll need to install the [Intel C++ Essentials](https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?packages=cpp-essentials&cpp-essentials-os=linux&cpp-essentials-lin=apt) and [Intel oneAPI HPC Toolkit](https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?packages=hpc-toolkit&hpc-toolkit-os=linux&hpc-toolkit-lin=apt).
+
+Follow the instructions to install these, then initialise the build environment:
+```
+. /opt/intel/oneapi/2025.0/oneapi-vars.sh
+. /opt/intel/oneapi/compiler/2025.0/env/vars.sh
+```
+
+Build the binary:
+```
+make
+```
+
+Run the benchmarks:
+```
+make test
+```
+
 ## Benchmarking small matrix results
 
 Time to perform 16 777 216 matrix multiply operations for all matrix sizes between 2 × 2 and 10 × 10.
