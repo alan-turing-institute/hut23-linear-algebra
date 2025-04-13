@@ -468,14 +468,55 @@
                 The \emph{Cauchy-Schwarz inequality} is that $\lvert \inner{v}{w}\rvert \leq \lVert v\rVert \lVert w \rVert$ with the inequality saturated only if $v$ and $w$ are colinear. The \emph{triangle inequality} is that $\norm{v+w}\leq\norm{v}+\norm{w}$.  \\
   \defn{Orthogonal} & Describes two vectors, $v$ and $w$, having the property that $\inner{v}{w} =0$. \\
 
-  \defn{Orthonormal} & A list of vectors is orthonormal if every vector in the list has norm 1 and is orthogonal to every other vector in the list. \\
+\end{tabularx}
 
-  
-                      
-                      
+
+%% More inner product spaces
+\section*{Orthonormal bases}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \defn{Orthonormal} & Of a list of vectors, having the property that every vector in the list has norm 1 and is orthogonal to every other vector in the list. Orthonormal lists are linearly independent. \\
+
+  \parbox[t]{\termheaderwd}{\defn{Orthonomal\\ basis}}
+  & A basis that is orthonormal. \\
+
+  \parbox[t]{\termheaderwd}{\defn{Gram-Schmidt\\ procedure}}
+                     & The Gram-Schmidt procedure is an algorithm for constructing, from a list of vectors, an orthonormal list having the same span as the original list. \\
 
 \end{tabularx}
 
+%% ============================================================
+
+\section*{Assorted results}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \settowidth{\termheaderwd}{representation}%
+  \defn{Schur's theorem} & Every operator on a finite-dimensional, complex inner product space has an upper-triangular matrix with respect to some orthonormal basis. \\ 
+
+  \parbox[t]{\termheaderwd}{\defn{Reisz\\ representation\\ theorem}} 
+                      & For finite-dimensional $V$, let $\phi\in V'$ be a linear functional on~$V$. Then there exists a unique $v\in V$ such that
+                        \begin{equation*}
+                          \phi(u)  = \inner{u}{v}
+                        \end{equation*}
+                        for every $u\in V$. \\
+\end{tabularx}
+
+%% ============================================================
+
+\section*{Orthogonal complements}
+\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+  \toprule
+  \settowidth{\termheaderwd}{Orthogonal}%
+  \parbox[t]{\termheaderwd}{\defn{Orthogonal\\ complement}}
+
+  & Of a subset $U\subset V$, the set, $U^\perp$, of all vectors in $V$ that are orthogonal to every vector in~$U$. Usually $U$ is a subspace. When $U$ is a finite-dimensional subspace,  ${(U^\perp)}^\perp = U$.\\
+
+  \parbox[t]{\termheaderwd}{\defn{Orthogonal\\ projection}}
+  & Of a subspace $U$ of~$V$, the operator $P_U$ define by $P_U v = u$ where $v = u + w$ and $u\in U$ and $w\in W^\perp$. \\ 
+
+  
+
+\end{tabularx}
 
 \end{multicols*}
 \end{document}
