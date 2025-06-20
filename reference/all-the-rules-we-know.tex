@@ -2488,4 +2488,76 @@ $$
 
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.E}
+
+\begin{definition}{7.65}[singular values]
+Suppose $T \in \L(V, W)$. The \defn{singular values} of $T$ are the nonegative square roots of teh eigenvalues of $T^* T$, listed in decreasing order, each included as many times as the dimension of the corresponding eigenspace of $T^* T$.
+\end{definition}
+
+\begin{definition}{7.74}[diagonal matrix]
+An $M$-by-$N$ matrix $A$ is called a \defn{diagonal mtarix} if all entries of the matrix are 0 except possibly $A_{k, k}$ for $k = 1, \ldots, \min \{M, N \}$.
+\end{definition}
+
+\newpage
+
+\begin{result}{7.64}[properties of $T^* T$]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $T^* T$ is a positive operator on $V$;
+\item[(b)] $\kernel T^* T = \kernel T$;
+\item[(c)] $\range T^* T = \range T^*$;
+\item[(d)] $\dim \range T = \dim \range T^* = \dim \range T^* T$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.68}[role of positive singular valuse]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $T$ is injective $\Longleftrightarrow$ 0 is not a singular value of $T$;
+\item[(b)] the number of positive singular values of $T$ equals $\dim \range T$;
+\item[(c)] $T$ is surjective $\Longleftrightarrow$ number of positive singular values of $T$ equals $\dim W$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.69}[isometries characterised by having all singular values equal to 1]
+Suppose that $S \in \L(V, W)$. Then
+$$
+\text{$S$ is an isometry} \Longleftrightarrow \text{all singular values of $S$ equal 1}.
+$$
+\end{result}
+
+\begin{result}{7.70}[singular value decomposition]
+Suppose $T \in \L(V, W)$ and the positive singular values of $T$ are $s_1, \ldots, s_m$. Then there exist orthonormal lists $e_1, \ldots, e_m$ in $V$ and $f_1, \ldots. f_m$ in $W$ such that
+\begin{equation} \tag{7.71}
+T v = s_1 \inner{v}{e_1} f_1 + \cdot + s_m \inner{v}{e_m} f_m
+\end{equation}
+for every $v \in V$.
+\end{result}
+
+\begin{result}{7.75}[singular value decomposition of adjoint and pseudoinverse]
+Suppose $T \in \L(V, W)$ and the positive singular values of $T$ are $s_1, \ldots, s_m$. Suppose $e_1, \ldots, e_m$ and $f_1, \ldots, f_m$ are orthonormal lists in $V$ and $W$ such that
+\begin{equation} \tag{7.76}
+T v = s_1 \inner{v}{e_1} f_1 + \cdots + s_m \inner{v}{e_m} f_m
+\end{equation}
+for every $v \in V$. Then
+\begin{equation} \tag{7.77}
+T^* w = s_1 \inner{w}{f_1} e_1 + \cdots + s_m \inner{w}{f_m} e_m
+\end{equation}
+and
+\begin{equation} \tag{7.78}
+T^\dagger w = \frac{\inner{w}{f_1}}{s_1} e_1 + \cdots \frac{\inner{w}{f_m}}{s_m} e_m
+\end{equation}
+for every $w \in W$.
+\end{result}
+
+\begin{result}{7.80}[matrix versoin of SVG]
+Suppose $A$ is an $M$-by-$N$ matrix of rank $m \ge 1$. Then there exist an $M$-by-$m$ matrix $B$ with orthonormal columns, an $m$-by-$m$ diagonal matrix $D$ with positive numbers on the diagonal, and an $n$-by-$m$ matrix $C$ with orthonormal columns such that
+$$
+A = B D C^*.
+$$
+\end{result}
+
+\clearpage
+
 \end{document}
