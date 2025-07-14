@@ -34,7 +34,7 @@
 \newlength{\termheaderwd}
 %% 
 %%
-\title{All the maths we know}
+\title{All we know about vector spaces}
 \author{}
 \date{21 October 2023}
 %%
@@ -432,13 +432,6 @@
 
 \end{tabularx}
 
-%% ============================================================
-
-\section*{Operators II}
-\begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
-  \toprule
-  \defn{Commuting} & Operators $A$ and $B$ commute if $AB-BA=0$. 
-\end{tabularx}
 
 %% ============================================================
 
@@ -470,9 +463,10 @@
 
 \end{tabularx}
 
+%% ============================================================
 
-%% More inner product spaces
-\section*{Orthonormal bases}
+%% Orthonormal stuff
+\section*{Orthogonality}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
   \defn{Orthonormal} & Of a list of vectors, having the property that every vector in the list has norm 1 and is orthogonal to every other vector in the list. Orthonormal lists are linearly independent. \\
@@ -483,7 +477,20 @@
   \parbox[t]{\termheaderwd}{\defn{Gram-Schmidt\\ procedure}}
                      & The Gram-Schmidt procedure is an algorithm for constructing, from a list of vectors, an orthonormal list having the same span as the original list. \\
 
-\end{tabularx}
+  \parbox[t]{\termheaderwd}{\defn{Orthogonal\\ complement}}
+
+  & Of a subset $U\subset V$, the set, $U^\perp$, of all vectors in $V$ that are orthogonal to every vector in~$U$. Usually $U$ is a subspace. When $U$ is a finite-dimensional subspace,  ${(U^\perp)}^\perp = U$.\\
+
+  \parbox[t]{\termheaderwd}{\defn{Orthogonal\\ projection}}
+                     & Of a subspace $U$ of~$V$, the operator $P_U$ define by $P_U v = u$ where $v = u + w$ and $u\in U$ and $w\in W^\perp$. \\ 
+
+  \defn{Pseudoinverse}
+                     & For $V$ finite-dimensional and $T\in\mathcal{L}(V, W)$. The pseudoinverse $T^\dag \in\mathcal{L}(W,V)$ is
+                       \begin{equation*}
+                         T^\dag w = (T|_{(\operatorname{null} T)_\perp})^{-1} P_{\operatorname{range} T} w.
+                                           \end{equation*}
+                       
+                                           \end{tabularx}
 
 %% ============================================================
 
@@ -503,20 +510,16 @@
 
 %% ============================================================
 
-\section*{Orthogonal complements}
+\section*{Operators II}
 \begin{tabularx}{\columnwidth}{@{}l>{\raggedright\arraybackslash}X@{}}
   \toprule
-  \settowidth{\termheaderwd}{Orthogonal}%
-  \parbox[t]{\termheaderwd}{\defn{Orthogonal\\ complement}}
+  \defn{Commuting} & Operators $A$ and $B$ commute if $AB-BA=0$. \\
 
-  & Of a subset $U\subset V$, the set, $U^\perp$, of all vectors in $V$ that are orthogonal to every vector in~$U$. Usually $U$ is a subspace. When $U$ is a finite-dimensional subspace,  ${(U^\perp)}^\perp = U$.\\
-
-  \parbox[t]{\termheaderwd}{\defn{Orthogonal\\ projection}}
-  & Of a subspace $U$ of~$V$, the operator $P_U$ define by $P_U v = u$ where $v = u + w$ and $u\in U$ and $w\in W^\perp$. \\ 
-
-  
-
+  \defn{Adjoint} & 
+                     
+                     
 \end{tabularx}
+
 
 \end{multicols*}
 \end{document}
