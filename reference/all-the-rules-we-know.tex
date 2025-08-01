@@ -2071,4 +2071,327 @@ $$
 for every $u \in V$.
 \end{theorem}
 
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 6.C}
+
+\begin{definition}{6.46}[orthogonal complement, $U^\bot$]
+If $U$ is a subset of $V$, then the \defn{orthogonal complement\/} of $U$, denoted by $U^\bot$, is the set of all vectors in $V$ that are orthogonal to every vector in $U$:
+$$
+U^\bot = \{ v \in V \setsep \inner{u}{v} = 0 \text{ for every } u \in U \}.
+$$
+\end{definition}
+
+\begin{definition}{6.55}[orthogonal projection, $P_U$]
+Suppose $U$ is a finite-dimensional subspace of $V$. The \defn{orthogonal projection\/} of $V$ onto $U$ is the operator $P_U \in \L(V)$ defined as follows: For each $v \in V$, write $v = u + w$, where $u \in U$ and $w \in U^\bot$. Then $P_U v = u$.
+\end{definition}
+
+\begin{definition}{6.68}[pseudoinverse, $T^\dagger$]
+Suppose that $V$ is finite-dimensional and $T \in \L(V, W)$. The \defn{pseudoinverse} $T^\dagger \in \L(W, V)$ of $T$ is the linear map from $W$ to $V$ defined by
+$$
+T^\dagger w = (T|_{(\kernel T)^\bot)})^{-1} P_{\range T} w
+$$
+for each $w \in W$.
+\end{definition}
+
+\vspace{7\baselineskip}
+
+\begin{result}{6.48}[properties of orthogonal complement] \enumfix
+\begin{enumerate}
+\item[(a)] If $U$ is a subset of $V$, then $U^\bot$ is a subspace of $V$.
+\item[(b)] $\{ 0 \}^\bot = V$.
+\item[(c)] $V^\bot = \{ 0 \}$.
+\item[(d)] If $U$ is a subset of $V$, then $U \cap U^\bot \subseteq \{ 0 \}$.
+\item[(e)] If $G$ and $H$ are subsets of $V$ and $G \subseteq H$, then $H^\bot \subseteq G^\bot$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{6.49}[direct sum of a subspace and its orthogonal complement]
+Suppose $U$ is a finite-dimensional subspace of $V$. Then
+$$
+V = U \oplus U^\bot
+$$
+\end{result}
+
+\begin{result}{6.51}[dimension of orthogonal complement]
+Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$. Then
+$$
+\dim U^\bot = \dim V - \dim U.
+$$
+\end{result}
+
+\begin{result}{6.52}[orthogonal complement of the orthogonal complement]
+Suppose $U$ is a fintite-dimensional subspace of $V$. Then
+$$
+U = \left( U^\bot \right)^\bot.
+$$
+\end{result}
+
+\begin{result}{6.54}[$U^\bot = \{ 0 \} \Longleftrightarrow U = V$ (for $U$ a finite-dimensional subspace of $V$)]
+Suppose $U$ is a finite-dimensional subspace of $V$. Then
+$$
+U^\bot = \{ 0 \} \Longleftrightarrow U = V.
+$$
+\end{result}
+
+\begin{result}{6.57}[properties of orthogonal projection $P_U$] \enumfix
+\begin{enumerate}
+\item[(a)] $P_U \in \L(V)$;
+\item[(b)] $P_U u = u$ for every $u \in U$;
+\item[(c)] $P_U w = 0$ for every $w \in U^\bot$;
+\item[(d)] $\range P_U = U$;
+\item[(e)] $\kernel P_U = U^\bot$;
+\item[(f)] $v - P_U v \in U^\bot$ for every $v \in V$;
+\item[(g)] $P_U^2 = P_U$;
+\item[(h)] $\norm{P_U v} \le \norm{v}$ for every $v \in V$;
+\item[(i)] if $e_1, \ldots, e_m$ is an orthonormal basis of $U$ and $v \in V$, then
+$$
+P_U v = \inner{v}{e_1} e_1 + \cdots + \inner{v}{e_m} e_m.
+$$
+\end{enumerate}
+\end{result}
+
+\begin{theorem}{6.58}[Riesz representation theorem, revisited]
+Suppose $V$ is finite-dimensional. For each $v \in V$, define $\varphi_v \in V'$ by
+$$
+\varphi_v (u) = \inner{u}{v}
+$$
+for each $u \in V$. Then $v \to \varphi_v$ is a one-to-one function from $V$ to $V'$.
+\end{theorem}
+
+\begin{result}{6.61}[minimising distance to a subspace]
+Suppose $U$ is a finite-dimensional subspace of $V$, $v \in V$ and $u \in U$. Then
+$$
+\norm{v - P_U v} \le \norm{v - u}.
+$$
+Furthermore, the inequality above is an equality if and only if $u = P_U v$.
+\end{result}
+
+\begin{result}{6.67}[restriction of a linear map to obtain a one-to-one and onto map]
+Suppose $V$ is finite-dimensional and $T \in \L(V, W)$. Then $T|_{(\kernel T)^\bot}$ is a one-to-one map of $(\kernel T)^\bot$ onto $\range T$.
+\end{result}
+
+\begin{result}{6.69}[algebraic properties of the pseudoinverse]
+Suppose $V$ is finite-dimensional and $T \in \L(V, W)$.
+\begin{enumerate}
+\item[(a)] If $T$ is invertible, then $T^\dagger = T^{-1}$.
+\item[(b)] $T T^\dagger = P_{\range T} = $ the orthogonal projection of $W$ onto $\range T$.
+\item[(c)] $T^\dagger T = P_{(\kernel T)^\bot} =$ the orthogonal projection of $V$ onto $(\kernel T)^\bot$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{6.70}[pseudoinverse provides best approximate solution or best solution]
+Suppose $V$ is finite-dimensional, $T \in \L(V, W)$, and $b \in W$.
+\begin{enumerate}
+\item[(a)] If $x \in V$, then
+$$
+\norm{T (T^\dagger b) - b} \le \norm{T x - b},
+$$
+with equality if and only if $x \in T^\dagger b + \kernel T$.
+\item[(b)] If $x \in T^\dagger b + \kernel T$, then
+$$
+\norm{T^\dagger b} \le \norm{x},
+$$
+with equality if and only if $x = T^\dagger b$.
+\end{enumerate}
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.A}
+
+\begin{definition}{7.1}[adjoint, $T^*$]
+Suppose $T \in \L(V, W)$. The \defn{adjoint} of $T$ is the function $T^* : W \to V$ such that
+$$
+\inner{T v}{w} = \inner{v}{T^* w}
+$$
+for every $v \in V$ and every $w \in W$.
+\end{definition}
+
+\begin{definition}{7.7}[conjugate transpose, $A^*$]
+The \defn{conjugate transpose} of an $m$-by-$n$ matrix $A$ is the $n$-by-$m$ matrix $A^*$ obtained by interchanging the rows and columns and then taking the complex conjugate of each entry. In other words if $j \in \{1, \ldots, n \}$ and $k \in \{1, \ldots, m \}$, then
+$$
+(A^*)_{j, k} = \overline{A_{k, j}}.
+$$
+\end{definition}
+
+\begin{definition}{7.10}[self-adjoint]
+An operator $T \in \L(V)$ is called \defn{self-adjoint} if $T = T^*$.
+\end{definition}
+
+\begin{definition}{7.18}[normal] \enumfix
+\begin{enumerate}
+\item An operator on an inner product space is called \defn{normal} if it commutes with its adjoint.
+\item In other words, $T \in \L(V)$ is normal if $T T^* = T^* T$.
+\end{enumerate}
+\end{definition}
+
+\vspace{10.1\baselineskip}
+
+\begin{result}{7.4}[adjoint of a linear map is a linear map]
+If $T \in \L(V, W)$, then $T^* \in \L(W, V)$.
+\end{result}
+
+\begin{result}{7.5}[properties of the adjoint]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $(S + T)^* = S^* + T^*$ for all $S \in \L(V, W)$;
+\item[(b)] $(\lambda T)^* = \bar{\lambda} T^*$ for all $\lambda \in \F$;
+\item[(c)] $(T^*)^* = T$;
+\item[(d)] $(S T)^* = T^* S^*$ for all $S \in \L(W, U)$ where $U$ is a finite-dimensional inner product space over $\F$;
+\item[(e)] $I^* = I$, where $I$ is the identity operator on $V$;
+\item[(f)] if $T$ is invertible, then $T^*$ is invertible and $(T^*)^{-1} = (T^{-1})^*$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.6}[null space and range of $T^*$]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $\kernel T^* = (\range T)^\bot$;
+\item[(b)] $\range T^* = (\kernel T)^\bot$;
+\item[(c)] $\kernel T = (\range T^*)^\bot$;
+\item[(d)] $\range T = (\kernel T^*)^\bot$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.9}[matrix of $T^*$ equals conjugate transpose of matrix of $T$]
+Let $T \in \L(V, W)$. Suppose $e_1, \ldots, e_n$ is an orthonormal basis of $V$ and $f_1, \ldots, f_m$ is an orthonormal basis of $W$. Then $\M(T^*, (f_1, \ldots, f_m), (e_1, \ldots, e_n))$ is the conjugate transpose of $\M(T, (e_1, \ldots, e_n), (f_1, \ldots, f_m))$. In other words,
+$$
+\M(T^*) = (\M(T))^*.
+$$
+\end{result}
+
+\begin{result}{7.12}[eigenvalues of self-adjoint operators]
+Every eigenvalue of a self-adjoint operator is real.
+\end{result}
+
+\begin{result}{7.13}[$T v$ is orthogonal to $v$ for all $v \Longleftrightarrow T = 0$ (assuming $\F = \C$)]
+Suppose $V$ is a complex inner product space and $T \in \L(V)$. Then
+$$
+\inner{T v}{v} = 0 \text{ for every } v \in V \Longleftrightarrow T = 0.
+$$
+\end{result}
+
+\begin{result}{7.14}[$\inner{T v}{v}$ is real for all $v \Longleftrightarrow T$ is self-adjoint (assuming $\F = \C$)]
+Suppose $V$ is a complex inner product space and $T \in \L(V)$. Then
+$$
+T \text{ is self-adjoint} \Longleftrightarrow \inner{T v}{v} \in \R \text{ for every } v \in V.
+$$
+\end{result}
+
+\begin{result}{7.16}[$T$ self-adjoint and $\inner{T v}{v} = 0$ for all $v \Longleftrightarrow T = 0$]
+Suppose $T$ is a self-adjoint operator on $V$. Then
+$$
+\inner{T v}{v} = 0 \text{ for every } v \in V \Longleftrightarrow T = 0.
+$$
+\end{result}
+
+\begin{result}{7.20}[$T$ is normal if and only if $T v$ and $T^* v$ have the same norm]
+Suppose $T \in \L(V)$. Then
+$$
+T \text{ is normal} \Longleftrightarrow \norm{T v} = \norm{T^* v} \text{ for ever } v \in V.
+$$
+\end{result}
+
+\begin{result}{7.21}[range, null space and eigenvectors of a normal operator]
+Suppose $T \in \L(V)$ is normal. Then
+\begin{enumerate}
+\item[(a)] $\kernel T = \kernel T^*$;
+\item[(b)] $\range T = \range T^*$;
+\item[(c)] $V = \kernel T \oplus \range T$;
+\item[(d)] $T - \lambda I$ is normal for every $\lambda \in \F$;
+\item[(e)] if $v \in V$ and $\lambda \in \F$, then $T v = \lambda v$ if and only if $T^* v = \bar{\lambda} v.$
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.22}[orthogonal eigenvectors for normal operators]
+Suppose $T \in \L(V)$ is normal. Then eigenvectors of $T$ corresponding to distinct eigenvalues are orthogonal.
+\end{result}
+
+\begin{result}{7.23}[$T$ is normal $\Longleftrightarrow$ the real and imaginary parts of $T$ commute]
+Suppose $\F = \C$ and $T \in \L(V)$. Then $T$ is normal if and only if there exist commuting self-adjoint operators $A$ and $B$ such that $T = A + i B$.
+\end{result}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.B}
+
+\begin{result}{7.26}[invertible quadratic expressions]
+Suppose $T \in \L(V)$ is self-adjoint and $b, c \in \R$ are such that $b^2 < 4 c$. Then
+$$
+T^2 + b T + c I
+$$
+is an invertible operator.
+\end{result}
+
+\begin{result}{7.27}[minimal polynomial of self-adjoint operator]
+Suppose $T \in \L(V)$ is self-adjoint. Then the minimal polynomial of $T$ equals $(z - \lambda_1) \cdots (z - \lambda_m)$ for some $\lambda_1, \ldots, \lambda_m \in \R$.
+\end{result}
+
+\begin{theorem}{7.29}[real spectral theorem]
+Suppose $\F = \R$ and $T \in \L(V)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $T$ is self-adjoint.
+\item[(b)] $T$ has a diagonal matrix with respect to some orthonormal basis of $V$.
+\item[(c)] $V$ has an orthonormal basis consisting of eigenvectors of $T$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem}{7.31}[complex spectral theorem]
+Suppose $\F = \C$ and $T \in \L(V)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $T$ is normal.
+\item[(b)] $T$ has a diagonal matrix with respect to some orthonormal basis of $V$.
+\item[(c)] $V$ has an orthonormal basis consisting of eigenvectors of $T$.
+\end{enumerate}
+\end{theorem}
+
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.C}
+
+\begin{definition}{7.34}[positive operator]
+An operator $T \in \L(V)$ is called \defn{positive} if $T$ is self-adjoint and
+$$
+\inner{T v}{v} \ge 0
+$$
+for all $v \in V$.
+\end{definition}
+
+\begin{definition}{7.36}[square root]
+An operator $R$ is called a \defn{square root} of an operator $T$ if $R^2 = T$.
+\end{definition}
+
+\begin{notation}{7.40}[$\sqrt{T}$]
+For $T$ a positive operator, $\sqrt{T}$ denotes the unique positive square root of $T$.
+\end{notation}
+
+\vspace{10\baselineskip}
+
+\begin{result}{7.38}[characterisation of positive operators]
+Let $T \in \L(V)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $T$ is a positive operator.
+\item[(b)] $T$ is self-adjoint and all eigenvalues of $T$ are nonnegative.
+\item[(c)] With respect to some orthonormal basis of $V$, the matrix of $T$ is a diagonal matrix with only nonnegative numbers on the diagonal.
+\item[(d)] $T$ has a positive square root.
+\item[(e)] $T$ has a self-adjoint square root.
+\item[(f)] $T = R^* R$ for some $R \in \L(V)$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.39}[each positive operator has only one positive square root]
+Every positive operator on $V$ has a unique positive square root.
+\end{result}
+
+\begin{result}{7.43}[$T$ positive and $\inner{T v}{v} = 0 \Longrightarrow T v = 0$]
+Suppose $T$ is a positive operator on $V$ and $v \in V$ is such that $\inner{T v}{v} = 0$. Then $T v = 0$.
+\end{result}
+
+\clearpage
+
 \end{document}
