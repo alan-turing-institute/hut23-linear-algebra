@@ -1,4 +1,4 @@
-/* vim: noet:ts=2:sts=2:sw=2 */ 
+/* vim: noet:ts=2:sts=2:sw=2 */
 
 /* SPDX-License-Identifier: MIT */
 /* Copyright © 2024 David Llewellyn-Jones */
@@ -9,8 +9,8 @@
 #include "operations.h"
 #include "load.h"
 #include "tests.h"
-
-#define BENCHMARK_REPEAT (32768)
+#include "threadpool.h"
+#include "benchmarks.h"
 
 int main(int argc, char *argv[]) {
 	Matrix *A;
@@ -20,12 +20,19 @@ int main(int argc, char *argv[]) {
 	bool result;
 	uint32_t total;
 
+	ThreadPool *pool = new_threadpool(10);
+
 	// Play around with the API
 	printf("Example matrix manipulation...\n");	
 	A = matrix_load("../testdata/matrix-a.npy");
 	B = matrix_load("../testdata/matrix-b.npy");
 	C = matrix_load("../testdata/matrix-c.npy");
 	D = new_matrix(4, 4);
+
+	printf("pre multiply\n");
+	result = multiply_parallel(pool, D, A, B);
+	printf("Post multiply\n");
+
 	result = multiply(D, A, B);
 	result = equals(C, D);
 	printf("Result of A * B:\n");
@@ -46,41 +53,28 @@ int main(int argc, char *argv[]) {
 	result = tests_allocate_results(c, d);
 
 	// Perform 512 multiplications and compare against the results from NumPy
-	printf("Performing unit tests...\n");
-	uint32_t passed = 0;
-	for (uint32_t index = 0; index < total; ++index) {
-		result = multiply(d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
-		result = result && equals(c->matrices[index].matrix, d->matrices[index].matrix);
-		if (result) {
-			passed += 1;
-		}
-		else {
-			printf("Incorrect result\n");
-			matrix_print(c->matrices[index].matrix);
-			matrix_print(d->matrices[index].matrix);
-		}
-	}
-	printf("Multiplication tests passed: %u out of %u\n", passed, total);
+	tests_compare(a, b, c, d, pool);
+
+	// Benchmark square matrix multiplications single-threaded
+	printf("Square matrix benchmark single-threaded\n");
+	benchmark_multiply_square(NULL);
+
+	// Benchmark square matrix multiplications using threads
+	printf("Square matrix benchmark multi-threaded\n");
+	benchmark_multiply_square(pool);
+
+	// Benchmark large matrix multiplications
+	//benchmarks_multiply_big(pool);
 
 	// Measure time taken to perform 16777216 multiplications
-	printf("Benchmarking...\n");
-	clock_t start_time = clock();
-	for (uint32_t count = 0; count < BENCHMARK_REPEAT; ++count) {
-		for (uint32_t index = 0; index < total; ++index) {
-			multiply(d->matrices[index].matrix, a->matrices[index].matrix, b->matrices[index].matrix);
-		}
-	}
-	clock_t end_time = clock();
-	double elapsed = (double)(end_time - start_time) / CLOCKS_PER_SEC;
-	uint32_t operations = total * BENCHMARK_REPEAT;
-	printf("Time taken to perform %u multiply operations: %.02f seconds\n", operations, elapsed);
-	double ops_per_sec = operations / elapsed;
-	printf("Equivalent to %.02f operations per second\n", ops_per_sec);
+	//benchmarks_multiply_small(a, b, d);
 
 	a = delete_matrices(a);
 	b = delete_matrices(b);
 	c = delete_matrices(c);
 	d = delete_matrices(d);
+
+	pool = delete_threadpool(pool);
 
 	return EXIT_SUCCESS;
 }
