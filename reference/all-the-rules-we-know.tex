@@ -2394,4 +2394,98 @@ Suppose $T$ is a positive operator on $V$ and $v \in V$ is such that $\inner{T v
 
 \clearpage
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.D}
+
+\begin{definition}{7.44}[isometry]
+A linear map $S \in \L(V, W)$ is called an \defn{isometry} if
+$$
+\norm{S v} = \norm{v}
+$$
+for every $v \in V$. In other words, a linear map is an isometry if it preserves norms.
+\end{definition}
+
+\begin{definition}{7.51}[unitary operator]
+An operator $S \in \L(V)$ is called \defn{unitary} if $S$ is an invertible isometry.
+\end{definition}
+
+\begin{definition}{7.56}[unitary matrix]
+An $n$-by-$n$ matrix is called \defn{unitary} if its columns form an orthonormal list in $\F^n$.
+\end{definition}
+
+\begin{definition}{7.62}[positive definite]
+A matrix $B \in \F^{n, n}$ is called \defn{positive definite} if $B^* = B$ and
+$$
+\inner{B x}{x} > 0
+$$
+for every nonzero $x \in \F^n$.
+\end{definition}
+
+\vspace{10.1\baselineskip}
+
+\begin{result}{7.49}[characterisation of isometries]
+Suppose $S \in \L(V, W)$. Suppose $e_1, \ldots, e_n$ is an orthonormal basis of $V$ and $f_1, \ldots, f_m$ is an orthnormal basis of $W$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $S$ is an isometry.
+\item[(b)] $S^* S = I$.
+\item[(c)] $\inner{S u}{S v} = \inner{u}{v}$ for all $u, v \in V$.
+\item[(d)] $S e_1, \ldots, S e_n$ is an orthonromal list in $W$.
+\item[(e)] The columns of $\M(S, (e_1, \ldots, e_n), (f_1, \ldots, f_m))$ form an orthonormal list in $\F^m$ with respect to the Euclidean inner product.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.53}[characterisation of unitary operators]
+Suppose $S \in \L(V)$. Suppose $e_1, \ldots, e_n$ is an orthnormal basis of $V$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $S$ is a unitary operator.
+\item[(b)] $S* S = S S* = I$.
+\item[(c)] $S$ is invertible and $S^{-1} = S^*$.
+\item[(d)] $S e_1, \ldots, S e_n$ is an orthonormal basis of $V$.
+\item[(e)] The rows of $\M(S, (e_1, \ldots, e_n))$ form an orthonormal basis of $\F^n$ with respect to the Euclidean inner product.
+\item[(f)] $S^*$ is a unitary operator.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.54}[eigenvalues of unitary operators have absolute value 1]
+Suppose $\lambda$ is an eigenvalue of a unitary operator. Then $| \lambda | = 1$.
+\end{result}
+
+\begin{result}{7.55}[description of unitary operators on complex inner product spaces]
+Suppose $\F = \C$ and $S \in \L(V)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $S$ is a unitary operator.
+\item[(b)] There is an orthonormal basis of $V$ consisting of eigenvectors of $S$ whose corresponding eigenvalues all have asbolute value 1.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.57}[characterisation of unitary matrices]
+Suppose $Q$ is an $n$-bu-$n$ matrix. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $Q$ is a unitary matrix.
+\item[(b)] The rows of $Q$ form an orthonormal list in $\F^n$.
+\item[(c)] $\norm{Q v} = \norm{v}$ for every $v \in \F^n$
+\item[(d)] $Q^* Q = Q Q^* = I$, the $n$-by-$n$ matrix with 1's on the diagonal and 0's elsewhre.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.58}[QR factorisation]
+Suppose $A$ is a square matrix with linearly independent columns. Then there exist unique matrices $Q$ and $R$ such that $Q$ is unitary, $R$ is upper triangular with only positive numbers on its diagonal, and
+$$
+A = Q R.
+$$
+\end{result}
+
+\begin{result}{7.61}[positive invertible operator]
+A self-adjoint operator $T \in \L(VB)$ is a positive invertible operator if and only if $\inner{T v}{v} > 0$ for every nonzero $v \in V$.
+\end{result}
+
+\begin{result}{7.63}[Cholesky factorisation]
+Suppose $B$ is a positive definite matrix. Then there exists a unique upper-triangular matrix $R$ with only positive numbers on its diagonal such that
+$$
+B = R^* R.
+$$
+\end{result}
+
+\clearpage
+
 \end{document}
