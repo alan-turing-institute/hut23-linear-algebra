@@ -29,6 +29,7 @@
 \DeclareMathOperator{\range}{range}
 \DeclareMathOperator{\Real}{Re}
 \DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\volume}{volume}
 
 \newtheoremstyle{break}% name
   {}%          Space above, empty = `usual value'
@@ -2492,7 +2493,7 @@ $$
 \section*{Chapter 7.E}
 
 \begin{definition}{7.65}[singular values]
-Suppose $T \in \L(V, W)$. The \defn{singular values} of $T$ are the nonegative square roots of teh eigenvalues of $T^* T$, listed in decreasing order, each included as many times as the dimension of the corresponding eigenspace of $T^* T$.
+Suppose $T \in \L(V, W)$. The \defn{singular values} of $T$ are the nonegative square roots of the eigenvalues of $T^* T$, listed in decreasing order, each included as many times as the dimension of the corresponding eigenspace of $T^* T$.
 \end{definition}
 
 \begin{definition}{7.74}[diagonal matrix]
@@ -2559,5 +2560,147 @@ $$
 \end{result}
 
 \clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.F}
+
+\begin{definition}{7.86}[norm of a linear map, $\norm{\cdot}$]
+Suppose $T \in \L(V, w)$. Then the \defn{norm} of $T$, deonted by $\norm{T}$, is defined by
+$$
+\norm{T} = \max \{ \norm{T v} \setsep v \in V \text{ and } \norm{v} \le 1 \}.
+$$
+\end{definition}
+
+\newpage
+
+\begin{result}{7.82}[upper bound for $\norm{T v}$]
+Suppose $T \in \L(V, W)$. Let $s_1$ be the largest singular value of $T$. Then
+$$
+\norm{T v} \le s_v \norm{v}
+$$
+for all $v \in V$.
+\end{result}
+
+\begin{result}{7.87}[basic properties of norms of linear maps]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $\norm{T} \ge 0$;
+\item[(b)] $\norm{t} = 0 \Longleftrightarrow T = 0$;
+\item[(c)] $\norm{\lambda T} = | \lambda | \norm{T}$ for all $\lambda \in \F$;
+\item[(d)] $\norm{S + T} \le \norm{T} + \norm{T}$ for all $S \in \L(V, W)$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.91}[norm of the adjoint]
+Suppose $T \in \L(V, W)$. Then $\norm{T^*} = \norm{T}$.
+\end{result}
+
+\begin{result}{7.92}[best approximation by linear map whose range has dimension $\le k$]
+Suppose $T \in \L(V, W)$ and $s_1 \ge \cdots \ge s_m$ are the positive singular values of $T$. Suppose $1 \le k < m$. Then
+$$
+\min \{ \norm{T - S} \setsep S \in \L(V, W) \text{ and } \dim \range S \le k \} = s_{k + 1} .
+$$
+Furthermore, if
+$$
+T v = s_1 \inner{v}{e_1} f_1 + \cdots + s_k \inner{v}{e_k} f_k
+$$
+is a singular value decomposition of $T$ and $T_k \in \L(V, W)$ is defined by
+$$
+T_k v = s_1 \inner{v}{e_1} f_1 + \cdots + s_k \inner{v}{e_k} f_k
+$$
+for each $v \in V$, then $\dim \range T_k = k$ and $\norm{T - T_k} = s_{k + 1}$.
+\end{result}
+
+\begin{result}{7.93}[polar decomposition]
+Suppose $T \in \L(V)$. Then there exists a unitary operator $S \in \L(V)$ such that
+$$
+T = S \sqrt{T^* T}.
+$$
+\end{result}
+
+\clearpage
+
+\begin{definition}{7.95}[ball, $B$]
+The \defn{ball} in $V$ of radius 1 centered on 0, denoted by $B$, is defined by
+$$
+B = \{ v \in V \setsep \norm{v} < 1 \}.
+$$
+\end{definition}
+
+\begin{definition}{7.96}[ellipsoid, $E(s_1 f_1, \ldots, s_n f_n)$, principal axes]
+Suppose that $f_1, \ldots, f_m$ is an orthonormal basis of $V$ and $s_1, \ldots, s_n$ are positive numbers. The \defn{elliposoid} $E(s_1 f_1, \ldots, s_n f_n)$ with \defn{principal axes} $s_1, f_1, \ldots, s_n f_n$ is defined by
+\begin{align*}
+& E(s_1 f_1, \ldots, s_n f_n) = \\
+& \qquad \left\{ v \in V \setsep \frac{|\inner{v}{f_1}|^2}{s_1^2} + \cdots + \frac{|\inner{v}{f_n}|^2}{s_n^2} < 1 \right\} .
+\end{align*}
+\end{definition}
+
+\begin{notation}{7.98}[$T(\Omega)$]
+For $T$ a function defined on $V$ and $\Omega \subseteq V$, define $T(\Omega)$ by
+$$
+T(\Omega) = \{ T v \setsep v \in \Omega \} .
+$$
+\end{notation}
+
+\begin{definition}{7.102}[$P(v_1, \ldots, v_n)$, parallelepiped]
+Suppose $v_1, \ldots, v_n$ is a basis for $V$. Let
+$$
+P(v_1, \ldots, v_n) = \{ a_1 v_1 + \cdots + a_n v_n \setsep a_1, \ldots, a_n \in (0, 1) \} .
+$$
+A \defn{parallelepiped} is a set of the form $u + P(v_1, \ldots, v_n)$ for some $u \in V$. The vectors $v_1, \ldots, v_n$ are called the \defn{edges} of this parallelepiped.
+\end{definition}
+
+\begin{definition}{7.105}[box]
+A \defn{box} in $V$ is a set of the form
+$$
+u + P(r_1 e_1, \ldots, r_n e_n),
+$$
+where $u \in V$ and $r_1, \ldots, r_n$ are positive numbers and $e_1, \ldots, e_n$ is an orthonormal basis of $V$.
+\end{definition}
+
+\begin{definition}{7.108}[volume of a box]
+Suppose $\F = \R$. If $u \in V$ and $r_1, \ldots, r_n$ are positive numbers and $e_1, \ldots, e_n$ is an orthonormal basis of $V$, then
+$$
+\volume(u + P(r_1 e_1, \ldots, r_n e_n)) = r_1 \times \cdots \times r_n .
+$$
+\end{definition}
+
+\begin{definition}{7.109}[volume]
+Suppose $\F = \R$ and $\Omega \subseteq V$. Then the \defn{volume} of $\Omega$, denoted by $\volume \Omega$, is approximately the sum of the volumes of a collection of disjoint boxes that approximate $\Omega$.
+\end{definition}
+
+\newpage
+
+\begin{result}{7.99}[invertible operator takes ball to ellipsoid]
+Suppose $T \in \L(V)$ is invertible. Then $T$ maps the ball $B$ in $V$ onto an ellipsoid in $V$.
+\end{result}
+
+\begin{result}{7.101}[invertible operator takes ellipsoids to ellipsoids]
+Suppose $T \in \L(V)$  is invertible and $E$ is an ellipsoid in $V$. Then $T(E)$ is an ellipsoid in $V$.
+\end{result}
+
+\begin{result}{7.104}[invertible operator takes parallelepipeds to parallelepipeds]
+Suppose $u \in V$ and $v_1, \ldots, v_n$ is a basis of $V$. Suppose $T \in \L(V)$ is invertible. Then
+$$
+T(u + P(v_1, \ldots, v_n)) = T u + P( T v_1, \ldots, T v_n ) .
+$$
+\end{result}
+
+\begin{result}{7.107}[every invertible operator takes some boxes to boxes]
+Suppose $T \in L(V)$ is invertible. Suppose $T$ has singular value decomposition
+$$
+T v = s_1 \inner{v}{e_1} f_1 + \cdots + s_n \inner{v}{e_n} f_n ,
+$$
+where $s_1, \ldots, s_n$ are singular values of $T$ and $e_1, \ldots, e_n$ and $f_1, \ldots, f_n$ are orthonormal bases of $V$ and the equation above holds for all $v \in V$. Then $T$ maps the box $u + P(r_1 e_1, \ldots, r_n e_n)$ onto the box $T u + P(r_1 s_1 f_1, \ldots, r_n s_n f_n)$ for all positive numbers $r_1, \ldots, r_n$ and all $u \in V$.
+\end{result}
+
+\begin{result}{7.111}[volume changes by a factor of the product of the singular values]
+Suppose $\F = \R, T \in \L(V)$ is invertible, and $\Omega \subseteq V$. Then
+$$
+\volume T(\Omega) = ( \text{product of singular values of $T$} ) (\volume \Omega) .
+$$
+\end{result}
+
+
 
 \end{document}
