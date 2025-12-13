@@ -2197,5 +2197,121 @@ with equality if and only if $x = T^\dagger b$.
 \end{enumerate}
 \end{result}
 
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.A}
+
+\begin{definition}{7.1}[adjoint, $T^*$]
+Suppose $T \in \L(V, W)$. The \defn{adjoint} of $T$ is the function $T^* : W \to V$ such that
+$$
+\inner{T v}{w} = \inner{v}{T^* w}
+$$
+for every $v \in V$ and every $w \in W$.
+\end{definition}
+
+\begin{definition}{7.7}[conjugate transpose, $A^*$]
+The \defn{conjugate transpose} of an $m$-by-$n$ matrix $A$ is the $n$-by-$m$ matrix $A^*$ obtained by interchanging the rows and columns and then taking the complex conjugate of each entry. In other words if $j \in \{1, \ldots, n \}$ and $k \in \{1, \ldots, m \}$, then
+$$
+(A^*)_{j, k} = \overline{A_{k, j}}.
+$$
+\end{definition}
+
+\begin{definition}{7.10}[self-adjoint]
+An operator $T \in \L(V)$ is called \defn{self-adjoint} if $T = T^*$.
+\end{definition}
+
+\begin{definition}{7.18}[normal] \enumfix
+\begin{enumerate}
+\item An operator on an inner product space is called \defn{normal} if it commutes with its adjoint.
+\item In other words, $T \in \L(V)$ is normal if $T T^* = T^* T$.
+\end{enumerate}
+\end{definition}
+
+\vspace{10.1\baselineskip}
+
+\begin{result}{7.4}[adjoint of a linear map is a linear map]
+If $T \in \L(V, W)$, then $T^* \in \L(W, V)$.
+\end{result}
+
+\begin{result}{7.5}[properties of the adjoint]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $(S + T)^* = S^* + T^*$ for all $S \in \L(V, W)$;
+\item[(b)] $(\lambda T)^* = \bar{\lambda} T^*$ for all $\lambda \in \F$;
+\item[(c)] $(T^*)^* = T$;
+\item[(d)] $(S T)^* = T^* S^*$ for all $S \in \L(W, U)$ where $U$ is a finite-dimensional inner product space over $\F$;
+\item[(e)] $I^* = I$, where $I$ is the identity operator on $V$;
+\item[(f)] if $T$ is invertible, then $T^*$ is invertible and $(T^*)^{-1} = (T^{-1})^*$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.6}[null space and range of $T^*$]
+Suppose $T \in \L(V, W)$. Then
+\begin{enumerate}
+\item[(a)] $\kernel T^* = (\range T)^\bot$;
+\item[(b)] $\range T^* = (\kernel T)^\bot$;
+\item[(c)] $\kernel T = (\range T^*)^\bot$;
+\item[(d)] $\range T = (\kernel T^*)^\bot$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.9}[matrix of $T^*$ equals conjugate transpose of matrix of $T$]
+Let $T \in \L(V, W)$. Suppose $e_1, \ldots, e_n$ is an orthonormal basis of $V$ and $f_1, \ldots, f_m$ is an orthonormal basis of $W$. Then $\M(T^*, (f_1, \ldots, f_m), (e_1, \ldots, e_n))$ is the conjugate transpose of $\M(T, (e_1, \ldots, e_n), (f_1, \ldots, f_m))$. In other words,
+$$
+\M(T^*) = (\M(T))^*.
+$$
+\end{result}
+
+\begin{result}{7.12}[eigenvalues of self-adjoint operators]
+Every eigenvalue of a self-adjoint operator is real.
+\end{result}
+
+\begin{result}{7.13}[$T v$ is orthogonal to $v$ for all $v \Longleftrightarrow T = 0$ (assuming $\F = \C$)]
+Suppose $V$ is a complex inner product space and $T \in \L(V)$. Then
+$$
+\inner{T v}{v} = 0 \text{ for every } v \in V \Longleftrightarrow T = 0.
+$$
+\end{result}
+
+\begin{result}{7.14}[$\inner{T v}{v}$ is real for all $v \Longleftrightarrow T$ is self-adjoint (assuming $\F = \C$)]
+Suppose $V$ is a complex inner product space and $T \in \L(V)$. Then
+$$
+T \text{ is self-adjoint} \Longleftrightarrow \inner{T v}{v} \in \R \text{ for every } v \in V.
+$$
+\end{result}
+
+\begin{result}{7.16}[$T$ self-adjoint and $\inner{T v}{v} = 0$ for all $v \Longleftrightarrow T = 0$]
+Suppose $T$ is a self-adjoint operator on $V$. Then
+$$
+\inner{T v}{v} = 0 \text{ for every } v \in V \Longleftrightarrow T = 0.
+$$
+\end{result}
+
+\begin{result}{7.20}[$T$ is normal if and only if $T v$ and $T^* v$ have the same norm]
+Suppose $T \in \L(V)$. Then
+$$
+T \text{ is normal} \Longleftrightarrow \norm{T v} = \norm{T^* v} \text{ for ever } v \in V.
+$$
+\end{result}
+
+\begin{result}{7.21}[range, null space and eigenvectors of a normal operator]
+Suppose $T \in \L(V)$ is normal. Then
+\begin{enumerate}
+\item[(a)] $\kernel T = \kernel T^*$;
+\item[(b)] $\range T = \range T^*$;
+\item[(c)] $V = \kernel T \oplus \range T$;
+\item[(d)] $T - \lambda I$ is normal for every $\lambda \in \F$;
+\item[(e)] if $v \in V$ and $\lambda \in \F$, then $T v = \lambda v$ if and only if $T^* v = \bar{\lambda} v.$
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.22}[orthogonal eigenvectors for normal operators]
+Suppose $T \in \L(V)$ is normal. Then eigenvectors of $T$ corresponding to distinct eigenvalues are orthogonal.
+\end{result}
+
+\begin{result}{7.23}[$T$ is normal $\Longleftrightarrow$ the real and imaginary parts of $T$ commute]
+Suppose $\F = \C$ and $T \in \L(V)$. Then $T$ is normal if and only if there exist commuting self-adjoint operators $A$ and $B$ such that $T = A + i B$.
+\end{result}
 
 \end{document}
