@@ -2349,6 +2349,49 @@ Suppose $\F = \C$ and $T \in \L(V)$. Then the following are equivalent.
 \end{enumerate}
 \end{theorem}
 
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 7.C}
+
+\begin{definition}{7.34}[positive operator]
+An operator $T \in \L(V)$ is called \defn{positive} if $T$ is self-adjoint and
+$$
+\inner{T v}{v} \ge 0
+$$
+for all $v \in V$.
+\end{definition}
+
+\begin{definition}{7.36}[square root]
+An operator $R$ is called a \defn{square root} of an operator $T$ if $R^2 = T$.
+\end{definition}
+
+\begin{notation}{7.40}[$\sqrt{T}$]
+For $T$ a positive operator, $\sqrt{T}$ denotes the unique positive square root of $T$.
+\end{notation}
+
+\vspace{10\baselineskip}
+
+\begin{result}{7.38}[characterisation of positive operators]
+Let $T \in \L(V)$. Then the following are equivalent.
+\begin{enumerate}
+\item[(a)] $T$ is a positive operator.
+\item[(b)] $T$ is self-adjoint and all eigenvalues of $T$ are nonnegative.
+\item[(c)] With respect to some orthonormal basis of $V$, the matrix of $T$ is a diagonal matrix with only nonnegative numbers on the diagonal.
+\item[(d)] $T$ has a positive square root.
+\item[(e)] $T$ has a self-adjoint square root.
+\item[(f)] $T = R^* R$ for some $R \in \L(V)$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{7.39}[each positive operator has only one positive square root]
+Every positive operator on $V$ has a unique positive square root.
+\end{result}
+
+\begin{result}{7.43}[$T$ positive and $\inner{T v}{v} = 0 \Longrightarrow T v = 0$]
+Suppose $T$ is a positive operator on $V$ and $v \in V$ is such that $\inner{T v}{v} = 0$. Then $T v = 0$.
+\end{result}
+
 \clearpage
 
 \end{document}
