@@ -2071,4 +2071,131 @@ $$
 for every $u \in V$.
 \end{theorem}
 
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section*{Chapter 6.C}
+
+\begin{definition}{6.46}[orthogonal complement, $U^\bot$]
+If $U$ is a subset of $V$, then the \defn{orthogonal complement\/} of $U$, denoted by $U^\bot$, is the set of all vectors in $V$ that are orthogonal to every vector in $U$:
+$$
+U^\bot = \{ v \in V \setsep \inner{u}{v} = 0 \text{ for every } u \in U \}.
+$$
+\end{definition}
+
+\begin{definition}{6.55}[orthogonal projection, $P_U$]
+Suppose $U$ is a finite-dimensional subspace of $V$. The \defn{orthogonal projection\/} of $V$ onto $U$ is the operator $P_U \in \L(V)$ defined as follows: For each $v \in V$, write $v = u + w$, where $u \in U$ and $w \in U^\bot$. Then $P_U v = u$.
+\end{definition}
+
+\begin{definition}{6.68}[pseudoinverse, $T^\dagger$]
+Suppose that $V$ is finite-dimensional and $T \in \L(V, W)$. The \defn{pseudoinverse} $T^\dagger \in \L(W, V)$ of $T$ is the linear map from $W$ to $V$ defined by
+$$
+T^\dagger w = (T|_{(\kernel T)^\bot)})^{-1} P_{\range T} w
+$$
+for each $w \in W$.
+\end{definition}
+
+\vspace{7\baselineskip}
+
+\begin{result}{6.48}[properties of orthogonal complement] \enumfix
+\begin{enumerate}
+\item[(a)] If $U$ is a subset of $V$, then $U^\bot$ is a subspace of $V$.
+\item[(b)] $\{ 0 \}^\bot = V$.
+\item[(c)] $V^\bot = \{ 0 \}$.
+\item[(d)] If $U$ is a subset of $V$, then $U \cap U^\bot \subseteq \{ 0 \}$.
+\item[(e)] If $G$ and $H$ are subsets of $V$ and $G \subseteq H$, then $H^\bot \subseteq G^\bot$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{6.49}[direct sum of a subspace and its orthogonal complement]
+Suppose $U$ is a finite-dimensional subspace of $V$. Then
+$$
+V = U \oplus U^\bot
+$$
+\end{result}
+
+\begin{result}{6.51}[dimension of orthogonal complement]
+Suppose $V$ is finite-dimensional and $U$ is a subspace of $V$. Then
+$$
+\dim U^\bot = \dim V - \dim U.
+$$
+\end{result}
+
+\begin{result}{6.52}[orthogonal complement of the orthogonal complement]
+Suppose $U$ is a fintite-dimensional subspace of $V$. Then
+$$
+U = \left( U^\bot \right)^\bot.
+$$
+\end{result}
+
+\begin{result}{6.54}[$U^\bot = \{ 0 \} \Longleftrightarrow U = V$ (for $U$ a finite-dimensional subspace of $V$)]
+Suppose $U$ is a finite-dimensional subspace of $V$. Then
+$$
+U^\bot = \{ 0 \} \Longleftrightarrow U = V.
+$$
+\end{result}
+
+\begin{result}{6.57}[properties of orthogonal projection $P_U$] \enumfix
+\begin{enumerate}
+\item[(a)] $P_U \in \L(V)$;
+\item[(b)] $P_U u = u$ for every $u \in U$;
+\item[(c)] $P_U w = 0$ for every $w \in U^\bot$;
+\item[(d)] $\range P_U = U$;
+\item[(e)] $\kernel P_U = U^\bot$;
+\item[(f)] $v - P_U v \in U^\bot$ for every $v \in V$;
+\item[(g)] $P_U^2 = P_U$;
+\item[(h)] $\norm{P_U v} \le \norm{v}$ for every $v \in V$;
+\item[(i)] if $e_1, \ldots, e_m$ is an orthonormal basis of $U$ and $v \in V$, then
+$$
+P_U v = \inner{v}{e_1} e_1 + \cdots + \inner{v}{e_m} e_m.
+$$
+\end{enumerate}
+\end{result}
+
+\begin{theorem}{6.58}[Riesz representation theorem, revisited]
+Suppose $V$ is finite-dimensional. For each $v \in V$, define $\varphi_v \in V'$ by
+$$
+\varphi_v (u) = \inner{u}{v}
+$$
+for each $u \in V$. Then $v \to \varphi_v$ is a one-to-one function from $V$ to $V'$.
+\end{theorem}
+
+\begin{result}{6.61}[minimising distance to a subspace]
+Suppose $U$ is a finite-dimensional subspace of $V$, $v \in V$ and $u \in U$. Then
+$$
+\norm{v - P_U v} \le \norm{v - u}.
+$$
+Furthermore, the inequality above is an equality if and only if $u = P_U v$.
+\end{result}
+
+\begin{result}{6.67}[restriction of a linear map to obtain a one-to-one and onto map]
+Suppose $V$ is finite-dimensional and $T \in \L(V, W)$. Then $T|_{(\kernel T)^\bot}$ is a one-to-one map of $(\kernel T)^\bot$ onto $\range T$.
+\end{result}
+
+\begin{result}{6.69}[algebraic properties of the pseudoinverse]
+Suppose $V$ is finite-dimensional and $T \in \L(V, W)$.
+\begin{enumerate}
+\item[(a)] If $T$ is invertible, then $T^\dagger = T^{-1}$.
+\item[(b)] $T T^\dagger = P_{\range T} = $ the orthogonal projection of $W$ onto $\range T$.
+\item[(c)] $T^\dagger T = P_{(\kernel T)^\bot} =$ the orthogonal projection of $V$ onto $(\kernel T)^\bot$.
+\end{enumerate}
+\end{result}
+
+\begin{result}{6.70}[pseudoinverse provides best approximate solution or best solution]
+Suppose $V$ is finite-dimensional, $T \in \L(V, W)$, and $b \in W$.
+\begin{enumerate}
+\item[(a)] If $x \in V$, then
+$$
+\norm{T (T^\dagger b) - b} \le \norm{T x - b},
+$$
+with equality if and only if $x \in T^\dagger b + \kernel T$.
+\item[(b)] If $x \in T^\dagger b + \kernel T$, then
+$$
+\norm{T^\dagger b} \le \norm{x},
+$$
+with equality if and only if $x = T^\dagger b$.
+\end{enumerate}
+\end{result}
+
+
 \end{document}
